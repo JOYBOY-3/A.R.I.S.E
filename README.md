@@ -30,7 +30,7 @@ A.R.I.S.E is designed to make classroom attendance fast and verifiable. Teachers
 
 ---
 
-## ⚙️ Quick start (Windows, cmd.exe)
+## ⚙️ Quick start (Windows, cmd.exe)S
 
 1. Clone the repo and change into the project folder
 <br>
