@@ -32,32 +32,27 @@ A.R.I.S.E is designed to make classroom attendance fast and verifiable. Teachers
 
 ## ⚙️ Quick start (Windows, cmd.exe)
 
-1. Clone the repo and change into the project folder:
+1. Clone the repo and change into the project folder
+<br>
 
-2. (Optional) Create and activate a virtual environment:
-
-	python -m venv venv
-	venv\Scripts\activate
-
-3. Install dependencies (example):
-
-	pip install flask PyJWT apscheduler openpyxl
-
+2. activate a virtual environment using your terminal:
+  <code>.\venv\Scripts\activate</code>
+<br>
+3. (Optional )Install dependencies (example):
+	<code>pip install flask PyJWT apscheduler openpyxl</code>
+<br>
 4. Initialize the database (creates tables and a default admin):
-
-	python database_setup.py
-
+<code>python database_setup.py</code>
 	Default admin credentials created by this script:
 	Username: `admin`
 	Password: `admin`
+  <br>
 
 5. Run the server:
 
 	python server.py
 
 	The server listens by default on http://0.0.0.0:5000/. Open `/admin` to access the admin interface.
-
-> Note: For production use, set a secure `SECRET_KEY` environment variable instead of the hard-coded key in `server.py`.
 
 ---
 
