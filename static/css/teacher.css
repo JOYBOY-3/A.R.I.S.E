@@ -1,0 +1,653 @@
+/*=========================================================
+Teacher Dashboard - FINAL FIXED VERSION
+- Sticky columns working on all devices
+- Compact table view on mobile (no cards for report)
+- Better mobile table readability
+=========================================================*/
+
+/* --- View Container Management --- */
+.view-container {
+  display: none;
+  animation: fadeIn 0.3s ease;
+}
+
+.view-container.active {
+  display: block;
+}
+
+/* --- Form Container (Login View) --- */
+.form-container {
+  max-width: 500px;
+  margin: 2rem auto;
+}
+
+/* --- Session Type Selection Cards --- */
+.session-type-options {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--spacing-lg);
+  margin-top: var(--spacing-lg);
+}
+
+.session-type-btn {
+  padding: var(--spacing-xl);
+  border: 2px solid var(--border-color);
+  border-radius: var(--border-radius);
+  text-align: center;
+  cursor: pointer;
+  background-color: var(--bg-secondary);
+  transition: all var(--transition-base);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 200px;
+}
+
+.session-type-btn:hover {
+  border-color: var(--primary-color);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-5px);
+  background-color: var(--bg-hover);
+}
+
+.session-type-btn h3 {
+  margin-top: 0;
+  margin-bottom: var(--spacing-sm);
+  font-size: var(--font-size-xl);
+  color: var(--primary-color);
+}
+
+.session-type-btn p {
+  color: var(--text-secondary);
+  margin: 0;
+  font-size: var(--font-size-base);
+}
+
+/* --- Live Dashboard Grid --- */
+.live-dashboard-grid {
+  display: grid;
+  grid-template-columns: 350px 1fr;
+  gap: var(--spacing-lg);
+  align-items: start;
+}
+
+.live-info-panel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  position: sticky;
+  top: var(--spacing-md);
+}
+
+.unmarked-students-panel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.unmarked-students-panel h3 {
+  margin-top: 0;
+  margin-bottom: var(--spacing-sm);
+}
+
+.unmarked-students-panel input[type="text"] {
+  margin-bottom: var(--spacing-sm);
+}
+
+/* --- Stat Cards --- */
+.stat-card {
+  background-color: var(--bg-hover);
+  padding: var(--spacing-md);
+  border-radius: var(--border-radius);
+  border: 1px solid var(--border-color);
+  transition: all var(--transition-base);
+}
+
+.stat-card h3,
+.stat-card h4 {
+  margin-top: 0;
+  margin-bottom: var(--spacing-xs);
+  color: var(--text-secondary);
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.live-counter {
+  font-size: 2.75rem;
+  font-weight: bold;
+  color: var(--primary-color);
+  margin: var(--spacing-xs) 0 0 0;
+  line-height: 1;
+}
+
+/* --- Device Status Widget --- */
+#device-status-widget {
+  background: linear-gradient(135deg, var(--bg-hover) 0%, var(--bg-secondary) 100%);
+}
+
+#device-status-text {
+  font-weight: 600;
+  font-size: var(--font-size-sm);
+  white-space: pre-line;
+  line-height: 1.6;
+  color: var(--text-primary);
+}
+
+/* --- Session Controls --- */
+.session-controls {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.session-controls button {
+  width: 100%;
+}
+
+/* --- Manual Mark Button Styling --- */
+.manual-mark-btn {
+  background-color: transparent;
+  border: 1px solid var(--secondary-color);
+  color: var(--secondary-color);
+  padding: 8px 16px;
+  font-size: var(--font-size-sm);
+  border-radius: var(--border-radius-sm);
+  transition: all var(--transition-base);
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.manual-mark-btn:hover:not(:disabled) {
+  background-color: var(--primary-color);
+  color: white;
+  border-color: var(--primary-color);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
+}
+
+/* --- Report Controls --- */
+.report-controls {
+  margin-bottom: var(--spacing-md);
+  display: flex;
+  gap: var(--spacing-sm);
+  flex-wrap: wrap;
+}
+
+/* ========================================= */
+/* FIXED: Responsive Report Table - ALWAYS STICKY COLUMNS */
+/* ========================================= */
+
+.responsive-table-container {
+  overflow-x: auto;
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-sm);
+  max-height: 70vh;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.responsive-table .data-table {
+  min-width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+/* CRITICAL FIX: Sticky columns on ALL screen sizes */
+.responsive-table .data-table th:first-child,
+.responsive-table .data-table td:first-child,
+.responsive-table .data-table th:nth-child(2),
+.responsive-table .data-table td:nth-child(2),
+.responsive-table .data-table th:nth-child(3),
+.responsive-table .data-table td:nth-child(3) {
+  position: sticky;
+  background-color: var(--bg-secondary);
+  z-index: 10;
+  box-shadow: 2px 0 4px rgba(0, 0, 0, 0.1);
+}
+
+.responsive-table .data-table thead th:first-child,
+.responsive-table .data-table thead th:nth-child(2),
+.responsive-table .data-table thead th:nth-child(3) {
+  background-color: var(--bg-hover);
+  z-index: 20;
+}
+
+/* Column 1: Class Roll - 70px */
+.responsive-table .data-table th:first-child,
+.responsive-table .data-table td:first-child {
+  left: 0;
+  min-width: 70px;
+  width: 70px;
+  z-index: 15;
+}
+
+/* Column 2: Name - 180px */
+.responsive-table .data-table th:nth-child(2),
+.responsive-table .data-table td:nth-child(2) {
+  left: 70px;
+  min-width: 180px;
+  width: 180px;
+}
+
+/* Column 3: University Roll - 150px */
+.responsive-table .data-table th:nth-child(3),
+.responsive-table .data-table td:nth-child(3) {
+  left: 250px;
+  min-width: 150px;
+  width: 150px;
+}
+
+/* Hover effect for sticky columns */
+.responsive-table .data-table tr:hover td:first-child,
+.responsive-table .data-table tr:hover td:nth-child(2),
+.responsive-table .data-table tr:hover td:nth-child(3) {
+  background-color: var(--bg-hover);
+}
+
+/* Dark mode adjustments */
+[data-theme="dark"] .responsive-table .data-table th:first-child,
+[data-theme="dark"] .responsive-table .data-table td:first-child,
+[data-theme="dark"] .responsive-table .data-table th:nth-child(2),
+[data-theme="dark"] .responsive-table .data-table td:nth-child(2),
+[data-theme="dark"] .responsive-table .data-table th:nth-child(3),
+[data-theme="dark"] .responsive-table .data-table td:nth-child(3) {
+  background-color: var(--bg-secondary);
+  box-shadow: 2px 0 4px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="dark"] .responsive-table .data-table thead th:first-child,
+[data-theme="dark"] .responsive-table .data-table thead th:nth-child(2),
+[data-theme="dark"] .responsive-table .data-table thead th:nth-child(3) {
+  background-color: var(--bg-hover);
+}
+
+/* Date columns - normal width */
+.responsive-table .data-table th:nth-child(n+4),
+.responsive-table .data-table td:nth-child(n+4) {
+  min-width: 80px;
+  text-align: center;
+}
+
+/* ========================================= */
+/* RESPONSIVE DESIGN */
+/* ========================================= */
+
+/* Tablet View (769px - 1024px) */
+@media (max-width: 1024px) {
+  .live-dashboard-grid {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-md);
+  }
+
+  .live-info-panel {
+    position: static;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--spacing-sm);
+  }
+
+  .session-controls {
+    flex-direction: row;
+    grid-column: 1 / -1;
+  }
+
+  .session-type-options {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  }
+}
+
+/* Mobile View (max-width: 768px) */
+@media (max-width: 768px) {
+  /* Session Type Cards */
+  .session-type-options {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-sm);
+  }
+
+  .session-type-btn {
+    min-height: 150px;
+    padding: var(--spacing-md);
+  }
+
+  .session-type-btn h3 {
+    font-size: var(--font-size-lg);
+  }
+
+  /* Live Dashboard */
+  .live-info-panel {
+    grid-template-columns: 1fr;
+  }
+
+  .stat-card {
+    padding: var(--spacing-sm);
+  }
+
+  .live-counter {
+    font-size: 2.25rem;
+  }
+
+  /* Session Controls */
+  .session-controls {
+    flex-direction: column;
+  }
+
+  .session-controls button {
+    width: 100%;
+    padding: 14px 20px;
+    font-size: var(--font-size-base);
+  }
+
+  /* Report Controls */
+  .report-controls {
+    flex-direction: column;
+  }
+
+  .report-controls button {
+    width: 100%;
+  }
+
+  /* ========================================= */
+  /* MOBILE: Unmarked Students Table - Card Layout */
+  /* ========================================= */
+  #unmarked-students-table thead {
+    display: none;
+  }
+
+  #unmarked-students-table,
+  #unmarked-students-table tbody,
+  #unmarked-students-table tr,
+  #unmarked-students-table td {
+    display: block;
+    width: 100%;
+  }
+
+  #unmarked-students-table tr {
+    margin-bottom: var(--spacing-md);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-sm);
+    padding: var(--spacing-sm);
+    background-color: var(--bg-secondary);
+  }
+
+  #unmarked-students-table td {
+    text-align: left;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  #unmarked-students-table td:last-child {
+    border-bottom: none;
+    justify-content: center;
+    padding-top: var(--spacing-sm);
+  }
+
+  #unmarked-students-table td::before {
+    content: attr(data-label);
+    font-weight: 600;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    font-size: 0.7rem;
+    letter-spacing: 0.5px;
+    flex-shrink: 0;
+    margin-right: var(--spacing-sm);
+  }
+
+  #unmarked-students-table td:last-child::before {
+    display: none;
+  }
+
+  .manual-mark-btn {
+    width: 100%;
+    padding: 10px 16px;
+  }
+
+  /* ========================================= */
+  /* MOBILE: Report Table - COMPACT TABLE (No Cards!) */
+  /* ========================================= */
+  
+  /* Make everything smaller but keep table structure */
+  .responsive-table .data-table {
+    font-size: 0.7rem;
+  }
+
+  .responsive-table .data-table th,
+  .responsive-table .data-table td {
+    padding: 6px 4px;
+  }
+
+  /* Adjust sticky column widths for mobile */
+  .responsive-table .data-table th:first-child,
+  .responsive-table .data-table td:first-child {
+    min-width: 50px;
+    width: 50px;
+    left: 0;
+    font-size: 0.65rem;
+  }
+
+  .responsive-table .data-table th:nth-child(2),
+  .responsive-table .data-table td:nth-child(2) {
+    min-width: 120px;
+    width: 120px;
+    left: 50px;
+    font-size: 0.7rem;
+  }
+
+  .responsive-table .data-table th:nth-child(3),
+  .responsive-table .data-table td:nth-child(3) {
+    min-width: 100px;
+    width: 100px;
+    left: 170px;
+    font-size: 0.65rem;
+  }
+
+  /* Date columns smaller */
+  .responsive-table .data-table th:nth-child(n+4),
+  .responsive-table .data-table td:nth-child(n+4) {
+    min-width: 50px;
+    padding: 4px 2px;
+  }
+
+  /* Date headers - smaller font, vertical text */
+  .responsive-table .data-table thead th:nth-child(n+4) {
+    font-size: 0.6rem;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    padding: 8px 4px;
+    height: 80px;
+  }
+
+  /* Attendance icons smaller on mobile */
+  .responsive-table .data-table td span {
+    font-size: 1rem;
+  }
+
+  /* Reduce container height on mobile */
+  .responsive-table-container {
+    max-height: 60vh;
+  }
+}
+
+/* Small Mobile (max-width: 480px) */
+@media (max-width: 480px) {
+  .form-container {
+    margin: var(--spacing-sm) 0;
+  }
+
+  .stat-card {
+    padding: var(--spacing-xs);
+  }
+
+  .live-counter {
+    font-size: 2rem;
+  }
+
+  .session-type-btn {
+    min-height: 130px;
+    padding: var(--spacing-sm);
+  }
+
+  .session-type-btn h3 {
+    font-size: var(--font-size-base);
+  }
+
+  .session-type-btn p {
+    font-size: var(--font-size-sm);
+  }
+
+  .session-controls button {
+    padding: 12px 16px;
+    font-size: var(--font-size-sm);
+  }
+
+  .manual-mark-btn {
+    padding: 8px 12px;
+    font-size: 0.8rem;
+  }
+
+  #unmarked-students-table tr {
+    margin-bottom: var(--spacing-sm);
+    padding: var(--spacing-xs);
+  }
+
+  /* Even more compact table on very small screens */
+  .responsive-table .data-table {
+    font-size: 0.65rem;
+  }
+
+  .responsive-table .data-table th:first-child,
+  .responsive-table .data-table td:first-child {
+    min-width: 45px;
+    width: 45px;
+  }
+
+  .responsive-table .data-table th:nth-child(2),
+  .responsive-table .data-table td:nth-child(2) {
+    min-width: 100px;
+    width: 100px;
+    left: 45px;
+    font-size: 0.65rem;
+  }
+
+  .responsive-table .data-table th:nth-child(3),
+  .responsive-table .data-table td:nth-child(3) {
+    min-width: 85px;
+    width: 85px;
+    left: 145px;
+    font-size: 0.6rem;
+  }
+
+  .responsive-table .data-table td span {
+    font-size: 0.9rem;
+  }
+
+  .responsive-table .data-table thead th:nth-child(n+4) {
+    height: 70px;
+    font-size: 0.55rem;
+  }
+}
+
+/* Landscape phones */
+@media (max-width: 896px) and (orientation: landscape) {
+  .live-dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .live-info-panel {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-sm);
+  }
+
+  .session-controls {
+    flex-direction: row;
+    grid-column: 1 / -1;
+  }
+
+  .stat-card {
+    padding: var(--spacing-sm);
+  }
+
+  .live-counter {
+    font-size: 2rem;
+  }
+}
+
+/* Extra large screens */
+@media (min-width: 1400px) {
+  .live-dashboard-grid {
+    grid-template-columns: 400px 1fr;
+  }
+
+  .session-type-options {
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* Slightly wider columns on large screens */
+  .responsive-table .data-table th:first-child,
+  .responsive-table .data-table td:first-child {
+    min-width: 80px;
+    width: 80px;
+  }
+
+  .responsive-table .data-table th:nth-child(2),
+  .responsive-table .data-table td:nth-child(2) {
+    min-width: 200px;
+    width: 200px;
+    left: 80px;
+  }
+
+  .responsive-table .data-table th:nth-child(3),
+  .responsive-table .data-table td:nth-child(3) {
+    min-width: 160px;
+    width: 160px;
+    left: 280px;
+  }
+}
+
+/* Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Print styles for reports */
+@media print {
+  .theme-toggle,
+  .report-controls,
+  .session-controls {
+    display: none;
+  }
+
+  .responsive-table-container {
+    max-height: none;
+    overflow: visible;
+  }
+
+  .responsive-table .data-table {
+    font-size: 0.7rem;
+  }
+
+  .responsive-table .data-table th,
+  .responsive-table .data-table td {
+    padding: 4px 6px;
+  }
+
+  /* Remove sticky positioning for print */
+  .responsive-table .data-table th,
+  .responsive-table .data-table td {
+    position: static !important;
+  }
+}

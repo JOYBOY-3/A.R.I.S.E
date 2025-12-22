@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login</title>
+    <link rel="stylesheet" href="/static/css/base.css">
+    <link rel="stylesheet" href="/static/css/modal.css">
+</head>
+<body>
+    <div class="container" style="max-width: 400px;">
+        <!-- The main login form container -->
+        <div id="admin-login-view">
+            <h1>A.R.I.S.E. Admin Login</h1>
+            
+            <!-- The form itself. We prevent the default browser submission to handle it with JavaScript. -->
+            <form id="admin-login-form">
+                <div>
+                    <label for="username-input">Username</label>
+                    <input type="text" id="username-input" placeholder="Enter username" required>
+                </div>
+                <div>
+                    <label for="password-input">Password</label>
+                    <input type="password" id="password-input" placeholder="Enter password" required>
+                </div>
+                <button type="submit" id="admin-login-button" class="button-primary">Login</button>
+            </form>
+            
+            <!-- This paragraph will be used to display any error messages from the server -->
+            <p id="admin-login-message" class="error-message"></p>
+        </div>
+    </div>
+
+    <!-- The JavaScript to power this page is embedded directly here for simplicity -->
+    <script>
+        // Wait for the entire webpage to load before running the script
+        document.addEventListener('DOMContentLoaded', () => {
+            // Get references to the form and its elements
+            const loginForm = document.getElementById('admin-login-form');
+            const usernameInput = document.getElementById('username-input');
+            const passwordInput = document.getElementById('password-input');
+            const loginButton = document.getElementById('admin-login-button');
+            const loginMessage = document.getElementById('admin-login-message');
+
+            // Add an event listener for the 'submit' event on the form
+            loginForm.addEventListener('submit', async (event) => {
+                // Prevent the browser's default form submission behavior (which reloads the page)
+                event.preventDefault();
+
+                // Get the values from the input fields
+                const username = usernameInput.value;
+                const password = passwordInput.value;
+
+                // Show a "Logging in..." message to the user and disable the button
+                loginMessage.textContent = "Logging in...";
+                loginButton.disabled = true;
+
+                try {
+                    // Use the 'fetch' API to send a POST request to our server's login endpoint
+                    const response = await fetch('/api/admin/login', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        // Convert the username and password into a JSON string to send
+                        body: JSON.stringify({ username, password }),
+                    });
+
+                    // Get the server's response and parse it as JSON
+                    const data = await response.json();
+
+                    // Check if the server responded with a success status code (e.g., 200 OK)
+                    if (response.ok) {
+                        // SUCCESS! The login was correct.
+                        loginMessage.textContent = "";
+                        
+                        // This is the most critical step: Save the secure token that the
+                        // server sent back into the browser's local storage. The main
+                        // admin.js file will look for this token to verify the user is logged in.
+                        localStorage.setItem('adminToken', data.token);
+                        
+                        // Redirect the user to the main Admin Panel page.
+                        window.location.href = '/admin';
+
+                    } else {
+                        // FAILED LOGIN. The server sent back an error.
+                        // Display the error message from the server (e.g., "Invalid credentials").
+                        loginMessage.textContent = data.message || "Login failed. Please try again.";
+                    }
+                } catch (error) {
+                    // Handle any network errors (e.g., if the server is not running)
+                    console.error("Login error:", error);
+                    loginMessage.textContent = "An error occurred. Is the server running?";
+                } finally {
+                    // Re-enable the login button whether the login succeeded or failed
+                    loginButton.disabled = false;
+                }
+            });
+        });
+    </script>
+</body>
+</html>

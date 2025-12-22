@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Panel</title>
+    <link rel="stylesheet" href="/static/css/base.css" />
+    <link rel="stylesheet" href="/static/css/modal.css" />
+    <link rel="stylesheet" href="/static/css/admin.css" />
+  </head>
+
+  <body>
+
+       <!-- Theme Toggle Button -->
+    <button class="theme-toggle" onclick="toggleTheme()" title="Toggle Dark Mode">
+        <span id="theme-icon">🌙</span>
+    </button>     
+
+    <div class="container">
+      <div class="header-container">
+        <h1>A.R.I.S.E. Admin Panel</h1>
+        <button id="logout-button" class="button-danger">Logout</button>
+      </div>
+
+      <div class="tabs">
+        <button class="tab-button active" data-tab="manage">Manage Data</button>
+        <button class="tab-button" data-tab="view">View Data</button>
+        <button class="tab-button" data-tab="tools">Tools</button>
+        <button class="tab-button" data-tab="analytics">Analytics</button>
+      </div>
+
+      <!-- ======================= MANAGE DATA TAB CONTENT ======================= -->
+      <div id="manage" class="tab-content active">
+        <div class="sub-tabs">
+          <button class="sub-tab-button active" data-subtab="semesters">
+            1. Semesters
+          </button>
+          <button class="sub-tab-button" data-subtab="teachers">
+            2. Teachers
+          </button>
+          <button class="sub-tab-button" data-subtab="students">
+            3. Students
+          </button>
+          <button class="sub-tab-button" data-subtab="courses">
+            4. Courses
+          </button>
+          <button class="sub-tab-button" data-subtab="enrollments">
+            5. Course Enrollment
+          </button>
+        </div>
+
+        <!-- Semester Management -->
+        <div id="semesters" class="tab-content active">
+          <h2>Semester Management</h2>
+          <form id="semester-form" class="management-form">
+            <input type="hidden" id="semester-id" />
+            <div>
+              <label for="semester-name">Semester Name (e.g., Fall 2025)</label>
+              <input type="text" id="semester-name" required />
+            </div>
+            <button
+              type="submit"
+              class="button-primary"
+              id="semester-submit-button"
+            >
+              Add Semester
+            </button>
+          </form>
+          <h3>Existing Semesters</h3>
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th data-field="id">ID</th>
+                <th data-field="semester_name">Semester Name</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="semesters-table-body"></tbody>
+          </table>
+        </div>
+
+        <!-- Teacher Management -->
+        <div id="teachers" class="tab-content">
+          <h2>Teacher Management</h2>
+          <form id="teacher-form" class="management-form">
+            <input type="hidden" id="teacher-id" />
+            <div class="form-grid">
+              <div>
+                <label for="teacher-name">Teacher Full Name</label>
+                <input type="text" id="teacher-name" required />
+              </div>
+              <div>
+                <label for="teacher-pin">Teacher PIN</label>
+                <input type="password" id="teacher-pin" />
+              </div>
+            </div>
+            <button
+              type="submit"
+              class="button-primary"
+              id="teacher-submit-button"
+            >
+              Add Teacher
+            </button>
+          </form>
+          <h3>Existing Teachers</h3>
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th data-field="id">ID</th>
+                <th data-field="teacher_name">Teacher Name</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="teachers-table-body"></tbody>
+          </table>
+        </div>
+
+        <!-- Student Management -->
+        <div id="students" class="tab-content">
+          <h2>Student Management</h2>
+          <form id="student-form" class="management-form">
+            <input type="hidden" id="student-id" />
+            <div class="form-grid">
+              <div>
+                <label for="student-name">Student Full Name</label>
+                <input type="text" id="student-name" required />
+              </div>
+              <div>
+                <label for="student-univ-roll">University Roll No.</label>
+                <input type="text" id="student-univ-roll" required />
+              </div>
+              <div>
+                <label for="student-enroll-no">Enrollment No.</label>
+                <input type="text" id="student-enroll-no" required />
+              </div>
+              <div>
+                <label for="student-email1">Official Email (Primary)</label>
+                <input type="email" id="student-email1" required />
+              </div>
+              <div>
+                <label for="student-email2">Secondary Email (Optional)</label>
+                <input type="email" id="student-email2" />
+              </div>
+              <div>
+                <label for="student-password">Initial/New Password</label>
+                <input type="password" id="student-password" />
+              </div>
+            </div>
+            <button
+              type="submit"
+              class="button-primary"
+              id="student-submit-button"
+            >
+              Add Student
+            </button>
+          </form>
+          <h3>Existing Students</h3>
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th data-field="id">ID</th>
+                <th data-field="student_name">Name</th>
+                <th data-field="university_roll_no">Univ. Roll No.</th>
+                <th data-field="enrollment_no">Enrollment No.</th>
+                <th data-field="emails">Emails</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="students-table-body"></tbody>
+          </table>
+        </div>
+
+        <!-- Course Management -->
+        <div id="courses" class="tab-content">
+          <h2>Course Management</h2>
+          <form id="course-form" class="management-form">
+            <input type="hidden" id="course-id" />
+            <div class="form-grid">
+              <div>
+                <label for="course-name">Course Name</label>
+                <input type="text" id="course-name" required />
+              </div>
+              <div>
+                <label for="batchcode">Batch Code (Unique)</label>
+                <input type="text" id="batchcode" required />
+              </div>
+              <div>
+                <label for="default-duration">Default Duration (minutes)</label>
+                <input
+                  type="number"
+                  id="default-duration"
+                  value="30"
+                  required
+                />
+              </div>
+              <div>
+                <label for="select-semester">Select Semester</label>
+                <select id="select-semester" required>
+                  <option value="">-- Loading Semesters --</option>
+                </select>
+              </div>
+              <div>
+                <label for="select-teacher">Assign Teacher</label>
+                <select id="select-teacher" required>
+                  <option value="">-- Loading Teachers --</option>
+                </select>
+              </div>
+            </div>
+            <button
+              type="submit"
+              class="button-primary"
+              id="course-submit-button"
+            >
+              Add Course
+            </button>
+          </form>
+          <h3>Existing Courses</h3>
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th data-field="id">ID</th>
+                <th data-field="course_name">Course Name</th>
+                <th data-field="batchcode">Batch Code</th>
+                <th data-field="semester_name">Semester</th>
+                <th data-field="teacher_name">Teacher</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="courses-table-body"></tbody>
+          </table>
+        </div>
+
+        <!-- Course Enrollment Management -->
+        <div id="enrollments" class="tab-content">
+          <h2>Course Enrollment Management</h2>
+          <div class="enrollment-header">
+            <label for="select-enrollment-course"
+              >Select a Course to Manage Enrollment:</label
+            >
+            <select id="select-enrollment-course">
+              <option value="">-- Select a Course --</option>
+            </select>
+          </div>
+          <div
+            id="enrollment-ui"
+            class="enrollment-container"
+            style="display: none"
+          >
+            <div>
+              <h3>Available Students</h3>
+              <div id="available-students-list" class="student-list-box"></div>
+            </div>
+            <div class="enrollment-controls">
+              <button class ="enroll-button" id="enroll-button" title="Enroll Selected">
+                &gt;&gt;
+              </button>
+              <button class ="unenroll-button" id="unenroll-button" title="Unenroll Selected">
+                &lt;&lt;
+              </button>
+            </div>
+            <div class="student-list-box">
+              <h3>Enrolled Students</h3>
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Class Roll ID</th>
+                  </tr>
+                </thead>
+                <tbody id="enrolled-students-table-body"></tbody>
+              </table>
+            </div>
+          </div>
+          <button
+            id="save-enrollments-button"
+            class="button-primary"
+            style="margin-top: 1rem"
+          >
+            Save Enrollments for this Course
+          </button>
+        </div>
+      </div>
+
+      <!-- ======================= VIEW DATA TAB CONTENT ======================= -->
+      <div id="view" class="tab-content">
+        <div class="sub-tabs">
+          <button class="sub-tab-button active" data-subtab="view-students">
+            Students
+          </button>
+          <button class="sub-tab-button" data-subtab="view-teachers">
+            Teachers
+          </button>
+          <button class="sub-tab-button" data-subtab="view-semesters">
+            Semesters
+          </button>
+          <button class="sub-tab-button" data-subtab="view-courses">
+            Courses
+          </button>
+          <!-- NEW: Sub-tab for the Enrollment Roster -->
+          <button class="sub-tab-button" data-subtab="enrollment-roster">
+            Enrollment Roster
+          </button>
+        </div>
+
+        <!-- View Students -->
+        <div id="view-students" class="tab-content active">
+          <h3>All Students (Read-Only)</h3>
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th data-field="id">ID</th>
+                <th data-field="student_name">Name</th>
+                <th data-field="university_roll_no">Univ. Roll No.</th>
+                <th data-field="enrollment_no">Enrollment No.</th>
+                <th data-field="emails">Emails</th>
+              </tr>
+            </thead>
+            <tbody id="view-students-table-body"></tbody>
+          </table>
+        </div>
+        <!-- View Teachers -->
+        <div id="view-teachers" class="tab-content">
+          <h3>All Teachers (Read-Only)</h3>
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th data-field="id">ID</th>
+                <th data-field="teacher_name">Teacher Name</th>
+                <th data-field="pin">PIN</th>
+                
+              </tr>
+            </thead>
+            <tbody id="view-teachers-table-body"></tbody>
+          </table>
+        </div>
+        <!-- View Semesters -->
+        <div id="view-semesters" class="tab-content">
+          <h3>All Semesters (Read-Only)</h3>
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th data-field="id">ID</th>
+                <th data-field="semester_name">Semester Name</th>
+              </tr>
+            </thead>
+            <tbody id="view-semesters-table-body"></tbody>
+          </table>
+        </div>
+        <!-- View Courses -->
+        <div id="view-courses" class="tab-content">
+          <h3>All Courses (Read-Only)</h3>
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th data-field="id">ID</th>
+                <th data-field="course_name">Course Name</th>
+                <th data-field="batchcode">Batch Code</th>
+                <th data-field="semester_name">Semester</th>
+                <th data-field="teacher_name">Teacher</th>
+              </tr>
+            </thead>
+            <tbody id="view-courses-table-body"></tbody>
+          </table>
+        </div>
+        <!-- NEW: Enrollment Roster View -->
+        <div id="enrollment-roster" class="tab-content">
+          <h2>Enrollment Roster for Enrollment Day</h2>
+          <div class="enrollment-header">
+            <label for="select-roster-semester"
+              >Select a Semester to View Roster:</label
+            >
+            <select id="select-roster-semester">
+              <option value="">-- Select a Semester --</option>
+            </select>
+          </div>
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Class Roll ID</th>
+                <th>Student Name</th>
+                <th>University Roll No.</th>
+                <th>Enrolled Courses (Batch Codes)</th>
+              </tr>
+            </thead>
+            <tbody id="enrollment-roster-table-body"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ======================= TOOLS TAB CONTENT ======================= -->
+      <div id="tools" class="tab-content">
+        <h2>Tools</h2>
+        <div class="management-section">
+          <h3>Enrollment ID Calculator</h3>
+          <div class="form-grid">
+            <div>
+              <label for="calc-roll-id">Enter Class Roll ID:</label>
+              <input type="number" id="calc-roll-id" />
+              <p>
+                Slot 1: <strong id="slot1-result">--</strong> | Slot 2:
+                <strong id="slot2-result">--</strong>
+              </p>
+            </div>
+            <div>
+              <label for="calc-slot-id">Enter Sensor Memory Slot ID:</label>
+              <input type="number" id="calc-slot-id" />
+              <p>
+                Belongs to Class Roll ID:
+                <strong id="roll-id-result">--</strong>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ======================= ANALYTICS TAB CONTENT ======================= -->
+      <div id="analytics" class="tab-content">
+        <h2>Analytics</h2>
+        <p>
+          The analytics dashboard will be implemented here in a future module.
+        </p>
+      </div>
+    </div>
+
+
+    <!-- JavaScript Files -->
+    <script src="/static/js/modal.js"></script>
+    <script src="/static/js/admin.js"></script>
+  </body>
+</html>

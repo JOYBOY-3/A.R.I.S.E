@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Teacher Dashboard</title>
+    <link rel="stylesheet" href="/static/css/base.css" />
+    <link rel="stylesheet" href="/static/css/modal.css" />
+    <link rel="stylesheet" href="/static/css/teacher.css" />
+  </head>
+  <body>
+
+      <!-- Theme Toggle Button -->
+    <button class="theme-toggle" onclick="toggleTheme()" title="Toggle Dark Mode">
+        <span id="theme-icon">🌙</span>
+    </button>
+
+    <div class="container">
+      <!-- ================================================== -->
+      <!-- VIEW 1: LOGIN                                        -->
+      <!-- ================================================== -->
+      <div id="login-view" class="view-container active">
+        <h1>A.R.I.S.E. Teacher Portal</h1>
+        <div class="form-container">
+          <div class="form-grid">
+            <div>
+              <label for="batchcode-input">Batch Code</label>
+              <select id="batchcode-input">
+                <option value="">-- Select Batch Code --</option>
+              </select>
+            </div>
+            <div>
+              <label for="pin-input">Your PIN</label>
+              <input type="password" id="pin-input" placeholder="Enter PIN" />
+            </div>
+          </div>
+          <button id="login-button" class="button-primary">Login</button>
+          <p id="login-message" class="error-message"></p>
+        </div>
+      </div>
+
+      <!-- ================================================== -->
+      <!-- VIEW 2: SESSION SETUP                              -->
+      <!-- ================================================== -->
+      <div id="setup-view" class="view-container" style="display: none">
+        <h1 id="setup-course-name"></h1>
+        <h2>Session Setup</h2>
+        <div class="form-grid">
+          <div>
+            <label for="session-date-input">Session Date</label>
+            <input type="date" id="session-date-input" />
+          </div>
+          <div>
+            <label for="duration-input">Duration (minutes)</label>
+            <input type="number" id="duration-input" min="10" value="30" />
+          </div>
+        </div>
+        <button id="confirm-setup-button" class="button-primary">
+          Confirm & Next
+        </button>
+      </div>
+
+      <!-- ================================================== -->
+      <!-- VIEW 3: SESSION TYPE SELECTION                   -->
+      <!-- ================================================== -->
+      <div id="type-view" class="view-container" style="display: none">
+        <h1>Select Session Type</h1>
+        <div class="session-type-options">
+          <button id="start-offline-button" class="session-type-btn">
+            <h3>Offline Class</h3>
+            <p>Use Smart Scanner for biometric attendance.</p>
+          </button>
+          <button id="start-online-button" class="session-type-btn">
+            <h3>Online Class</h3>
+            <p>Use secure link for remote attendance.</p>
+          </button>
+        </div>
+      </div>
+
+      <!-- ================================================== -->
+      <!-- VIEW 4: LIVE OFFLINE DASHBOARD                       -->
+      <!-- ================================================== -->
+      <div id="live-offline-view" class="view-container" style="display: none">
+        <h1 id="live-course-name"></h1>
+        <div class="live-dashboard-grid">
+          <div class="live-info-panel">
+            <div class="stat-card">
+              <h3>Live Attendance</h3>
+              <p class="live-counter">
+                <span id="attendance-count">0</span> /
+                <span id="total-students">0</span>
+              </p>
+            </div>
+            <div id="device-status-widget" class="stat-card">
+              <h4>Smart Scanner Status</h4>
+              <p id="device-status-text">Awaiting first heartbeat...</p>
+            </div>
+            <div class="session-controls stat-card">
+              <h4>Session Controls</h4>
+              <button id="extend-session-button" class="button-secondary">
+                Extend (+10 min)
+              </button>
+              <button id="end-session-button" class="button-danger">
+                End Session Now
+              </button>
+            </div>
+          </div>
+          <div class="unmarked-students-panel">
+            <h3>Unmarked Students</h3>
+            <input
+              type="text"
+              id="search-input"
+              placeholder="Search by Roll ID or Name..."
+            />
+            <div class="table-container">
+              <table class="data-table" id="unmarked-students-table">
+                <thead>
+                  <tr>
+                    <th>Class Roll</th>
+                    <th>Name</th>
+                    <th>Univ. Roll No.</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- Student rows will be added here by JavaScript -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ================================================== -->
+      <!-- VIEW 5: POST-SESSION REPORT                          -->
+      <!-- ================================================== -->
+      <div id="report-view" class="view-container" style="display: none">
+        <h1>Attendance Report</h1>
+        <h2 id="report-course-name"></h2>
+        <div class="report-controls">
+          <button id="export-excel-button" class="button-primary">
+            Export to Excel
+          </button>
+          <button id="new-session-button" class="button-secondary">
+            Start New Session
+          </button>
+        </div>
+        <div
+          class="table-container responsive-table responsive-table-container"
+        >
+          <table class="data-table" id="report-table">
+            <thead>
+              <!-- Header will be generated by JavaScript -->
+            </thead>
+            <tbody>
+              <!-- Report rows will be generated by JavaScript -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <script src="/static/js/modal.js"></script>
+    <script src="/static/js/teacher.js"></script>
+  </body>
+</html>

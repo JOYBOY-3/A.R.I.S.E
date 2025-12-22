@@ -1,0 +1,398 @@
+/*=========================================================
+A.R.I.S.E. Base Styles - IMPROVED UX VERSION
+- Better theme toggle positioning
+- Improved accessibility and user experience
+=========================================================*/
+
+/* --- CSS Variables (Light & Dark Mode) --- */
+:root {
+  /* Light Mode Colors */
+  --primary-color: #005a9c;
+  --primary-hover: #004a80;
+  --secondary-color: #6c757d;
+  --secondary-hover: #5a6268;
+  --danger-color: #dc3545;
+  --danger-hover: #c82333;
+  --success-color: #28a745;
+  --warning-color: #ffc107;
+  --info-color: #17a2b8;
+  
+  /* Background & Surface */
+  --bg-primary: #f8f9fa;
+  --bg-secondary: #ffffff;
+  --bg-hover: #f1f3f5;
+  --bg-input: #ffffff;
+  
+  /* Text Colors */
+  --text-primary: #212529;
+  --text-secondary: #6c757d;
+  --text-muted: #adb5bd;
+  
+  /* Borders & Shadows */
+  --border-color: #dee2e6;
+  --border-radius: 12px;
+  --border-radius-sm: 8px;
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.12);
+  --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.15);
+  
+  /* Spacing */
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 1rem;
+  --spacing-md: 1.5rem;
+  --spacing-lg: 2rem;
+  --spacing-xl: 3rem;
+  
+  /* Typography */
+  --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.5rem;
+  --font-size-2xl: 2rem;
+  
+  /* Transitions */
+  --transition-fast: 0.15s ease;
+  --transition-base: 0.3s ease;
+  --transition-slow: 0.5s ease;
+}
+
+/* Dark Mode Variables */
+[data-theme="dark"] {
+  --primary-color: #4da3ff;
+  --primary-hover: #3d8fe6;
+  --secondary-color: #8b95a0;
+  --secondary-hover: #a0a8b3;
+  --bg-primary: #1a1d23;
+  --bg-secondary: #252930;
+  --bg-hover: #2d3238;
+  --bg-input: #2d3238;
+  --text-primary: #e9ecef;
+  --text-secondary: #adb5bd;
+  --text-muted: #6c757d;
+  --border-color: #3d4450;
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.5);
+}
+
+/* --- CSS Reset --- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-family);
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.6;
+  transition: background-color var(--transition-base), color var(--transition-base);
+  min-height: 100vh;
+  padding: var(--spacing-md);
+}
+
+/* --- Container --- */
+.container {
+  background-color: var(--bg-secondary);
+  padding: var(--spacing-lg);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-lg);
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  transition: background-color var(--transition-base);
+}
+
+/* --- Typography --- */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--primary-color);
+  font-weight: 600;
+  line-height: 1.2;
+  margin-bottom: var(--spacing-sm);
+}
+
+h1 { font-size: var(--font-size-2xl); }
+h2 {
+  font-size: var(--font-size-xl);
+  border-bottom: 2px solid var(--border-color);
+  padding-bottom: var(--spacing-xs);
+  margin-bottom: var(--spacing-md);
+}
+h3 { font-size: var(--font-size-lg); }
+h4 { font-size: var(--font-size-base); }
+p { margin-bottom: var(--spacing-sm); }
+
+/* --- Forms --- */
+label {
+  display: block;
+  margin-bottom: var(--spacing-xs);
+  font-weight: 600;
+  color: var(--text-secondary);
+  font-size: var(--font-size-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="number"],
+input[type="date"],
+select,
+textarea {
+  width: 100%;
+  padding: 12px 16px;
+  margin-bottom: var(--spacing-sm);
+  border-radius: var(--border-radius-sm);
+  border: 2px solid var(--border-color);
+  background-color: var(--bg-input);
+  color: var(--text-primary);
+  font-size: var(--font-size-base);
+  font-family: var(--font-family);
+  transition: all var(--transition-fast);
+}
+
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(0, 90, 156, 0.1);
+}
+
+input:disabled, select:disabled, textarea:disabled {
+  background-color: var(--bg-hover);
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* --- Buttons --- */
+button {
+  padding: 12px 24px;
+  border-radius: var(--border-radius-sm);
+  border: none;
+  font-weight: 600;
+  font-size: var(--font-size-base);
+  font-family: var(--font-family);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-xs);
+}
+
+button:disabled {
+  background-color: var(--secondary-color);
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+button:active:not(:disabled) {
+  transform: translateY(1px);
+}
+
+.button-primary {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.button-primary:hover:not(:disabled) {
+  background-color: var(--primary-hover);
+  box-shadow: var(--shadow-sm);
+}
+
+.button-secondary {
+  background-color: var(--secondary-color);
+  color: white;
+  margin: 5px;
+}
+
+.button-secondary:hover:not(:disabled) {
+  background-color: var(--secondary-hover);
+}
+
+.button-danger {
+  background-color: var(--danger-color);
+  color: white;
+  margin: 5px;
+}
+
+.button-danger:hover:not(:disabled) {
+  background-color: var(--danger-hover);
+}
+
+/* --- Tables --- */
+.table-container {
+  overflow-x: auto;
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-sm);
+  background-color: var(--bg-secondary);
+  margin-bottom: var(--spacing-md);
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--font-size-sm);
+}
+
+.data-table th,
+.data-table td {
+  border-bottom: 1px solid var(--border-color);
+  padding: 14px;
+  text-align: left;
+  vertical-align: middle;
+}
+
+.data-table thead th {
+  background-color: var(--bg-hover);
+  font-weight: 600;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-size: 0.75rem;
+}
+
+.data-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.data-table tbody tr:hover {
+  background-color: var(--bg-hover);
+}
+
+/* --- Error Messages --- */
+.error-message {
+  color: var(--danger-color);
+  font-weight: 600;
+  margin-top: var(--spacing-xs);
+  min-height: 1.2em;
+  font-size: var(--font-size-sm);
+}
+
+/* --- Utility Classes --- */
+.text-center { text-align: center; }
+.text-right { text-align: right; }
+.mt-1 { margin-top: var(--spacing-sm); }
+.mb-1 { margin-bottom: var(--spacing-sm); }
+.p-1 { padding: var(--spacing-sm); }
+
+/* === IMPROVED: Theme Toggle Button === */
+/* Desktop - Top left corner for better accessibility */
+.theme-toggle {
+  position: fixed;
+  top: 20px;
+  left: 20px; /* CHANGED: From right to left */
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: var(--bg-secondary);
+  border: 2px solid var(--border-color);
+  box-shadow: var(--shadow-md);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  z-index: 10000;
+  transition: all var(--transition-base);
+}
+
+.theme-toggle:hover {
+  transform: rotate(180deg) scale(1.1);
+  box-shadow: var(--shadow-lg);
+}
+
+.theme-toggle:active {
+  transform: rotate(180deg) scale(0.95);
+}
+
+/* Dark mode styling */
+[data-theme="dark"] .theme-toggle {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.6);
+}
+
+[data-theme="dark"] .theme-toggle:hover {
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.8);
+}
+
+/* --- Responsive Design --- */
+@media (max-width: 768px) {
+  body {
+    padding: var(--spacing-xs);
+    padding-top: 70px; /* ADDED: Space for theme toggle */
+  }
+
+  .container {
+    padding: var(--spacing-sm);
+    border-radius: var(--border-radius-sm);
+  }
+
+  h1 { font-size: 1.5rem; }
+  h2 { font-size: 1.25rem; }
+
+  button {
+    padding: 10px 16px;
+    font-size: var(--font-size-sm);
+  }
+
+  .data-table th,
+  .data-table td {
+    padding: 10px 8px;
+    font-size: 0.8rem;
+  }
+
+  /* Theme Toggle - Top center on mobile for better thumb reach */
+  .theme-toggle {
+    top: 10px;
+    left: 50%; /* CHANGED: Centered on mobile */
+    transform: translateX(-50%);
+    width: 45px;
+    height: 45px;
+    font-size: 22px;
+    backdrop-filter: blur(8px);
+    background-color: rgba(255, 255, 255, 0.95);
+  }
+
+  .theme-toggle:hover {
+    transform: translateX(-50%) rotate(180deg) scale(1.05);
+  }
+
+  [data-theme="dark"] .theme-toggle {
+    background-color: rgba(37, 41, 48, 0.95);
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: var(--spacing-xs);
+  }
+
+  h1 { font-size: 1.25rem; }
+  h2 { font-size: 1.1rem; }
+
+  /* Theme Toggle - Slightly smaller on very small screens */
+  .theme-toggle {
+    top: 8px;
+    width: 42px;
+    height: 42px;
+    font-size: 20px;
+  }
+}
+
+/* Tablet and landscape orientation */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .theme-toggle {
+    top: 15px;
+    left: 15px;
+  }
+}

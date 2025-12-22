@@ -1,0 +1,254 @@
+/* =============================================================================
+   Student Portal Specific Styles
+   - Compact, mobile-friendly design
+   - Course cards with interactive hover effects
+   - Attendance log timeline
+============================================================================= */
+
+/* --- Container Override for Student Portal --- */
+body .container {
+  max-width: 500px;
+}
+
+/* --- View Container Management --- */
+.view-container {
+  display: none;
+  animation: fadeIn 0.3s ease;
+}
+
+.view-container.active {
+  display: block;
+}
+
+/* --- Header Container --- */
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--spacing-md);
+  padding-bottom: var(--spacing-sm);
+  border-bottom: 2px solid var(--border-color);
+  flex-wrap: wrap;
+  gap: var(--spacing-sm);
+}
+
+.header-container h1 {
+  margin: 0;
+  font-size: var(--font-size-xl);
+  flex: 1;
+  min-width: 200px;
+}
+
+/* --- Stat Card Enhancements --- */
+.stat-card {
+  background-color: var(--bg-hover);
+  padding: var(--spacing-md);
+  border-radius: var(--border-radius);
+  border: 1px solid var(--border-color);
+  margin-bottom: var(--spacing-md);
+  transition: all var(--transition-base);
+}
+
+.stat-card:hover {
+  box-shadow: var(--shadow-sm);
+  transform: translateY(-2px);
+}
+
+.stat-card h3,
+.stat-card h4 {
+  margin-top: 0;
+  margin-bottom: var(--spacing-xs);
+  color: var(--text-secondary);
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.live-counter {
+  font-size: 2.75rem;
+  font-weight: bold;
+  color: var(--primary-color);
+  margin: 0;
+  line-height: 1;
+}
+
+/* --- Courses Container --- */
+#courses-container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  margin-top: var(--spacing-md);
+}
+
+#courses-container .stat-card {
+  cursor: pointer;
+  transition: all var(--transition-base);
+  position: relative;
+  overflow: hidden;
+}
+
+#courses-container .stat-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background-color: var(--primary-color);
+  transform: scaleY(0);
+  transition: transform var(--transition-base);
+}
+
+#courses-container .stat-card:hover {
+  border-color: var(--primary-color);
+  box-shadow: var(--shadow-md);
+  transform: translateX(4px);
+}
+
+#courses-container .stat-card:hover::before {
+  transform: scaleY(1);
+}
+
+#courses-container .stat-card h3 {
+  color: var(--primary-color);
+  font-size: var(--font-size-lg);
+  text-transform: none;
+  letter-spacing: normal;
+  margin-bottom: var(--spacing-xs);
+}
+
+#courses-container .stat-card p {
+  margin: 0;
+  line-height: 1.4;
+}
+
+/* --- Course Detail View --- */
+#course-detail-view .stat-card {
+  margin-bottom: var(--spacing-md);
+}
+
+#course-detail-view .form-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--spacing-md);
+  margin-bottom: 0;
+}
+
+#course-detail-view .form-grid > div {
+  text-align: center;
+}
+
+#course-detail-view .form-grid h4 {
+  margin: 0 0 var(--spacing-xs) 0;
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+}
+
+#course-detail-view .form-grid p {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin: 0;
+}
+
+/* --- Attendance Log --- */
+#attendance-log {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+  margin-top: var(--spacing-md);
+}
+
+#attendance-log .stat-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--spacing-sm) var(--spacing-md);
+  margin-bottom: 0;
+  transition: all var(--transition-fast);
+}
+
+#attendance-log .stat-card:hover {
+  background-color: var(--bg-secondary);
+  border-color: var(--primary-color);
+}
+
+#attendance-log .stat-card span {
+  font-size: var(--font-size-base);
+}
+
+#attendance-log .stat-card span:last-child {
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+}
+
+/* --- Back Button Styling --- */
+#back-to-dashboard {
+  margin-bottom: var(--spacing-md);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+}
+
+/* --- Responsive Design --- */
+@media (max-width: 480px) {
+  body .container {
+    padding: var(--spacing-sm);
+  }
+  
+  .header-container {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .header-container h1 {
+    font-size: var(--font-size-lg);
+    text-align: center;
+  }
+  
+  .header-container button {
+    width: 100%;
+  }
+  
+  #course-detail-view .form-grid {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-sm);
+  }
+  
+  #course-detail-view .form-grid > div {
+    padding: var(--spacing-xs) 0;
+    border-bottom: 1px solid var(--border-color);
+  }
+  
+  #course-detail-view .form-grid > div:last-child {
+    border-bottom: none;
+  }
+  
+  .stat-card {
+    padding: var(--spacing-sm);
+  }
+  
+  .live-counter {
+    font-size: 2rem;
+  }
+  
+  #attendance-log .stat-card {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacing-xs);
+  }
+}
+
+/* --- Animation for View Transitions --- */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

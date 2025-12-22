@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Portal - A.R.I.S.E.</title>
+    <link rel="stylesheet" href="/static/css/base.css">
+    <link rel="stylesheet" href="/static/css/modal.css">
+    <link rel="stylesheet" href="/static/css/student.css">
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="/static/manifest.json">
+    <meta name="theme-color" content="#005a9c">
+</head>
+
+<body>
+    <div class="container" style="max-width: 500px;">
+
+        <!-- LOGIN VIEW -->
+        <div id="student-login-view" class="view-container active">
+            <h1>A.R.I.S.E. Student Portal</h1>
+            <form id="student-login-form">
+                <div>
+                    <label for="univ-roll-input">University Roll Number</label>
+                    <input type="text" id="univ-roll-input" placeholder="e.g., BTECH-CSE-25-077" required>
+                </div>
+                <div>
+                    <label for="password-input">Password</label>
+                    <input type="password" id="password-input" placeholder="Enter password" required>
+                </div>
+                <button type="submit" class="button-primary">Login</button>
+            </form>
+            <p id="login-message" class="error-message"></p>
+        </div>
+
+        <!-- DASHBOARD VIEW -->
+        <div id="student-dashboard-view" class="view-container" style="display: none;">
+            <div class="header-container">
+                <h1 id="welcome-message">Welcome!</h1>
+                <button id="logout-button" class="button-danger">Logout</button>
+            </div>
+
+            <div class="stat-card">
+                <h3>Overall Attendance</h3>
+                <p class="live-counter" id="overall-percentage">0%</p>
+            </div>
+
+            <h2>Your Courses</h2>
+            <div id="courses-container"></div>
+        </div>
+
+        <!-- COURSE DETAIL VIEW -->
+        <div id="course-detail-view" class="view-container" style="display: none;">
+            <button id="back-to-dashboard" class="button-secondary">← Back to Dashboard</button>
+
+            <h1 id="course-name-header"></h1>
+
+            <div class="stat-card">
+                <div class="form-grid" style="grid-template-columns: 1fr 1fr 1fr;">
+                    <div>
+                        <h4>Present</h4>
+                        <p style="color: var(--success-color); font-size: 1.5rem; font-weight: bold;"
+                            id="present-count">0</p>
+                    </div>
+                    <div>
+                        <h4>Absent</h4>
+                        <p style="color: var(--danger-color); font-size: 1.5rem; font-weight: bold;" id="absent-count">0
+                        </p>
+                    </div>
+                    <div>
+                        <h4>Percentage</h4>
+                        <p style="color: var(--primary-color); font-size: 1.5rem; font-weight: bold;"
+                            id="course-percentage">0%</p>
+                    </div>
+                </div>
+            </div>
+
+            <h3>Attendance History</h3>
+            <div id="attendance-log"></div>
+        </div>
+
+    </div>
+    <script src="/static/js/student.js"></script>
+</body>
+
+</html>
