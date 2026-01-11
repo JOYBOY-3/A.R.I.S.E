@@ -124,17 +124,41 @@ Teacher Dashboard - FINAL FIXED VERSION
 }
 
 /* --- Device Status Widget --- */
-#device-status-widget {
-  background: linear-gradient(135deg, var(--bg-hover) 0%, var(--bg-secondary) 100%);
-}
-
+/* Device status visual indicators */
 #device-status-text {
   font-weight: 600;
-  font-size: var(--font-size-sm);
+  font-size: 0.9rem;
   white-space: pre-line;
   line-height: 1.6;
   color: var(--text-primary);
+  transition: color 0.3s ease;
 }
+
+/* Online state - green pulse */
+.device-online #device-status-text {
+  animation: pulse-green 2s infinite;
+}
+
+@keyframes pulse-green {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+/* Offline state - red */
+.device-offline #device-status-text {
+  color: var(--danger-color);
+}
+
+/* Apply classes to widget */
+#device-status-widget.online {
+  border-left: 4px solid var(--success-color);
+}
+
+#device-status-widget.offline {
+  border-left: 4px solid var(--danger-color);
+}
+
+
 
 /* --- Session Controls --- */
 .session-controls {

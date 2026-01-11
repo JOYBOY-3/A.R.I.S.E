@@ -612,6 +612,16 @@ document.addEventListener('DOMContentLoaded', () => {
   let availableStudentsData = [];
   let enrolledStudentsData = [];
 
+  const selectAllAvailableBtn = document.getElementById('select-all-available');
+  const deselectAllAvailableBtn = document.getElementById(
+    'deselect-all-available'
+  );
+
+  const selectAllEnrolledBtn = document.getElementById('select-all-enrolled');
+  const deselectAllEnrolledBtn = document.getElementById(
+    'deselect-all-enrolled'
+  );
+
   async function populateEnrollmentCourseDropdown() {
     const courses = await api.get('courses');
     const currentVal = enrollmentCourseSelect.value;
@@ -639,16 +649,19 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   function renderEnrollmentLists() {
-    availableStudentsList.innerHTML = '';
-    enrolledStudentsTbody.innerHTML = '';
-
+    // Render available students as table rows (two columns)
+    const availableTbody = availableStudentsList; // id now points to tbody
+    availableTbody.innerHTML = '';
+    enrolledStudentsTbody.innerHTML = ''; // <-- ADDED: clear enrolled before re-rendering
     availableStudentsData
       .sort((a, b) => a.student_name.localeCompare(b.student_name))
       .forEach((student) => {
-        const div = document.createElement('div');
-        div.textContent = `${student.student_name} (${student.university_roll_no})`;
-        div.dataset.id = student.id;
-        availableStudentsList.appendChild(div);
+        const row = document.createElement('tr');
+        row.dataset.id = student.id;
+        row.innerHTML = `<td>${student.student_name}</td><td class="right">${
+          student.university_roll_no || ''
+        }</td>`;
+        availableTbody.appendChild(row);
       });
 
     enrolledStudentsData
@@ -666,41 +679,84 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   availableStudentsList.addEventListener('click', (e) => {
-    if (e.target.tagName === 'DIV') {
-      e.target.classList.toggle('selected');
-    }
-  });
-
-  // NEW: Add click listener to the enrolled table for selection
-  enrolledStudentsTbody.addEventListener('click', (e) => {
-    // Find the closest parent 'TR' (table row) element
     const row = e.target.closest('tr');
-    if (row) {
-      row.classList.toggle('selected');
-    }
-    // --- FIX: Directly apply styles for instant visual feedback ---
+    if (!row) return;
+    row.classList.toggle('selected');
+
+    // visual feedback—use same pattern as enrolled rows
     if (row.classList.contains('selected')) {
-      row.style.backgroundColor = '#005a9c'; // Corresponds to --primary-color
+      row.style.backgroundColor = '#005a9c';
       row.style.color = 'white';
     } else {
-      // Reset styles to default
       row.style.backgroundColor = '';
       row.style.color = '';
     }
   });
 
-  enrollButton.addEventListener('click', () => {
-    const selectedStudents = Array.from(
-      availableStudentsList.querySelectorAll('.selected')
+  // Select / Deselect All for Available Students
+  selectAllAvailableBtn?.addEventListener('click', () => {
+    Array.from(availableStudentsList.querySelectorAll('tr')).forEach((tr) =>
+      tr.classList.add('selected')
     );
-    selectedStudents.forEach((div) => {
-      const studentId = parseInt(div.dataset.id);
+  });
+  deselectAllAvailableBtn?.addEventListener('click', () => {
+    Array.from(availableStudentsList.querySelectorAll('tr')).forEach((tr) =>
+      tr.classList.remove('selected')
+    );
+  });
+
+  // Select / Deselect All for Enrolled Students
+  selectAllEnrolledBtn?.addEventListener('click', () => {
+    Array.from(enrolledStudentsTbody.querySelectorAll('tr')).forEach((tr) =>
+      tr.classList.add('selected')
+    );
+  });
+  deselectAllEnrolledBtn?.addEventListener('click', () => {
+    Array.from(enrolledStudentsTbody.querySelectorAll('tr')).forEach((tr) =>
+      tr.classList.remove('selected')
+    );
+  });
+
+  // NEW: Add click listener to the enrolled table for selection
+  enrolledStudentsTbody.addEventListener('click', (e) => {
+    const row = e.target.closest('tr');
+    if (!row) return;
+    row.classList.toggle('selected');
+
+    if (row.classList.contains('selected')) {
+      row.style.backgroundColor = '#005a9c';
+      row.style.color = 'white';
+    } else {
+      row.style.backgroundColor = '';
+      row.style.color = '';
+    }
+  });
+
+  // Returns last 3 digits of the last numeric segment as a number (no leading zeros)
+  function extractLastThreeAsNumber(str) {
+    if (!str) return null;
+    const matches = String(str).match(/\d+/g);
+    if (!matches) return null;
+    const lastDigits = matches[matches.length - 1].slice(-3);
+    const num = parseInt(lastDigits, 10);
+    return Number.isInteger(num) && num > 0 ? Math.abs(num) : null;
+  }
+
+  enrollButton.addEventListener('click', () => {
+    const selectedRows = Array.from(
+      availableStudentsList.querySelectorAll('tr.selected')
+    );
+    selectedRows.forEach((row) => {
+      const studentId = parseInt(row.dataset.id);
       const student = availableStudentsData.find((s) => s.id === studentId);
       if (student) {
         enrolledStudentsData.push({
           ...student,
           student_id: student.id,
-          class_roll_id: null,
+          class_roll_id:
+            extractLastThreeAsNumber(
+              student.university_roll_no || student.enrollment_no
+            ) || null,
         });
         availableStudentsData = availableStudentsData.filter(
           (s) => s.id !== studentId
@@ -713,7 +769,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // NEW: Fully functional unenroll logic
   unenrollButton.addEventListener('click', () => {
     const selectedRows = Array.from(
-      enrolledStudentsTbody.querySelectorAll('.selected')
+      enrolledStudentsTbody.querySelectorAll('tr.selected')
     );
     selectedRows.forEach((row) => {
       const studentId = parseInt(row.dataset.studentId);
@@ -721,15 +777,14 @@ document.addEventListener('DOMContentLoaded', () => {
         (s) => s.student_id === studentId
       );
       if (student) {
-        // Add the student back to the available list
-        // We need all fields, so let's find the original full student object
         const fullStudentData = {
           id: student.student_id,
           student_name: student.student_name,
           university_roll_no: student.university_roll_no,
         };
-        availableStudentsData.push(fullStudentData);
-        // Remove the student from the enrolled list
+        if (!availableStudentsData.some((s) => s.id === fullStudentData.id)) {
+          availableStudentsData.push(fullStudentData);
+        }
         enrolledStudentsData = enrolledStudentsData.filter(
           (s) => s.student_id !== studentId
         );

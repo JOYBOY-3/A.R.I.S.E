@@ -349,21 +349,23 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  // ✅ UPDATED: Better device status handling with timestamp validation
   async function updateLiveStatus() {
     if (!sessionState.sessionId) return;
 
     try {
+      // Get attendance status
       const statusResponse = await fetch(
         `/api/teacher/session/${sessionState.sessionId}/status`
       );
       const statusData = await statusResponse.json();
 
       if (statusResponse.ok) {
+        // Check if session auto-expired
         if (statusData.session_active === false) {
           console.log('Session auto-expired detected');
           stopLiveUpdates();
           stopCountdownTimer();
-          // FIXED: Use Modal instead of alert
           await Modal.alert(
             'Session has automatically ended due to time expiration.',
             'Session Expired',
@@ -373,6 +375,7 @@ document.addEventListener('DOMContentLoaded', () => {
           return;
         }
 
+        // Update unmarked students list
         const markedUnivRollNos = new Set(statusData.marked_students);
         const unmarkedStudents = sessionState.allStudents.filter(
           (s) => !markedUnivRollNos.has(s.university_roll_no)
@@ -381,23 +384,45 @@ document.addEventListener('DOMContentLoaded', () => {
         attendanceCountSpan.textContent = markedUnivRollNos.size;
       }
 
+      // ✅ NEW: Enhanced device status with offline detection
       const deviceResponse = await fetch('/api/teacher/device-status');
       const deviceData = await deviceResponse.json();
 
-      if (deviceResponse.ok && deviceData.mac_address) {
-        const strength =
-          deviceData.wifi_strength > -67
-            ? 'Strong'
-            : deviceData.wifi_strength > -80
-            ? 'Okay'
-            : 'Weak';
-        deviceStatusText.innerHTML = `✅ Online (${strength})<br>🔋 ${deviceData.battery}% | 📝 Q: ${deviceData.queue_count} | 🔄 S: ${deviceData.sync_count}`;
+      if (deviceResponse.ok) {
+        if (deviceData.status === 'online') {
+          // Device is online and heartbeat is fresh
+          const strength =
+            deviceData.wifi_strength > -67
+              ? 'Strong'
+              : deviceData.wifi_strength > -80
+              ? 'Okay'
+              : 'Weak';
+
+          deviceStatusText.innerHTML = `✅ Online (${strength})<br>🔋 ${deviceData.battery}% | 📝 Q: ${deviceData.queue_count} | 🔄 S: ${deviceData.sync_count}`;
+        } else if (deviceData.status === 'offline') {
+          // Device is offline (heartbeat stale or missing)
+          if (deviceData.last_seen !== undefined) {
+            // Show last known data with offline indicator
+            deviceStatusText.innerHTML = `❌ Offline (${
+              deviceData.last_seen
+            }s ago)<br>🔋 Last: ${deviceData.battery || '?'}% | 📝 Q: ${
+              deviceData.queue_count || 0
+            }`;
+          } else {
+            deviceStatusText.innerHTML = `❌ Offline / No Data<br>Waiting for device...`;
+          }
+        } else {
+          // Error or unknown status
+          deviceStatusText.innerHTML = `⚠️ Status Unknown<br>${
+            deviceData.message || 'Check connection'
+          }`;
+        }
       } else {
-        deviceStatusText.textContent = `❌ Offline / No Data`;
+        deviceStatusText.innerHTML = `❌ Error<br>Cannot fetch status`;
       }
     } catch (error) {
       console.error('Error updating live status:', error);
-      deviceStatusText.textContent = '❌ Error fetching status...';
+      deviceStatusText.innerHTML = `❌ Error<br>Network issue`;
     }
   }
 

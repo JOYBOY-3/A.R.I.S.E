@@ -1,0 +1,407 @@
+2026-01-11 13:15:25,043 - INFO - Server started - Auto-expire scheduler active
+2026-01-11 13:15:32,780 - ERROR - Exception on /api/teacher/batchcodes [GET]
+Traceback (most recent call last):
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\server.py", line 536, in get_batchcodes
+    batchcodes = [row['batchcode'] for row in conn.execute("SELECT batchcode FROM courses ORDER BY batchcode").fetchall()]
+                                              ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+sqlite3.OperationalError: no such table: courses
+2026-01-11 13:15:39,769 - ERROR - Exception on /api/teacher/batchcodes [GET]
+Traceback (most recent call last):
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\server.py", line 536, in get_batchcodes
+    batchcodes = [row['batchcode'] for row in conn.execute("SELECT batchcode FROM courses ORDER BY batchcode").fetchall()]
+                                              ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+sqlite3.OperationalError: no such table: courses
+2026-01-11 13:15:40,666 - ERROR - Exception on /api/teacher/batchcodes [GET]
+Traceback (most recent call last):
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\server.py", line 536, in get_batchcodes
+    batchcodes = [row['batchcode'] for row in conn.execute("SELECT batchcode FROM courses ORDER BY batchcode").fetchall()]
+                                              ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+sqlite3.OperationalError: no such table: courses
+2026-01-11 13:15:41,385 - ERROR - Exception on /api/teacher/batchcodes [GET]
+Traceback (most recent call last):
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\server.py", line 536, in get_batchcodes
+    batchcodes = [row['batchcode'] for row in conn.execute("SELECT batchcode FROM courses ORDER BY batchcode").fetchall()]
+                                              ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+sqlite3.OperationalError: no such table: courses
+2026-01-11 13:15:56,864 - ERROR - Exception on /api/teacher/batchcodes [GET]
+Traceback (most recent call last):
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\server.py", line 536, in get_batchcodes
+    batchcodes = [row['batchcode'] for row in conn.execute("SELECT batchcode FROM courses ORDER BY batchcode").fetchall()]
+                                              ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+sqlite3.OperationalError: no such table: courses
+2026-01-11 13:20:25,044 - ERROR - Error in auto_expire_sessions: no such table: sessions
+Traceback (most recent call last):
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\server.py", line 1421, in auto_expire_sessions
+    expired_sessions = conn.execute("""
+                       ~~~~~~~~~~~~^^^^
+        SELECT id, course_id, start_time, end_time
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+        AND datetime(end_time) < datetime(?)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    """, (now_str,)).fetchall()
+    ^^^^^^^^^^^^^^^^
+sqlite3.OperationalError: no such table: sessions
+2026-01-11 13:31:09,414 - INFO - Server started - Auto-expire scheduler active
+2026-01-11 13:31:20,979 - ERROR - Exception on /api/teacher/batchcodes [GET]
+Traceback (most recent call last):
+  File "d:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "d:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "d:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "d:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\server.py", line 536, in get_batchcodes
+    batchcodes = [row['batchcode'] for row in conn.execute("SELECT batchcode FROM courses ORDER BY batchcode").fetchall()]
+                                              ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+sqlite3.OperationalError: no such table: courses
+2026-01-11 13:31:41,043 - INFO - Server started - Auto-expire scheduler active
+2026-01-11 13:35:18,276 - INFO - Server started - Auto-expire scheduler active
+2026-01-11 13:35:22,955 - ERROR - Exception on /api/teacher/batchcodes [GET]
+Traceback (most recent call last):
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\server.py", line 536, in get_batchcodes
+    batchcodes = [row['batchcode'] for row in conn.execute("SELECT batchcode FROM courses ORDER BY batchcode").fetchall()]
+                                              ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+sqlite3.OperationalError: no such table: courses
+2026-01-11 13:35:23,958 - ERROR - Exception on /api/teacher/batchcodes [GET]
+Traceback (most recent call last):
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\server.py", line 536, in get_batchcodes
+    batchcodes = [row['batchcode'] for row in conn.execute("SELECT batchcode FROM courses ORDER BY batchcode").fetchall()]
+                                              ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+sqlite3.OperationalError: no such table: courses
+2026-01-11 13:35:24,729 - ERROR - Exception on /api/teacher/batchcodes [GET]
+Traceback (most recent call last):
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\server.py", line 536, in get_batchcodes
+    batchcodes = [row['batchcode'] for row in conn.execute("SELECT batchcode FROM courses ORDER BY batchcode").fetchall()]
+                                              ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+sqlite3.OperationalError: no such table: courses
+2026-01-11 13:35:25,228 - ERROR - Exception on /api/teacher/batchcodes [GET]
+Traceback (most recent call last):
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\server.py", line 536, in get_batchcodes
+    batchcodes = [row['batchcode'] for row in conn.execute("SELECT batchcode FROM courses ORDER BY batchcode").fetchall()]
+                                              ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+sqlite3.OperationalError: no such table: courses
+2026-01-11 13:35:25,372 - ERROR - Exception on /api/teacher/batchcodes [GET]
+Traceback (most recent call last):
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\server.py", line 536, in get_batchcodes
+    batchcodes = [row['batchcode'] for row in conn.execute("SELECT batchcode FROM courses ORDER BY batchcode").fetchall()]
+                                              ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+sqlite3.OperationalError: no such table: courses
+2026-01-11 13:35:25,533 - ERROR - Exception on /api/teacher/batchcodes [GET]
+Traceback (most recent call last):
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\server.py", line 536, in get_batchcodes
+    batchcodes = [row['batchcode'] for row in conn.execute("SELECT batchcode FROM courses ORDER BY batchcode").fetchall()]
+                                              ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+sqlite3.OperationalError: no such table: courses
+2026-01-11 13:35:25,688 - ERROR - Exception on /api/teacher/batchcodes [GET]
+Traceback (most recent call last):
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\server.py", line 536, in get_batchcodes
+    batchcodes = [row['batchcode'] for row in conn.execute("SELECT batchcode FROM courses ORDER BY batchcode").fetchall()]
+                                              ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+sqlite3.OperationalError: no such table: courses
+2026-01-11 13:35:25,841 - ERROR - Exception on /api/teacher/batchcodes [GET]
+Traceback (most recent call last):
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\server.py", line 536, in get_batchcodes
+    batchcodes = [row['batchcode'] for row in conn.execute("SELECT batchcode FROM courses ORDER BY batchcode").fetchall()]
+                                              ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+sqlite3.OperationalError: no such table: courses
+2026-01-11 13:35:26,006 - ERROR - Exception on /api/teacher/batchcodes [GET]
+Traceback (most recent call last):
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\server.py", line 536, in get_batchcodes
+    batchcodes = [row['batchcode'] for row in conn.execute("SELECT batchcode FROM courses ORDER BY batchcode").fetchall()]
+                                              ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+sqlite3.OperationalError: no such table: courses
+2026-01-11 13:35:26,162 - ERROR - Exception on /api/teacher/batchcodes [GET]
+Traceback (most recent call last):
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\server.py", line 536, in get_batchcodes
+    batchcodes = [row['batchcode'] for row in conn.execute("SELECT batchcode FROM courses ORDER BY batchcode").fetchall()]
+                                              ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+sqlite3.OperationalError: no such table: courses
+2026-01-11 13:35:26,303 - ERROR - Exception on /api/teacher/batchcodes [GET]
+Traceback (most recent call last):
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\server.py", line 536, in get_batchcodes
+    batchcodes = [row['batchcode'] for row in conn.execute("SELECT batchcode FROM courses ORDER BY batchcode").fetchall()]
+                                              ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+sqlite3.OperationalError: no such table: courses
+2026-01-11 13:35:26,462 - ERROR - Exception on /api/teacher/batchcodes [GET]
+Traceback (most recent call last):
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\server.py", line 536, in get_batchcodes
+    batchcodes = [row['batchcode'] for row in conn.execute("SELECT batchcode FROM courses ORDER BY batchcode").fetchall()]
+                                              ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+sqlite3.OperationalError: no such table: courses
+2026-01-11 13:35:26,617 - ERROR - Exception on /api/teacher/batchcodes [GET]
+Traceback (most recent call last):
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\server.py", line 536, in get_batchcodes
+    batchcodes = [row['batchcode'] for row in conn.execute("SELECT batchcode FROM courses ORDER BY batchcode").fetchall()]
+                                              ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+sqlite3.OperationalError: no such table: courses
+2026-01-11 13:35:26,775 - ERROR - Exception on /api/teacher/batchcodes [GET]
+Traceback (most recent call last):
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\server.py", line 536, in get_batchcodes
+    batchcodes = [row['batchcode'] for row in conn.execute("SELECT batchcode FROM courses ORDER BY batchcode").fetchall()]
+                                              ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+sqlite3.OperationalError: no such table: courses
+2026-01-11 13:35:26,926 - ERROR - Exception on /api/teacher/batchcodes [GET]
+Traceback (most recent call last):
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\server.py", line 536, in get_batchcodes
+    batchcodes = [row['batchcode'] for row in conn.execute("SELECT batchcode FROM courses ORDER BY batchcode").fetchall()]
+                                              ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+sqlite3.OperationalError: no such table: courses
+2026-01-11 13:35:27,152 - ERROR - Exception on /api/teacher/batchcodes [GET]
+Traceback (most recent call last):
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\server.py", line 536, in get_batchcodes
+    batchcodes = [row['batchcode'] for row in conn.execute("SELECT batchcode FROM courses ORDER BY batchcode").fetchall()]
+                                              ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+sqlite3.OperationalError: no such table: courses
+2026-01-11 13:36:12,822 - INFO - Server started - Auto-expire scheduler active
+2026-01-11 13:36:18,713 - ERROR - Exception on /api/teacher/batchcodes [GET]
+Traceback (most recent call last):
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\server.py", line 536, in get_batchcodes
+    batchcodes = [row['batchcode'] for row in conn.execute("SELECT batchcode FROM courses ORDER BY batchcode").fetchall()]
+                                              ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+sqlite3.OperationalError: no such table: courses
+2026-01-11 13:37:17,945 - INFO - Server started - Auto-expire scheduler active
+2026-01-11 13:37:50,063 - INFO - Semester created - Name: MCA Fall Semester 2025
+2026-01-11 13:38:03,496 - INFO - Teacher created - Name: Professor Rao
+2026-01-11 13:38:48,754 - INFO - Student created - Roll: MCAX24R065
+2026-01-11 13:39:04,754 - INFO - Course created - Name: Introduction To Programming, Batchcode: MCA101
+2026-01-11 13:39:42,213 - INFO - Teacher login attempt - Batchcode: MCA101
+2026-01-11 13:39:42,214 - INFO - Teacher login successful - Course: Introduction To Programming
+2026-01-11 13:39:46,370 - INFO - Creating session - Duration: 30min, Grace: 5min, Start: 2026-01-11 13:39:46, Scheduled end: 2026-01-11 14:14:46
+2026-01-11 13:39:46,374 - INFO - Session started - ID: 1, Course: 1, Duration: 30min (+5min grace)
+2026-01-11 13:39:52,016 - INFO - Manual override attempt - Session: 1, Student: MCAX24R065, Reason: 'hasjhdjsa'
+2026-01-11 13:39:52,021 - INFO - Manual override SUCCESS - Student: Sourabh Kumar Gupta (MCAX24R065), Session: 1, Course: 1, Reason: 'hasjhdjsa'
+2026-01-11 13:41:39,253 - INFO - Server started - Auto-expire scheduler active
+2026-01-11 13:41:49,829 - INFO - Teacher login attempt - Batchcode: MCA101
+2026-01-11 13:41:49,831 - INFO - Teacher login successful - Course: Introduction To Programming
+2026-01-11 13:41:51,947 - INFO - Creating session - Duration: 30min, Grace: 5min, Start: 2026-01-11 13:41:51, Scheduled end: 2026-01-11 14:16:51
+2026-01-11 13:41:51,953 - INFO - Session started - ID: 144, Course: 1, Duration: 30min (+5min grace)
+2026-01-11 13:41:56,769 - INFO - Session manually ended - ID: 144
+2026-01-11 19:33:33,340 - INFO - Server started - Auto-expire scheduler active
+2026-01-11 19:33:49,196 - INFO - Teacher login attempt - Batchcode: MCA101
+2026-01-11 19:33:49,199 - INFO - Teacher login successful - Course: Introduction To Programming
+2026-01-11 19:33:55,592 - INFO - Creating session - Duration: 30min, Grace: 5min, Start: 2026-01-11 19:33:55, Scheduled end: 2026-01-11 20:08:55
+2026-01-11 19:33:55,597 - INFO - Session started - ID: 145, Course: 1, Duration: 30min (+5min grace)
+2026-01-11 19:34:03,987 - INFO - Session manually ended - ID: 145
+2026-01-11 19:36:54,713 - INFO - Teacher created - Name: Professor Shyam
+2026-01-11 19:37:52,432 - INFO - Teacher created - Name: Shyam Singh
+2026-01-11 19:38:16,266 - INFO - Teacher created - Name: narak mehat
+2026-01-11 19:38:30,395 - INFO - Teacher created - Name: Pumpkin
+2026-01-11 19:46:13,807 - INFO - Teacher created - Name: Shyam Singh
+2026-01-11 19:46:39,558 - INFO - Teacher created - Name: newBie
+2026-01-11 19:46:56,624 - INFO - Teacher created - Name: ieiq
+2026-01-11 19:53:24,866 - INFO - Server started - Auto-expire scheduler active
+2026-01-11 19:57:52,388 - INFO - Server started - Auto-expire scheduler active
+2026-01-11 19:58:19,959 - INFO - Teacher created - Name: newBie12
+2026-01-11 19:59:29,190 - INFO - Server started - Auto-expire scheduler active
+2026-01-11 20:05:12,961 - INFO - Teacher login attempt - Batchcode: MCA101
+2026-01-11 20:05:12,962 - INFO - Teacher login successful - Course: Introduction To Programming
+2026-01-11 20:05:17,141 - INFO - Creating session - Duration: 30min, Grace: 5min, Start: 2026-01-11 20:05:17, Scheduled end: 2026-01-11 20:40:17
+2026-01-11 20:05:17,144 - INFO - Session started - ID: 146, Course: 1, Duration: 30min (+5min grace)
+2026-01-11 20:05:41,110 - INFO - Session manually ended - ID: 146
+2026-01-11 20:06:17,821 - INFO - Server started - Auto-expire scheduler active
+2026-01-11 20:46:37,894 - INFO - Server started - Auto-expire scheduler active
+2026-01-11 21:17:56,076 - INFO - Server started - Auto-expire scheduler active
+2026-01-11 21:41:03,852 - INFO - Server started - Auto-expire scheduler active
+2026-01-11 21:54:35,189 - INFO - Server started - Auto-expire scheduler active

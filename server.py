@@ -250,7 +250,7 @@ def manage_single_semester(user_data, id):
 def manage_teachers(user_data):
     conn = get_db_connection()
     if request.method == 'GET':
-        teachers_cursor = conn.execute("SELECT * FROM teachers ORDER BY teacher_name").fetchall()
+        teachers_cursor = conn.execute("SELECT * FROM teachers ORDER BY id DESC").fetchall()
         teachers = [dict(row) for row in teachers_cursor]
         conn.close()
         return jsonify(teachers)
@@ -1150,23 +1150,90 @@ def get_course_details(user_data, course_id):
 
 # We will use a simple global variable to store the last heartbeat
 # In a real multi-device system, this would be a dictionary or a database table
+# =================================================================
+#   DEVICE API ENDPOINTS (Enhanced with Timestamp Validation)
+# =================================================================
+
+# Global variable to store last heartbeat
 last_device_heartbeat = {}
 
 @app.route('/api/device/heartbeat', methods=['POST'])
 def device_heartbeat():
-    """Receives a status update from the Smart Scanner device."""
+    """
+    Receives a status update from the Smart Scanner device.
+    ✅ NEW: Adds server-side timestamp for freshness validation
+    """
     global last_device_heartbeat
     data = request.get_json()
-    # In a multi-device system, you would use data['macAddress'] as a key
-    last_device_heartbeat = data 
-    # print("Received heartbeat:", data) # Uncomment for debugging
+    
+    # ✅ NEW: Add server timestamp when heartbeat is received
+    data['server_timestamp'] = datetime.datetime.now().isoformat()
+    
+    last_device_heartbeat = data
+    
+    # Optional: Log heartbeat for debugging
+    # logger.debug(f"Heartbeat received - Battery: {data.get('battery')}%, Queue: {data.get('queue_count')}")
+    
     return jsonify({"status": "ok"})
+
 
 @app.route('/api/teacher/device-status', methods=['GET'])
 def get_device_status():
-    """Provides the last known device status to the Teacher Dashboard."""
-    return jsonify(last_device_heartbeat)
-
+    """
+    Provides the last known device status to the Teacher Dashboard.
+    ✅ NEW: Validates timestamp freshness before returning data
+    """
+    global last_device_heartbeat
+    
+    # Check if we have any heartbeat data at all
+    if not last_device_heartbeat or 'server_timestamp' not in last_device_heartbeat:
+        return jsonify({
+            "status": "offline",
+            "message": "No heartbeat data available",
+            "mac_address": None,
+            "wifi_strength": None,
+            "battery": None,
+            "queue_count": None,
+            "sync_count": None
+        })
+    
+    # ✅ NEW: Check if heartbeat is fresh (within last 15 seconds)
+    try:
+        last_timestamp = datetime.datetime.fromisoformat(last_device_heartbeat['server_timestamp'])
+        current_time = datetime.datetime.now()
+        time_diff = (current_time - last_timestamp).total_seconds()
+        
+        # If heartbeat is older than 15 seconds, device is considered offline
+        if time_diff > 15:
+            logger.warning(f"Device heartbeat stale - Last seen {time_diff:.1f} seconds ago")
+            return jsonify({
+                "status": "offline",
+                "message": f"Last heartbeat {int(time_diff)} seconds ago",
+                "mac_address": last_device_heartbeat.get('mac_address'),
+                "wifi_strength": None,
+                "battery": last_device_heartbeat.get('battery'),  # Show last known battery
+                "queue_count": last_device_heartbeat.get('queue_count'),
+                "sync_count": last_device_heartbeat.get('sync_count'),
+                "last_seen": int(time_diff)
+            })
+        
+        # ✅ Heartbeat is fresh - device is online
+        return jsonify({
+            "status": "online",
+            "mac_address": last_device_heartbeat.get('mac_address'),
+            "wifi_strength": last_device_heartbeat.get('wifi_strength'),
+            "battery": last_device_heartbeat.get('battery'),
+            "queue_count": last_device_heartbeat.get('queue_count'),
+            "sync_count": last_device_heartbeat.get('sync_count'),
+            "last_seen": int(time_diff)
+        })
+        
+    except Exception as e:
+        logger.error(f"Error validating device status: {e}")
+        return jsonify({
+            "status": "error",
+            "message": "Error checking device status"
+        })
 
 
 # =================================================================
@@ -1261,9 +1328,143 @@ def mark_attendance_by_roll_id():
     return jsonify({"status": "success", "message": "Marked"})
 
 
+# Add this new route after the existing /api/mark-attendance-by-roll-id endpoint
+# Around line 950 in your current server.py
 
-
-
+@app.route('/api/bulk-mark-attendance', methods=['POST'])
+def bulk_mark_attendance():
+    """
+    ✅ NEW: Bulk attendance marking endpoint for queue sync
+    
+    Accepts an array of roll IDs and processes them all at once.
+    Much faster than sequential processing.
+    
+    Request format:
+    {
+      "roll_ids": [42, 71, 15, 88, 102]
+    }
+    
+    Response format:
+    {
+      "success_count": 4,
+      "failed": [88],
+      "details": {
+        "42": "success",
+        "71": "success", 
+        "15": "success",
+        "88": "not_enrolled",
+        "102": "success"
+      }
+    }
+    """
+    try:
+        data = request.get_json()
+        roll_ids = data.get('roll_ids', [])
+        
+        if not roll_ids or not isinstance(roll_ids, list):
+            logger.warning("Bulk sync failed - Invalid or empty roll_ids")
+            return jsonify({"error": "No roll IDs provided or invalid format"}), 400
+        
+        logger.info(f"📦 Bulk sync request - {len(roll_ids)} roll IDs: {roll_ids}")
+        
+        conn = get_db_connection()
+        
+        # Find active session
+        active_session = conn.execute(
+            "SELECT id, course_id FROM sessions WHERE is_active = 1"
+        ).fetchone()
+        
+        if not active_session:
+            conn.close()
+            logger.warning("Bulk sync failed - No active session")
+            return jsonify({
+                "error": "No active session",
+                "success_count": 0,
+                "failed": roll_ids
+            }), 400
+        
+        session_id = active_session['id']
+        course_id = active_session['course_id']
+        
+        success_count = 0
+        failed_ids = []
+        details = {}
+        
+        # Process each roll ID
+        for roll_id in roll_ids:
+            try:
+                # Validate roll_id is an integer
+                roll_id = int(roll_id)
+                
+                # Check enrollment
+                enrollment = conn.execute("""
+                    SELECT student_id 
+                    FROM enrollments 
+                    WHERE course_id = ? AND class_roll_id = ?
+                """, (course_id, roll_id)).fetchone()
+                
+                if not enrollment:
+                    failed_ids.append(roll_id)
+                    details[str(roll_id)] = "not_enrolled"
+                    logger.warning(f"  ❌ Roll {roll_id} not enrolled in course {course_id}")
+                    continue
+                
+                student_id = enrollment['student_id']
+                
+                # Check for duplicate
+                existing = conn.execute("""
+                    SELECT id FROM attendance_records 
+                    WHERE session_id = ? AND student_id = ?
+                """, (session_id, student_id)).fetchone()
+                
+                if existing:
+                    # Already marked - consider it success (idempotent behavior)
+                    success_count += 1
+                    details[str(roll_id)] = "already_marked"
+                    logger.info(f"  ⚠️  Roll {roll_id} already marked - skipping")
+                    continue
+                
+                # Insert attendance record
+                conn.execute("""
+                    INSERT INTO attendance_records 
+                    (session_id, student_id, override_method, timestamp) 
+                    VALUES (?, ?, 'biometric_queue', CURRENT_TIMESTAMP)
+                """, (session_id, student_id))
+                
+                success_count += 1
+                details[str(roll_id)] = "success"
+                logger.info(f"  ✅ Roll {roll_id} marked successfully")
+                
+            except ValueError:
+                failed_ids.append(roll_id)
+                details[str(roll_id)] = "invalid_roll_id"
+                logger.error(f"  ❌ Invalid roll ID format: {roll_id}")
+            except Exception as e:
+                failed_ids.append(roll_id)
+                details[str(roll_id)] = f"error: {str(e)}"
+                logger.error(f"  ❌ Error processing roll {roll_id}: {e}")
+        
+        # Commit all changes at once (transaction)
+        conn.commit()
+        conn.close()
+        
+        logger.info(f"📦 Bulk sync complete - {success_count}/{len(roll_ids)} successful")
+        if failed_ids:
+            logger.warning(f"   Failed IDs: {failed_ids}")
+        
+        return jsonify({
+            "success_count": success_count,
+            "failed": failed_ids,
+            "details": details
+        }), 200
+        
+    except Exception as e:
+        logger.error(f"Bulk sync exception: {e}", exc_info=True)
+        return jsonify({
+            "error": "Server error during bulk sync",
+            "success_count": 0,
+            "failed": roll_ids if 'roll_ids' in locals() else []
+        }), 500
 
 
 
