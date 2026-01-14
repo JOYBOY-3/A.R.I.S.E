@@ -284,7 +284,7 @@ document.addEventListener('DOMContentLoaded', () => {
           cells = `
           <td data-label="ID">${item.id}</td>
           <td data-label="Course Name">${item.course_name}</td>
-          <td data-label="Batch Code">${item.batchcode}</td>
+          <td data-label="Course Code">${item.course_code}</td>
           <td data-label="Semester">${item.semester_name || 'N/A'}</td>
           <td data-label="Teacher">${item.teacher_name || 'N/A'}</td>
         `;
@@ -369,7 +369,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (entity === 'courses') {
       api.get(`courses/${id}`).then((course) => {
         form.querySelector('#course-name').value = course.course_name;
-        form.querySelector('#batchcode').value = course.batchcode;
+        form.querySelector('#course-code').value = course.course_code;
         form.querySelector('#default-duration').value =
           course.default_duration_minutes;
         form.querySelector('#select-semester').value = course.semester_id;
@@ -535,7 +535,7 @@ document.addEventListener('DOMContentLoaded', () => {
       row.innerHTML = `
       <td data-label="ID">${item.id}</td>
       <td data-label="Course Name">${item.course_name}</td>
-      <td data-label="Batch Code">${item.batchcode}</td>
+      <td data-label="Course Code">${item.course_code}</td>
       <td data-label="Semester">${item.semester_name || 'N/A'}</td>
       <td data-label="Teacher">${item.teacher_name || 'N/A'}</td>
       <td data-label="Actions" class="actions-cell">
@@ -578,7 +578,7 @@ document.addEventListener('DOMContentLoaded', () => {
     e.preventDefault();
     const body = {
       course_name: document.getElementById('course-name').value,
-      batchcode: document.getElementById('batchcode').value,
+      course_code: document.getElementById('course-code').value,
       default_duration_minutes:
         document.getElementById('default-duration').value,
       semester_id: document.getElementById('select-semester').value,
@@ -629,7 +629,7 @@ document.addEventListener('DOMContentLoaded', () => {
       '<option value="">-- Select a Course --</option>';
     courses.forEach(
       (c) =>
-        (enrollmentCourseSelect.innerHTML += `<option value="${c.id}">${c.course_name} (${c.batchcode})</option>`)
+        (enrollmentCourseSelect.innerHTML += `<option value="${c.id}">${c.course_name} (${c.course_code})</option>`)
     );
     enrollmentCourseSelect.value = currentVal;
   }

@@ -81,7 +81,7 @@ def setup_database():
             semester_id INTEGER,
             teacher_id INTEGER,
             course_name TEXT NOT NULL,
-            batchcode TEXT UNIQUE NOT NULL,
+            course_code TEXT UNIQUE NOT NULL,
             default_duration_minutes INTEGER DEFAULT 30,
             FOREIGN KEY (semester_id) REFERENCES semesters (id) ON DELETE CASCADE,
             FOREIGN KEY (teacher_id) REFERENCES teachers (id) ON DELETE SET NULL

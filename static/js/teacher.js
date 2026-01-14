@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Get references to all interactive elements
   const loginButton = document.getElementById('login-button');
-  const batchcodeInput = document.getElementById('batchcode-input');
+  const courseCodeInput = document.getElementById('course-code-input');
   const pinInput = document.getElementById('pin-input');
   const loginMessage = document.getElementById('login-message');
   const setupCourseName = document.getElementById('setup-course-name');
@@ -71,32 +71,32 @@ document.addEventListener('DOMContentLoaded', () => {
   const newSessionButton = document.getElementById('new-session-button');
   const reportTable = document.getElementById('report-table');
 
-  // Populate batchcode dropdown
-  async function loadBatchCodes() {
+  // Populate Course_Code dropdown
+  async function loadCourseCodes() {
     try {
-      const response = await fetch('/api/teacher/batchcodes');
-      const batchcodes = await response.json();
-      batchcodeInput.innerHTML =
-        '<option value="">-- Select Batch Code --</option>';
-      batchcodes.forEach((code) => {
+      const response = await fetch('/api/teacher/course-codes');
+      const courseCodes = await response.json();
+      courseCodeInput.innerHTML =
+        '<option value="">-- Select Course Code --</option>';
+      courseCodes.forEach((code) => {
         const option = document.createElement('option');
         option.value = code;
         option.textContent = code;
-        batchcodeInput.appendChild(option);
+        courseCodeInput.appendChild(option);
       });
     } catch (err) {
-      batchcodeInput.innerHTML = '<option value="">(Failed to load)</option>';
+      courseCodeInput.innerHTML = '<option value="">(Failed to load)</option>';
     }
   }
 
-  loadBatchCodes();
+  loadCourseCodes();
 
-  batchcodeInput.addEventListener('change', () => {
-    loginButton.disabled = !batchcodeInput.value || !pinInput.value;
+  courseCodeInput.addEventListener('change', () => {
+    loginButton.disabled = !courseCodeInput.value || !pinInput.value;
   });
 
   pinInput.addEventListener('input', () => {
-    loginButton.disabled = !batchcodeInput.value || !pinInput.value;
+    loginButton.disabled = !courseCodeInput.value || !pinInput.value;
   });
 
   loginButton.disabled = true;
@@ -113,11 +113,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // --- 3. LOGIN WORKFLOW ---
   loginButton.addEventListener('click', async () => {
-    const batchcode = batchcodeInput.value.trim();
+    const courseCode = courseCodeInput.value.trim();
     const pin = pinInput.value.trim();
 
-    if (!batchcode || !pin) {
-      loginMessage.textContent = 'Please enter both Batch Code and PIN.';
+    if (!courseCode || !pin) {
+      loginMessage.textContent = 'Please enter both Course Code and PIN.';
       return;
     }
 
@@ -128,7 +128,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const response = await fetch('/api/teacher/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ batchcode, pin }),
+        body: JSON.stringify({ course_code: courseCode, pin }),
       });
 
       const data = await response.json();
@@ -677,7 +677,7 @@ document.addEventListener('DOMContentLoaded', () => {
       liveUpdateInterval: null,
     };
     loginMessage.textContent = '';
-    batchcodeInput.value = '';
+    courseCodeInput.value = '';
     pinInput.value = '';
     showView('login');
   });

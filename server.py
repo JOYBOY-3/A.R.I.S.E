@@ -1,6 +1,5 @@
 # =================================================================
-#   A.R.I.S.E. Server - Definitive Version
-#   Part 1: Foundation, Helpers, Page Routes, and Core Admin API
+#   A.R.I.S.E. Server
 # =================================================================
 
 
@@ -384,7 +383,7 @@ def manage_courses(user_data):
         # Validate input
         valid, error = validate_required_fields(data, [
             'course_name',
-            'batchcode',
+            'course_code',
             'default_duration_minutes',
             'semester_id',
             'teacher_id'
@@ -395,17 +394,17 @@ def manage_courses(user_data):
         
         try:
             conn.execute("""INSERT INTO courses 
-                (course_name, batchcode, default_duration_minutes, semester_id, teacher_id)
+                (course_name, course_code, default_duration_minutes, semester_id, teacher_id)
                 VALUES (?, ?, ?, ?, ?)""",
-                (data['course_name'], data['batchcode'], 
+                (data['course_name'], data['course_code'], 
                  data['default_duration_minutes'],
                  data['semester_id'], data['teacher_id']))
             conn.commit()
-            logger.info(f"Course created - Name: {data['course_name']}, Batchcode: {data['batchcode']}")
+            logger.info(f"Course created - Name: {data['course_name']}, CourseCode: {data['course_code']}")
         except sqlite3.IntegrityError:
-            logger.error(f"Course creation failed - Duplicate batchcode: {data['batchcode']}")
+            logger.error(f"Course creation failed - Duplicate course_code: {data['course_code']}")
             conn.close()
-            return jsonify({"error": "Batchcode already exists"}), 409
+            return jsonify({"error": "CourseCode already exists"}), 409
         
         conn.close()
         return jsonify({"status": "success", "message": "Course added."}), 201
@@ -417,7 +416,7 @@ def manage_courses(user_data):
 def get_courses_view(user_data):
     conn = get_db_connection()
     query = """
-        SELECT c.id, c.course_name, c.batchcode, s.semester_name, t.teacher_name 
+        SELECT c.id, c.course_name, c.course_code, s.semester_name, t.teacher_name 
         FROM courses c
         LEFT JOIN semesters s ON c.semester_id = s.id
         LEFT JOIN teachers t ON c.teacher_id = t.id
@@ -441,9 +440,9 @@ def manage_single_course(user_data, id):
 
     if request.method == 'PUT':
         data = request.get_json()
-        conn.execute("""UPDATE courses SET course_name = ?, batchcode = ?, default_duration_minutes = ?, 
+        conn.execute("""UPDATE courses SET course_name = ?, course_code = ?, default_duration_minutes = ?, 
                         semester_id = ?, teacher_id = ? WHERE id = ?""",
-                     (data['course_name'], data['batchcode'], data['default_duration_minutes'], data['semester_id'], data['teacher_id'], id))
+                     (data['course_name'], data['course_code'], data['default_duration_minutes'], data['semester_id'], data['teacher_id'], id))
         conn.commit()
     elif request.method == 'DELETE':
         conn.execute("DELETE FROM courses WHERE id = ?", (id,))
@@ -501,7 +500,7 @@ def get_enrollment_roster(user_data, semester_id):
             s.student_name,
             s.university_roll_no,
             MIN(e.class_roll_id) as primary_class_roll_id,
-            GROUP_CONCAT(c.batchcode) as enrolled_courses
+            GROUP_CONCAT(c.course_code) as enrolled_courses
         FROM students s
         JOIN enrollments e ON s.id = e.student_id
         JOIN courses c ON e.course_id = c.id
@@ -528,14 +527,14 @@ def get_enrollment_roster(user_data, semester_id):
 #   TEACHER API ENDPOINTS (Fully Functional)
 # =================================================================
 
-#This cod eis fo rgetting the batch code and sending it to teacher.js login part to show BATCHCODE FIELD in dropdown in the login page of teacher interface 
-@app.route('/api/teacher/batchcodes', methods=['GET'])
-def get_batchcodes():
-    """Returns all batch codes for the teacher login dropdown."""
+#This cod eis fo rgetting the course code and sending it to teacher.js login part to show COURSECODE FIELD in dropdown in the login page of teacher interface 
+@app.route('/api/teacher/course-codes', methods=['GET'])
+def get_course_codes():
+    """Returns all course codes for the teacher login dropdown."""
     conn = get_db_connection()
-    batchcodes = [row['batchcode'] for row in conn.execute("SELECT batchcode FROM courses ORDER BY batchcode").fetchall()]
+    course_codes = [row['course_code'] for row in conn.execute("SELECT course_code FROM courses ORDER BY course_code").fetchall()]
     conn.close()
-    return jsonify(batchcodes)
+    return jsonify(course_codes)
 
 
 # Teacher Login API 
@@ -543,30 +542,30 @@ def get_batchcodes():
 def teacher_login():
     """
     Handles the teacher's initial login.
-    Verifies the batchcode and PIN.
+    Verifies the course_code and PIN.
     Returns the course name and ID for the setup screen.
     """
     data = request.get_json()
-    batchcode = data.get('batchcode')
+    course_code = data.get('course_code')
     pin = data.get('pin')
 
-    logger.info(f"Teacher login attempt - Batchcode: {batchcode}")  # ADDED THIS FOR LOGGING
+    logger.info(f"Teacher login attempt - CourseCode: {course_code}")  # ADDED THIS FOR LOGGING
 
     conn = get_db_connection()
     course = conn.execute(
-        "SELECT id, course_name, teacher_id, default_duration_minutes FROM courses WHERE batchcode = ?", 
-        (batchcode,)
+        "SELECT id, course_name, teacher_id, default_duration_minutes FROM courses WHERE course_code = ?", 
+        (course_code,)
     ).fetchone()
     
     if not course:
-        logger.warning(f"Login failed - Invalid batchcode: {batchcode}")  # ADDED THIS FOR LOGGING
+        logger.warning(f"Login failed - Invalid course_code: {course_code}")  # ADDED THIS FOR LOGGING
         conn.close()
-        return jsonify({"status": "error", "message": "Invalid Batch Code"}), 404
+        return jsonify({"status": "error", "message": "Invalid Course Code"}), 404
         
     teacher = conn.execute("SELECT pin FROM teachers WHERE id = ?", (course['teacher_id'],)).fetchone()
     
     if not teacher or teacher['pin'] != pin:
-        logger.warning(f"Login failed - Invalid PIN for batchcode: {batchcode}")  # ADDED THIS FOR LOGGING
+        logger.warning(f"Login failed - Invalid PIN for course_code: {course_code}")  # ADDED THIS FOR LOGGING
         conn.close()
         return jsonify({"status": "error", "message": "Invalid PIN"}), 401
     
@@ -1248,7 +1247,7 @@ def get_session_status():
     conn = get_db_connection()
     # Find the most recent active session
     session_data = conn.execute("""
-        SELECT s.id, c.batchcode 
+        SELECT s.id, c.course_code 
         FROM sessions s
         JOIN courses c ON s.course_id = c.id
         WHERE s.is_active = 1 
@@ -1258,10 +1257,10 @@ def get_session_status():
     conn.close()
 
     if session_data:
-        # If a session is active, send back its status and the batchcode for display
+        # If a session is active, send back its status and the course_code for display
         return jsonify({
             "isSessionActive": True,
-            "sessionName": session_data['batchcode']
+            "sessionName": session_data['course_code']
         })
     else:
         # If no session is active, tell the device to remain idle
