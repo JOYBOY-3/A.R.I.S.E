@@ -454,3 +454,168 @@ sqlite3.OperationalError: no such table: courses
 2026-01-15 00:28:25,800 - INFO - Creating session - Duration: 30min, Grace: 5min, Start: 2026-01-15 00:28:25, Scheduled end: 2026-01-15 01:03:25
 2026-01-15 00:28:25,805 - INFO - Session started - ID: 147, Course: 1, Duration: 30min (+5min grace)
 2026-01-15 00:28:33,909 - INFO - Session manually ended - ID: 147
+2026-01-15 16:12:53,228 - INFO - Server started - Auto-expire scheduler active
+2026-01-15 16:13:05,593 - INFO - Teacher login attempt - CourseCode: MCA101
+2026-01-15 16:13:05,598 - INFO - Teacher login successful - Course: Introduction To Programming
+2026-01-15 16:13:31,930 - INFO - Creating session - Duration: 30min, Grace: 5min, Start: 2026-01-15 16:13:31, Scheduled end: 2026-01-15 16:48:31
+2026-01-15 16:13:31,935 - INFO - Session started - ID: 148, Course: 1, Duration: 30min (+5min grace)
+2026-01-15 16:13:46,584 - INFO - Attendance attempt - Roll ID: 1
+2026-01-15 16:13:46,590 - INFO - Attendance marked - Roll ID 1, Session: 148, Student: 1
+2026-01-15 16:14:06,953 - WARNING - Device heartbeat stale - Last seen 18.0 seconds ago
+2026-01-15 16:14:11,954 - WARNING - Device heartbeat stale - Last seen 23.0 seconds ago
+2026-01-15 16:14:16,957 - WARNING - Device heartbeat stale - Last seen 28.0 seconds ago
+2026-01-15 16:14:21,955 - WARNING - Device heartbeat stale - Last seen 33.0 seconds ago
+2026-01-15 16:14:26,961 - WARNING - Device heartbeat stale - Last seen 38.0 seconds ago
+2026-01-15 16:14:31,957 - WARNING - Device heartbeat stale - Last seen 43.0 seconds ago
+2026-01-15 16:14:36,952 - WARNING - Device heartbeat stale - Last seen 48.0 seconds ago
+2026-01-15 16:14:43,487 - WARNING - Device heartbeat stale - Last seen 54.5 seconds ago
+2026-01-15 16:14:46,952 - WARNING - Device heartbeat stale - Last seen 58.0 seconds ago
+2026-01-15 16:14:51,951 - WARNING - Device heartbeat stale - Last seen 63.0 seconds ago
+2026-01-15 16:14:56,958 - WARNING - Device heartbeat stale - Last seen 68.0 seconds ago
+2026-01-15 16:15:01,956 - WARNING - Device heartbeat stale - Last seen 73.0 seconds ago
+2026-01-15 16:15:06,953 - WARNING - Device heartbeat stale - Last seen 78.0 seconds ago
+2026-01-15 16:15:11,961 - WARNING - Device heartbeat stale - Last seen 83.0 seconds ago
+2026-01-15 16:15:16,957 - WARNING - Device heartbeat stale - Last seen 88.0 seconds ago
+2026-01-15 16:15:21,950 - WARNING - Device heartbeat stale - Last seen 93.0 seconds ago
+2026-01-15 16:15:26,966 - WARNING - Device heartbeat stale - Last seen 98.0 seconds ago
+2026-01-15 16:15:31,965 - WARNING - Device heartbeat stale - Last seen 103.0 seconds ago
+2026-01-15 16:15:36,961 - WARNING - Device heartbeat stale - Last seen 108.0 seconds ago
+2026-01-15 16:15:41,948 - WARNING - Device heartbeat stale - Last seen 113.0 seconds ago
+2026-01-15 16:15:46,958 - WARNING - Device heartbeat stale - Last seen 118.0 seconds ago
+2026-01-15 16:15:51,950 - WARNING - Device heartbeat stale - Last seen 123.0 seconds ago
+2026-01-15 16:15:56,962 - WARNING - Device heartbeat stale - Last seen 128.0 seconds ago
+2026-01-15 16:16:01,954 - WARNING - Device heartbeat stale - Last seen 133.0 seconds ago
+2026-01-15 16:16:06,953 - WARNING - Device heartbeat stale - Last seen 138.0 seconds ago
+2026-01-15 16:16:11,954 - WARNING - Device heartbeat stale - Last seen 143.0 seconds ago
+2026-01-15 16:16:17,990 - WARNING - Device heartbeat stale - Last seen 149.0 seconds ago
+2026-01-15 16:16:21,954 - WARNING - Device heartbeat stale - Last seen 153.0 seconds ago
+2026-01-15 16:16:26,961 - WARNING - Device heartbeat stale - Last seen 158.0 seconds ago
+2026-01-15 16:16:31,949 - WARNING - Device heartbeat stale - Last seen 163.0 seconds ago
+2026-01-15 16:16:36,960 - WARNING - Device heartbeat stale - Last seen 168.0 seconds ago
+2026-01-15 16:16:41,965 - WARNING - Device heartbeat stale - Last seen 173.0 seconds ago
+2026-01-15 16:16:59,561 - INFO - Attendance attempt - Roll ID: 2
+2026-01-15 16:16:59,567 - INFO - Attendance marked - Roll ID 2, Session: 148, Student: 2
+2026-01-15 16:17:05,871 - INFO - Session manually ended - ID: 148
+2026-01-15 16:32:01,150 - INFO - Teacher login attempt - CourseCode: MCA101
+2026-01-15 16:32:01,154 - INFO - Teacher login successful - Course: Introduction To Programming
+2026-01-15 16:32:03,376 - INFO - Creating session - Duration: 30min, Grace: 5min, Start: 2026-01-15 16:32:03, Scheduled end: 2026-01-15 17:07:03
+2026-01-15 16:32:03,381 - INFO - Session started - ID: 149, Course: 1, Duration: 30min (+5min grace)
+2026-01-15 16:32:10,173 - INFO - Attendance attempt - Roll ID: 1
+2026-01-15 16:32:10,181 - INFO - Attendance marked - Roll ID 1, Session: 149, Student: 1
+2026-01-15 16:32:28,413 - WARNING - Device heartbeat stale - Last seen 16.0 seconds ago
+2026-01-15 16:32:33,410 - WARNING - Device heartbeat stale - Last seen 21.0 seconds ago
+2026-01-15 16:32:38,405 - WARNING - Device heartbeat stale - Last seen 26.0 seconds ago
+2026-01-15 16:32:43,408 - WARNING - Device heartbeat stale - Last seen 31.0 seconds ago
+2026-01-15 16:32:48,397 - WARNING - Device heartbeat stale - Last seen 36.0 seconds ago
+2026-01-15 16:32:53,553 - WARNING - Device heartbeat stale - Last seen 41.2 seconds ago
+2026-01-15 16:33:07,877 - INFO - Session manually ended - ID: 149
+2026-01-16 12:40:59,582 - INFO - Server started - Auto-expire scheduler active
+2026-01-16 12:41:16,608 - INFO - Teacher login attempt - CourseCode: MCA101
+2026-01-16 12:41:16,611 - INFO - Teacher login successful - Course: Introduction To Programming
+2026-01-16 12:41:20,454 - INFO - Creating session - Duration: 30min, Grace: 5min, Start: 2026-01-16 12:41:20, Scheduled end: 2026-01-16 13:16:20
+2026-01-16 12:41:20,459 - INFO - Session started - ID: 150, Course: 1, Duration: 30min (+5min grace)
+2026-01-16 12:41:28,584 - INFO - Session manually ended - ID: 150
+2026-01-16 12:41:42,020 - INFO - Teacher login attempt - CourseCode: MCA101
+2026-01-16 12:41:42,021 - INFO - Teacher login successful - Course: Introduction To Programming
+2026-01-16 12:41:53,850 - INFO - Creating session - Duration: 30min, Grace: 5min, Start: 2026-01-16 12:41:53, Scheduled end: 2026-01-16 13:16:53
+2026-01-16 12:41:53,854 - INFO - Session started - ID: 151, Course: 1, Duration: 30min (+5min grace)
+2026-01-16 12:42:05,720 - INFO - Session manually ended - ID: 151
+2026-01-16 12:42:20,727 - INFO - Teacher login attempt - CourseCode: MCA101
+2026-01-16 12:42:20,728 - INFO - Teacher login successful - Course: Introduction To Programming
+2026-01-16 12:42:42,392 - INFO - Creating session - Duration: 30min, Grace: 5min, Start: 2026-01-16 12:42:42, Scheduled end: 2026-01-16 13:17:42
+2026-01-16 12:42:42,395 - INFO - Session started - ID: 152, Course: 1, Duration: 30min (+5min grace)
+2026-01-16 12:42:57,408 - WARNING - Device heartbeat stale - Last seen 15.3 seconds ago
+2026-01-16 12:43:00,465 - INFO - Session manually ended - ID: 152
+2026-01-16 12:43:16,385 - INFO - Teacher login attempt - CourseCode: MCA101
+2026-01-16 12:43:16,387 - INFO - Teacher login successful - Course: Introduction To Programming
+2026-01-16 12:43:18,902 - INFO - Creating session - Duration: 30min, Grace: 5min, Start: 2026-01-16 12:43:18, Scheduled end: 2026-01-16 13:18:18
+2026-01-16 12:43:18,905 - INFO - Session started - ID: 153, Course: 1, Duration: 30min (+5min grace)
+2026-01-16 12:43:27,846 - INFO - Attendance attempt - Roll ID: 1
+2026-01-16 12:43:27,852 - INFO - Attendance marked - Roll ID 1, Session: 153, Student: 1
+2026-01-16 12:43:37,982 - INFO - Attendance attempt - Roll ID: 2
+2026-01-16 12:43:37,987 - INFO - Attendance marked - Roll ID 2, Session: 153, Student: 2
+2026-01-16 12:43:47,615 - INFO - Session manually ended - ID: 153
+2026-01-16 12:43:56,552 - INFO - Teacher login attempt - CourseCode: MCA101
+2026-01-16 12:43:56,553 - INFO - Teacher login successful - Course: Introduction To Programming
+2026-01-16 12:44:00,931 - INFO - Creating session - Duration: 30min, Grace: 5min, Start: 2026-01-16 12:44:00, Scheduled end: 2026-01-16 13:19:00
+2026-01-16 12:44:00,935 - INFO - Session started - ID: 154, Course: 1, Duration: 30min (+5min grace)
+2026-01-16 12:44:15,950 - WARNING - Device heartbeat stale - Last seen 15.1 seconds ago
+2026-01-16 12:44:20,956 - WARNING - Device heartbeat stale - Last seen 20.1 seconds ago
+2026-01-16 12:44:25,957 - WARNING - Device heartbeat stale - Last seen 25.1 seconds ago
+2026-01-16 12:44:30,955 - WARNING - Device heartbeat stale - Last seen 30.1 seconds ago
+2026-01-16 12:44:35,955 - WARNING - Device heartbeat stale - Last seen 35.1 seconds ago
+2026-01-16 12:44:40,949 - WARNING - Device heartbeat stale - Last seen 40.1 seconds ago
+2026-01-16 12:44:45,950 - WARNING - Device heartbeat stale - Last seen 45.1 seconds ago
+2026-01-16 12:44:50,949 - WARNING - Device heartbeat stale - Last seen 50.1 seconds ago
+2026-01-16 12:44:55,955 - WARNING - Device heartbeat stale - Last seen 55.1 seconds ago
+2026-01-16 12:45:00,961 - WARNING - Device heartbeat stale - Last seen 60.1 seconds ago
+2026-01-16 12:45:05,952 - WARNING - Device heartbeat stale - Last seen 65.1 seconds ago
+2026-01-16 12:45:10,948 - WARNING - Device heartbeat stale - Last seen 70.1 seconds ago
+2026-01-16 12:45:16,443 - WARNING - Device heartbeat stale - Last seen 75.6 seconds ago
+2026-01-16 12:45:20,950 - WARNING - Device heartbeat stale - Last seen 80.1 seconds ago
+2026-01-16 12:45:36,197 - INFO - Session manually ended - ID: 154
+2026-01-16 12:47:31,487 - INFO - Server started - Auto-expire scheduler active
+2026-01-16 12:47:41,798 - INFO - Teacher login attempt - CourseCode: MCA101
+2026-01-16 12:47:41,799 - INFO - Teacher login successful - Course: Introduction To Programming
+2026-01-16 12:48:05,525 - INFO - Creating session - Duration: 30min, Grace: 5min, Start: 2026-01-16 12:48:05, Scheduled end: 2026-01-16 13:23:05
+2026-01-16 12:48:05,528 - INFO - Session started - ID: 155, Course: 1, Duration: 30min (+5min grace)
+2026-01-16 12:49:20,976 - WARNING - Device heartbeat stale - Last seen 18.4 seconds ago
+2026-01-16 12:49:25,554 - WARNING - Device heartbeat stale - Last seen 22.9 seconds ago
+2026-01-16 12:49:30,551 - WARNING - Device heartbeat stale - Last seen 27.9 seconds ago
+2026-01-16 12:49:35,550 - WARNING - Device heartbeat stale - Last seen 32.9 seconds ago
+2026-01-16 12:49:40,542 - WARNING - Device heartbeat stale - Last seen 37.9 seconds ago
+2026-01-16 12:49:45,541 - WARNING - Device heartbeat stale - Last seen 42.9 seconds ago
+2026-01-16 12:49:51,461 - WARNING - Device heartbeat stale - Last seen 48.8 seconds ago
+2026-01-16 12:49:55,923 - WARNING - Device heartbeat stale - Last seen 53.3 seconds ago
+2026-01-16 12:50:00,918 - WARNING - Device heartbeat stale - Last seen 58.3 seconds ago
+2026-01-16 12:52:53,013 - INFO - Session manually ended - ID: 155
+2026-01-16 23:52:54,967 - INFO - Server started - Auto-expire scheduler active
+2026-01-16 23:53:07,793 - INFO - Teacher login attempt - CourseCode: MCA101
+2026-01-16 23:53:07,795 - INFO - Teacher login successful - Course: Introduction To Programming
+2026-01-16 23:53:10,467 - INFO - Creating session - Duration: 30min, Grace: 5min, Start: 2026-01-16 23:53:10, Scheduled end: 2026-01-17 00:28:10
+2026-01-16 23:53:10,472 - INFO - Session started - ID: 156, Course: 1, Duration: 30min (+5min grace)
+2026-01-16 23:53:24,949 - INFO - Attendance attempt - Roll ID: 1
+2026-01-16 23:53:24,954 - INFO - Attendance marked - Roll ID 1, Session: 156, Student: 1
+2026-01-16 23:53:29,556 - INFO - Attendance attempt - Roll ID: 2
+2026-01-16 23:53:29,561 - INFO - Attendance marked - Roll ID 2, Session: 156, Student: 2
+2026-01-16 23:53:34,166 - INFO - Attendance attempt - Roll ID: 1
+2026-01-16 23:53:34,168 - INFO - Attendance duplicate - Roll ID 1 already marked in session 156
+2026-01-16 23:53:38,159 - INFO - Attendance attempt - Roll ID: 2
+2026-01-16 23:53:38,161 - INFO - Attendance duplicate - Roll ID 2 already marked in session 156
+2026-01-16 23:53:49,526 - INFO - Attendance attempt - Roll ID: 3
+2026-01-16 23:53:49,527 - WARNING - Attendance failed - Roll ID 3 not enrolled in course 1
+2026-01-16 23:53:50,488 - WARNING - Device heartbeat stale - Last seen 15.1 seconds ago
+2026-01-16 23:53:56,590 - INFO - Attendance attempt - Roll ID: 3
+2026-01-16 23:53:56,591 - WARNING - Attendance failed - Roll ID 3 not enrolled in course 1
+2026-01-16 23:54:02,049 - INFO - Attendance attempt - Roll ID: 3
+2026-01-16 23:54:02,050 - WARNING - Attendance failed - Roll ID 3 not enrolled in course 1
+2026-01-16 23:54:28,706 - INFO - Session manually ended - ID: 156
+2026-01-17 00:02:39,720 - INFO - Teacher login attempt - CourseCode: MCA101
+2026-01-17 00:02:39,727 - INFO - Teacher login successful - Course: Introduction To Programming
+2026-01-17 00:02:42,351 - INFO - Creating session - Duration: 30min, Grace: 5min, Start: 2026-01-17 00:02:42, Scheduled end: 2026-01-17 00:37:42
+2026-01-17 00:02:42,355 - INFO - Session started - ID: 157, Course: 1, Duration: 30min (+5min grace)
+2026-01-17 00:02:54,387 - INFO - Attendance attempt - Roll ID: 1
+2026-01-17 00:02:54,392 - INFO - Attendance marked - Roll ID 1, Session: 157, Student: 1
+2026-01-17 00:07:07,897 - WARNING - Device heartbeat stale - Last seen 44.2 seconds ago
+2026-01-17 00:14:07,901 - WARNING - Device heartbeat stale - Last seen 30.1 seconds ago
+2026-01-17 00:15:07,903 - WARNING - Device heartbeat stale - Last seen 90.1 seconds ago
+2026-01-17 00:16:35,089 - WARNING - Device heartbeat stale - Last seen 40.3 seconds ago
+2026-01-17 00:16:37,378 - WARNING - Device heartbeat stale - Last seen 42.6 seconds ago
+2026-01-17 00:16:45,432 - INFO - Attendance attempt - Roll ID: 1
+2026-01-17 00:16:45,433 - INFO - Attendance duplicate - Roll ID 1 already marked in session 157
+2026-01-17 00:16:50,418 - INFO - Attendance attempt - Roll ID: 2
+2026-01-17 00:16:50,424 - INFO - Attendance marked - Roll ID 2, Session: 157, Student: 2
+2026-01-17 00:16:57,484 - INFO - Attendance attempt - Roll ID: 2
+2026-01-17 00:16:57,485 - INFO - Attendance duplicate - Roll ID 2 already marked in session 157
+2026-01-17 00:17:07,369 - WARNING - Device heartbeat stale - Last seen 15.7 seconds ago
+2026-01-17 00:17:08,593 - INFO - Session manually ended - ID: 157
+2026-01-17 15:30:59,576 - INFO - Server started - Auto-expire scheduler active
+2026-01-17 15:31:12,458 - INFO - Teacher login attempt - CourseCode: MCA101
+2026-01-17 15:31:12,460 - INFO - Teacher login successful - Course: Introduction To Programming
+2026-01-17 15:31:15,726 - INFO - Creating session - Duration: 30min, Grace: 5min, Start: 2026-01-17 15:31:15, Scheduled end: 2026-01-17 16:06:15
+2026-01-17 15:31:15,731 - INFO - Session started - ID: 158, Course: 1, Duration: 30min (+5min grace)
+2026-01-17 15:31:42,937 - INFO - Attendance attempt - Roll ID: 1
+2026-01-17 15:31:42,945 - INFO - Attendance marked - Roll ID 1, Session: 158, Student: 1
+2026-01-17 15:31:49,657 - INFO - Attendance attempt - Roll ID: 2
+2026-01-17 15:31:49,664 - INFO - Attendance marked - Roll ID 2, Session: 158, Student: 2
+2026-01-17 15:37:39,092 - INFO - Session manually ended - ID: 158
