@@ -39,7 +39,7 @@ def send_email(to_email, subject, html_content):
     # Test mode - just print
     if TEST_MODE:
         print(f"\n{'='*60}")
-        print(f"📧 TEST MODE EMAIL")
+        print(f"TEST MODE EMAIL")
         print(f"To: {to_email}")
         print(f"Subject: {subject}")
         print(f"{'='*60}\n")
@@ -63,22 +63,23 @@ def send_email(to_email, subject, html_content):
         server.send_message(msg)
         server.quit()
         
-        logger.info(f"✅ Email sent successfully to {to_email}")
+        # FIXED: Remove emoji from log message - use text only
+        logger.info(f"Email sent successfully to {to_email}")
         return True, None
         
     except smtplib.SMTPAuthenticationError:
         error_msg = "Gmail authentication failed - check your app password"
-        logger.error(f"❌ {error_msg}")
+        logger.error(f"Email failed - {error_msg}")
         return False, error_msg
         
     except smtplib.SMTPException as e:
         error_msg = f"SMTP error: {str(e)}"
-        logger.error(f"❌ Email failed to {to_email}: {error_msg}")
+        logger.error(f"Email failed to {to_email}: {error_msg}")
         return False, error_msg
         
     except Exception as e:
         error_msg = f"Unexpected error: {str(e)}"
-        logger.error(f"❌ Email failed to {to_email}: {error_msg}")
+        logger.error(f"Email failed to {to_email}: {error_msg}")
         return False, error_msg
 
 

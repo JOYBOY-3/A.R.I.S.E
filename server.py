@@ -20,6 +20,42 @@ import logging
 from apscheduler.schedulers.background import BackgroundScheduler
 import atexit
 
+
+import io
+import sys
+import os
+# Fix console encoding for Windows to support emoji/unicode
+if sys.platform == "win32":
+    # For Windows console - use UTF-8
+    os.environ['PYTHONIOENCODING'] = 'utf-8'
+    # Reconfigure stderr/stdout to use UTF-8
+    if hasattr(sys.stdout, 'reconfigure'):
+        sys.stdout.reconfigure(encoding='utf-8')
+    if hasattr(sys.stderr, 'reconfigure'):
+        sys.stderr.reconfigure(encoding='utf-8')
+
+
+class UTF8StreamHandler(logging.StreamHandler):
+    """Custom handler that forces UTF-8 encoding for emoji support"""
+    def __init__(self):
+        super().__init__()
+        
+    def emit(self, record):
+        try:
+            msg = self.format(record)
+            # Force UTF-8 encoding
+            if sys.platform == "win32":
+                stream = sys.stderr
+                stream.write(msg.encode('utf-8', errors='replace').decode('utf-8'))
+            else:
+                self.stream.write(msg)
+            self.stream.write(self.terminator)
+            self.flush()
+        except Exception:
+            self.handleError(record)
+
+
+
 from email_service import (
     send_instant_present_alert,
     send_absent_alert,
@@ -52,7 +88,7 @@ logging.basicConfig(
     format='%(asctime)s - %(levelname)s - %(message)s',  # Removed %(name)s for cleaner output
     handlers=[
         logging.FileHandler('arise_server.log'),
-        logging.StreamHandler()
+        UTF8StreamHandler()
     ]
 )
 
@@ -780,17 +816,124 @@ def manual_override():
 
 @app.route('/api/teacher/session/<int:session_id>/end', methods=['POST'])
 def end_session(session_id):
-    """Ends the currently active session."""
+    """
+    Ends the currently active session AND sends absent alerts.
+    Critical: This must run BEFORE closing the session.
+    """
     conn = get_db_connection()
     now = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
     
-    conn.execute("UPDATE sessions SET is_active = 0, end_time = ? WHERE id = ?",
-                 (now, session_id))
-    conn.commit()
-    conn.close()
+    try:
+        # STEP 1: Get session details BEFORE closing it
+        session = conn.execute(
+            "SELECT id, course_id, start_time FROM sessions WHERE id = ?",
+            (session_id,)
+        ).fetchone()
+        
+        if not session:
+            logger.warning(f"End session failed - Session {session_id} not found")
+            conn.close()
+            return jsonify({"status": "error", "message": "Session not found"}), 404
+        
+        course_id = session['course_id']
+        
+        # STEP 2: Get course name for email
+        course = conn.execute(
+            "SELECT course_name FROM courses WHERE id = ?",
+            (course_id,)
+        ).fetchone()
+        
+        if not course:
+            logger.warning(f"Course {course_id} not found for session {session_id}")
+            conn.close()
+            return jsonify({"status": "error", "message": "Course not found"}), 404
+        
+        course_name = course['course_name']
+        date_str = datetime.datetime.fromisoformat(session['start_time']).strftime("%d %B %Y")
+        
+        # STEP 3: Get ALL enrolled students in this course
+        enrolled_students = conn.execute("""
+            SELECT s.id, s.student_name, s.email1, s.email2 
+            FROM students s
+            JOIN enrollments e ON s.id = e.student_id
+            WHERE e.course_id = ?
+        """, (course_id,)).fetchall()
+        
+        logger.info(f"End session {session_id}: Found {len(enrolled_students)} enrolled students")
+        
+        # STEP 4: Get students who ATTENDED this session
+        attended = conn.execute("""
+            SELECT DISTINCT student_id 
+            FROM attendance_records 
+            WHERE session_id = ?
+        """, (session_id,)).fetchall()
+        
+        attended_ids = set(row['student_id'] for row in attended)
+        logger.info(f"End session {session_id}: {len(attended_ids)} students marked present")
+        
+        # STEP 5: Send absent alerts to students NOT in attended_ids
+        absent_count = 0
+        for student in enrolled_students:
+            student_id = student['id']
+            student_name = student['student_name']
+            email1 = student['email1']
+            email2 = student['email2']
+            
+            # Check if this student was ABSENT (NOT in attended_ids)
+            if student_id not in attended_ids:
+                logger.info(f"  Absent: {student_name} - Email: {email1}")
+                
+                # Send to primary email if exists
+                if email1:
+                    try:
+                        success, error = send_absent_alert(
+                            student_name,
+                            email1,
+                            course_name,
+                            date_str
+                        )
+                        if success:
+                            logger.info(f"    SENT to {email1}")
+                            absent_count += 1
+                        else:
+                            logger.warning(f"    FAILED to {email1}: {error}")
+                    except Exception as e:
+                        logger.error(f"    ERROR sending to {email1}: {e}")
+                
+                # Send to secondary email if exists
+                if email2:
+                    try:
+                        success, error = send_absent_alert(
+                            student_name,
+                            email2,
+                            course_name,
+                            date_str
+                        )
+                        if success:
+                            logger.info(f"    SENT to secondary {email2}")
+                    except Exception as e:
+                        logger.error(f"    ERROR sending to secondary {email2}: {e}")
+        
+        # STEP 6: NOW close the session in database
+        conn.execute(
+            "UPDATE sessions SET is_active = 0, end_time = ? WHERE id = ?",
+            (now, session_id)
+        )
+        conn.commit()
+        
+        logger.info(f"Session ended - ID: {session_id}, Absent alerts sent: {absent_count}")
+        
+        conn.close()
+        return jsonify({
+            "status": "success", 
+            "message": f"Session ended. Absent alerts sent to {absent_count} students."
+        })
     
-    logger.info(f"Session manually ended - ID: {session_id}")
-    return jsonify({"status": "success", "message": "Session has been ended."})
+    except Exception as e:
+        logger.error(f"Error ending session {session_id}: {e}", exc_info=True)
+        conn.close()
+        return jsonify({"status": "error", "message": "Server error"}), 500
+
 
 @app.route('/api/teacher/session/<int:session_id>/extend', methods=['POST'])
 def extend_session(session_id):
@@ -1373,76 +1516,21 @@ def mark_attendance_by_roll_id():
             )
             
             if success:
-                logger.info(f"📧 Email sent to parent: {student['email1']}")
+                logger.info(f"Email sent to parent: {student['email1']}")
             else:
-                logger.warning(f"📧 Email failed: {error}")
+                logger.warning(f"Email failed: {error}")
     
     except Exception as e:
         # Don't fail attendance marking if email fails
-        logger.error(f"📧 Email alert error: {e}")
+        logger.error(f"Email alert error: {e}")
     
     conn.close()
     logger.info(f"Attendance marked - Roll ID {class_roll_id}")
     
     return jsonify({"status": "success", "message": "Marked"})
 
-    """
-    Receives a confirmed Class Roll ID from the device and performs
-    the final, critical server-side validation before marking attendance.
-    """
-    data = request.get_json()
-    class_roll_id = data.get('class_roll_id')
-    logger.info(f"Attendance attempt - Roll ID: {class_roll_id}")  # ADDED THIS FOR LOGGING
     
-    conn = get_db_connection()
-    # Step-by-step validation process:
-    # 1. Find the currently active session.
-    active_session = conn.execute("SELECT id, course_id FROM sessions WHERE is_active = 1").fetchone()
-    
-    if not active_session:
-        logger.warning(f"Attendance failed - No active session (Roll ID: {class_roll_id})")  # ADDED THIS FOR LOGGING
-        conn.close()
-        return jsonify({"status": "error", "message": "No Active Session"}), 400
 
-    # 2. CRITICAL CHECK: Verify that the student with this Class Roll ID is
-    #    actually enrolled in the currently active course.
-    enrollment = conn.execute("""
-        SELECT student_id 
-        FROM enrollments 
-        WHERE course_id = ? AND class_roll_id = ?
-    """, (active_session['course_id'], class_roll_id)).fetchone()
-    
-    if not enrollment:
-        logger.warning(f"Attendance failed - Roll ID {class_roll_id} not enrolled in course {active_session['course_id']}")  # ADDED THIS FOR LOGGING
-        conn.close()
-        # This is the specific error message for the "right student, wrong class" problem.
-        return jsonify({"status": "not_enrolled", "message": "Not Enrolled"})
-
-    student_id = enrollment['student_id']
-
-    # 3. CRITICAL CHECK: Verify this is not a duplicate scan.
-    existing_record = conn.execute("""
-        SELECT id FROM attendance_records 
-        WHERE session_id = ? AND student_id = ?
-    """, (active_session['id'], student_id)).fetchone()
-
-    if existing_record:
-        logger.info(f"Attendance duplicate - Roll ID {class_roll_id} already marked in session {active_session['id']}")  # ADDED THIS FOR LOGGING
-        conn.close()
-        return jsonify({"status": "duplicate", "message": "Already Marked"})
-    
-    # 4. If all checks pass, insert the new attendance record.
-    conn.execute("INSERT INTO attendance_records (session_id, student_id, override_method) VALUES (?, ?, ?)",
-                 (active_session['id'], student_id, 'biometric'))
-    conn.commit()
-    conn.close()
-    logger.info(f"Attendance marked - Roll ID {class_roll_id}, Session: {active_session['id']}, Student: {student_id}")  # ADDED THIS FOR LOGGING
-    
-    return jsonify({"status": "success", "message": "Marked"})
-
-
-# Add this new route after the existing /api/mark-attendance-by-roll-id endpoint
-# Around line 950 in your current server.py
 
 @app.route('/api/bulk-mark-attendance', methods=['POST'])
 def bulk_mark_attendance():
@@ -1629,77 +1717,84 @@ def auto_expire_sessions():
 # =================================================================
 
 def send_absent_alerts_for_ended_sessions():
-    # Check for sessions that ended in last 10 minutes and send absent alerts
-    
+    """
+    Background check (runs every 10 minutes).
+    Now only handles edge cases where alerts weren't sent during end_session.
+    """
     try:
         conn = get_db_connection()
         now = datetime.datetime.now()
         
-        # Sessions that ended 5-15 minutes ago (to avoid duplicates)
-        fifteen_min_ago = (now - datetime.timedelta(minutes=15)).strftime('%Y-%m-%d %H:%M:%S')
+        # Only check sessions that ended 2-5 minutes ago (avoid duplicates)
         five_min_ago = (now - datetime.timedelta(minutes=5)).strftime('%Y-%m-%d %H:%M:%S')
+        two_min_ago = (now - datetime.timedelta(minutes=2)).strftime('%Y-%m-%d %H:%M:%S')
         
-        # Find recently ended sessions
-        ended_sessions = conn.execute(
-            "SELECT id, course_id, end_time FROM sessions WHERE is_active = 0 AND datetime(end_time) BETWEEN datetime(?) AND datetime(?)",
-            (fifteen_min_ago, five_min_ago)
-        ).fetchall()
+        ended_sessions = conn.execute("""
+            SELECT id, course_id, end_time 
+            FROM sessions 
+            WHERE is_active = 0 
+            AND end_time IS NOT NULL
+            AND datetime(end_time) BETWEEN datetime(?) AND datetime(?)
+        """, (five_min_ago, two_min_ago)).fetchall()
         
         if not ended_sessions:
             conn.close()
             return
         
-        logger.info(f"📧 Checking {len(ended_sessions)} ended sessions for absent alerts")
+        logger.info(f"Scheduler: Checking {len(ended_sessions)} recently ended sessions for missed alerts")
         
         for session in ended_sessions:
-            # Get course info
+            session_id = session['id']
+            course_id = session['course_id']
+            
             course = conn.execute(
                 "SELECT course_name FROM courses WHERE id = ?",
-                (session['course_id'],)
+                (course_id,)
             ).fetchone()
             
             if not course:
                 continue
             
-            # Get all enrolled students
-            enrolled = conn.execute(
-                "SELECT s.id, s.student_name, s.email1 FROM students s JOIN enrollments e ON s.id = e.student_id WHERE e.course_id = ?",
-                (session['course_id'],)
-            ).fetchall()
+            course_name = course['course_name']
             
-            # Get students who attended
-            attended = conn.execute(
-                "SELECT student_id FROM attendance_records WHERE session_id = ?",
-                (session['id'],)
-            ).fetchall()
+            enrolled = conn.execute("""
+                SELECT s.id, s.student_name, s.email1
+                FROM students s 
+                JOIN enrollments e ON s.id = e.student_id 
+                WHERE e.course_id = ?
+            """, (course_id,)).fetchall()
+            
+            attended = conn.execute("""
+                SELECT DISTINCT student_id FROM attendance_records WHERE session_id = ?
+            """, (session_id,)).fetchall()
             
             attended_ids = set(row['student_id'] for row in attended)
             
-            # Send alerts to absent students
-            absent_count = 0
             for student in enrolled:
                 if student['id'] not in attended_ids and student['email1']:
                     try:
-                        date_str = datetime.datetime.fromisoformat(session['end_time']).strftime("%d %B %Y")
-                        success, error = send_absent_alert(
+                        date_str = datetime.datetime.fromisoformat(
+                            session['end_time']
+                        ).strftime("%d %B %Y")
+                        
+                        send_absent_alert(
                             student['student_name'],
                             student['email1'],
-                            course['course_name'],
+                            course_name,
                             date_str
                         )
-                        if success:
-                            absent_count += 1
+                        logger.info(f"Scheduler: Sent absent alert to {student['student_name']}")
                     except Exception as e:
-                        logger.error(f"📧 Absent alert failed for {student['student_name']}: {e}")
-            
-            if absent_count > 0:
-                logger.info(f"📧 Sent {absent_count} absent alerts for session {session['id']}")
+                        logger.error(f"Scheduler: Error sending alert: {e}")
         
         conn.close()
         
     except Exception as e:
-        logger.error(f"Error in absent alerts scheduler: {e}")
+        logger.error(f"Error in scheduler absent alerts: {e}")
 
+
+
+        
 
 def send_daily_summaries_5pm():
     # Send comprehensive daily summary at 5 PM
