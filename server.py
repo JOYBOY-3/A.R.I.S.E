@@ -20,6 +20,13 @@ import logging
 from apscheduler.schedulers.background import BackgroundScheduler
 import atexit
 
+from email_service import (
+    send_instant_present_alert,
+    send_absent_alert,
+    send_daily_summary
+)
+from config import ENABLE_INSTANT_ALERTS, ENABLE_ABSENT_ALERTS
+
 # ------------------- Optional For Logger ----------------------
 from werkzeug.serving import WSGIRequestHandler
 import time
@@ -723,6 +730,33 @@ def manual_override():
             (session['id'], student['id'], reason)
         )
         conn.commit()
+
+
+        try:
+            student_data = conn.execute(
+                "SELECT student_name, email1 FROM students WHERE university_roll_no = ?",
+                (univ_roll_no,)
+            ).fetchone()
+            
+            course_data = conn.execute(
+                "SELECT c.course_name FROM courses c JOIN sessions s ON c.id = s.course_id WHERE s.id = ?",
+                (session_id,)
+            ).fetchone()
+            
+            if student_data and student_data['email1'] and course_data:
+                timestamp = datetime.datetime.now().isoformat()
+                send_instant_present_alert(
+                    student_data['student_name'],
+                    student_data['email1'],
+                    course_data['course_name'],
+                    timestamp
+                )
+                logger.info(f"📧 Manual override email sent to {student_data['email1']}")
+        except Exception as e:
+            logger.error(f"📧 Manual override email error: {e}")
+
+
+
         conn.close()
         
         # Log success
@@ -1272,6 +1306,86 @@ def get_session_status():
 # This is the main endpoint for the Smart Scanner to record attendance.
 @app.route('/api/mark-attendance-by-roll-id', methods=['POST'])
 def mark_attendance_by_roll_id():
+    # [Keep all existing validation code...]
+    data = request.get_json()
+    class_roll_id = data.get('class_roll_id')
+    logger.info(f"Attendance attempt - Roll ID: {class_roll_id}")
+    
+    conn = get_db_connection()
+    active_session = conn.execute("SELECT id, course_id FROM sessions WHERE is_active = 1").fetchone()
+    
+    if not active_session:
+        logger.warning(f"Attendance failed - No active session")
+        conn.close()
+        return jsonify({"status": "error", "message": "No Active Session"}), 400
+
+    enrollment = conn.execute(
+        "SELECT student_id FROM enrollments WHERE course_id = ? AND class_roll_id = ?",
+        (active_session['course_id'], class_roll_id)
+    ).fetchone()
+    
+    if not enrollment:
+        logger.warning(f"Attendance failed - Roll ID {class_roll_id} not enrolled")
+        conn.close()
+        return jsonify({"status": "not_enrolled", "message": "Not Enrolled"})
+
+    student_id = enrollment['student_id']
+
+    existing_record = conn.execute(
+        "SELECT id FROM attendance_records WHERE session_id = ? AND student_id = ?",
+        (active_session['id'], student_id)
+    ).fetchone()
+
+    if existing_record:
+        logger.info(f"Attendance duplicate - Roll ID {class_roll_id}")
+        conn.close()
+        return jsonify({"status": "duplicate", "message": "Already Marked"})
+    
+    # ✅ INSERT ATTENDANCE RECORD
+    conn.execute(
+        "INSERT INTO attendance_records (session_id, student_id, override_method) VALUES (?, ?, ?)",
+        (active_session['id'], student_id, 'biometric')
+    )
+    conn.commit()
+    
+    # ✅✅✅ NEW: SEND INSTANT EMAIL ALERT ✅✅✅
+    try:
+        # Get student details
+        student = conn.execute(
+            "SELECT student_name, email1 FROM students WHERE id = ?",
+            (student_id,)
+        ).fetchone()
+        
+        # Get course name
+        course = conn.execute(
+            "SELECT course_name FROM courses WHERE id = ?",
+            (active_session['course_id'],)
+        ).fetchone()
+        
+        # Send email if parent email exists
+        if student and student['email1'] and course:
+            timestamp = datetime.datetime.now().isoformat()
+            success, error = send_instant_present_alert(
+                student['student_name'],
+                student['email1'],
+                course['course_name'],
+                timestamp
+            )
+            
+            if success:
+                logger.info(f"📧 Email sent to parent: {student['email1']}")
+            else:
+                logger.warning(f"📧 Email failed: {error}")
+    
+    except Exception as e:
+        # Don't fail attendance marking if email fails
+        logger.error(f"📧 Email alert error: {e}")
+    
+    conn.close()
+    logger.info(f"Attendance marked - Roll ID {class_roll_id}")
+    
+    return jsonify({"status": "success", "message": "Marked"})
+
     """
     Receives a confirmed Class Roll ID from the device and performs
     the final, critical server-side validation before marking attendance.
@@ -1510,6 +1624,187 @@ def auto_expire_sessions():
     except Exception as e:
         logger.error(f"Error in auto_expire_sessions: {e}", exc_info=True)
 
+# =================================================================
+#   SCHEDULED EMAIL TASKS
+# =================================================================
+
+def send_absent_alerts_for_ended_sessions():
+    # Check for sessions that ended in last 10 minutes and send absent alerts
+    
+    try:
+        conn = get_db_connection()
+        now = datetime.datetime.now()
+        
+        # Sessions that ended 5-15 minutes ago (to avoid duplicates)
+        fifteen_min_ago = (now - datetime.timedelta(minutes=15)).strftime('%Y-%m-%d %H:%M:%S')
+        five_min_ago = (now - datetime.timedelta(minutes=5)).strftime('%Y-%m-%d %H:%M:%S')
+        
+        # Find recently ended sessions
+        ended_sessions = conn.execute(
+            "SELECT id, course_id, end_time FROM sessions WHERE is_active = 0 AND datetime(end_time) BETWEEN datetime(?) AND datetime(?)",
+            (fifteen_min_ago, five_min_ago)
+        ).fetchall()
+        
+        if not ended_sessions:
+            conn.close()
+            return
+        
+        logger.info(f"📧 Checking {len(ended_sessions)} ended sessions for absent alerts")
+        
+        for session in ended_sessions:
+            # Get course info
+            course = conn.execute(
+                "SELECT course_name FROM courses WHERE id = ?",
+                (session['course_id'],)
+            ).fetchone()
+            
+            if not course:
+                continue
+            
+            # Get all enrolled students
+            enrolled = conn.execute(
+                "SELECT s.id, s.student_name, s.email1 FROM students s JOIN enrollments e ON s.id = e.student_id WHERE e.course_id = ?",
+                (session['course_id'],)
+            ).fetchall()
+            
+            # Get students who attended
+            attended = conn.execute(
+                "SELECT student_id FROM attendance_records WHERE session_id = ?",
+                (session['id'],)
+            ).fetchall()
+            
+            attended_ids = set(row['student_id'] for row in attended)
+            
+            # Send alerts to absent students
+            absent_count = 0
+            for student in enrolled:
+                if student['id'] not in attended_ids and student['email1']:
+                    try:
+                        date_str = datetime.datetime.fromisoformat(session['end_time']).strftime("%d %B %Y")
+                        success, error = send_absent_alert(
+                            student['student_name'],
+                            student['email1'],
+                            course['course_name'],
+                            date_str
+                        )
+                        if success:
+                            absent_count += 1
+                    except Exception as e:
+                        logger.error(f"📧 Absent alert failed for {student['student_name']}: {e}")
+            
+            if absent_count > 0:
+                logger.info(f"📧 Sent {absent_count} absent alerts for session {session['id']}")
+        
+        conn.close()
+        
+    except Exception as e:
+        logger.error(f"Error in absent alerts scheduler: {e}")
+
+
+def send_daily_summaries_5pm():
+    # Send comprehensive daily summary at 5 PM
+    
+    try:
+        conn = get_db_connection()
+        today = datetime.date.today()
+        today_str = today.strftime("%d %B %Y")
+        
+        logger.info("📧 Starting 5 PM daily summary email job")
+        
+        # Get all students
+        students = conn.execute("SELECT id, student_name, email1 FROM students").fetchall()
+        
+        summary_count = 0
+        
+        for student in students:
+            if not student['email1']:
+                continue
+            
+            # Get today's sessions for this student's courses
+            today_sessions = conn.execute(
+                "SELECT s.id, c.course_name, s.start_time FROM sessions s JOIN courses c ON s.course_id = c.id JOIN enrollments e ON c.id = e.course_id WHERE e.student_id = ? AND DATE(s.start_time) = ?",
+                (student['id'], today)
+            ).fetchall()
+            
+            if not today_sessions:
+                continue  # No classes today, skip
+            
+            # Build course list
+            courses_today = []
+            present_count = 0
+            absent_count = 0
+            
+            for session in today_sessions:
+                # Check if student attended
+                attended = conn.execute(
+                    "SELECT id FROM attendance_records WHERE session_id = ? AND student_id = ?",
+                    (session['id'], student['id'])
+                ).fetchone()
+                
+                status = "Present" if attended else "Absent"
+                time_str = datetime.datetime.fromisoformat(session['start_time']).strftime("%I:%M %p")
+                
+                courses_today.append({
+                    'name': session['course_name'],
+                    'status': status,
+                    'time': time_str
+                })
+                
+                if status == "Present":
+                    present_count += 1
+                else:
+                    absent_count += 1
+            
+            # Calculate overall attendance percentage
+            total_sessions = conn.execute(
+                "SELECT COUNT(*) as total FROM sessions s JOIN enrollments e ON s.course_id = e.course_id WHERE e.student_id = ?",
+                (student['id'],)
+            ).fetchone()
+            
+            attended_total = conn.execute(
+                "SELECT COUNT(*) as attended FROM attendance_records WHERE student_id = ?",
+                (student['id'],)
+            ).fetchone()
+            
+            total_classes = total_sessions['total']
+            attended_classes = attended_total['attended']
+            
+            if total_classes > 0:
+                overall_percentage = round((attended_classes / total_classes) * 100, 1)
+            else:
+                overall_percentage = 0.0
+            
+            # Build summary data
+            summary_data = {
+                'date': today_str,
+                'present_today': present_count,
+                'absent_today': absent_count,
+                'total_today': len(courses_today),
+                'courses_today': courses_today,
+                'overall_percentage': overall_percentage,
+                'total_classes': total_classes,
+                'attended_classes': attended_classes
+            }
+            
+            # Send email
+            try:
+                success, error = send_daily_summary(
+                    student['student_name'],
+                    student['email1'],
+                    summary_data
+                )
+                if success:
+                    summary_count += 1
+            except Exception as e:
+                logger.error(f"📧 Daily summary failed for {student['student_name']}: {e}")
+        
+        conn.close()
+        logger.info(f"📧 Sent {summary_count} daily summary emails")
+        
+    except Exception as e:
+        logger.error(f"Error in daily summary scheduler: {e}")
+
+
 # Create and configure the background scheduler
 scheduler = BackgroundScheduler()
 scheduler.add_job(
@@ -1520,6 +1815,29 @@ scheduler.add_job(
     name='Auto-close expired sessions',
     replace_existing=True
 )
+# Job 1: Send absent alerts every 10 minutes
+scheduler.add_job(
+    func=send_absent_alerts_for_ended_sessions,
+    trigger="interval",
+    minutes=10,
+    id='absent_alerts',
+    name='Send absent alerts',
+    replace_existing=True
+)
+
+# Job 2: Send daily summaries at 5:00 PM
+scheduler.add_job(
+    func=send_daily_summaries_5pm,
+    trigger="cron",
+    hour=17,
+    minute=0,
+    id='daily_summaries',
+    name='Send 5 PM daily summaries',
+    replace_existing=True
+)
+
+logger.info("Email alert scheduler initialized - Absent alerts every 10min, Daily summaries at 5 PM")
+
 scheduler.start()
 
 # Reduce scheduler's own logging verbosity (already configured above)
