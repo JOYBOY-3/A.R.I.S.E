@@ -806,3 +806,128 @@ sqlite3.OperationalError: no such table: courses
 2026-01-17 23:49:50,135 - INFO - End session 170: Found 2 enrolled students
 2026-01-17 23:49:50,135 - INFO - End session 170: 2 students marked present
 2026-01-17 23:49:50,138 - INFO - Session ended - ID: 170, Absent alerts sent: 0
+2026-01-18 00:14:56,573 - INFO - Email alert scheduler initialized - Absent alerts every 10min, Daily summaries at 5 PM
+2026-01-18 00:14:56,578 - INFO - Server started - Auto-expire scheduler active
+2026-01-18 00:18:27,931 - INFO - Email alert scheduler initialized - Absent alerts every 10min, Daily summaries at 5 PM
+2026-01-18 00:18:27,937 - INFO - Server started - Auto-expire scheduler active
+2026-01-18 00:24:28,509 - INFO - Email alert scheduler initialized - Absent alerts every 10min, Daily summaries at 5 PM
+2026-01-18 00:24:28,513 - INFO - Server started - Auto-expire scheduler active
+2026-01-18 00:45:54,574 - INFO - Email alert scheduler initialized - Absent alerts every 10min, Daily summaries at 5 PM
+2026-01-18 00:45:54,594 - INFO - Server started - Auto-expire scheduler active
+2026-01-18 01:01:27,535 - INFO - Email alert scheduler initialized - Absent alerts every 10min, Daily summaries at 5 PM, Batch attendance check at 8 AM
+2026-01-18 01:01:27,540 - INFO - Server started - Auto-expire scheduler active
+2026-01-18 01:02:08,955 - INFO - Email alert scheduler initialized - Absent alerts every 10min, Daily summaries at 5 PM, Batch attendance check at 8 AM
+2026-01-18 01:02:08,960 - INFO - Server started - Auto-expire scheduler active
+2026-01-18 01:04:20,304 - INFO - Email alert scheduler initialized - Absent alerts every 10min, Daily summaries at 5 PM, Batch attendance check at 8 AM
+2026-01-18 01:04:20,308 - INFO - Server started - Auto-expire scheduler active
+2026-01-18 01:11:27,182 - INFO - Email alert scheduler initialized - Absent alerts every 10min, Daily summaries at 5 PM
+2026-01-18 01:11:27,199 - INFO - Server started - Auto-expire scheduler active
+2026-01-18 01:22:08,221 - INFO - Email alert scheduler initialized - Absent alerts every 10min, Daily summaries at 5 PM
+2026-01-18 01:22:08,225 - INFO - Server started - Auto-expire scheduler active
+2026-01-18 01:29:26,861 - INFO - Email alert scheduler initialized - Absent alerts every 10min, Daily summaries at 5 PM
+2026-01-18 01:29:26,866 - INFO - Server started - Auto-expire scheduler active
+2026-01-18 01:37:49,021 - INFO - Email alert scheduler initialized - Absent alerts every 10min, Daily summaries at 5 PM
+2026-01-18 01:37:49,026 - INFO - Server started - Auto-expire scheduler active
+2026-01-18 01:54:31,598 - INFO - Email alert scheduler initialized - Absent alerts every 10min, Daily summaries at 5 PM
+2026-01-18 01:54:31,603 - INFO - Server started - Auto-expire scheduler active
+2026-01-18 02:21:51,882 - INFO - Email alert scheduler initialized - Absent alerts every 10min, Daily summaries at 5 PM
+2026-01-18 02:21:51,886 - INFO - Server started - Auto-expire scheduler active
+2026-01-18 02:25:45,729 - INFO - Email alert scheduler initialized - Absent alerts every 10min, Daily summaries at 5 PM
+2026-01-18 02:25:45,733 - INFO - Server started - Auto-expire scheduler active
+2026-01-18 02:26:46,143 - ERROR - Exception on /api/student/leaderboard [GET]
+Traceback (most recent call last):
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "D:\Hackathon\feature 2 implementation\A.R.I.S.E\server.py", line 158, in decorated
+    return f(data, *args, **kwargs)
+  File "D:\Hackathon\feature 2 implementation\A.R.I.S.E\server.py", line 2425, in get_leaderboard
+    elif course_ids:
+         ^^^^^^^^^^
+UnboundLocalError: cannot access local variable 'course_ids' where it is not associated with a value
+2026-01-18 02:31:24,740 - INFO - Email alert scheduler initialized - Absent alerts every 10min, Daily summaries at 5 PM
+2026-01-18 02:31:24,744 - INFO - Server started - Auto-expire scheduler active
+2026-01-18 02:32:14,871 - ERROR - Exception on /api/student/leaderboard [GET]
+Traceback (most recent call last):
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "D:\Hackathon\feature 2 implementation\A.R.I.S.E\server.py", line 158, in decorated
+    return f(data, *args, **kwargs)
+  File "D:\Hackathon\feature 2 implementation\A.R.I.S.E\server.py", line 2434, in get_leaderboard
+    streaks = calculate_streaks(conn, sid, any_course['id']) if any_course else {'current_streak': 0, 'longest_streak': 0}
+              ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Hackathon\feature 2 implementation\A.R.I.S.E\server.py", line 2243, in calculate_streaks
+    sessions = conn.execute("""
+               ~~~~~~~~~~~~^^^^
+        SELECT s.id, s.created_at
+        ^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+        ORDER BY s.created_at DESC
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^
+    """, (course_id,)).fetchall()
+    ^^^^^^^^^^^^^^^^^^
+sqlite3.OperationalError: no such column: s.created_at
+2026-01-18 02:32:49,385 - ERROR - Exception on /api/student/leaderboard [GET]
+Traceback (most recent call last):
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "D:\Hackathon\feature 2 implementation\A.R.I.S.E\server.py", line 158, in decorated
+    return f(data, *args, **kwargs)
+  File "D:\Hackathon\feature 2 implementation\A.R.I.S.E\server.py", line 2434, in get_leaderboard
+    streaks = calculate_streaks(conn, sid, any_course['id']) if any_course else {'current_streak': 0, 'longest_streak': 0}
+              ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Hackathon\feature 2 implementation\A.R.I.S.E\server.py", line 2243, in calculate_streaks
+    sessions = conn.execute("""
+               ~~~~~~~~~~~~^^^^
+        SELECT s.id, s.created_at
+        ^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+        ORDER BY s.created_at DESC
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^
+    """, (course_id,)).fetchall()
+    ^^^^^^^^^^^^^^^^^^
+sqlite3.OperationalError: no such column: s.created_at
+2026-01-18 02:37:30,344 - INFO - Email alert scheduler initialized - Absent alerts every 10min, Daily summaries at 5 PM
+2026-01-18 02:37:30,349 - INFO - Server started - Auto-expire scheduler active
+2026-01-18 02:45:47,700 - INFO - Email alert scheduler initialized - Absent alerts every 10min, Daily summaries at 5 PM
+2026-01-18 02:45:47,705 - INFO - Server started - Auto-expire scheduler active
+2026-01-18 02:57:24,843 - INFO - Email alert scheduler initialized - Absent alerts every 10min, Daily summaries at 5 PM
+2026-01-18 02:57:24,848 - INFO - Server started - Auto-expire scheduler active
+2026-01-18 03:05:55,239 - INFO - Email alert scheduler initialized - Absent alerts every 10min, Daily summaries at 5 PM
+2026-01-18 03:05:55,245 - INFO - Server started - Auto-expire scheduler active
+2026-01-18 03:08:00,707 - INFO - Email alert scheduler initialized - Absent alerts every 10min, Daily summaries at 5 PM
+2026-01-18 03:08:00,713 - INFO - Server started - Auto-expire scheduler active
+2026-01-18 03:08:49,227 - INFO - Email alert scheduler initialized - Absent alerts every 10min, Daily summaries at 5 PM
+2026-01-18 03:08:49,232 - INFO - Server started - Auto-expire scheduler active
+2026-01-18 03:09:13,487 - INFO - Email alert scheduler initialized - Absent alerts every 10min, Daily summaries at 5 PM
+2026-01-18 03:09:13,492 - INFO - Server started - Auto-expire scheduler active
+2026-01-18 03:10:15,790 - INFO - Email alert scheduler initialized - Absent alerts every 10min, Daily summaries at 5 PM
+2026-01-18 03:10:15,795 - INFO - Server started - Auto-expire scheduler active
+2026-01-18 03:18:55,815 - INFO - Email alert scheduler initialized - Absent alerts every 10min, Daily summaries at 5 PM
+2026-01-18 03:18:55,821 - INFO - Server started - Auto-expire scheduler active
+2026-01-18 03:47:01,167 - INFO - Email alert scheduler initialized - Absent alerts every 10min, Daily summaries at 5 PM
+2026-01-18 03:47:01,172 - INFO - Server started - Auto-expire scheduler active
+2026-01-18 03:50:42,579 - INFO - Email alert scheduler initialized - Absent alerts every 10min, Daily summaries at 5 PM
+2026-01-18 03:50:42,585 - INFO - Server started - Auto-expire scheduler active
+2026-01-18 03:59:45,359 - INFO - Email alert scheduler initialized - Absent alerts every 10min, Daily summaries at 5 PM
+2026-01-18 03:59:45,363 - INFO - Server started - Auto-expire scheduler active

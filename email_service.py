@@ -100,7 +100,7 @@ def send_instant_present_alert(student_name, parent_email, course_name, timestam
         dt = datetime.fromisoformat(timestamp.replace('Z', '+00:00'))
         time_str = dt.strftime("%I:%M %p")
         date_str = dt.strftime("%d %B %Y")
-    except:
+    except (ValueError, TypeError):
         time_str = "just now"
         date_str = datetime.now().strftime("%d %B %Y")
     

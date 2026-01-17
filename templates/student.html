@@ -11,6 +11,8 @@
     <!-- PWA Manifest -->
     <link rel="manifest" href="/static/manifest.json">
     <meta name="theme-color" content="#005a9c">
+    <!-- Chart.js for Analytics -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body>
@@ -43,9 +45,24 @@
             <div class="stat-card">
                 <h3>Overall Attendance</h3>
                 <p class="live-counter" id="overall-percentage">0%</p>
+                <p id="semester-label" style="color: var(--text-light); font-size: 0.9rem; margin-top: 0.5rem;"></p>
+            </div>
+
+            <div style="margin: 1.5rem 0 1rem 0;">
+                <label for="semester-filter" style="font-weight: bold; display: block; margin-bottom: 0.75rem; font-size: 1rem;">Filter by Semester:</label>
+                <div style="display: flex; gap: 0.75rem; align-items: stretch;">
+                    <select id="semester-filter" style="flex: 1; padding: 0.65rem 0.75rem; border: 2px solid var(--border-color); border-radius: 6px; background-color: var(--bg-secondary); color: var(--text-color); font-size: 0.95rem; font-family: inherit; cursor: pointer; transition: border-color 0.2s; box-sizing: border-box;">
+                        <option value="">All Semesters</option>
+                    </select>
+                    <button id="clear-filter-button" style="padding: 0.65rem 1.5rem; background-color: var(--secondary-color); color: white; font-size: 0.95rem; font-weight: 500; white-space: nowrap; cursor: pointer; border: 2px solid var(--secondary-color); border-radius: 6px; transition: all 0.2s; margin: 0; flex-shrink: 0; height: auto;" title="Clear semester filter">Clear</button>
+                </div>
             </div>
 
             <h2>Your Courses</h2>
+            <div style="display: flex; gap: 0.5rem; margin-bottom: 1rem;">
+                <button id="view-analytics-button" class="button-primary" style="flex: 1; padding: 0.75rem;">📊 View Analytics</button>
+                <button id="view-leaderboard-button" class="button-primary" style="flex: 1; padding: 0.75rem;">🏆 Leaderboard</button>
+            </div>
             <div id="courses-container"></div>
         </div>
 
@@ -79,7 +96,117 @@
             <div id="attendance-log"></div>
         </div>
 
+        <!-- ANALYTICS VIEW -->
+        <div id="analytics-view" class="view-container" style="display: none;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+                <h1 style="margin: 0;">Attendance Analytics</h1>
+                <button id="back-to-courses" class="button-secondary" style="margin: 0;">← Back</button>
+            </div>
+
+            <!-- Course Analytics Cards -->
+            <div id="analytics-container"></div>
+
+            <!-- No Analytics Message -->
+            <div id="no-analytics-message" style="text-align: center; padding: 2rem; color: var(--text-light); display: none;">
+                <p>No analytics data available yet.</p>
+            </div>
+        </div>
+
+        <!-- LEADERBOARD VIEW -->
+        <div id="leaderboard-view" class="view-container" style="display: none;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 1rem;">
+                <h1 style="margin: 0;">🏆 Attendance Leaderboard</h1>
+                <button id="back-to-leaderboard" class="button-secondary" style="margin: 0;">← Back</button>
+            </div>
+
+            <!-- Course/Semester Filter -->
+            <div class="leaderboard-filter-container">
+                <select id="leaderboard-course-filter">
+                    <option value="">All Courses</option>
+                </select>
+            </div>
+
+            <!-- User's Rank Card -->
+            <div class="leaderboard-user-card">
+                <div>
+                    <div style="font-size: 0.9rem; opacity: 0.9; margin-bottom: 0.5rem;">YOUR RANKING</div>
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1.5rem;">
+                        <div>
+                            <div id="user-rank-display">—</div>
+                            <div style="font-size: 0.9rem; opacity: 0.85;">Out of <span id="total-students">0</span></div>
+                        </div>
+                    </div>
+                    
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 0.8rem;">
+                        <div class="stat-box">
+                            <div>📊 Attendance</div>
+                            <div style="font-size: 1.8rem; font-weight: 900; margin-top: 0.5rem;"><span id="user-attendance">—</span>%</div>
+                        </div>
+                        <div class="stat-box">
+                            <div>🔥 Current Streak</div>
+                            <div style="font-size: 1.8rem; font-weight: 900; margin-top: 0.5rem;"><span id="user-current-streak">0</span> days</div>
+                        </div>
+                        <div class="stat-box">
+                            <div>📈 Longest Streak</div>
+                            <div style="font-size: 1.8rem; font-weight: 900; margin-top: 0.5rem;"><span id="user-longest-streak">0</span> days</div>
+                        </div>
+                        <div class="stat-box">
+                            <div>📍 Classes Attended</div>
+                            <div style="font-size: 1.8rem; font-weight: 900; margin-top: 0.5rem;"><span id="user-classes-attended">0</span></div>
+                        </div>
+                    </div>
+                    
+                    <div id="badges-container" style="margin-top: 1.5rem;">
+                        <div style="font-size: 0.9rem; opacity: 0.85; margin-bottom: 0.7rem;">Achievements Unlocked</div>
+                        <div id="user-badges" style="display: flex; flex-wrap: wrap; gap: 0.2rem;"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Leaderboard Table -->
+            <h3 style="margin-top: 2rem; margin-bottom: 1rem;">🌟 Top Students</h3>
+            <div class="leaderboard-table-wrapper">
+                <table class="leaderboard-table">
+                    <thead>
+                        <tr>
+                            <th style="width: 60px;">RANK</th>
+                            <th>STUDENT</th>
+                            <th style="width: 110px;">ATTENDANCE</th>
+                            <th style="width: 140px;">STREAK</th>
+                        </tr>
+                    </thead>
+                    <tbody id="leaderboard-tbody">
+                        <tr style="text-align: center; color: var(--text-light);">
+                            <td colspan="4">Loading...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="no-leaderboard-message" style="text-align: center; padding: 2rem; color: var(--text-light); display: none;">
+                <p>No leaderboard data available yet.</p>
+            </div>
+        </div>
+
     </div>
+
+    <!-- CRITICAL ALERTS ICON CORNER -->
+    <div id="critical-alert-icon" class="critical-alert-icon" style="position: fixed; bottom: 20px; right: 20px; cursor: pointer; z-index: 999; display: none;" title="Critical Attendance Alerts">
+        🚨
+        <span id="alert-badge" class="alert-badge">0</span>
+    </div>
+
+    <!-- CRITICAL ALERTS SLIDING PANEL -->
+    <div id="critical-alerts-panel" class="critical-alerts-panel">
+        <div class="alerts-panel-header">
+            <h2>⚠️ Critical Attendance Alerts</h2>
+            <button class="close-alerts-btn" onclick="closeCriticalAlerts()">&times;</button>
+        </div>
+        <div class="alerts-panel-body">
+            <div id="alerts-content"></div>
+        </div>
+    </div>
+
     <script src="/static/js/student.js"></script>
 </body>
 

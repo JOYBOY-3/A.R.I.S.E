@@ -61,7 +61,15 @@ from email_service import (
     send_absent_alert,
     send_daily_summary
 )
-from config import ENABLE_INSTANT_ALERTS, ENABLE_ABSENT_ALERTS
+from config import (
+    ENABLE_INSTANT_ALERTS, 
+    ENABLE_ABSENT_ALERTS,
+    MINIMUM_ATTENDANCE_PERCENTAGE,
+    ATTENDANCE_WARNING_THRESHOLD,
+    ENABLE_ATTENDANCE_ANALYTICS,
+    ANALYTICS_LAST_DAYS,
+    ANALYTICS_TREND_DAYS
+)
 
 # ------------------- Optional For Logger ----------------------
 from werkzeug.serving import WSGIRequestHandler
@@ -233,7 +241,7 @@ def admin_login():
         # If login is successful, create a token that expires in 8 hours
         token = jwt.encode({
             'admin_id': admin['id'], 
-            'exp': datetime.datetime.utcnow() + datetime.timedelta(hours=8)
+            'exp': datetime.datetime.now(datetime.timezone.utc) + datetime.timedelta(hours=8)
         }, app.config['SECRET_KEY'], algorithm="HS256")
         return jsonify({'token': token})
     
@@ -1240,22 +1248,81 @@ def student_login():
     student = conn.execute("SELECT id, student_name FROM students WHERE university_roll_no = ? AND password = ?", (univ_roll_no, hashed_password)).fetchone()
     conn.close()
     if student:
-        token = jwt.encode({'student_id': student['id'], 'exp': datetime.datetime.utcnow() + datetime.timedelta(hours=1)}, app.config['SECRET_KEY'], algorithm="HS256")
+        token = jwt.encode({'student_id': student['id'], 'exp': datetime.datetime.now(datetime.timezone.utc) + datetime.timedelta(hours=1)}, app.config['SECRET_KEY'], algorithm="HS256")
         return jsonify({'token': token, 'student_name': student['student_name']})
     return jsonify({"message": "Invalid credentials"}), 401
+
+@app.route('/api/student/semesters', methods=['GET'])
+@token_required
+def get_student_semesters(user_data):
+    """Returns all semesters and courses that the student is enrolled in."""
+    student_id = user_data['student_id']
+    conn = get_db_connection()
+    
+    # Get semesters
+    semesters_cursor = conn.execute("""
+        SELECT DISTINCT s.id, s.semester_name
+        FROM semesters s
+        JOIN courses c ON s.id = c.semester_id
+        JOIN enrollments e ON c.id = e.course_id
+        WHERE e.student_id = ?
+        ORDER BY s.id
+    """, (student_id,)).fetchall()
+    
+    semesters = [dict(row) for row in semesters_cursor]
+    
+    # For each semester, get the courses
+    for semester in semesters:
+        courses_cursor = conn.execute("""
+            SELECT DISTINCT c.id, c.course_name, c.course_code
+            FROM courses c
+            JOIN enrollments e ON c.id = e.course_id
+            WHERE c.semester_id = ? AND e.student_id = ?
+            ORDER BY c.course_name
+        """, (semester['id'], student_id)).fetchall()
+        
+        semester['courses'] = [dict(row) for row in courses_cursor]
+    
+    conn.close()
+    return jsonify(semesters)
 
 @app.route('/api/student/dashboard', methods=['GET'])
 @token_required
 def get_student_dashboard(user_data):
     student_id = user_data['student_id']
+    semester_id = request.args.get('semester_id', type=int)  # Optional query parameter
+    
     conn = get_db_connection()
-    courses_cursor = conn.execute("SELECT c.id as course_id, c.course_name FROM courses c JOIN enrollments e ON c.id = e.course_id WHERE e.student_id = ?", (student_id,)).fetchall()
+    
+    # Base query for courses
+    if semester_id:
+        # Filter by specific semester
+        courses_cursor = conn.execute("""
+            SELECT c.id as course_id, c.course_name, s.semester_name
+            FROM courses c
+            JOIN enrollments e ON c.id = e.course_id
+            LEFT JOIN semesters s ON c.semester_id = s.id
+            WHERE e.student_id = ? AND c.semester_id = ?
+        """, (student_id, semester_id)).fetchall()
+    else:
+        # Get all courses (default behavior)
+        courses_cursor = conn.execute("""
+            SELECT c.id as course_id, c.course_name, s.semester_name
+            FROM courses c
+            JOIN enrollments e ON c.id = e.course_id
+            LEFT JOIN semesters s ON c.semester_id = s.id
+            WHERE e.student_id = ?
+        """, (student_id,)).fetchall()
     
     courses_data = []
     total_present_overall = 0
     total_sessions_overall = 0
+    semester_name = None
 
     for course in courses_cursor:
+        if semester_name is None and course['semester_name']:
+            semester_name = course['semester_name']
+            
         sessions_cursor = conn.execute("SELECT id FROM sessions WHERE course_id = ?", (course['course_id'],)).fetchall()
         session_ids = [s['id'] for s in sessions_cursor]
         total_sessions = len(session_ids)
@@ -1270,18 +1337,256 @@ def get_student_dashboard(user_data):
         total_present_overall += present_count
         total_sessions_overall += total_sessions
         
+        # Determine warning status based on threshold
+        if percentage >= MINIMUM_ATTENDANCE_PERCENTAGE:
+            warning_status = 'good'
+        elif percentage >= ATTENDANCE_WARNING_THRESHOLD:
+            warning_status = 'warning'
+        else:
+            warning_status = 'critical'
+        
         courses_data.append({
             "course_id": course['course_id'], 
             "course_name": course['course_name'], 
             "percentage": round(percentage), 
             "present_count": present_count, 
             "absent_count": total_sessions - present_count, 
-            "total_sessions": total_sessions
+            "total_sessions": total_sessions,
+            "warning_status": warning_status
         })
         
     conn.close()
     overall_percentage = (total_present_overall / total_sessions_overall * 100) if total_sessions_overall > 0 else 0
-    return jsonify({"overall_percentage": round(overall_percentage), "courses": courses_data})
+    
+    return jsonify({
+        "overall_percentage": round(overall_percentage),
+        "semester_id": semester_id,
+        "semester_name": semester_name,
+        "is_filtered": semester_id is not None,
+        "courses": courses_data,
+        "min_attendance_requirement": MINIMUM_ATTENDANCE_PERCENTAGE
+    })
+
+@app.route('/api/student/critical-alerts', methods=['GET'])
+@token_required
+def get_critical_alerts(user_data):
+    """
+    Get attendance alerts for student.
+    Returns two categories:
+    1. Critical alerts: attendance < 60% (ATTENDANCE_WARNING_THRESHOLD)
+    2. Warning alerts: attendance 60-75% with classes needed to reach 75%
+    """
+    import math
+    
+    student_id = user_data['student_id']
+    
+    conn = get_db_connection()
+    
+    # Get all enrolled courses
+    courses_cursor = conn.execute("""
+        SELECT c.id as course_id, c.course_name
+        FROM courses c
+        JOIN enrollments e ON c.id = e.course_id
+        WHERE e.student_id = ?
+    """, (student_id,)).fetchall()
+    
+    critical_alerts = []  # < 60%
+    warning_alerts = []   # 60% - 75%
+    
+    for course in courses_cursor:
+        course_id = course['course_id']
+        
+        # Get all sessions for this course
+        sessions_cursor = conn.execute("SELECT id FROM sessions WHERE course_id = ?", (course_id,)).fetchall()
+        session_ids = [s['id'] for s in sessions_cursor]
+        total_sessions = len(session_ids)
+        
+        if total_sessions > 0:
+            present_cursor = conn.execute(
+                f"SELECT COUNT(id) as present_count FROM attendance_records WHERE student_id = ? AND session_id IN ({','.join(['?']*len(session_ids))})",
+                [student_id] + session_ids
+            )
+            present_count = present_cursor.fetchone()['present_count']
+        else:
+            present_count = 0
+        
+        percentage = (present_count / total_sessions * 100) if total_sessions > 0 else 0
+        
+        # Categorize alerts
+        if percentage < ATTENDANCE_WARNING_THRESHOLD:  # < 60%
+            critical_alerts.append({
+                "course_id": course_id,
+                "course_name": course['course_name'],
+                "attendance_percentage": round(percentage, 1),
+                "present_count": present_count,
+                "total_sessions": total_sessions,
+                "status": "critical"
+            })
+        elif percentage < MINIMUM_ATTENDANCE_PERCENTAGE:  # 60% - 75%
+            # Calculate how many more classes needed to reach 75%
+            classes_needed_for_75 = math.ceil((0.75 * total_sessions) - present_count)
+            
+            warning_alerts.append({
+                "course_id": course_id,
+                "course_name": course['course_name'],
+                "attendance_percentage": round(percentage, 1),
+                "present_count": present_count,
+                "total_sessions": total_sessions,
+                "classes_needed": max(0, classes_needed_for_75),
+                "status": "warning"
+            })
+    
+    conn.close()
+    
+    return jsonify({
+        "critical_alerts": critical_alerts,
+        "warning_alerts": warning_alerts,
+        "critical_count": len(critical_alerts),
+        "warning_count": len(warning_alerts),
+        "total_alert_count": len(critical_alerts) + len(warning_alerts),
+        "critical_threshold": ATTENDANCE_WARNING_THRESHOLD,
+        "minimum_threshold": MINIMUM_ATTENDANCE_PERCENTAGE
+    }), 200
+
+@app.route('/api/student/analytics', methods=['GET'])
+@token_required
+def get_student_analytics(user_data):
+    """Returns detailed attendance analytics including trends and warnings."""
+    if not ENABLE_ATTENDANCE_ANALYTICS:
+        return jsonify({"error": "Analytics feature is disabled"}), 403
+    
+    student_id = user_data['student_id']
+    semester_id = request.args.get('semester_id', type=int)
+    
+    conn = get_db_connection()
+    
+    # Get courses for the student (with optional semester filter)
+    if semester_id:
+        courses_cursor = conn.execute("""
+            SELECT c.id as course_id, c.course_name
+            FROM courses c
+            JOIN enrollments e ON c.id = e.course_id
+            WHERE e.student_id = ? AND c.semester_id = ?
+        """, (student_id, semester_id)).fetchall()
+    else:
+        courses_cursor = conn.execute("""
+            SELECT c.id as course_id, c.course_name
+            FROM courses c
+            JOIN enrollments e ON c.id = e.course_id
+            WHERE e.student_id = ?
+        """, (student_id,)).fetchall()
+    
+    analytics_data = {}
+    
+    for course in courses_cursor:
+        course_id = course['course_id']
+        course_name = course['course_name']
+        
+        # Get all sessions for this course
+        sessions = conn.execute("""
+            SELECT id, start_time
+            FROM sessions
+            WHERE course_id = ?
+            ORDER BY start_time
+        """, (course_id,)).fetchall()
+        
+        # Calculate last 7 days average
+        seven_days_ago = datetime.datetime.now() - datetime.timedelta(days=ANALYTICS_LAST_DAYS)
+        seven_days_ago_str = seven_days_ago.strftime('%Y-%m-%d %H:%M:%S')
+        
+        recent_sessions = [s for s in sessions if s['start_time'] > seven_days_ago_str]
+        if recent_sessions:
+            recent_session_ids = [s['id'] for s in recent_sessions]
+            recent_present = conn.execute(f"""
+                SELECT COUNT(*) as count FROM attendance_records
+                WHERE student_id = ? AND session_id IN ({','.join(['?']*len(recent_session_ids))})
+            """, [student_id] + recent_session_ids).fetchone()['count']
+            last_7_days_avg = (recent_present / len(recent_sessions) * 100) if recent_sessions else 0
+        else:
+            last_7_days_avg = 0
+        
+        # Calculate last 30 days average
+        thirty_days_ago = datetime.datetime.now() - datetime.timedelta(days=ANALYTICS_TREND_DAYS)
+        thirty_days_ago_str = thirty_days_ago.strftime('%Y-%m-%d %H:%M:%S')
+        
+        thirty_days_sessions = [s for s in sessions if s['start_time'] > thirty_days_ago_str]
+        if thirty_days_sessions:
+            thirty_session_ids = [s['id'] for s in thirty_days_sessions]
+            thirty_present = conn.execute(f"""
+                SELECT COUNT(*) as count FROM attendance_records
+                WHERE student_id = ? AND session_id IN ({','.join(['?']*len(thirty_session_ids))})
+            """, [student_id] + thirty_session_ids).fetchone()['count']
+            last_30_days_avg = (thirty_present / len(thirty_days_sessions) * 100) if thirty_days_sessions else 0
+        else:
+            last_30_days_avg = 0
+        
+        # Calculate overall semester average
+        if sessions:
+            session_ids = [s['id'] for s in sessions]
+            total_present = conn.execute(f"""
+                SELECT COUNT(*) as count FROM attendance_records
+                WHERE student_id = ? AND session_id IN ({','.join(['?']*len(session_ids))})
+            """, [student_id] + session_ids).fetchone()['count']
+            semester_total = (total_present / len(sessions) * 100) if sessions else 0
+        else:
+            semester_total = 0
+        
+        # Determine trend direction
+        if last_7_days_avg > last_30_days_avg:
+            trend_direction = 'up'
+        elif last_7_days_avg < last_30_days_avg:
+            trend_direction = 'down'
+        else:
+            trend_direction = 'stable'
+        
+        # Determine status
+        if last_7_days_avg >= MINIMUM_ATTENDANCE_PERCENTAGE:
+            status = 'good'
+        elif last_7_days_avg >= ATTENDANCE_WARNING_THRESHOLD:
+            status = 'warning'
+        else:
+            status = 'critical'
+        
+        # Get daily breakdown for the last 7 days (for charting)
+        daily_breakdown = []
+        for i in range(ANALYTICS_LAST_DAYS):
+            date = (datetime.datetime.now() - datetime.timedelta(days=ANALYTICS_LAST_DAYS - i - 1)).date()
+            date_str = date.strftime('%Y-%m-%d')
+            
+            day_sessions = [s for s in sessions if s['start_time'].startswith(date_str)]
+            if day_sessions:
+                day_session_ids = [s['id'] for s in day_sessions]
+                day_present = conn.execute(f"""
+                    SELECT COUNT(*) as count FROM attendance_records
+                    WHERE student_id = ? AND session_id IN ({','.join(['?']*len(day_session_ids))})
+                """, [student_id] + day_session_ids).fetchone()['count']
+                day_percentage = (day_present / len(day_sessions) * 100)
+            else:
+                day_percentage = None
+            
+            daily_breakdown.append({
+                'date': date_str,
+                'percentage': day_percentage
+            })
+        
+        analytics_data[str(course_id)] = {
+            'course_name': course_name,
+            'last_7_days_avg': round(last_7_days_avg, 1),
+            'last_30_days_avg': round(last_30_days_avg, 1),
+            'semester_total': round(semester_total, 1),
+            'trend_direction': trend_direction,
+            'status': status,
+            'daily_breakdown': daily_breakdown,
+            'total_sessions': len(sessions)
+        }
+    
+    conn.close()
+    
+    return jsonify({
+        'analytics': analytics_data,
+        'min_attendance_requirement': MINIMUM_ATTENDANCE_PERCENTAGE,
+        'warning_threshold': ATTENDANCE_WARNING_THRESHOLD
+    })
 
 @app.route('/api/student/course/<int:course_id>', methods=['GET'])
 @token_required
@@ -1944,11 +2249,260 @@ atexit.register(lambda: scheduler.shutdown())
 
 
 
-
-
 # =================================================================
 #   Main Execution Block
-# =================================================================
+# =================================================================# --- Leaderboard Helper Functions ---
+
+def calculate_streaks(conn, student_id, course_id):
+    """Calculate current and longest attendance streaks for a student in a course."""
+    sessions = conn.execute("""
+        SELECT s.id, s.start_time
+        FROM sessions s
+        WHERE s.course_id = ?
+        ORDER BY s.start_time DESC
+    """, (course_id,)).fetchall()
+    
+    current_streak = 0
+    longest_streak = 0
+    temp_streak = 0
+    
+    for session in sessions:
+        record = conn.execute(
+            "SELECT id FROM attendance_records WHERE session_id = ? AND student_id = ?",
+            (session['id'], student_id)
+        ).fetchone()
+        
+        if record:  # Present
+            temp_streak += 1
+            current_streak = temp_streak
+        else:  # Absent
+            longest_streak = max(longest_streak, temp_streak)
+            temp_streak = 0
+            if current_streak > 0:
+                break  # Stop counting current streak at first absence
+    
+    longest_streak = max(longest_streak, temp_streak)
+    
+    return {
+        'current_streak': current_streak,
+        'longest_streak': longest_streak
+    }
+
+def generate_badges(attendance_pct, current_streak, longest_streak, conn, student_id, course_id):
+    """Generate badges based on attendance and streak achievements."""
+    badges = []
+    
+    # FIRST_STEP: First class attended
+    first_attendance = conn.execute(
+        "SELECT id FROM attendance_records WHERE student_id = ? LIMIT 1",
+        (student_id,)
+    ).fetchone()
+    if first_attendance:
+        badges.append({
+            'type': 'FIRST_STEP',
+            'icon': '🎯',
+            'description': 'First class attended'
+        })
+    
+    # CONSISTENT: 5+ current streak
+    if current_streak >= 5:
+        badges.append({
+            'type': 'CONSISTENT',
+            'icon': '🔥',
+            'description': f'{current_streak} day streak'
+        })
+    
+    # PERFECT_WEEK: 7-day streak
+    if current_streak >= 7:
+        badges.append({
+            'type': 'PERFECT_WEEK',
+            'icon': '⭐',
+            'description': '7 day perfect streak'
+        })
+    
+    # IRON_STREAK: 15+ day streak
+    if longest_streak >= 15:
+        badges.append({
+            'type': 'IRON_STREAK',
+            'icon': '💪',
+            'description': '15+ day iron streak'
+        })
+    
+    # PERFECT_MONTH: High attendance (90%+)
+    if attendance_pct >= 90:
+        badges.append({
+            'type': 'PERFECT_MONTH',
+            'icon': '👑',
+            'description': '90%+ attendance'
+        })
+    
+    return badges
+
+@app.route('/api/student/leaderboard', methods=['GET'])
+@token_required
+def get_leaderboard(user_data):
+    """
+    Returns attendance leaderboard with rankings, streaks, and gamification elements.
+    Query Parameters:
+        - course_id (optional): Filter by specific course
+        - semester_id (optional): Filter by semester
+        - limit (optional, default=50): Number of top students to return
+    """
+    student_id = user_data['student_id']
+    course_id = request.args.get('course_id', type=int)
+    semester_id = request.args.get('semester_id', type=int)
+    limit = request.args.get('limit', default=50, type=int)
+    
+    conn = get_db_connection()
+    
+    # Build query to get all enrolled students with attendance data
+    if course_id:
+        # Get students enrolled in specific course
+        students_query = """
+            SELECT DISTINCT e.student_id, s.student_name
+            FROM enrollments e
+            JOIN students s ON e.student_id = s.id
+            WHERE e.course_id = ?
+        """
+        params = [course_id]
+    elif semester_id:
+        # Get students in specific semester
+        students_query = """
+            SELECT DISTINCT e.student_id, s.student_name
+            FROM enrollments e
+            JOIN students s ON e.student_id = s.id
+            WHERE e.semester_id = ?
+        """
+        params = [semester_id]
+    else:
+        # Get all students (global leaderboard)
+        students_query = "SELECT id as student_id, student_name FROM students"
+        params = []
+    
+    students = conn.execute(students_query, params).fetchall()
+    
+    leaderboard_data = []
+    user_rank_info = None
+    user_stats = None
+    user_badges = []
+    
+    for student in students:
+        sid = student['student_id']
+        
+        # Initialize course_ids as None
+        course_ids = None
+        
+        # Get course enrollment for this student
+        if course_id:
+            course_filter = course_id
+            query_type = 'course'
+        elif semester_id:
+            # Get courses in this semester
+            courses_in_semester = conn.execute(
+                "SELECT id FROM courses WHERE semester_id = ?",
+                (semester_id,)
+            ).fetchall()
+            course_ids = [c['id'] for c in courses_in_semester]
+            query_type = 'semester'
+        else:
+            query_type = 'global'
+        
+        # Calculate attendance percentage
+        if query_type == 'course':
+            sessions = conn.execute(
+                "SELECT id FROM sessions WHERE course_id = ?",
+                (course_filter,)
+            ).fetchall()
+        elif query_type == 'semester':
+            if not course_ids:
+                continue
+            placeholders = ','.join(['?'] * len(course_ids))
+            sessions = conn.execute(
+                f"SELECT id FROM sessions WHERE course_id IN ({placeholders})",
+                course_ids
+            ).fetchall()
+        else:
+            sessions = conn.execute("SELECT id FROM sessions").fetchall()
+        
+        session_ids = [s['id'] for s in sessions]
+        total_sessions = len(session_ids)
+        
+        if total_sessions > 0:
+            present_count = conn.execute(
+                f"SELECT COUNT(id) as count FROM attendance_records WHERE student_id = ? AND session_id IN ({','.join(['?']*len(session_ids))})",
+                [sid] + session_ids
+            ).fetchone()['count']
+        else:
+            present_count = 0
+        
+        attendance_pct = (present_count / total_sessions * 100) if total_sessions > 0 else 0
+        
+        # Calculate streaks
+        if query_type == 'course' and course_id:
+            streaks = calculate_streaks(conn, sid, course_id)
+        elif query_type == 'semester' and course_ids:
+            # For semester view, use first course's streaks
+            streaks = calculate_streaks(conn, sid, course_ids[0]) if course_ids else {'current_streak': 0, 'longest_streak': 0}
+        else:
+            # For global, use any course
+            any_course = conn.execute("SELECT id FROM courses LIMIT 1").fetchone()
+            streaks = calculate_streaks(conn, sid, any_course['id']) if any_course else {'current_streak': 0, 'longest_streak': 0}
+        
+        # Generate badges
+        badge_course_id = course_id or (course_ids[0] if course_ids else 1)
+        badges = generate_badges(attendance_pct, streaks['current_streak'], streaks['longest_streak'], conn, sid, badge_course_id)
+        
+        # Add to leaderboard
+        leaderboard_data.append({
+            'student_id': sid,
+            'student_name': student['student_name'],
+            'attendance_percentage': round(attendance_pct, 1),
+            'present_count': present_count,
+            'total_sessions': total_sessions,
+            'current_streak': streaks['current_streak'],
+            'longest_streak': streaks['longest_streak'],
+            'badges': badges
+        })
+        
+        # Store user's data for later
+        if sid == student_id:
+            user_stats = {
+                'attendance_percentage': round(attendance_pct, 1),
+                'current_streak': streaks['current_streak'],
+                'longest_streak': streaks['longest_streak'],
+                'present_count': present_count,
+                'total_sessions': total_sessions
+            }
+            user_badges = badges
+    
+    # Sort by: attendance % DESC, then streak DESC, then present count DESC
+    leaderboard_data.sort(key=lambda x: (-x['attendance_percentage'], -x['current_streak'], -x['present_count']))
+    
+    # Assign ranks and find user's rank
+    for idx, entry in enumerate(leaderboard_data):
+        entry['rank'] = idx + 1
+        if entry['student_id'] == student_id:
+            user_rank_info = {
+                'rank': idx + 1,
+                'position': idx + 1,
+                'percentile': round((idx / len(leaderboard_data) * 100)) if leaderboard_data else 0,
+                'total_students': len(leaderboard_data)
+            }
+    
+    # Trim to limit
+    leaderboard_display = leaderboard_data[:limit]
+    
+    conn.close()
+    
+    return jsonify({
+        'user_rank': user_rank_info or {'rank': 0, 'position': 0, 'percentile': 0, 'total_students': 0},
+        'user_stats': user_stats or {'attendance_percentage': 0, 'current_streak': 0, 'longest_streak': 0, 'present_count': 0, 'total_sessions': 0},
+        'user_badges': user_badges,
+        'leaderboard': leaderboard_display,
+        'total_on_leaderboard': len(leaderboard_data),
+        'course_id': course_id,
+        'semester_id': semester_id
+    })
 if __name__ == '__main__':
     # host='0.0.0.0' makes the server accessible from other devices on your network
     app.run(host='0.0.0.0', port=5000, debug=False, request_handler=TimedRequestHandler)
