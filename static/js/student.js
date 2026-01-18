@@ -101,6 +101,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const data = await response.json();
 
+      // Set welcome message with student name
+      document.getElementById(
+        'welcome-message'
+      ).textContent = `Welcome, ${data.student_name}!`;
+
       document.getElementById(
         'overall-percentage'
       ).textContent = `${data.overall_percentage}%`;
@@ -551,12 +556,21 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 });
 
+
+
+
+
+
+// ============================================================
+// MODERN GAMING LEADERBOARD - JavaScript Functions
+// Add these functions to your existing student.js file
+// ============================================================
+
 /**
  * Load leaderboard data from API
  */
 async function loadLeaderboard(courseId = null) {
   try {
-    // Get token from sessionStorage (set during login)
     const token = localStorage.getItem('studentToken');
     
     if (!token) {
@@ -573,7 +587,8 @@ async function loadLeaderboard(courseId = null) {
 
     if (!response.ok) {
       if (response.status === 401) {
-        throw new Error('Authentication failed. Please login again.');
+        logout();
+        return;
       }
       throw new Error(`Failed to load leaderboard (${response.status})`);
     }
@@ -582,16 +597,19 @@ async function loadLeaderboard(courseId = null) {
     renderLeaderboard(data);
   } catch (error) {
     console.error('Error loading leaderboard:', error);
-    document.getElementById('leaderboard-tbody').innerHTML = `
-      <tr style="text-align: center; color: var(--text-light);">
-        <td colspan="4">Error: ${error.message}</td>
-      </tr>
-    `;
+    const tbody = document.getElementById('leaderboard-tbody');
+    if (tbody) {
+      tbody.innerHTML = `
+        <tr style="text-align: center; color: var(--text-light);">
+          <td colspan="4">Error: ${error.message}</td>
+        </tr>
+      `;
+    }
   }
 }
 
 /**
- * Render leaderboard data
+ * Render leaderboard data with modern gaming design
  */
 function renderLeaderboard(data) {
   const { user_rank, user_stats, user_badges, leaderboard } = data;
@@ -602,11 +620,21 @@ function renderLeaderboard(data) {
   // Render leaderboard table
   if (leaderboard && leaderboard.length > 0) {
     renderLeaderboardTable(leaderboard, user_rank.position);
+    const noMsg = document.getElementById('no-leaderboard-message');
+    if (noMsg) noMsg.style.display = 'none';
   } else {
     const tbody = document.getElementById('leaderboard-tbody');
     if (tbody) {
-      tbody.innerHTML = '<tr><td colspan="4" style="text-align: center; color: var(--text-light);">No students in leaderboard</td></tr>';
+      tbody.innerHTML = `
+        <tr>
+          <td colspan="4" style="text-align: center; color: var(--text-light);">
+            No students in leaderboard
+          </td>
+        </tr>
+      `;
     }
+    const noMsg = document.getElementById('no-leaderboard-message');
+    if (noMsg) noMsg.style.display = 'block';
   }
 }
 
@@ -618,71 +646,46 @@ function renderUserRankCard(userRank, userStats, badges) {
     const rankDisplay = userRank.position || 0;
     const totalStudents = userRank.total_students || 0;
 
-    // Update rank display with medal for top 3
-    let rankBadge = `#${rankDisplay}`;
-    let medalIcon = '';
-    if (rankDisplay === 1) {
-      rankBadge = '#1';
-      medalIcon = '🥇';
-    } else if (rankDisplay === 2) {
-      rankBadge = '#2';
-      medalIcon = '🥈';
-    } else if (rankDisplay === 3) {
-      rankBadge = '#3';
-      medalIcon = '🥉';
+    // Update rank medal
+    const rankMedal = document.getElementById('user-rank-medal');
+    if (rankMedal) {
+      if (rankDisplay === 1) {
+        rankMedal.textContent = '🥇';
+        rankMedal.style.background = 'linear-gradient(135deg, #ffd700 0%, #ffed4e 100%)';
+        rankMedal.style.color = '#1a1a2e';
+      } else if (rankDisplay === 2) {
+        rankMedal.textContent = '🥈';
+        rankMedal.style.background = 'linear-gradient(135deg, #c0c0c0 0%, #e8e8e8 100%)';
+        rankMedal.style.color = '#1a1a2e';
+      } else if (rankDisplay === 3) {
+        rankMedal.textContent = '🥉';
+        rankMedal.style.background = 'linear-gradient(135deg, #cd7f32 0%, #daa520 100%)';
+        rankMedal.style.color = '#ffffff';
+      } else {
+        rankMedal.textContent = '🏅';
+        rankMedal.style.background = 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)';
+        rankMedal.style.color = '#ffffff';
+      }
     }
 
     // Set rank display
     const rankDisplayEl = document.getElementById('user-rank-display');
     if (rankDisplayEl) {
-      if (medalIcon) {
-        rankDisplayEl.textContent = `${medalIcon} ${rankBadge}`;
-      } else {
-        rankDisplayEl.textContent = rankBadge;
-      }
-    } else {
-      console.warn('user-rank-display element not found');
+      rankDisplayEl.textContent = rankDisplay;
     }
 
     // Set total students
     const totalStudentsEl = document.getElementById('total-students');
     if (totalStudentsEl) {
       totalStudentsEl.textContent = totalStudents;
-    } else {
-      console.warn('total-students element not found');
     }
 
-    // Update attendance
-    const attendanceEl = document.getElementById('user-attendance');
-    if (attendanceEl) {
-      const attendancePercent = Math.round(userStats.attendance_percentage || 0);
-      attendanceEl.textContent = attendancePercent;
-    } else {
-      console.warn('user-attendance element not found');
-    }
-
-    // Update streaks with animation
-    const currentStreakEl = document.getElementById('user-current-streak');
-    if (currentStreakEl) {
-      animateCounter('user-current-streak', userStats.current_streak || 0);
-    } else {
-      console.warn('user-current-streak element not found');
-    }
-
-    const longestStreakEl = document.getElementById('user-longest-streak');
-    if (longestStreakEl) {
-      animateCounter('user-longest-streak', userStats.longest_streak || 0);
-    } else {
-      console.warn('user-longest-streak element not found');
-    }
-
-    // Update classes attended
-    const classesAttendedEl = document.getElementById('user-classes-attended');
-    if (classesAttendedEl) {
-      classesAttendedEl.textContent = userStats.present_count || 0;
-    } else {
-      console.warn('user-classes-attended element not found');
-    }
+    // Update stats with animation
+    const attendancePercent = Math.round(userStats.attendance_percentage || 0);
+    animateCounter('user-attendance', attendancePercent);
+    animateCounter('user-current-streak', userStats.current_streak || 0);
+    animateCounter('user-longest-streak', userStats.longest_streak || 0);
+    animateCounter('user-classes-attended', userStats.present_count || 0);
 
     // Render badges
     renderBadges(badges);
@@ -694,7 +697,7 @@ function renderUserRankCard(userRank, userStats, badges) {
 /**
  * Animate counter increment
  */
-function animateCounter(elementId, endValue) {
+function animateCounter(elementId, endValue, duration = 1000) {
   const element = document.getElementById(elementId);
   
   if (!element) {
@@ -703,7 +706,6 @@ function animateCounter(elementId, endValue) {
   }
   
   const startValue = 0;
-  const duration = 1000; // 1 second
   const startTime = Date.now();
 
   function update() {
@@ -721,7 +723,7 @@ function animateCounter(elementId, endValue) {
 }
 
 /**
- * Render user's badges with animations
+ * Render user's badges with modern design
  */
 function renderBadges(badges) {
   const container = document.getElementById('user-badges');
@@ -733,29 +735,32 @@ function renderBadges(badges) {
   container.innerHTML = '';
 
   const badgeIcons = {
-    'FIRST_STEP': { icon: '🎯', color: '#2196f3' },
-    'CONSISTENT': { icon: '🔥', color: '#ff6b6b' },
-    'PERFECT_WEEK': { icon: '⭐', color: '#ffc107' },
-    'IRON_STREAK': { icon: '💪', color: '#4caf50' },
-    'PERFECT_MONTH': { icon: '👑', color: '#e91e63' },
-    'LEADERSHIP': { icon: '🏆', color: '#ff6f00' },
-    'COMEBACK': { icon: '🎊', color: '#9c27b0' }
+    'FIRST_STEP': { icon: '🎯', description: 'First Step - Attended first class' },
+    'CONSISTENT': { icon: '🔥', description: 'Consistent - 7 day streak' },
+    'PERFECT_WEEK': { icon: '⭐', description: 'Perfect Week - 100% for 7 days' },
+    'IRON_STREAK': { icon: '💪', description: 'Iron Streak - 14 day streak' },
+    'PERFECT_MONTH': { icon: '👑', description: 'Perfect Month - 100% for 30 days' },
+    'LEADERSHIP': { icon: '🏆', description: 'Leadership - Reached Top 3' },
+    'COMEBACK': { icon: '🎊', description: 'Comeback - Improved attendance' }
   };
 
   if (badges.length === 0) {
-    container.innerHTML = '<span style="opacity: 0.7; font-size: 0.9rem;">Keep playing to earn badges! 🎮</span>';
+    container.innerHTML = '<span style="opacity: 0.7; font-size: 0.9rem; color: white;">Keep playing to earn badges! 🎮</span>';
     return;
   }
 
   badges.forEach((badge, index) => {
-    const badgeConfig = badgeIcons[badge.type] || { icon: '⭐', color: '#666' };
-    const badgeEl = document.createElement('span');
-    badgeEl.className = 'badge-display';
+    const badgeConfig = badgeIcons[badge.type] || { 
+      icon: '⭐', 
+      description: badge.description || 'Achievement Unlocked' 
+    };
+    
+    const badgeEl = document.createElement('div');
+    badgeEl.className = 'leaderboard-badge';
     badgeEl.innerHTML = `
       ${badgeConfig.icon}
-      <div class="badge-tooltip">${badge.description}</div>
+      <div class="leaderboard-badge-tooltip">${badge.description || badgeConfig.description}</div>
     `;
-    badgeEl.title = badge.description;
     badgeEl.style.animation = `slideUp 0.5s ease-out ${0.1 * index}s both`;
     container.appendChild(badgeEl);
   });
@@ -766,19 +771,34 @@ function renderBadges(badges) {
  */
 function renderLeaderboardTable(leaderboard, userPosition) {
   const tbody = document.getElementById('leaderboard-tbody');
+  if (!tbody) {
+    console.warn('leaderboard-tbody element not found');
+    return;
+  }
+  
   tbody.innerHTML = '';
+
+  const badgeIcons = {
+    'FIRST_STEP': '🎯',
+    'CONSISTENT': '🔥',
+    'PERFECT_WEEK': '⭐',
+    'IRON_STREAK': '💪',
+    'PERFECT_MONTH': '👑',
+    'LEADERSHIP': '🏆',
+    'COMEBACK': '🎊'
+  };
 
   leaderboard.forEach((entry, index) => {
     const row = document.createElement('tr');
     
     // Add highlight for current user
     if (entry.rank === userPosition) {
-      row.classList.add('user-row');
+      row.classList.add('current-user');
     }
 
     // Determine rank badge style
     let rankBadgeClass = 'default';
-    let rankDisplay = entry.rank;
+    let rankDisplay = `#${entry.rank}`;
     if (entry.rank === 1) {
       rankBadgeClass = 'gold';
       rankDisplay = '🥇';
@@ -793,58 +813,53 @@ function renderLeaderboardTable(leaderboard, userPosition) {
     // Determine streak color
     let streakClass = 'low';
     if (entry.current_streak >= 15) streakClass = 'high';
-    else if (entry.current_streak >= 5) streakClass = 'medium';
+    else if (entry.current_streak >= 7) streakClass = 'medium';
 
     // Determine attendance color class
     let attendanceClass = 'low';
     const attendance = entry.attendance_percentage;
-    if (attendance >= 75) attendanceClass = 'high';
-    else if (attendance >= 60) attendanceClass = 'medium';
+    if (attendance >= 85) attendanceClass = 'high';
+    else if (attendance >= 70) attendanceClass = 'medium';
 
     // Build badges HTML
     let badgesHtml = '';
     if (entry.badges && entry.badges.length > 0) {
-      const badgeIcons = {
-        'FIRST_STEP': '🎯',
-        'CONSISTENT': '🔥',
-        'PERFECT_WEEK': '⭐',
-        'IRON_STREAK': '💪',
-        'PERFECT_MONTH': '👑',
-        'LEADERSHIP': '🏆',
-        'COMEBACK': '🎊'
-      };
-      badgesHtml = entry.badges.map(b => 
-        `<span class="badge-display" title="${b.description}">
-          ${badgeIcons[b.type] || '⭐'}
-          <div class="badge-tooltip">${b.description}</div>
-        </span>`
-      ).join('');
+      badgesHtml = entry.badges.map(b => {
+        const icon = badgeIcons[b.type] || '⭐';
+        const description = b.description || 'Achievement';
+        return `
+          <div class="leaderboard-badge" title="${description}">
+            ${icon}
+            <div class="leaderboard-badge-tooltip">${description}</div>
+          </div>
+        `;
+      }).join('');
     }
 
     row.innerHTML = `
-      <td style="text-align: center;">
-        <span class="rank-badge ${rankBadgeClass}">${rankDisplay}</span>
+      <td>
+        <div class="leaderboard-rank-badge ${rankBadgeClass}">${rankDisplay}</div>
       </td>
       <td>
-        <div style="display: flex; align-items: center; gap: 0.5rem;">
-          <span>${entry.student_name}</span>
-          ${badgesHtml}
+        <div class="leaderboard-student-info">
+          <span class="leaderboard-student-name">${entry.student_name}</span>
+          <div class="leaderboard-student-badges">${badgesHtml}</div>
         </div>
       </td>
-      <td style="text-align: center;">
-        <span class="attendance-percent ${attendanceClass}">
-          ${entry.attendance_percentage}%
-        </span>
+      <td>
+        <div class="leaderboard-attendance-value ${attendanceClass}">
+          ${Math.round(entry.attendance_percentage)}%
+        </div>
       </td>
-      <td style="text-align: center;">
-        <span class="streak-indicator ${streakClass}">
+      <td>
+        <div class="leaderboard-streak-value ${streakClass}">
           🔥 ${entry.current_streak}
-        </span>
+        </div>
       </td>
     `;
     
     // Add stagger animation
-    row.style.animation = `slideIn 0.4s ease-out ${0.05 * index}s both`;
+    row.style.animation = `slideUp 0.4s ease-out ${0.05 * index}s both`;
     
     tbody.appendChild(row);
   });
@@ -854,9 +869,18 @@ function renderLeaderboardTable(leaderboard, userPosition) {
  * Show leaderboard view
  */
 function showLeaderboard() {
-  document.getElementById('student-dashboard-view').style.display = 'none';
-  document.getElementById('analytics-view').style.display = 'none';
-  document.getElementById('leaderboard-view').style.display = 'block';
+  // Hide all other views
+  const views = ['student-dashboard-view', 'analytics-view', 'course-detail-view', 'student-login-view'];
+  views.forEach(viewId => {
+    const view = document.getElementById(viewId);
+    if (view) view.style.display = 'none';
+  });
+  
+  // Show leaderboard view
+  const leaderboardView = document.getElementById('leaderboard-view');
+  if (leaderboardView) {
+    leaderboardView.style.display = 'block';
+  }
   
   // Load courses for filter
   loadCoursesForLeaderboardFilter();
@@ -870,7 +894,6 @@ function showLeaderboard() {
  */
 async function loadCoursesForLeaderboardFilter() {
   try {
-    // Get token from localStorage
     const token = localStorage.getItem('studentToken');
     
     if (!token) {
@@ -878,23 +901,15 @@ async function loadCoursesForLeaderboardFilter() {
       return;
     }
 
-    const response = await fetch('/api/student/semesters', {
+    const response = await fetch('/api/student/dashboard', {
       headers: { 'Authorization': `Bearer ${token}` }
     });
     
     if (!response.ok) {
-      throw new Error(`Failed to load semesters (${response.status})`);
+      throw new Error(`Failed to load courses (${response.status})`);
     }
 
-    const semesters = await response.json();
-    console.log('Semesters data:', semesters);
-    
-    // Validate that semesters is an array
-    if (!Array.isArray(semesters)) {
-      console.warn('Semesters response is not an array:', semesters);
-      return;
-    }
-
+    const data = await response.json();
     const filterEl = document.getElementById('leaderboard-course-filter');
     
     if (!filterEl) {
@@ -902,68 +917,58 @@ async function loadCoursesForLeaderboardFilter() {
       return;
     }
     
-    // Remove old event listeners by cloning
-    const newFilterEl = filterEl.cloneNode(true);
-    filterEl.parentNode.replaceChild(newFilterEl, filterEl);
-    
     // Clear existing options
-    newFilterEl.innerHTML = '<option value="">All Courses</option>';
-    
-    // Flatten all courses from all semesters
-    const courseMap = new Map();
-    semesters.forEach(semester => {
-      console.log('Processing semester:', semester);
-      if (semester.courses && Array.isArray(semester.courses)) {
-        semester.courses.forEach(course => {
-          // Create unique key based on course ID
-          const key = `${course.id}`;
-          if (!courseMap.has(key)) {
-            courseMap.set(key, {
-              id: course.id,
-              name: course.course_name || course.name || `Course ${course.id}`
-            });
-          }
-        });
-      }
-    });
-    
-    console.log(`Found ${courseMap.size} unique courses`);
+    filterEl.innerHTML = '<option value="">All Courses</option>';
     
     // Add course options
-    courseMap.forEach(course => {
-      const option = document.createElement('option');
-      option.value = course.id;
-      option.textContent = course.name;
-      newFilterEl.appendChild(option);
-    });
+    if (data.courses && Array.isArray(data.courses)) {
+      data.courses.forEach(course => {
+        const option = document.createElement('option');
+        option.value = course.course_id;
+        option.textContent = course.course_name;
+        filterEl.appendChild(option);
+      });
+    }
+    
+    // Remove existing event listeners by cloning
+    const newFilterEl = filterEl.cloneNode(true);
+    filterEl.parentNode.replaceChild(newFilterEl, filterEl);
     
     // Add change handler to new element
     newFilterEl.addEventListener('change', (e) => {
       const courseId = e.target.value ? parseInt(e.target.value) : null;
-      console.log('Course filter changed:', courseId);
+      console.log('Loading leaderboard for course:', courseId);
       loadLeaderboard(courseId);
     });
     
-    console.log(`Loaded ${courseMap.size} courses into leaderboard filter`);
+    console.log(`Loaded ${data.courses ? data.courses.length : 0} courses into leaderboard filter`);
   } catch (error) {
     console.error('Error loading courses for filter:', error);
   }
 }
 
-// Event listeners for leaderboard navigation
-document.addEventListener('DOMContentLoaded', () => {
-  const viewLeaderboardBtn = document.getElementById('view-leaderboard-button');
-  const backToLeaderboardBtn = document.getElementById('back-to-leaderboard');
+// ============================================================
+// EVENT LISTENERS - Add to your existing DOMContentLoaded
+// ============================================================
 
+// Add this to your existing DOMContentLoaded event listener
+document.addEventListener('DOMContentLoaded', () => {
+  // Leaderboard view button
+  const viewLeaderboardBtn = document.getElementById('view-leaderboard-button');
   if (viewLeaderboardBtn) {
-    viewLeaderboardBtn.addEventListener('click', showLeaderboard);
+    viewLeaderboardBtn.addEventListener('click', () => {
+      console.log('Opening leaderboard...');
+      showLeaderboard();
+    });
   }
 
+  // Back from leaderboard button
+  const backToLeaderboardBtn = document.getElementById('back-to-leaderboard');
   if (backToLeaderboardBtn) {
     backToLeaderboardBtn.addEventListener('click', () => {
+      console.log('Closing leaderboard...');
       document.getElementById('leaderboard-view').style.display = 'none';
       document.getElementById('student-dashboard-view').style.display = 'block';
     });
   }
 });
-

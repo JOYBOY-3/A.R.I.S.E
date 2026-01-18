@@ -1294,6 +1294,10 @@ def get_student_dashboard(user_data):
     
     conn = get_db_connection()
     
+    # Get student name
+    student = conn.execute("SELECT student_name FROM students WHERE id = ?", (student_id,)).fetchone()
+    student_name = student['student_name'] if student else 'Student'
+    
     # Base query for courses
     if semester_id:
         # Filter by specific semester
@@ -1359,6 +1363,7 @@ def get_student_dashboard(user_data):
     overall_percentage = (total_present_overall / total_sessions_overall * 100) if total_sessions_overall > 0 else 0
     
     return jsonify({
+        "student_name": student_name,
         "overall_percentage": round(overall_percentage),
         "semester_id": semester_id,
         "semester_name": semester_name,
@@ -1482,41 +1487,35 @@ def get_student_analytics(user_data):
         course_id = course['course_id']
         course_name = course['course_name']
         
-        # Get all sessions for this course
+        # Get all sessions for this course ordered by start_time (newest first)
         sessions = conn.execute("""
             SELECT id, start_time
             FROM sessions
             WHERE course_id = ?
-            ORDER BY start_time
+            ORDER BY start_time DESC
         """, (course_id,)).fetchall()
         
-        # Calculate last 7 days average
-        seven_days_ago = datetime.datetime.now() - datetime.timedelta(days=ANALYTICS_LAST_DAYS)
-        seven_days_ago_str = seven_days_ago.strftime('%Y-%m-%d %H:%M:%S')
-        
-        recent_sessions = [s for s in sessions if s['start_time'] > seven_days_ago_str]
-        if recent_sessions:
-            recent_session_ids = [s['id'] for s in recent_sessions]
-            recent_present = conn.execute(f"""
+        # Calculate last 7 sessions average (last 7 actual sessions conducted)
+        last_7_sessions = sessions[:ANALYTICS_LAST_DAYS]
+        if last_7_sessions:
+            last_7_session_ids = [s['id'] for s in last_7_sessions]
+            last_7_present = conn.execute(f"""
                 SELECT COUNT(*) as count FROM attendance_records
-                WHERE student_id = ? AND session_id IN ({','.join(['?']*len(recent_session_ids))})
-            """, [student_id] + recent_session_ids).fetchone()['count']
-            last_7_days_avg = (recent_present / len(recent_sessions) * 100) if recent_sessions else 0
+                WHERE student_id = ? AND session_id IN ({','.join(['?']*len(last_7_session_ids))})
+            """, [student_id] + last_7_session_ids).fetchone()['count']
+            last_7_days_avg = (last_7_present / len(last_7_sessions) * 100) if last_7_sessions else 0
         else:
             last_7_days_avg = 0
         
-        # Calculate last 30 days average
-        thirty_days_ago = datetime.datetime.now() - datetime.timedelta(days=ANALYTICS_TREND_DAYS)
-        thirty_days_ago_str = thirty_days_ago.strftime('%Y-%m-%d %H:%M:%S')
-        
-        thirty_days_sessions = [s for s in sessions if s['start_time'] > thirty_days_ago_str]
-        if thirty_days_sessions:
-            thirty_session_ids = [s['id'] for s in thirty_days_sessions]
-            thirty_present = conn.execute(f"""
+        # Calculate last 30 sessions average (last 30 actual sessions conducted)
+        last_30_sessions = sessions[:ANALYTICS_TREND_DAYS]
+        if last_30_sessions:
+            last_30_session_ids = [s['id'] for s in last_30_sessions]
+            last_30_present = conn.execute(f"""
                 SELECT COUNT(*) as count FROM attendance_records
-                WHERE student_id = ? AND session_id IN ({','.join(['?']*len(thirty_session_ids))})
-            """, [student_id] + thirty_session_ids).fetchone()['count']
-            last_30_days_avg = (thirty_present / len(thirty_days_sessions) * 100) if thirty_days_sessions else 0
+                WHERE student_id = ? AND session_id IN ({','.join(['?']*len(last_30_session_ids))})
+            """, [student_id] + last_30_session_ids).fetchone()['count']
+            last_30_days_avg = (last_30_present / len(last_30_sessions) * 100) if last_30_sessions else 0
         else:
             last_30_days_avg = 0
         
@@ -1547,26 +1546,26 @@ def get_student_analytics(user_data):
         else:
             status = 'critical'
         
-        # Get daily breakdown for the last 7 days (for charting)
+        # Get breakdown for the last 7 sessions (for charting)
         daily_breakdown = []
-        for i in range(ANALYTICS_LAST_DAYS):
-            date = (datetime.datetime.now() - datetime.timedelta(days=ANALYTICS_LAST_DAYS - i - 1)).date()
-            date_str = date.strftime('%Y-%m-%d')
+        # Reverse to get chronological order (oldest to newest of the last 7 sessions)
+        last_7_sessions_chrono = list(reversed(last_7_sessions))
+        for session in last_7_sessions_chrono:
+            session_id = session['id']
+            session_date = session['start_time'].split()[0]  # Extract date from datetime
             
-            day_sessions = [s for s in sessions if s['start_time'].startswith(date_str)]
-            if day_sessions:
-                day_session_ids = [s['id'] for s in day_sessions]
-                day_present = conn.execute(f"""
-                    SELECT COUNT(*) as count FROM attendance_records
-                    WHERE student_id = ? AND session_id IN ({','.join(['?']*len(day_session_ids))})
-                """, [student_id] + day_session_ids).fetchone()['count']
-                day_percentage = (day_present / len(day_sessions) * 100)
-            else:
-                day_percentage = None
+            # Check if student was present in this session
+            present = conn.execute("""
+                SELECT COUNT(*) as count FROM attendance_records
+                WHERE student_id = ? AND session_id = ?
+            """, (student_id, session_id)).fetchone()['count']
+            
+            session_percentage = 100 if present > 0 else 0
             
             daily_breakdown.append({
-                'date': date_str,
-                'percentage': day_percentage
+                'date': session_date,
+                'percentage': session_percentage,
+                'session_id': session_id
             })
         
         analytics_data[str(course_id)] = {

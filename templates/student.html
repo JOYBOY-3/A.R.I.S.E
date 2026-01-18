@@ -49,19 +49,26 @@
             </div>
 
             <div style="margin: 1.5rem 0 1rem 0;">
-                <label for="semester-filter" style="font-weight: bold; display: block; margin-bottom: 0.75rem; font-size: 1rem;">Filter by Semester:</label>
+                <label for="semester-filter"
+                    style="font-weight: bold; display: block; margin-bottom: 0.75rem; font-size: 1rem;">Filter by
+                    Semester:</label>
                 <div style="display: flex; gap: 0.75rem; align-items: stretch;">
-                    <select id="semester-filter" style="flex: 1; padding: 0.65rem 0.75rem; border: 2px solid var(--border-color); border-radius: 6px; background-color: var(--bg-secondary); color: var(--text-color); font-size: 0.95rem; font-family: inherit; cursor: pointer; transition: border-color 0.2s; box-sizing: border-box;">
+                    <select id="semester-filter"
+                        style="flex: 1; padding: 0.65rem 0.75rem; border: 2px solid var(--border-color); border-radius: 6px; background-color: var(--bg-secondary); color: var(--text-color); font-size: 0.95rem; font-family: inherit; cursor: pointer; transition: border-color 0.2s; box-sizing: border-box;">
                         <option value="">All Semesters</option>
                     </select>
-                    <button id="clear-filter-button" style="padding: 0.65rem 1.5rem; background-color: var(--secondary-color); color: white; font-size: 0.95rem; font-weight: 500; white-space: nowrap; cursor: pointer; border: 2px solid var(--secondary-color); border-radius: 6px; transition: all 0.2s; margin: 0; flex-shrink: 0; height: auto;" title="Clear semester filter">Clear</button>
+                    <button id="clear-filter-button"
+                        style="padding: 0.65rem 1.5rem; background-color: var(--secondary-color); color: white; font-size: 0.95rem; font-weight: 500; white-space: nowrap; cursor: pointer; border: 2px solid var(--secondary-color); border-radius: 6px; transition: all 0.2s; margin: 0; flex-shrink: 0; height: auto;"
+                        title="Clear semester filter">Clear</button>
                 </div>
             </div>
 
             <h2>Your Courses</h2>
             <div style="display: flex; gap: 0.5rem; margin-bottom: 1rem;">
-                <button id="view-analytics-button" class="button-primary" style="flex: 1; padding: 0.75rem;">📊 View Analytics</button>
-                <button id="view-leaderboard-button" class="button-primary" style="flex: 1; padding: 0.75rem;">🏆 Leaderboard</button>
+                <button id="view-analytics-button" class="button-primary" style="flex: 1; padding: 0.75rem;">📊 View
+                    Analytics</button>
+                <button id="view-leaderboard-button" class="button-primary" style="flex: 1; padding: 0.75rem;">🏆
+                    Leaderboard</button>
             </div>
             <div id="courses-container"></div>
         </div>
@@ -107,83 +114,900 @@
             <div id="analytics-container"></div>
 
             <!-- No Analytics Message -->
-            <div id="no-analytics-message" style="text-align: center; padding: 2rem; color: var(--text-light); display: none;">
+            <div id="no-analytics-message"
+                style="text-align: center; padding: 2rem; color: var(--text-light); display: none;">
                 <p>No analytics data available yet.</p>
             </div>
         </div>
 
         <!-- LEADERBOARD VIEW -->
+        <!-- ============================================================ -->
+        <!-- MODERN GAMING LEADERBOARD VIEW -->
+        <!-- Replace your existing leaderboard-view section with this -->
+        <!-- ============================================================ -->
+
+        <style>
+            /* Modern Gaming Leaderboard Styles - Embedded in student.html */
+
+            /* Leaderboard View Container */
+            #leaderboard-view {
+                background: transparent;
+                padding: 0;
+            }
+
+            /* Leaderboard Animated Background */
+            #leaderboard-view::before {
+                content: '';
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background:
+                    radial-gradient(circle at 20% 50%, rgba(102, 126, 234, 0.08) 0%, transparent 50%),
+                    radial-gradient(circle at 80% 80%, rgba(168, 85, 247, 0.08) 0%, transparent 50%),
+                    radial-gradient(circle at 40% 20%, rgba(236, 72, 153, 0.08) 0%, transparent 50%);
+                animation: leaderboardBackgroundPulse 20s ease-in-out infinite;
+                pointer-events: none;
+                z-index: 0;
+            }
+
+            @keyframes leaderboardBackgroundPulse {
+
+                0%,
+                100% {
+                    opacity: 1;
+                }
+
+                50% {
+                    opacity: 0.5;
+                }
+            }
+
+            /* Leaderboard Header */
+            .leaderboard-header {
+                text-align: center;
+                margin-bottom: 2rem;
+                position: relative;
+                z-index: 1;
+            }
+
+            .leaderboard-header::before {
+                content: '';
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                width: 300px;
+                height: 300px;
+                background: radial-gradient(circle, rgba(102, 126, 234, 0.15) 0%, transparent 70%);
+                animation: headerGlow 3s ease-in-out infinite;
+                pointer-events: none;
+                z-index: -1;
+            }
+
+            @keyframes headerGlow {
+
+                0%,
+                100% {
+                    transform: translate(-50%, -50%) scale(1);
+                    opacity: 0.5;
+                }
+
+                50% {
+                    transform: translate(-50%, -50%) scale(1.2);
+                    opacity: 0.8;
+                }
+            }
+
+            .leaderboard-main-title {
+                font-size: clamp(2rem, 5vw, 3rem);
+                font-weight: 900;
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
+                margin: 0 0 0.5rem 0;
+                text-transform: uppercase;
+                letter-spacing: 2px;
+            }
+
+            .leaderboard-subtitle {
+                color: var(--text-light);
+                font-size: clamp(0.9rem, 2vw, 1.1rem);
+                font-weight: 500;
+                margin: 0;
+            }
+
+            /* Filter Section */
+            .leaderboard-filter-section {
+                background: var(--bg-card);
+                border-radius: 20px;
+                padding: 1.5rem;
+                margin-bottom: 2rem;
+                border: 1px solid rgba(102, 126, 234, 0.2);
+                box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+                backdrop-filter: blur(10px);
+                position: relative;
+                z-index: 1;
+            }
+
+            .leaderboard-filter-wrapper {
+                display: flex;
+                gap: 1rem;
+                align-items: center;
+                flex-wrap: wrap;
+            }
+
+            .leaderboard-filter-label {
+                font-weight: 600;
+                color: var(--text-light);
+                font-size: 0.95rem;
+                white-space: nowrap;
+            }
+
+            #leaderboard-course-filter {
+                flex: 1;
+                min-width: 200px;
+                padding: 0.9rem 1.2rem;
+                background: rgba(102, 126, 234, 0.1);
+                border: 2px solid rgba(102, 126, 234, 0.3);
+                border-radius: 12px;
+                color: var(--text-primary);
+                font-size: 1rem;
+                font-weight: 600;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                appearance: none;
+                background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%2300d4ff' d='M1 1l5 5 5-5'/%3E%3C/svg%3E");
+                background-repeat: no-repeat;
+                background-position: right 1rem center;
+                padding-right: 3rem;
+            }
+
+            #leaderboard-course-filter:hover {
+                border-color: #00d4ff;
+                background: rgba(102, 126, 234, 0.15);
+                transform: translateY(-2px);
+            }
+
+            #leaderboard-course-filter:focus {
+                outline: none;
+                border-color: #00d4ff;
+                box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.2);
+            }
+
+            #leaderboard-course-filter option {
+                background: var(--bg-card);
+                color: var(--text-primary);
+                padding: 1rem;
+                font-weight: 600;
+            }
+
+            #leaderboard-course-filter option:hover,
+            #leaderboard-course-filter option:checked,
+            #leaderboard-course-filter option:focus {
+                background: linear-gradient(135deg, rgba(102, 126, 234, 0.8), rgba(118, 75, 162, 0.8));
+                color: white;
+            }
+
+            #leaderboard-course-filter option:checked {
+                background: linear-gradient(135deg, rgba(102, 126, 234, 0.9), rgba(118, 75, 162, 0.9));
+                color: white;
+                font-weight: 700;
+            }
+
+            /* User Stats Card */
+            .leaderboard-user-stats-card {
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                border-radius: 24px;
+                padding: 2rem;
+                margin-bottom: 2rem;
+                position: relative;
+                overflow: hidden;
+                box-shadow: 0 20px 60px rgba(102, 126, 234, 0.4);
+                color: white;
+                z-index: 1;
+            }
+
+            .leaderboard-user-stats-card::before {
+                content: '';
+                position: absolute;
+                top: -50%;
+                right: -50%;
+                width: 400px;
+                height: 400px;
+                background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+                animation: floatAnimation 8s ease-in-out infinite;
+                pointer-events: none;
+            }
+
+            @keyframes floatAnimation {
+
+                0%,
+                100% {
+                    transform: translate(0, 0) rotate(0deg);
+                }
+
+                33% {
+                    transform: translate(30px, -30px) rotate(120deg);
+                }
+
+                66% {
+                    transform: translate(-20px, 20px) rotate(240deg);
+                }
+            }
+
+            .leaderboard-user-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: flex-start;
+                margin-bottom: 2rem;
+                flex-wrap: wrap;
+                gap: 1rem;
+                position: relative;
+                z-index: 2;
+            }
+
+            .leaderboard-rank-wrapper {
+                display: flex;
+                align-items: center;
+                gap: 1rem;
+            }
+
+            .leaderboard-rank-medal {
+                width: 80px;
+                height: 80px;
+                border-radius: 50%;
+                background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 2rem;
+                font-weight: 900;
+                color: #1a1a2e;
+                box-shadow: 0 8px 24px rgba(255, 215, 0, 0.5);
+                animation: medalPulse 2s ease-in-out infinite;
+            }
+
+            @keyframes medalPulse {
+
+                0%,
+                100% {
+                    transform: scale(1);
+                }
+
+                50% {
+                    transform: scale(1.05);
+                }
+            }
+
+            .leaderboard-rank-info h2 {
+                font-size: 0.85rem;
+                font-weight: 600;
+                letter-spacing: 2px;
+                opacity: 0.9;
+                margin: 0 0 0.25rem 0;
+            }
+
+            .leaderboard-rank-number {
+                font-size: 2.5rem;
+                font-weight: 900;
+                line-height: 1;
+                margin: 0;
+            }
+
+            .leaderboard-total-students {
+                font-size: 0.95rem;
+                opacity: 0.85;
+                margin: 0.25rem 0 0 0;
+            }
+
+            .leaderboard-stats-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+                gap: 1rem;
+                margin-bottom: 1.5rem;
+                position: relative;
+                z-index: 2;
+            }
+
+            .leaderboard-stat-box {
+                background: rgba(255, 255, 255, 0.1);
+                backdrop-filter: blur(10px);
+                border-radius: 16px;
+                padding: 1.25rem;
+                border: 1px solid rgba(255, 255, 255, 0.2);
+                transition: all 0.3s ease;
+                position: relative;
+                overflow: hidden;
+            }
+
+            .leaderboard-stat-box::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: -100%;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+                animation: shimmerAnimation 3s infinite;
+            }
+
+            @keyframes shimmerAnimation {
+                0% {
+                    left: -100%;
+                }
+
+                50%,
+                100% {
+                    left: 100%;
+                }
+            }
+
+            .leaderboard-stat-box:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+                background: rgba(255, 255, 255, 0.15);
+            }
+
+            .leaderboard-stat-label {
+                font-size: 0.85rem;
+                opacity: 0.9;
+                margin-bottom: 0.5rem;
+            }
+
+            .leaderboard-stat-value {
+                font-size: 2rem;
+                font-weight: 900;
+                line-height: 1;
+            }
+
+            /* Badges Section */
+            .leaderboard-badges-section {
+                background: rgba(0, 0, 0, 0.2);
+                border-radius: 16px;
+                padding: 1.25rem;
+                border: 1px solid rgba(255, 255, 255, 0.1);
+                position: relative;
+                z-index: 2;
+            }
+
+            .leaderboard-badges-title {
+                font-size: 0.9rem;
+                font-weight: 600;
+                margin-bottom: 1rem;
+                opacity: 0.9;
+            }
+
+            #user-badges {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 0.75rem;
+            }
+
+            .leaderboard-badge {
+                width: 48px;
+                height: 48px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background: rgba(255, 255, 255, 0.1);
+                border-radius: 12px;
+                font-size: 1.75rem;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                position: relative;
+                border: 2px solid rgba(255, 255, 255, 0.2);
+            }
+
+            .leaderboard-badge:hover {
+                transform: scale(1.2) rotate(10deg);
+                box-shadow: 0 8px 24px rgba(255, 255, 255, 0.3);
+                border-color: rgba(255, 255, 255, 0.5);
+            }
+
+            .leaderboard-badge.locked {
+                opacity: 0.3;
+                filter: grayscale(100%);
+                cursor: not-allowed;
+            }
+
+            .leaderboard-badge-tooltip {
+                position: absolute;
+                bottom: calc(100% + 10px);
+                left: 50%;
+                transform: translateX(-50%) scale(0);
+                background: rgba(0, 0, 0, 0.95);
+                color: white;
+                padding: 0.5rem 0.75rem;
+                border-radius: 8px;
+                font-size: 0.75rem;
+                white-space: nowrap;
+                pointer-events: none;
+                transition: all 0.3s ease;
+                z-index: 1000;
+                border: 1px solid rgba(102, 126, 234, 0.5);
+            }
+
+            .leaderboard-badge:hover .leaderboard-badge-tooltip {
+                transform: translateX(-50%) scale(1);
+            }
+
+            .leaderboard-badge-tooltip::after {
+                content: '';
+                position: absolute;
+                top: 100%;
+                left: 50%;
+                transform: translateX(-50%);
+                border: 5px solid transparent;
+                border-top-color: rgba(0, 0, 0, 0.95);
+            }
+
+            /* Leaderboard Table Section */
+            .leaderboard-table-section {
+                background: var(--bg-card);
+                border-radius: 24px;
+                padding: 2rem;
+                border: 1px solid rgba(102, 126, 234, 0.2);
+                box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+                position: relative;
+                z-index: 1;
+            }
+
+            .leaderboard-section-title {
+                font-size: 1.5rem;
+                font-weight: 800;
+                margin: 0 0 1.5rem 0;
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+                color: var(--text-primary);
+            }
+
+            .leaderboard-table-wrapper {
+                overflow-x: auto;
+                border-radius: 16px;
+                -webkit-overflow-scrolling: touch;
+            }
+
+            .leaderboard-table {
+                width: 100%;
+                border-collapse: separate;
+                border-spacing: 0;
+                min-width: 600px;
+            }
+
+            .leaderboard-table thead {
+                background: rgba(102, 126, 234, 0.2);
+                position: sticky;
+                top: 0;
+                z-index: 10;
+            }
+
+            .leaderboard-table th {
+                padding: 1rem;
+                text-align: left;
+                font-weight: 700;
+                font-size: 0.85rem;
+                letter-spacing: 1px;
+                text-transform: uppercase;
+                color: #00d4ff;
+                border-bottom: 2px solid rgba(102, 126, 234, 0.3);
+            }
+
+            .leaderboard-table th:first-child {
+                text-align: center;
+                width: 80px;
+            }
+
+            .leaderboard-table th:nth-child(3),
+            .leaderboard-table th:nth-child(4) {
+                text-align: center;
+            }
+
+            .leaderboard-table tbody tr {
+                background: rgba(255, 255, 255, 0.02);
+                transition: all 0.3s ease;
+                position: relative;
+            }
+
+            .leaderboard-table tbody tr::after {
+                content: '';
+                position: absolute;
+                left: 0;
+                top: 0;
+                bottom: 0;
+                width: 3px;
+                background: #00d4ff;
+                opacity: 0;
+                transition: opacity 0.3s ease;
+            }
+
+            .leaderboard-table tbody tr:hover {
+                background: rgba(102, 126, 234, 0.1);
+                transform: translateX(5px);
+            }
+
+            .leaderboard-table tbody tr:hover::after {
+                opacity: 1;
+            }
+
+            .leaderboard-table tbody tr.current-user {
+                background: rgba(102, 126, 234, 0.15);
+                border-left: 4px solid #00d4ff;
+                box-shadow: inset 0 0 20px rgba(102, 126, 234, 0.2);
+            }
+
+            .leaderboard-table td {
+                padding: 1.25rem 1rem;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+                color: var(--text-primary);
+            }
+
+            .leaderboard-table td:first-child {
+                text-align: center;
+            }
+
+            .leaderboard-table td:nth-child(3),
+            .leaderboard-table td:nth-child(4) {
+                text-align: center;
+            }
+
+            .leaderboard-rank-badge {
+                width: 48px;
+                height: 48px;
+                border-radius: 50%;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                font-weight: 900;
+                font-size: 1rem;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+                transition: all 0.3s ease;
+            }
+
+            .leaderboard-rank-badge:hover {
+                transform: scale(1.15) rotate(5deg);
+            }
+
+            .leaderboard-rank-badge.gold {
+                background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+                color: #1a1a2e;
+                box-shadow: 0 4px 20px rgba(255, 215, 0, 0.6);
+            }
+
+            .leaderboard-rank-badge.silver {
+                background: linear-gradient(135deg, #c0c0c0 0%, #e8e8e8 100%);
+                color: #1a1a2e;
+                box-shadow: 0 4px 20px rgba(192, 192, 192, 0.6);
+            }
+
+            .leaderboard-rank-badge.bronze {
+                background: linear-gradient(135deg, #cd7f32 0%, #daa520 100%);
+                color: white;
+                box-shadow: 0 4px 20px rgba(205, 127, 50, 0.6);
+            }
+
+            .leaderboard-rank-badge.default {
+                background: linear-gradient(135deg, rgba(102, 126, 234, 0.3), rgba(118, 75, 162, 0.3));
+                color: var(--text-primary);
+                border: 2px solid rgba(102, 126, 234, 0.5);
+            }
+
+            .leaderboard-student-info {
+                display: flex;
+                align-items: center;
+                gap: 0.75rem;
+            }
+
+            .leaderboard-student-name {
+                font-weight: 600;
+                font-size: 1rem;
+            }
+
+            .leaderboard-student-badges {
+                display: flex;
+                gap: 0.25rem;
+            }
+
+            .leaderboard-student-badges .leaderboard-badge {
+                width: 28px;
+                height: 28px;
+                font-size: 1.2rem;
+            }
+
+            .leaderboard-attendance-value {
+                font-weight: 700;
+                font-size: 1.1rem;
+                padding: 0.5rem 1rem;
+                border-radius: 12px;
+                display: inline-block;
+            }
+
+            .leaderboard-attendance-value.high {
+                background: rgba(16, 185, 129, 0.2);
+                color: #10b981;
+                border: 1px solid #10b981;
+            }
+
+            .leaderboard-attendance-value.medium {
+                background: rgba(245, 158, 11, 0.2);
+                color: #f59e0b;
+                border: 1px solid #f59e0b;
+            }
+
+            .leaderboard-attendance-value.low {
+                background: rgba(239, 68, 68, 0.2);
+                color: #ef4444;
+                border: 1px solid #ef4444;
+            }
+
+            .leaderboard-streak-value {
+                display: inline-flex;
+                align-items: center;
+                gap: 0.5rem;
+                padding: 0.5rem 1rem;
+                border-radius: 12px;
+                font-weight: 700;
+            }
+
+            .leaderboard-streak-value.high {
+                background: rgba(16, 185, 129, 0.2);
+                color: #10b981;
+                border: 1px solid #10b981;
+            }
+
+            .leaderboard-streak-value.medium {
+                background: rgba(245, 158, 11, 0.2);
+                color: #f59e0b;
+                border: 1px solid #f59e0b;
+            }
+
+            .leaderboard-streak-value.low {
+                background: rgba(239, 68, 68, 0.2);
+                color: #ef4444;
+                border: 1px solid #ef4444;
+            }
+
+            /* Scroll Animations */
+            @keyframes slideUp {
+                from {
+                    opacity: 0;
+                    transform: translateY(30px);
+                }
+
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+
+            /* Custom Scrollbar */
+            .leaderboard-table-wrapper::-webkit-scrollbar {
+                height: 8px;
+            }
+
+            .leaderboard-table-wrapper::-webkit-scrollbar-track {
+                background: rgba(255, 255, 255, 0.05);
+                border-radius: 10px;
+            }
+
+            .leaderboard-table-wrapper::-webkit-scrollbar-thumb {
+                background: #00d4ff;
+                border-radius: 10px;
+            }
+
+            .leaderboard-table-wrapper::-webkit-scrollbar-thumb:hover {
+                background: #a855f7;
+            }
+
+            /* Responsive Design */
+            @media (max-width: 1024px) {
+                .leaderboard-stats-grid {
+                    grid-template-columns: repeat(2, 1fr);
+                }
+            }
+
+            @media (max-width: 768px) {
+                .leaderboard-user-stats-card {
+                    padding: 1.5rem;
+                }
+
+                .leaderboard-rank-medal {
+                    width: 60px;
+                    height: 60px;
+                    font-size: 1.5rem;
+                }
+
+                .leaderboard-rank-number {
+                    font-size: 2rem;
+                }
+
+                .leaderboard-stats-grid {
+                    grid-template-columns: 1fr 1fr;
+                    gap: 0.75rem;
+                }
+
+                .leaderboard-stat-box {
+                    padding: 1rem;
+                }
+
+                .leaderboard-stat-value {
+                    font-size: 1.5rem;
+                }
+
+                .leaderboard-table-section {
+                    padding: 1.5rem;
+                }
+
+                .leaderboard-table th,
+                .leaderboard-table td {
+                    padding: 0.75rem 0.5rem;
+                    font-size: 0.9rem;
+                }
+
+                .leaderboard-rank-badge {
+                    width: 40px;
+                    height: 40px;
+                    font-size: 0.9rem;
+                }
+
+                .leaderboard-student-badges .leaderboard-badge {
+                    width: 24px;
+                    height: 24px;
+                    font-size: 1rem;
+                }
+            }
+
+            @media (max-width: 480px) {
+                .leaderboard-main-title {
+                    font-size: 1.5rem;
+                    letter-spacing: 1px;
+                }
+
+                .leaderboard-filter-wrapper {
+                    flex-direction: column;
+                    align-items: stretch;
+                }
+
+                #leaderboard-course-filter {
+                    min-width: 100%;
+                }
+
+                .leaderboard-user-header {
+                    flex-direction: column;
+                }
+
+                .leaderboard-rank-medal {
+                    width: 50px;
+                    height: 50px;
+                    font-size: 1.25rem;
+                }
+
+                .leaderboard-rank-number {
+                    font-size: 1.75rem;
+                }
+
+                .leaderboard-stats-grid {
+                    grid-template-columns: 1fr;
+                }
+
+                .leaderboard-table {
+                    min-width: 500px;
+                }
+
+                .leaderboard-table th,
+                .leaderboard-table td {
+                    padding: 0.6rem 0.4rem;
+                    font-size: 0.85rem;
+                }
+
+                .leaderboard-rank-badge {
+                    width: 36px;
+                    height: 36px;
+                    font-size: 0.85rem;
+                }
+
+                .leaderboard-student-name {
+                    font-size: 0.9rem;
+                }
+
+                .leaderboard-attendance-value,
+                .leaderboard-streak-value {
+                    font-size: 0.9rem;
+                    padding: 0.4rem 0.75rem;
+                }
+            }
+        </style>
+
+        <!-- LEADERBOARD VIEW -->
         <div id="leaderboard-view" class="view-container" style="display: none;">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 1rem;">
-                <h1 style="margin: 0;">🏆 Attendance Leaderboard</h1>
+            <!-- Header with Back Button -->
+            <div
+                style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 1rem; position: relative; z-index: 1;">
+                <div class="leaderboard-header" style="flex: 1; margin: 0;">
+                    <h1 class="leaderboard-main-title">🏆 Leaderboard</h1>
+                    <p class="leaderboard-subtitle">Compete, Track, Excel</p>
+                </div>
                 <button id="back-to-leaderboard" class="button-secondary" style="margin: 0;">← Back</button>
             </div>
 
-            <!-- Course/Semester Filter -->
-            <div class="leaderboard-filter-container">
-                <select id="leaderboard-course-filter">
-                    <option value="">All Courses</option>
-                </select>
+            <!-- Filter Section -->
+            <div class="leaderboard-filter-section">
+                <div class="leaderboard-filter-wrapper">
+                    <span class="leaderboard-filter-label">📚 Filter by Course:</span>
+                    <select id="leaderboard-course-filter">
+                        <option value="">All Courses</option>
+                    </select>
+                </div>
             </div>
 
-            <!-- User's Rank Card -->
-            <div class="leaderboard-user-card">
-                <div>
-                    <div style="font-size: 0.9rem; opacity: 0.9; margin-bottom: 0.5rem;">YOUR RANKING</div>
-                    <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1.5rem;">
-                        <div>
-                            <div id="user-rank-display">—</div>
-                            <div style="font-size: 0.9rem; opacity: 0.85;">Out of <span id="total-students">0</span></div>
+            <!-- User Stats Card -->
+            <div class="leaderboard-user-stats-card">
+                <div class="leaderboard-user-header">
+                    <div class="leaderboard-rank-wrapper">
+                        <div class="leaderboard-rank-medal" id="user-rank-medal">🏅</div>
+                        <div class="leaderboard-rank-info">
+                            <h2>YOUR RANKING</h2>
+                            <div class="leaderboard-rank-number">#<span id="user-rank-display">—</span></div>
+                            <div class="leaderboard-total-students">Out of <span id="total-students">0</span> students
+                            </div>
                         </div>
                     </div>
-                    
-                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 0.8rem;">
-                        <div class="stat-box">
-                            <div>📊 Attendance</div>
-                            <div style="font-size: 1.8rem; font-weight: 900; margin-top: 0.5rem;"><span id="user-attendance">—</span>%</div>
-                        </div>
-                        <div class="stat-box">
-                            <div>🔥 Current Streak</div>
-                            <div style="font-size: 1.8rem; font-weight: 900; margin-top: 0.5rem;"><span id="user-current-streak">0</span> days</div>
-                        </div>
-                        <div class="stat-box">
-                            <div>📈 Longest Streak</div>
-                            <div style="font-size: 1.8rem; font-weight: 900; margin-top: 0.5rem;"><span id="user-longest-streak">0</span> days</div>
-                        </div>
-                        <div class="stat-box">
-                            <div>📍 Classes Attended</div>
-                            <div style="font-size: 1.8rem; font-weight: 900; margin-top: 0.5rem;"><span id="user-classes-attended">0</span></div>
-                        </div>
+                </div>
+
+                <div class="leaderboard-stats-grid">
+                    <div class="leaderboard-stat-box">
+                        <div class="leaderboard-stat-label">📊 Attendance</div>
+                        <div class="leaderboard-stat-value"><span id="user-attendance">0</span>%</div>
                     </div>
-                    
-                    <div id="badges-container" style="margin-top: 1.5rem;">
-                        <div style="font-size: 0.9rem; opacity: 0.85; margin-bottom: 0.7rem;">Achievements Unlocked</div>
-                        <div id="user-badges" style="display: flex; flex-wrap: wrap; gap: 0.2rem;"></div>
+                    <div class="leaderboard-stat-box">
+                        <div class="leaderboard-stat-label">🔥 Current Streak</div>
+                        <div class="leaderboard-stat-value"><span id="user-current-streak">0</span></div>
+                    </div>
+                    <div class="leaderboard-stat-box">
+                        <div class="leaderboard-stat-label">📈 Best Streak</div>
+                        <div class="leaderboard-stat-value"><span id="user-longest-streak">0</span></div>
+                    </div>
+                    <div class="leaderboard-stat-box">
+                        <div class="leaderboard-stat-label">📍 Classes</div>
+                        <div class="leaderboard-stat-value"><span id="user-classes-attended">0</span></div>
+                    </div>
+                </div>
+
+                <div class="leaderboard-badges-section">
+                    <div class="leaderboard-badges-title">🎖️ Achievements Unlocked</div>
+                    <div id="user-badges">
+                        <!-- Badges will be populated by JavaScript -->
                     </div>
                 </div>
             </div>
 
             <!-- Leaderboard Table -->
-            <h3 style="margin-top: 2rem; margin-bottom: 1rem;">🌟 Top Students</h3>
-            <div class="leaderboard-table-wrapper">
-                <table class="leaderboard-table">
-                    <thead>
-                        <tr>
-                            <th style="width: 60px;">RANK</th>
-                            <th>STUDENT</th>
-                            <th style="width: 110px;">ATTENDANCE</th>
-                            <th style="width: 140px;">STREAK</th>
-                        </tr>
-                    </thead>
-                    <tbody id="leaderboard-tbody">
-                        <tr style="text-align: center; color: var(--text-light);">
-                            <td colspan="4">Loading...</td>
-                        </tr>
-                    </tbody>
-                </table>
+            <div class="leaderboard-table-section">
+                <h2 class="leaderboard-section-title">🌟 Top Students</h2>
+                <div class="leaderboard-table-wrapper">
+                    <table class="leaderboard-table">
+                        <thead>
+                            <tr>
+                                <th>Rank</th>
+                                <th>Student</th>
+                                <th>Attendance</th>
+                                <th>Streak</th>
+                            </tr>
+                        </thead>
+                        <tbody id="leaderboard-tbody">
+                            <tr style="text-align: center; color: var(--text-light);">
+                                <td colspan="4">Loading...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
 
-            <div id="no-leaderboard-message" style="text-align: center; padding: 2rem; color: var(--text-light); display: none;">
+            <div id="no-leaderboard-message"
+                style="text-align: center; padding: 2rem; color: var(--text-light); display: none;">
                 <p>No leaderboard data available yet.</p>
             </div>
         </div>
@@ -191,7 +1015,9 @@
     </div>
 
     <!-- CRITICAL ALERTS ICON CORNER -->
-    <div id="critical-alert-icon" class="critical-alert-icon" style="position: fixed; bottom: 20px; right: 20px; cursor: pointer; z-index: 999; display: none;" title="Critical Attendance Alerts">
+    <div id="critical-alert-icon" class="critical-alert-icon"
+        style="position: fixed; bottom: 20px; right: 20px; cursor: pointer; z-index: 999; display: none;"
+        title="Critical Attendance Alerts">
         🚨
         <span id="alert-badge" class="alert-badge">0</span>
     </div>

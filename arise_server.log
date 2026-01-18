@@ -931,3 +931,43 @@ sqlite3.OperationalError: no such column: s.created_at
 2026-01-18 03:50:42,585 - INFO - Server started - Auto-expire scheduler active
 2026-01-18 03:59:45,359 - INFO - Email alert scheduler initialized - Absent alerts every 10min, Daily summaries at 5 PM
 2026-01-18 03:59:45,363 - INFO - Server started - Auto-expire scheduler active
+2026-01-18 04:42:18,088 - INFO - Email alert scheduler initialized - Absent alerts every 10min, Daily summaries at 5 PM
+2026-01-18 04:42:18,093 - INFO - Server started - Auto-expire scheduler active
+2026-01-18 05:38:24,408 - INFO - Email alert scheduler initialized - Absent alerts every 10min, Daily summaries at 5 PM
+2026-01-18 05:38:24,417 - INFO - Server started - Auto-expire scheduler active
+2026-01-18 05:43:13,751 - INFO - Email alert scheduler initialized - Absent alerts every 10min, Daily summaries at 5 PM
+2026-01-18 05:43:13,771 - INFO - Server started - Auto-expire scheduler active
+2026-01-18 05:49:33,068 - INFO - Email alert scheduler initialized - Absent alerts every 10min, Daily summaries at 5 PM
+2026-01-18 05:49:33,074 - INFO - Server started - Auto-expire scheduler active
+2026-01-18 06:11:45,292 - INFO - Email alert scheduler initialized - Absent alerts every 10min, Daily summaries at 5 PM
+2026-01-18 06:11:45,298 - INFO - Server started - Auto-expire scheduler active
+2026-01-18 06:22:04,050 - INFO - Email alert scheduler initialized - Absent alerts every 10min, Daily summaries at 5 PM
+2026-01-18 06:22:04,055 - INFO - Server started - Auto-expire scheduler active
+2026-01-18 06:26:21,645 - INFO - Email alert scheduler initialized - Absent alerts every 10min, Daily summaries at 5 PM
+2026-01-18 06:26:21,650 - INFO - Server started - Auto-expire scheduler active
+2026-01-18 06:57:40,677 - INFO - Email alert scheduler initialized - Absent alerts every 10min, Daily summaries at 5 PM
+2026-01-18 06:57:40,682 - INFO - Server started - Auto-expire scheduler active
+2026-01-18 07:21:47,092 - INFO - Email alert scheduler initialized - Absent alerts every 10min, Daily summaries at 5 PM
+2026-01-18 07:21:47,097 - INFO - Server started - Auto-expire scheduler active
+2026-01-18 07:56:36,635 - INFO - Email alert scheduler initialized - Absent alerts every 10min, Daily summaries at 5 PM
+2026-01-18 07:56:36,639 - INFO - Server started - Auto-expire scheduler active
+2026-01-18 08:33:20,911 - INFO - Email alert scheduler initialized - Absent alerts every 10min, Daily summaries at 5 PM
+2026-01-18 08:33:20,930 - INFO - Server started - Auto-expire scheduler active
+2026-01-18 08:58:56,914 - INFO - Email alert scheduler initialized - Absent alerts every 10min, Daily summaries at 5 PM
+2026-01-18 08:58:56,920 - INFO - Server started - Auto-expire scheduler active
+2026-01-18 09:21:07,490 - INFO - Email alert scheduler initialized - Absent alerts every 10min, Daily summaries at 5 PM
+2026-01-18 09:21:07,498 - INFO - Server started - Auto-expire scheduler active
+2026-01-18 09:27:49,127 - INFO - Email alert scheduler initialized - Absent alerts every 10min, Daily summaries at 5 PM
+2026-01-18 09:27:49,132 - INFO - Server started - Auto-expire scheduler active
+2026-01-18 09:29:25,792 - INFO - Email alert scheduler initialized - Absent alerts every 10min, Daily summaries at 5 PM
+2026-01-18 09:29:25,797 - INFO - Server started - Auto-expire scheduler active
+2026-01-18 09:31:50,533 - INFO - Email alert scheduler initialized - Absent alerts every 10min, Daily summaries at 5 PM
+2026-01-18 09:31:50,538 - INFO - Server started - Auto-expire scheduler active
+2026-01-18 09:33:55,555 - INFO - Email alert scheduler initialized - Absent alerts every 10min, Daily summaries at 5 PM
+2026-01-18 09:33:55,561 - INFO - Server started - Auto-expire scheduler active
+2026-01-18 09:38:06,016 - INFO - Email alert scheduler initialized - Absent alerts every 10min, Daily summaries at 5 PM
+2026-01-18 09:38:06,022 - INFO - Server started - Auto-expire scheduler active
+2026-01-18 09:46:30,770 - INFO - Email alert scheduler initialized - Absent alerts every 10min, Daily summaries at 5 PM
+2026-01-18 09:46:30,775 - INFO - Server started - Auto-expire scheduler active
+2026-01-18 10:04:05,090 - INFO - Email alert scheduler initialized - Absent alerts every 10min, Daily summaries at 5 PM
+2026-01-18 10:04:05,101 - INFO - Server started - Auto-expire scheduler active
