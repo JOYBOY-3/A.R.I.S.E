@@ -971,3 +971,70 @@ sqlite3.OperationalError: no such column: s.created_at
 2026-01-18 09:46:30,775 - INFO - Server started - Auto-expire scheduler active
 2026-01-18 10:04:05,090 - INFO - Email alert scheduler initialized - Absent alerts every 10min, Daily summaries at 5 PM
 2026-01-18 10:04:05,101 - INFO - Server started - Auto-expire scheduler active
+2026-01-18 10:07:02,025 - INFO - Email alert scheduler initialized - Absent alerts every 10min, Daily summaries at 5 PM
+2026-01-18 10:07:02,030 - INFO - Server started - Auto-expire scheduler active
+2026-01-18 10:08:37,327 - INFO - Teacher login attempt - CourseCode: MCA101
+2026-01-18 10:08:37,328 - INFO - Teacher login successful - Course: Introduction To Programming
+2026-01-18 10:08:44,268 - INFO - Creating session - Duration: 30min, Grace: 5min, Start: 2026-01-18 10:08:44, Scheduled end: 2026-01-18 10:43:44
+2026-01-18 10:08:44,273 - INFO - Session started - ID: 171, Course: 1, Duration: 30min (+5min grace)
+2026-01-18 10:09:24,840 - WARNING - Device heartbeat stale - Last seen 16.7 seconds ago
+2026-01-18 10:09:29,292 - WARNING - Device heartbeat stale - Last seen 21.2 seconds ago
+2026-01-18 10:09:34,299 - WARNING - Device heartbeat stale - Last seen 26.2 seconds ago
+2026-01-18 10:09:39,301 - WARNING - Device heartbeat stale - Last seen 31.2 seconds ago
+2026-01-18 10:09:45,847 - WARNING - Device heartbeat stale - Last seen 37.7 seconds ago
+2026-01-18 10:09:49,350 - WARNING - Device heartbeat stale - Last seen 41.2 seconds ago
+2026-01-18 10:09:54,297 - WARNING - Device heartbeat stale - Last seen 46.2 seconds ago
+2026-01-18 10:10:59,504 - INFO - End session 171: Found 2 enrolled students
+2026-01-18 10:10:59,504 - INFO - End session 171: 2 students marked present
+2026-01-18 10:10:59,507 - INFO - Session ended - ID: 171, Absent alerts sent: 0
+2026-01-18 10:22:48,164 - INFO - Email alert scheduler initialized - Absent alerts every 10min, Daily summaries at 5 PM
+2026-01-18 10:22:48,169 - INFO - Server started - Auto-expire scheduler active
+2026-01-18 10:23:00,288 - INFO - Teacher login attempt - CourseCode: MCA101
+2026-01-18 10:23:00,290 - INFO - Teacher login successful - Course: Introduction To Programming
+2026-01-18 10:23:11,250 - INFO - Creating session - Duration: 30min, Grace: 5min, Start: 2026-01-18 10:23:11, Scheduled end: 2026-01-18 10:58:11
+2026-01-18 10:23:11,254 - INFO - Session started - ID: 172, Course: 1, Duration: 30min (+5min grace)
+2026-01-18 10:23:26,276 - WARNING - Device heartbeat stale - Last seen 15.8 seconds ago
+2026-01-18 10:23:31,275 - WARNING - Device heartbeat stale - Last seen 20.8 seconds ago
+2026-01-18 10:23:36,282 - WARNING - Device heartbeat stale - Last seen 25.8 seconds ago
+2026-01-18 10:23:41,274 - WARNING - Device heartbeat stale - Last seen 30.8 seconds ago
+2026-01-18 10:23:46,271 - WARNING - Device heartbeat stale - Last seen 35.8 seconds ago
+2026-01-18 10:23:51,276 - WARNING - Device heartbeat stale - Last seen 40.8 seconds ago
+2026-01-18 10:23:56,275 - WARNING - Device heartbeat stale - Last seen 45.8 seconds ago
+2026-01-18 10:24:01,271 - WARNING - Device heartbeat stale - Last seen 50.8 seconds ago
+2026-01-18 10:24:06,284 - WARNING - Device heartbeat stale - Last seen 55.8 seconds ago
+2026-01-18 10:24:11,274 - WARNING - Device heartbeat stale - Last seen 60.8 seconds ago
+2026-01-18 10:24:13,438 - INFO - End session 172: Found 2 enrolled students
+2026-01-18 10:24:13,438 - INFO - End session 172: 0 students marked present
+2026-01-18 10:24:13,438 - INFO -   Absent: Sourabh Kumar Gupta - Email: sourabhkrgupta720@gmail.com
+2026-01-18 10:24:17,326 - INFO - Email sent successfully to sourabhkrgupta720@gmail.com
+2026-01-18 10:24:17,327 - INFO -     SENT to sourabhkrgupta720@gmail.com
+2026-01-18 10:24:20,966 - INFO - Email sent successfully to rajuhuptaooooo@gmail.com
+2026-01-18 10:24:20,966 - INFO -     SENT to secondary rajuhuptaooooo@gmail.com
+2026-01-18 10:24:20,967 - INFO -   Absent: Vishal Kumar - Email: ziaul.business1@gmail.com
+2026-01-18 10:24:24,463 - INFO - Email sent successfully to ziaul.business1@gmail.com
+2026-01-18 10:24:24,463 - INFO -     SENT to ziaul.business1@gmail.com
+2026-01-18 10:24:28,100 - INFO - Email sent successfully to vishal@gmail.com
+2026-01-18 10:24:28,100 - INFO -     SENT to secondary vishal@gmail.com
+2026-01-18 10:24:28,104 - INFO - Session ended - ID: 172, Absent alerts sent: 2
+2026-01-18 10:30:50,280 - INFO - Email alert scheduler initialized - Absent alerts every 10min, Daily summaries at 5 PM
+2026-01-18 10:30:50,302 - INFO - Server started - Auto-expire scheduler active
+2026-01-18 10:31:08,798 - INFO - Teacher login attempt - CourseCode: MCA101
+2026-01-18 10:31:08,800 - INFO - Teacher login successful - Course: Introduction To Programming
+2026-01-18 10:31:11,357 - INFO - Creating session - Duration: 30min, Grace: 5min, Start: 2026-01-18 10:31:11, Scheduled end: 2026-01-18 11:06:11
+2026-01-18 10:31:11,370 - INFO - Session started - ID: 173, Course: 1, Duration: 30min (+5min grace)
+2026-01-18 10:31:56,398 - WARNING - Device heartbeat stale - Last seen 19.8 seconds ago
+2026-01-18 10:32:01,397 - WARNING - Device heartbeat stale - Last seen 24.8 seconds ago
+2026-01-18 10:32:06,396 - WARNING - Device heartbeat stale - Last seen 29.8 seconds ago
+2026-01-18 10:32:11,393 - WARNING - Device heartbeat stale - Last seen 34.8 seconds ago
+2026-01-18 10:32:17,727 - WARNING - Device heartbeat stale - Last seen 41.2 seconds ago
+2026-01-18 10:32:21,492 - WARNING - Device heartbeat stale - Last seen 44.9 seconds ago
+2026-01-18 10:32:24,284 - INFO - [BULK SYNC] Processing 2 roll IDs: [1, 2]
+2026-01-18 10:32:28,413 - INFO - Email sent successfully to sourabhkrgupta720@gmail.com
+2026-01-18 10:32:28,414 - INFO -   [SUCCESS] Roll 1 marked - Alert sent to sourabhkrgupta720@gmail.com
+2026-01-18 10:32:32,210 - INFO - Email sent successfully to ziaul.business1@gmail.com
+2026-01-18 10:32:32,210 - INFO -   [SUCCESS] Roll 2 marked - Alert sent to ziaul.business1@gmail.com
+2026-01-18 10:32:32,213 - INFO - [BULK SYNC] Complete - 2/2 successful
+2026-01-18 10:32:41,401 - WARNING - Device heartbeat stale - Last seen 18.3 seconds ago
+2026-01-18 10:32:55,548 - INFO - End session 173: Found 2 enrolled students
+2026-01-18 10:32:55,549 - INFO - End session 173: 2 students marked present
+2026-01-18 10:32:55,552 - INFO - Session ended - ID: 173, Absent alerts sent: 0

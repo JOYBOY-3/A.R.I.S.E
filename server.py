@@ -1870,7 +1870,7 @@ def bulk_mark_attendance():
             logger.warning("Bulk sync failed - Invalid or empty roll_ids")
             return jsonify({"error": "No roll IDs provided or invalid format"}), 400
         
-        logger.info(f"📦 Bulk sync request - {len(roll_ids)} roll IDs: {roll_ids}")
+        logger.info(f"[BULK SYNC] Processing {len(roll_ids)} roll IDs: {roll_ids}")
         
         conn = get_db_connection()
         
@@ -1911,7 +1911,7 @@ def bulk_mark_attendance():
                 if not enrollment:
                     failed_ids.append(roll_id)
                     details[str(roll_id)] = "not_enrolled"
-                    logger.warning(f"  ❌ Roll {roll_id} not enrolled in course {course_id}")
+                    logger.warning(f"  [FAILED] Roll {roll_id} not enrolled in course {course_id}")
                     continue
                 
                 student_id = enrollment['student_id']
@@ -1926,7 +1926,7 @@ def bulk_mark_attendance():
                     # Already marked - consider it success (idempotent behavior)
                     success_count += 1
                     details[str(roll_id)] = "already_marked"
-                    logger.info(f"  ⚠️  Roll {roll_id} already marked - skipping")
+                    logger.info(f"  [SKIPPED] Roll {roll_id} already marked - skipping")
                     continue
                 
                 # Insert attendance record
@@ -1936,24 +1936,53 @@ def bulk_mark_attendance():
                     VALUES (?, ?, 'biometric_queue', CURRENT_TIMESTAMP)
                 """, (session_id, student_id))
                 
+                # Send parent alert for successful attendance
+                try:
+                    student = conn.execute(
+                        "SELECT student_name, email1 FROM students WHERE id = ?",
+                        (student_id,)
+                    ).fetchone()
+                    
+                    course = conn.execute(
+                        "SELECT course_name FROM courses WHERE id = ?",
+                        (course_id,)
+                    ).fetchone()
+                    
+                    if student and student['email1'] and course:
+                        timestamp = datetime.datetime.now().isoformat()
+                        alert_success, alert_error = send_instant_present_alert(
+                            student['student_name'],
+                            student['email1'],
+                            course['course_name'],
+                            timestamp
+                        )
+                        
+                        if alert_success:
+                            logger.info(f"  [SUCCESS] Roll {roll_id} marked - Alert sent to {student['email1']}")
+                        else:
+                            logger.warning(f"  [SUCCESS] Roll {roll_id} marked but alert failed: {alert_error}")
+                    else:
+                        logger.info(f"  [SUCCESS] Roll {roll_id} marked (no parent email found)")
+                except Exception as e:
+                    logger.warning(f"  [SUCCESS] Roll {roll_id} marked but alert error: {e}")
+                
                 success_count += 1
                 details[str(roll_id)] = "success"
-                logger.info(f"  ✅ Roll {roll_id} marked successfully")
                 
             except ValueError:
                 failed_ids.append(roll_id)
                 details[str(roll_id)] = "invalid_roll_id"
-                logger.error(f"  ❌ Invalid roll ID format: {roll_id}")
+                logger.error(f"  [ERROR] Invalid roll ID format: {roll_id}")
             except Exception as e:
                 failed_ids.append(roll_id)
                 details[str(roll_id)] = f"error: {str(e)}"
-                logger.error(f"  ❌ Error processing roll {roll_id}: {e}")
+                logger.error(f"  [ERROR] Error processing roll {roll_id}: {e}")
         
         # Commit all changes at once (transaction)
         conn.commit()
         conn.close()
         
-        logger.info(f"📦 Bulk sync complete - {success_count}/{len(roll_ids)} successful")
+        logger.info(f"[BULK SYNC] Complete - {success_count}/{len(roll_ids)} successful")
         if failed_ids:
             logger.warning(f"   Failed IDs: {failed_ids}")
         
