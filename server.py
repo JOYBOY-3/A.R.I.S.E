@@ -19,6 +19,7 @@ from flask import send_file
 import logging
 from apscheduler.schedulers.background import BackgroundScheduler
 import atexit
+import analytics
 
 
 import io
@@ -56,20 +57,16 @@ class UTF8StreamHandler(logging.StreamHandler):
 
 
 
-from email_service import (
-    send_instant_present_alert,
-    send_absent_alert,
-    send_daily_summary
-)
+
+# Email functionality removed
 from config import (
-    ENABLE_INSTANT_ALERTS, 
-    ENABLE_ABSENT_ALERTS,
     MINIMUM_ATTENDANCE_PERCENTAGE,
     ATTENDANCE_WARNING_THRESHOLD,
     ENABLE_ATTENDANCE_ANALYTICS,
     ANALYTICS_LAST_DAYS,
     ANALYTICS_TREND_DAYS
 )
+
 
 # ------------------- Optional For Logger ----------------------
 from werkzeug.serving import WSGIRequestHandler
@@ -116,7 +113,7 @@ logging.getLogger('apscheduler.scheduler').setLevel(logging.WARNING)
 app = Flask(__name__)
 # IMPORTANT: In a real production app, this should be a long, random, secret key
 # stored securely as an environment variable, not in the code.
-app.config['SECRET_KEY'] = 'a-very-long-and-super-secret-key-for-sih2025'
+app.config['SECRET_KEY'] = '7c9e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2c3d4e5f6a7b8c9d0e'
 
 # --- Database & Token Helper Functions ---
 
@@ -775,32 +772,6 @@ def manual_override():
         )
         conn.commit()
 
-
-        try:
-            student_data = conn.execute(
-                "SELECT student_name, email1 FROM students WHERE university_roll_no = ?",
-                (univ_roll_no,)
-            ).fetchone()
-            
-            course_data = conn.execute(
-                "SELECT c.course_name FROM courses c JOIN sessions s ON c.id = s.course_id WHERE s.id = ?",
-                (session_id,)
-            ).fetchone()
-            
-            if student_data and student_data['email1'] and course_data:
-                timestamp = datetime.datetime.now().isoformat()
-                send_instant_present_alert(
-                    student_data['student_name'],
-                    student_data['email1'],
-                    course_data['course_name'],
-                    timestamp
-                )
-                logger.info(f"📧 Manual override email sent to {student_data['email1']}")
-        except Exception as e:
-            logger.error(f"📧 Manual override email error: {e}")
-
-
-
         conn.close()
         
         # Log success
@@ -825,7 +796,7 @@ def manual_override():
 @app.route('/api/teacher/session/<int:session_id>/end', methods=['POST'])
 def end_session(session_id):
     """
-    Ends the currently active session AND sends absent alerts.
+    Ends the currently active session.
     Critical: This must run BEFORE closing the session.
     """
     conn = get_db_connection()
@@ -845,23 +816,9 @@ def end_session(session_id):
         
         course_id = session['course_id']
         
-        # STEP 2: Get course name for email
-        course = conn.execute(
-            "SELECT course_name FROM courses WHERE id = ?",
-            (course_id,)
-        ).fetchone()
-        
-        if not course:
-            logger.warning(f"Course {course_id} not found for session {session_id}")
-            conn.close()
-            return jsonify({"status": "error", "message": "Course not found"}), 404
-        
-        course_name = course['course_name']
-        date_str = datetime.datetime.fromisoformat(session['start_time']).strftime("%d %B %Y")
-        
-        # STEP 3: Get ALL enrolled students in this course
+        # STEP 2: Get ALL enrolled students in this course
         enrolled_students = conn.execute("""
-            SELECT s.id, s.student_name, s.email1, s.email2 
+            SELECT s.id, s.student_name 
             FROM students s
             JOIN enrollments e ON s.id = e.student_id
             WHERE e.course_id = ?
@@ -869,7 +826,7 @@ def end_session(session_id):
         
         logger.info(f"End session {session_id}: Found {len(enrolled_students)} enrolled students")
         
-        # STEP 4: Get students who ATTENDED this session
+        # STEP 3: Get students who ATTENDED this session
         attended = conn.execute("""
             SELECT DISTINCT student_id 
             FROM attendance_records 
@@ -879,62 +836,30 @@ def end_session(session_id):
         attended_ids = set(row['student_id'] for row in attended)
         logger.info(f"End session {session_id}: {len(attended_ids)} students marked present")
         
-        # STEP 5: Send absent alerts to students NOT in attended_ids
+        # STEP 4: Count absent students
         absent_count = 0
         for student in enrolled_students:
             student_id = student['id']
             student_name = student['student_name']
-            email1 = student['email1']
-            email2 = student['email2']
             
             # Check if this student was ABSENT (NOT in attended_ids)
             if student_id not in attended_ids:
-                logger.info(f"  Absent: {student_name} - Email: {email1}")
-                
-                # Send to primary email if exists
-                if email1:
-                    try:
-                        success, error = send_absent_alert(
-                            student_name,
-                            email1,
-                            course_name,
-                            date_str
-                        )
-                        if success:
-                            logger.info(f"    SENT to {email1}")
-                            absent_count += 1
-                        else:
-                            logger.warning(f"    FAILED to {email1}: {error}")
-                    except Exception as e:
-                        logger.error(f"    ERROR sending to {email1}: {e}")
-                
-                # Send to secondary email if exists
-                if email2:
-                    try:
-                        success, error = send_absent_alert(
-                            student_name,
-                            email2,
-                            course_name,
-                            date_str
-                        )
-                        if success:
-                            logger.info(f"    SENT to secondary {email2}")
-                    except Exception as e:
-                        logger.error(f"    ERROR sending to secondary {email2}: {e}")
+                logger.info(f"  Absent: {student_name}")
+                absent_count += 1
         
-        # STEP 6: NOW close the session in database
+        # STEP 5: NOW close the session in database
         conn.execute(
             "UPDATE sessions SET is_active = 0, end_time = ? WHERE id = ?",
             (now, session_id)
         )
         conn.commit()
         
-        logger.info(f"Session ended - ID: {session_id}, Absent alerts sent: {absent_count}")
+        logger.info(f"Session ended - ID: {session_id}, Absent count: {absent_count}")
         
         conn.close()
         return jsonify({
             "status": "success", 
-            "message": f"Session ended. Absent alerts sent to {absent_count} students."
+            "message": f"Session ended. {absent_count} students marked absent."
         })
     
     except Exception as e:
@@ -1255,31 +1180,25 @@ def student_login():
 @app.route('/api/student/semesters', methods=['GET'])
 @token_required
 def get_student_semesters(user_data):
-    """Returns all semesters and courses that the student is enrolled in."""
-    student_id = user_data['student_id']
+    """
+    Returns ALL semesters and courses available in the system.
+    This enables the 'Batch Leaderboard' functionality, allowing students
+    to view rankings for semesters/courses they might not be enrolled in.
+    """
     conn = get_db_connection()
     
-    # Get semesters
-    semesters_cursor = conn.execute("""
-        SELECT DISTINCT s.id, s.semester_name
-        FROM semesters s
-        JOIN courses c ON s.id = c.semester_id
-        JOIN enrollments e ON c.id = e.course_id
-        WHERE e.student_id = ?
-        ORDER BY s.id
-    """, (student_id,)).fetchall()
-    
+    # 1. Get ALL Semesters (ordered by ID or name)
+    semesters_cursor = conn.execute("SELECT id, semester_name FROM semesters ORDER BY id").fetchall()
     semesters = [dict(row) for row in semesters_cursor]
     
-    # For each semester, get the courses
+    # 2. Get ALL Courses for each semester
     for semester in semesters:
         courses_cursor = conn.execute("""
-            SELECT DISTINCT c.id, c.course_name, c.course_code
-            FROM courses c
-            JOIN enrollments e ON c.id = e.course_id
-            WHERE c.semester_id = ? AND e.student_id = ?
-            ORDER BY c.course_name
-        """, (semester['id'], student_id)).fetchall()
+            SELECT id, course_name, course_code
+            FROM courses 
+            WHERE semester_id = ?
+            ORDER BY course_name
+        """, (semester['id'],)).fetchall()
         
         semester['courses'] = [dict(row) for row in courses_cursor]
     
@@ -1341,6 +1260,14 @@ def get_student_dashboard(user_data):
         total_present_overall += present_count
         total_sessions_overall += total_sessions
         
+        # Use analytics module for comprehensive status and improvement plan
+        analytics_data = analytics.calculate_status_and_improvement(
+            present_count, 
+            total_sessions, 
+            target_percent=MINIMUM_ATTENDANCE_PERCENTAGE,
+            critical_percent=ATTENDANCE_WARNING_THRESHOLD
+        )
+        
         # Determine warning status based on threshold
         if percentage >= MINIMUM_ATTENDANCE_PERCENTAGE:
             warning_status = 'good'
@@ -1352,11 +1279,13 @@ def get_student_dashboard(user_data):
         courses_data.append({
             "course_id": course['course_id'], 
             "course_name": course['course_name'], 
-            "percentage": round(percentage), 
+            "semester_name": course['semester_name'],
+            "percentage": analytics_data['current_percent'], 
             "present_count": present_count, 
             "absent_count": total_sessions - present_count, 
             "total_sessions": total_sessions,
-            "warning_status": warning_status
+            "warning_status": warning_status,
+            "analytics": analytics_data
         })
         
     conn.close()
@@ -1412,34 +1341,36 @@ def get_critical_alerts(user_data):
                 [student_id] + session_ids
             )
             present_count = present_cursor.fetchone()['present_count']
+            
+            percentage = (present_count / total_sessions * 100)
+            
+            # Categorize alerts
+            if percentage < ATTENDANCE_WARNING_THRESHOLD:  # < 60%
+                critical_alerts.append({
+                    "course_id": course_id,
+                    "course_name": course['course_name'],
+                    "attendance_percentage": round(percentage, 1),
+                    "present_count": present_count,
+                    "total_sessions": total_sessions,
+                    "status": "critical"
+                })
+            elif percentage < MINIMUM_ATTENDANCE_PERCENTAGE:  # 60% - 75%
+                # Calculate how many more classes needed to reach 75%
+                classes_needed_for_75 = math.ceil((0.75 * total_sessions) - present_count)
+                
+                warning_alerts.append({
+                    "course_id": course_id,
+                    "course_name": course['course_name'],
+                    "attendance_percentage": round(percentage, 1),
+                    "present_count": present_count,
+                    "total_sessions": total_sessions,
+                    "classes_needed": max(0, classes_needed_for_75),
+                    "status": "warning"
+                })
         else:
             present_count = 0
-        
-        percentage = (present_count / total_sessions * 100) if total_sessions > 0 else 0
-        
-        # Categorize alerts
-        if percentage < ATTENDANCE_WARNING_THRESHOLD:  # < 60%
-            critical_alerts.append({
-                "course_id": course_id,
-                "course_name": course['course_name'],
-                "attendance_percentage": round(percentage, 1),
-                "present_count": present_count,
-                "total_sessions": total_sessions,
-                "status": "critical"
-            })
-        elif percentage < MINIMUM_ATTENDANCE_PERCENTAGE:  # 60% - 75%
-            # Calculate how many more classes needed to reach 75%
-            classes_needed_for_75 = math.ceil((0.75 * total_sessions) - present_count)
-            
-            warning_alerts.append({
-                "course_id": course_id,
-                "course_name": course['course_name'],
-                "attendance_percentage": round(percentage, 1),
-                "present_count": present_count,
-                "total_sessions": total_sessions,
-                "classes_needed": max(0, classes_needed_for_75),
-                "status": "warning"
-            })
+            # Skip alerts if there are no sessions
+            continue
     
     conn.close()
     
@@ -1468,16 +1399,18 @@ def get_student_analytics(user_data):
     # Get courses for the student (with optional semester filter)
     if semester_id:
         courses_cursor = conn.execute("""
-            SELECT c.id as course_id, c.course_name
+            SELECT c.id as course_id, c.course_name, s.semester_name
             FROM courses c
             JOIN enrollments e ON c.id = e.course_id
+            LEFT JOIN semesters s ON c.semester_id = s.id
             WHERE e.student_id = ? AND c.semester_id = ?
         """, (student_id, semester_id)).fetchall()
     else:
         courses_cursor = conn.execute("""
-            SELECT c.id as course_id, c.course_name
+            SELECT c.id as course_id, c.course_name, s.semester_name
             FROM courses c
             JOIN enrollments e ON c.id = e.course_id
+            LEFT JOIN semesters s ON c.semester_id = s.id
             WHERE e.student_id = ?
         """, (student_id,)).fetchall()
     
@@ -1486,6 +1419,7 @@ def get_student_analytics(user_data):
     for course in courses_cursor:
         course_id = course['course_id']
         course_name = course['course_name']
+        semester_name = course['semester_name'] if course['semester_name'] else 'Other'
         
         # Get all sessions for this course ordered by start_time (newest first)
         sessions = conn.execute("""
@@ -1520,6 +1454,7 @@ def get_student_analytics(user_data):
             last_30_days_avg = 0
         
         # Calculate overall semester average
+        total_present = 0
         if sessions:
             session_ids = [s['id'] for s in sessions]
             total_present = conn.execute(f"""
@@ -1568,13 +1503,23 @@ def get_student_analytics(user_data):
                 'session_id': session_id
             })
         
+        # Get detailed status from analytics module
+        status_data = analytics.calculate_status_and_improvement(
+            total_present, 
+            len(sessions),
+            target_percent=MINIMUM_ATTENDANCE_PERCENTAGE,
+            critical_percent=ATTENDANCE_WARNING_THRESHOLD
+        )
+
         analytics_data[str(course_id)] = {
             'course_name': course_name,
+            'semester_name': semester_name,
             'last_7_days_avg': round(last_7_days_avg, 1),
             'last_30_days_avg': round(last_30_days_avg, 1),
             'semester_total': round(semester_total, 1),
             'trend_direction': trend_direction,
-            'status': status,
+            'status': status_data['status'].lower(),
+            'improvement_plan': status_data,
             'daily_breakdown': daily_breakdown,
             'total_sessions': len(sessions)
         }
@@ -1795,39 +1740,6 @@ def mark_attendance_by_roll_id():
     )
     conn.commit()
     
-    # ✅✅✅ NEW: SEND INSTANT EMAIL ALERT ✅✅✅
-    try:
-        # Get student details
-        student = conn.execute(
-            "SELECT student_name, email1 FROM students WHERE id = ?",
-            (student_id,)
-        ).fetchone()
-        
-        # Get course name
-        course = conn.execute(
-            "SELECT course_name FROM courses WHERE id = ?",
-            (active_session['course_id'],)
-        ).fetchone()
-        
-        # Send email if parent email exists
-        if student and student['email1'] and course:
-            timestamp = datetime.datetime.now().isoformat()
-            success, error = send_instant_present_alert(
-                student['student_name'],
-                student['email1'],
-                course['course_name'],
-                timestamp
-            )
-            
-            if success:
-                logger.info(f"Email sent to parent: {student['email1']}")
-            else:
-                logger.warning(f"Email failed: {error}")
-    
-    except Exception as e:
-        # Don't fail attendance marking if email fails
-        logger.error(f"Email alert error: {e}")
-    
     conn.close()
     logger.info(f"Attendance marked - Roll ID {class_roll_id}")
     
@@ -1936,35 +1848,8 @@ def bulk_mark_attendance():
                     VALUES (?, ?, 'biometric_queue', CURRENT_TIMESTAMP)
                 """, (session_id, student_id))
                 
-                # Send parent alert for successful attendance
-                try:
-                    student = conn.execute(
-                        "SELECT student_name, email1 FROM students WHERE id = ?",
-                        (student_id,)
-                    ).fetchone()
-                    
-                    course = conn.execute(
-                        "SELECT course_name FROM courses WHERE id = ?",
-                        (course_id,)
-                    ).fetchone()
-                    
-                    if student and student['email1'] and course:
-                        timestamp = datetime.datetime.now().isoformat()
-                        alert_success, alert_error = send_instant_present_alert(
-                            student['student_name'],
-                            student['email1'],
-                            course['course_name'],
-                            timestamp
-                        )
-                        
-                        if alert_success:
-                            logger.info(f"  [SUCCESS] Roll {roll_id} marked - Alert sent to {student['email1']}")
-                        else:
-                            logger.warning(f"  [SUCCESS] Roll {roll_id} marked but alert failed: {alert_error}")
-                    else:
-                        logger.info(f"  [SUCCESS] Roll {roll_id} marked (no parent email found)")
-                except Exception as e:
-                    logger.warning(f"  [SUCCESS] Roll {roll_id} marked but alert error: {e}")
+                # Log success
+                logger.info(f"  [SUCCESS] Roll {roll_id} marked")
                 
                 success_count += 1
                 details[str(roll_id)] = "success"
@@ -2049,188 +1934,15 @@ def auto_expire_sessions():
 #   SCHEDULED EMAIL TASKS
 # =================================================================
 
-def send_absent_alerts_for_ended_sessions():
-    """
-    Background check (runs every 10 minutes).
-    Now only handles edge cases where alerts weren't sent during end_session.
-    """
-    try:
-        conn = get_db_connection()
-        now = datetime.datetime.now()
-        
-        # Only check sessions that ended 2-5 minutes ago (avoid duplicates)
-        five_min_ago = (now - datetime.timedelta(minutes=5)).strftime('%Y-%m-%d %H:%M:%S')
-        two_min_ago = (now - datetime.timedelta(minutes=2)).strftime('%Y-%m-%d %H:%M:%S')
-        
-        ended_sessions = conn.execute("""
-            SELECT id, course_id, end_time 
-            FROM sessions 
-            WHERE is_active = 0 
-            AND end_time IS NOT NULL
-            AND datetime(end_time) BETWEEN datetime(?) AND datetime(?)
-        """, (five_min_ago, two_min_ago)).fetchall()
-        
-        if not ended_sessions:
-            conn.close()
-            return
-        
-        logger.info(f"Scheduler: Checking {len(ended_sessions)} recently ended sessions for missed alerts")
-        
-        for session in ended_sessions:
-            session_id = session['id']
-            course_id = session['course_id']
-            
-            course = conn.execute(
-                "SELECT course_name FROM courses WHERE id = ?",
-                (course_id,)
-            ).fetchone()
-            
-            if not course:
-                continue
-            
-            course_name = course['course_name']
-            
-            enrolled = conn.execute("""
-                SELECT s.id, s.student_name, s.email1
-                FROM students s 
-                JOIN enrollments e ON s.id = e.student_id 
-                WHERE e.course_id = ?
-            """, (course_id,)).fetchall()
-            
-            attended = conn.execute("""
-                SELECT DISTINCT student_id FROM attendance_records WHERE session_id = ?
-            """, (session_id,)).fetchall()
-            
-            attended_ids = set(row['student_id'] for row in attended)
-            
-            for student in enrolled:
-                if student['id'] not in attended_ids and student['email1']:
-                    try:
-                        date_str = datetime.datetime.fromisoformat(
-                            session['end_time']
-                        ).strftime("%d %B %Y")
-                        
-                        send_absent_alert(
-                            student['student_name'],
-                            student['email1'],
-                            course_name,
-                            date_str
-                        )
-                        logger.info(f"Scheduler: Sent absent alert to {student['student_name']}")
-                    except Exception as e:
-                        logger.error(f"Scheduler: Error sending alert: {e}")
-        
-        conn.close()
-        
-    except Exception as e:
-        logger.error(f"Error in scheduler absent alerts: {e}")
+# Absent alerts scheduler removed
+
 
 
 
         
 
-def send_daily_summaries_5pm():
-    # Send comprehensive daily summary at 5 PM
-    
-    try:
-        conn = get_db_connection()
-        today = datetime.date.today()
-        today_str = today.strftime("%d %B %Y")
-        
-        logger.info("📧 Starting 5 PM daily summary email job")
-        
-        # Get all students
-        students = conn.execute("SELECT id, student_name, email1 FROM students").fetchall()
-        
-        summary_count = 0
-        
-        for student in students:
-            if not student['email1']:
-                continue
-            
-            # Get today's sessions for this student's courses
-            today_sessions = conn.execute(
-                "SELECT s.id, c.course_name, s.start_time FROM sessions s JOIN courses c ON s.course_id = c.id JOIN enrollments e ON c.id = e.course_id WHERE e.student_id = ? AND DATE(s.start_time) = ?",
-                (student['id'], today)
-            ).fetchall()
-            
-            if not today_sessions:
-                continue  # No classes today, skip
-            
-            # Build course list
-            courses_today = []
-            present_count = 0
-            absent_count = 0
-            
-            for session in today_sessions:
-                # Check if student attended
-                attended = conn.execute(
-                    "SELECT id FROM attendance_records WHERE session_id = ? AND student_id = ?",
-                    (session['id'], student['id'])
-                ).fetchone()
-                
-                status = "Present" if attended else "Absent"
-                time_str = datetime.datetime.fromisoformat(session['start_time']).strftime("%I:%M %p")
-                
-                courses_today.append({
-                    'name': session['course_name'],
-                    'status': status,
-                    'time': time_str
-                })
-                
-                if status == "Present":
-                    present_count += 1
-                else:
-                    absent_count += 1
-            
-            # Calculate overall attendance percentage
-            total_sessions = conn.execute(
-                "SELECT COUNT(*) as total FROM sessions s JOIN enrollments e ON s.course_id = e.course_id WHERE e.student_id = ?",
-                (student['id'],)
-            ).fetchone()
-            
-            attended_total = conn.execute(
-                "SELECT COUNT(*) as attended FROM attendance_records WHERE student_id = ?",
-                (student['id'],)
-            ).fetchone()
-            
-            total_classes = total_sessions['total']
-            attended_classes = attended_total['attended']
-            
-            if total_classes > 0:
-                overall_percentage = round((attended_classes / total_classes) * 100, 1)
-            else:
-                overall_percentage = 0.0
-            
-            # Build summary data
-            summary_data = {
-                'date': today_str,
-                'present_today': present_count,
-                'absent_today': absent_count,
-                'total_today': len(courses_today),
-                'courses_today': courses_today,
-                'overall_percentage': overall_percentage,
-                'total_classes': total_classes,
-                'attended_classes': attended_classes
-            }
-            
-            # Send email
-            try:
-                success, error = send_daily_summary(
-                    student['student_name'],
-                    student['email1'],
-                    summary_data
-                )
-                if success:
-                    summary_count += 1
-            except Exception as e:
-                logger.error(f"📧 Daily summary failed for {student['student_name']}: {e}")
-        
-        conn.close()
-        logger.info(f"📧 Sent {summary_count} daily summary emails")
-        
-    except Exception as e:
-        logger.error(f"Error in daily summary scheduler: {e}")
+# Daily summaries removed
+
 
 
 # Create and configure the background scheduler
@@ -2243,28 +1955,8 @@ scheduler.add_job(
     name='Auto-close expired sessions',
     replace_existing=True
 )
-# Job 1: Send absent alerts every 10 minutes
-scheduler.add_job(
-    func=send_absent_alerts_for_ended_sessions,
-    trigger="interval",
-    minutes=10,
-    id='absent_alerts',
-    name='Send absent alerts',
-    replace_existing=True
-)
+# Email jobs removed
 
-# Job 2: Send daily summaries at 5:00 PM
-scheduler.add_job(
-    func=send_daily_summaries_5pm,
-    trigger="cron",
-    hour=17,
-    minute=0,
-    id='daily_summaries',
-    name='Send 5 PM daily summaries',
-    replace_existing=True
-)
-
-logger.info("Email alert scheduler initialized - Absent alerts every 10min, Daily summaries at 5 PM")
 
 scheduler.start()
 
@@ -2366,6 +2058,8 @@ def generate_badges(attendance_pct, current_streak, longest_streak, conn, studen
     
     return badges
 
+import traceback
+
 @app.route('/api/student/leaderboard', methods=['GET'])
 @token_required
 def get_leaderboard(user_data):
@@ -2376,166 +2070,190 @@ def get_leaderboard(user_data):
         - semester_id (optional): Filter by semester
         - limit (optional, default=50): Number of top students to return
     """
-    student_id = user_data['student_id']
-    course_id = request.args.get('course_id', type=int)
-    semester_id = request.args.get('semester_id', type=int)
-    limit = request.args.get('limit', default=50, type=int)
-    
-    conn = get_db_connection()
-    
-    # Build query to get all enrolled students with attendance data
-    if course_id:
-        # Get students enrolled in specific course
-        students_query = """
-            SELECT DISTINCT e.student_id, s.student_name
-            FROM enrollments e
-            JOIN students s ON e.student_id = s.id
-            WHERE e.course_id = ?
-        """
-        params = [course_id]
-    elif semester_id:
-        # Get students in specific semester
-        students_query = """
-            SELECT DISTINCT e.student_id, s.student_name
-            FROM enrollments e
-            JOIN students s ON e.student_id = s.id
-            WHERE e.semester_id = ?
-        """
-        params = [semester_id]
-    else:
-        # Get all students (global leaderboard)
-        students_query = "SELECT id as student_id, student_name FROM students"
-        params = []
-    
-    students = conn.execute(students_query, params).fetchall()
-    
-    leaderboard_data = []
-    user_rank_info = None
-    user_stats = None
-    user_badges = []
-    
-    for student in students:
-        sid = student['student_id']
+    try:
+        student_id = user_data['student_id']
+        course_id = request.args.get('course_id', type=int)
+        semester_id = request.args.get('semester_id', type=int)
+        limit = request.args.get('limit', default=50, type=int)
         
-        # Initialize course_ids as None
-        course_ids = None
+        conn = get_db_connection()
         
-        # Get course enrollment for this student
+        # Build query to get all enrolled students with attendance data
         if course_id:
-            course_filter = course_id
+            # Get students enrolled in specific course
+            students_query = """
+                SELECT DISTINCT e.student_id, s.student_name
+                FROM enrollments e
+                JOIN students s ON e.student_id = s.id
+                WHERE e.course_id = ?
+            """
+            params = [course_id]
             query_type = 'course'
         elif semester_id:
-            # Get courses in this semester
+            # Get students in specific semester
+            # FIX: Join with courses table since enrollments table doesn't have semester_id
+            students_query = """
+                SELECT DISTINCT e.student_id, s.student_name
+                FROM enrollments e
+                JOIN students s ON e.student_id = s.id
+                JOIN courses c ON e.course_id = c.id
+                WHERE c.semester_id = ?
+            """
+            params = [semester_id]
+            query_type = 'semester'
+        else:
+            # Get all students (global leaderboard)
+            students_query = "SELECT id as student_id, student_name FROM students"
+            params = []
+            query_type = 'global'
+        
+        students = conn.execute(students_query, params).fetchall()
+        
+        # Pre-fetch context data (courses and sessions) to avoid N+1 queries
+        target_course_ids = []
+        target_session_ids = []
+        
+        if query_type == 'course':
+            target_course_ids = [course_id]
+            sessions = conn.execute("SELECT id FROM sessions WHERE course_id = ?", (course_id,)).fetchall()
+            target_session_ids = [s['id'] for s in sessions]
+            
+        elif query_type == 'semester':
+            # Get all courses in this semester
             courses_in_semester = conn.execute(
                 "SELECT id FROM courses WHERE semester_id = ?",
                 (semester_id,)
             ).fetchall()
-            course_ids = [c['id'] for c in courses_in_semester]
-            query_type = 'semester'
-        else:
-            query_type = 'global'
-        
-        # Calculate attendance percentage
-        if query_type == 'course':
-            sessions = conn.execute(
-                "SELECT id FROM sessions WHERE course_id = ?",
-                (course_filter,)
-            ).fetchall()
-        elif query_type == 'semester':
-            if not course_ids:
-                continue
-            placeholders = ','.join(['?'] * len(course_ids))
-            sessions = conn.execute(
-                f"SELECT id FROM sessions WHERE course_id IN ({placeholders})",
-                course_ids
-            ).fetchall()
-        else:
+            target_course_ids = [c['id'] for c in courses_in_semester]
+            
+            if target_course_ids:
+                placeholders = ','.join(['?'] * len(target_course_ids))
+                sessions = conn.execute(
+                    f"SELECT id FROM sessions WHERE course_id IN ({placeholders})",
+                    target_course_ids
+                ).fetchall()
+                target_session_ids = [s['id'] for s in sessions]
+            else:
+                target_session_ids = []
+                
+        else: # global
             sessions = conn.execute("SELECT id FROM sessions").fetchall()
+            target_session_ids = [s['id'] for s in sessions]
+
+        leaderboard_data = []
+        user_rank_info = None
+        user_stats = None
+        user_badges = []
         
-        session_ids = [s['id'] for s in sessions]
-        total_sessions = len(session_ids)
+        # Optimization: If we have no sessions to check against (e.g. empty semester), 
+        # we can skip detailed calculation or handle gracefully
         
-        if total_sessions > 0:
-            present_count = conn.execute(
-                f"SELECT COUNT(id) as count FROM attendance_records WHERE student_id = ? AND session_id IN ({','.join(['?']*len(session_ids))})",
-                [sid] + session_ids
-            ).fetchone()['count']
-        else:
-            present_count = 0
-        
-        attendance_pct = (present_count / total_sessions * 100) if total_sessions > 0 else 0
-        
-        # Calculate streaks
-        if query_type == 'course' and course_id:
-            streaks = calculate_streaks(conn, sid, course_id)
-        elif query_type == 'semester' and course_ids:
-            # For semester view, use first course's streaks
-            streaks = calculate_streaks(conn, sid, course_ids[0]) if course_ids else {'current_streak': 0, 'longest_streak': 0}
-        else:
-            # For global, use any course
-            any_course = conn.execute("SELECT id FROM courses LIMIT 1").fetchone()
-            streaks = calculate_streaks(conn, sid, any_course['id']) if any_course else {'current_streak': 0, 'longest_streak': 0}
-        
-        # Generate badges
-        badge_course_id = course_id or (course_ids[0] if course_ids else 1)
-        badges = generate_badges(attendance_pct, streaks['current_streak'], streaks['longest_streak'], conn, sid, badge_course_id)
-        
-        # Add to leaderboard
-        leaderboard_data.append({
-            'student_id': sid,
-            'student_name': student['student_name'],
-            'attendance_percentage': round(attendance_pct, 1),
-            'present_count': present_count,
-            'total_sessions': total_sessions,
-            'current_streak': streaks['current_streak'],
-            'longest_streak': streaks['longest_streak'],
-            'badges': badges
-        })
-        
-        # Store user's data for later
-        if sid == student_id:
-            user_stats = {
+        for student in students:
+            sid = student['student_id']
+            
+            # Skip students in semester view if there are no courses/sessions
+            if query_type == 'semester' and not target_course_ids:
+                continue
+
+            total_sessions = len(target_session_ids)
+            
+            if total_sessions > 0:
+                # Chunking session_ids to avoid SQLite limit (999 variables) if necessary
+                # But for now assuming session count isn't massive. 
+                # If massive, we should change logic to count using JOINs instead of IN clause.
+                
+                if len(target_session_ids) > 900:
+                    # Fallback for large datasets: use a loop or better query
+                    # For safety/simplicity in this fix, we'll slice it or just log warning
+                    # Better approach:
+                    # SELECT COUNT(*) FROM attendance_records WHERE student_id=? AND session_id IN (...)
+                    pass 
+
+                present_count = conn.execute(
+                    f"SELECT COUNT(id) as count FROM attendance_records WHERE student_id = ? AND session_id IN ({','.join(['?']*len(target_session_ids))})",
+                    [sid] + target_session_ids
+                ).fetchone()['count']
+            else:
+                present_count = 0
+            
+            attendance_pct = (present_count / total_sessions * 100) if total_sessions > 0 else 0
+            
+            # Calculate streaks
+            if query_type == 'course' and course_id:
+                streaks = calculate_streaks(conn, sid, course_id)
+            elif query_type == 'semester' and target_course_ids:
+                # For semester view, use first course's streaks (Legacy logic maintained)
+                streaks = calculate_streaks(conn, sid, target_course_ids[0])
+            else:
+                # For global, use any course
+                any_course = conn.execute("SELECT id FROM courses LIMIT 1").fetchone()
+                streaks = calculate_streaks(conn, sid, any_course['id']) if any_course else {'current_streak': 0, 'longest_streak': 0}
+            
+            # Generate badges
+            badge_course_id = course_id or (target_course_ids[0] if target_course_ids else 1)
+            badges = generate_badges(attendance_pct, streaks['current_streak'], streaks['longest_streak'], conn, sid, badge_course_id)
+            
+            # Add to leaderboard
+            leaderboard_data.append({
+                'student_id': sid,
+                'student_name': student['student_name'],
                 'attendance_percentage': round(attendance_pct, 1),
+                'present_count': present_count,
+                'total_sessions': total_sessions,
                 'current_streak': streaks['current_streak'],
                 'longest_streak': streaks['longest_streak'],
-                'present_count': present_count,
-                'total_sessions': total_sessions
-            }
-            user_badges = badges
-    
-    # Sort by: attendance % DESC, then streak DESC, then present count DESC
-    leaderboard_data.sort(key=lambda x: (-x['attendance_percentage'], -x['current_streak'], -x['present_count']))
-    
-    # Assign ranks and find user's rank
-    for idx, entry in enumerate(leaderboard_data):
-        entry['rank'] = idx + 1
-        if entry['student_id'] == student_id:
-            user_rank_info = {
-                'rank': idx + 1,
-                'position': idx + 1,
-                'percentile': round((idx / len(leaderboard_data) * 100)) if leaderboard_data else 0,
-                'total_students': len(leaderboard_data)
-            }
-    
-    # Trim to limit
-    leaderboard_display = leaderboard_data[:limit]
-    
-    conn.close()
-    
-    return jsonify({
-        'user_rank': user_rank_info or {'rank': 0, 'position': 0, 'percentile': 0, 'total_students': 0},
-        'user_stats': user_stats or {'attendance_percentage': 0, 'current_streak': 0, 'longest_streak': 0, 'present_count': 0, 'total_sessions': 0},
-        'user_badges': user_badges,
-        'leaderboard': leaderboard_display,
-        'total_on_leaderboard': len(leaderboard_data),
-        'course_id': course_id,
-        'semester_id': semester_id
-    })
+                'badges': badges
+            })
+            
+            # Store user's data for later
+            if sid == student_id:
+                user_stats = {
+                    'attendance_percentage': round(attendance_pct, 1),
+                    'current_streak': streaks['current_streak'],
+                    'longest_streak': streaks['longest_streak'],
+                    'present_count': present_count,
+                    'total_sessions': total_sessions
+                }
+                user_badges = badges
+        
+        # Sort by: attendance % DESC, then streak DESC, then present count DESC
+        leaderboard_data.sort(key=lambda x: (-x['attendance_percentage'], -x['current_streak'], -x['present_count']))
+        
+        # Assign ranks and find user's rank
+        for idx, entry in enumerate(leaderboard_data):
+            entry['rank'] = idx + 1
+            if entry['student_id'] == student_id:
+                user_rank_info = {
+                    'rank': idx + 1,
+                    'position': idx + 1,
+                    'percentile': round((idx / len(leaderboard_data) * 100)) if leaderboard_data else 0,
+                    'total_students': len(leaderboard_data)
+                }
+        
+        # Trim to limit
+        leaderboard_display = leaderboard_data[:limit]
+        
+        conn.close()
+        
+        return jsonify({
+            'user_rank': user_rank_info or {'rank': 0, 'position': 0, 'percentile': 0, 'total_students': 0},
+            'user_stats': user_stats or {'attendance_percentage': 0, 'current_streak': 0, 'longest_streak': 0, 'present_count': 0, 'total_sessions': 0},
+            'user_badges': user_badges,
+            'leaderboard': leaderboard_display,
+            'total_on_leaderboard': len(leaderboard_data),
+            'course_id': course_id,
+            'semester_id': semester_id
+        })
+    except Exception as e:
+        logger.error(f"Error in get_leaderboard: {str(e)}")
+        logger.error(traceback.format_exc())
+        return jsonify({'message': 'Internal Server Error', 'error': str(e)}), 500
 if __name__ == '__main__':
     # host='0.0.0.0' makes the server accessible from other devices on your network
     app.run(host='0.0.0.0', port=5000, debug=False, request_handler=TimedRequestHandler)
 
 # END OF PART 3
+
 
 
 

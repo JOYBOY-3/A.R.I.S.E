@@ -16,6 +16,10 @@
 </head>
 
 <body>
+    <!-- Theme Toggle Button -->
+    <button class="theme-toggle" title="Toggle Dark Mode">
+        <span id="theme-icon">🌙</span>
+    </button>
     <div class="container" style="max-width: 500px;">
 
         <!-- LOGIN VIEW -->
@@ -42,15 +46,18 @@
                 <button id="logout-button" class="button-danger">Logout</button>
             </div>
 
-            <div class="stat-card">
-                <h3>Overall Attendance</h3>
-                <p class="live-counter" id="overall-percentage">0%</p>
-                <p id="semester-label" style="color: var(--text-light); font-size: 0.9rem; margin-top: 0.5rem;"></p>
+            <!-- Analytics & Leaderboard Buttons -->
+            <div style="display: flex; gap: 0.5rem; margin-bottom: 1.5rem;">
+                <button id="view-analytics-button" class="button-primary" style="flex: 1; padding: 0.75rem;">📊 View
+                    Analytics</button>
+                <button id="view-leaderboard-button" class="button-primary" style="flex: 1; padding: 0.75rem;">🏆
+                    Leaderboard</button>
             </div>
 
-            <div style="margin: 1.5rem 0 1rem 0;">
+            <!-- 1. Filter Section (Moved to Top) -->
+            <div style="margin: 0 0 1rem 0;">
                 <label for="semester-filter"
-                    style="font-weight: bold; display: block; margin-bottom: 0.75rem; font-size: 1rem;">Filter by
+                    style="font-weight: bold; display: block; margin-bottom: 0.5rem; font-size: 0.9rem;">Filter by
                     Semester:</label>
                 <div style="display: flex; gap: 0.75rem; align-items: stretch;">
                     <select id="semester-filter"
@@ -63,13 +70,17 @@
                 </div>
             </div>
 
-            <h2>Your Courses</h2>
-            <div style="display: flex; gap: 0.5rem; margin-bottom: 1rem;">
-                <button id="view-analytics-button" class="button-primary" style="flex: 1; padding: 0.75rem;">📊 View
-                    Analytics</button>
-                <button id="view-leaderboard-button" class="button-primary" style="flex: 1; padding: 0.75rem;">🏆
-                    Leaderboard</button>
+            <!-- 2. Overall Attendance Card -->
+            <div class="stat-card">
+                <h3>Overall Attendance</h3>
+                <p class="live-counter" id="overall-percentage">0%</p>
+                <p id="semester-label" style="color: var(--text-light); font-size: 0.9rem; margin-top: 0.5rem;"></p>
             </div>
+
+
+
+            <!-- 4. Courses Container (With Accordion Support) -->
+            <h2 id="courses-title">Your Courses</h2>
             <div id="courses-container"></div>
         </div>
 
@@ -108,6 +119,17 @@
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
                 <h1 style="margin: 0;">Attendance Analytics</h1>
                 <button id="back-to-courses" class="button-secondary" style="margin: 0;">← Back</button>
+            </div>
+
+            <!-- Filter Section -->
+            <div style="margin: 0 0 1rem 0;">
+                <label for="analytics-semester-filter"
+                    style="font-weight: bold; display: block; margin-bottom: 0.5rem; font-size: 0.9rem;">Filter by
+                    Semester:</label>
+                <select id="analytics-semester-filter"
+                    style="width: 100%; padding: 0.65rem 0.75rem; border: 2px solid var(--border-color); border-radius: 6px; background-color: var(--bg-secondary); color: var(--text-color); font-size: 0.95rem; font-family: inherit; cursor: pointer;">
+                    <option value="">All Semesters</option>
+                </select>
             </div>
 
             <!-- Course Analytics Cards -->
@@ -246,7 +268,8 @@
                 white-space: nowrap;
             }
 
-            #leaderboard-course-filter {
+            #leaderboard-course-filter,
+            #leaderboard-semester-filter {
                 flex: 1;
                 min-width: 200px;
                 padding: 0.9rem 1.2rem;
@@ -265,19 +288,22 @@
                 padding-right: 3rem;
             }
 
-            #leaderboard-course-filter:hover {
+            #leaderboard-course-filter:hover,
+            #leaderboard-semester-filter:hover {
                 border-color: #00d4ff;
                 background: rgba(102, 126, 234, 0.15);
                 transform: translateY(-2px);
             }
 
-            #leaderboard-course-filter:focus {
+            #leaderboard-course-filter:focus,
+            #leaderboard-semester-filter:focus {
                 outline: none;
                 border-color: #00d4ff;
                 box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.2);
             }
 
-            #leaderboard-course-filter option {
+            #leaderboard-course-filter option,
+            #leaderboard-semester-filter option {
                 background: var(--bg-card);
                 color: var(--text-primary);
                 padding: 1rem;
@@ -286,12 +312,16 @@
 
             #leaderboard-course-filter option:hover,
             #leaderboard-course-filter option:checked,
-            #leaderboard-course-filter option:focus {
+            #leaderboard-course-filter option:focus,
+            #leaderboard-semester-filter option:hover,
+            #leaderboard-semester-filter option:checked,
+            #leaderboard-semester-filter option:focus {
                 background: linear-gradient(135deg, rgba(102, 126, 234, 0.8), rgba(118, 75, 162, 0.8));
                 color: white;
             }
 
-            #leaderboard-course-filter option:checked {
+            #leaderboard-course-filter option:checked,
+            #leaderboard-semester-filter option:checked {
                 background: linear-gradient(135deg, rgba(102, 126, 234, 0.9), rgba(118, 75, 162, 0.9));
                 color: white;
                 font-weight: 700;
@@ -566,16 +596,16 @@
             }
 
             .leaderboard-table-wrapper {
-                overflow-x: auto;
+                overflow-x: hidden;
                 border-radius: 16px;
                 -webkit-overflow-scrolling: touch;
             }
 
             .leaderboard-table {
                 width: 100%;
+                table-layout: fixed;
                 border-collapse: separate;
                 border-spacing: 0;
-                min-width: 600px;
             }
 
             .leaderboard-table thead {
@@ -586,24 +616,41 @@
             }
 
             .leaderboard-table th {
-                padding: 1rem;
+                padding: 1rem 0.75rem;
                 text-align: left;
                 font-weight: 700;
-                font-size: 0.85rem;
-                letter-spacing: 1px;
+                font-size: 0.9rem;
+                letter-spacing: 0.5px;
                 text-transform: uppercase;
                 color: #00d4ff;
                 border-bottom: 2px solid rgba(102, 126, 234, 0.3);
+                white-space: nowrap;
+                box-sizing: border-box;
             }
 
             .leaderboard-table th:first-child {
                 text-align: center;
-                width: 80px;
+                width: 15%;
             }
 
-            .leaderboard-table th:nth-child(3),
+            .leaderboard-table th:nth-child(2) {
+                width: 45%;
+                padding-left: 1.5rem;
+            }
+
+            .leaderboard-table th:nth-child(3) {
+                text-align: center;
+                width: 20%;
+                font-size: 0.85rem;
+                letter-spacing: 1px;
+            }
+
             .leaderboard-table th:nth-child(4) {
                 text-align: center;
+                width: 20%;
+                font-size: 0.85rem;
+                letter-spacing: 1px;
+                padding-right: 1.5rem;
             }
 
             .leaderboard-table tbody tr {
@@ -626,7 +673,6 @@
 
             .leaderboard-table tbody tr:hover {
                 background: rgba(102, 126, 234, 0.1);
-                transform: translateX(5px);
             }
 
             .leaderboard-table tbody tr:hover::after {
@@ -640,28 +686,38 @@
             }
 
             .leaderboard-table td {
-                padding: 1.25rem 1rem;
+                padding: 0.75rem 0.5rem;
                 border-bottom: 1px solid rgba(255, 255, 255, 0.05);
                 color: var(--text-primary);
+                vertical-align: middle;
+                box-sizing: border-box;
             }
 
             .leaderboard-table td:first-child {
                 text-align: center;
             }
 
-            .leaderboard-table td:nth-child(3),
-            .leaderboard-table td:nth-child(4) {
+            .leaderboard-table td:nth-child(2) {
+                padding-left: 1.5rem;
+            }
+
+            .leaderboard-table td:nth-child(3) {
                 text-align: center;
             }
 
+            .leaderboard-table td:nth-child(4) {
+                text-align: center;
+                padding-right: 1.5rem;
+            }
+
             .leaderboard-rank-badge {
-                width: 48px;
-                height: 48px;
+                width: 40px;
+                height: 40px;
                 border-radius: 50%;
                 display: inline-flex;
                 align-items: center;
                 justify-content: center;
-                font-weight: 900;
+                font-weight: 800;
                 font-size: 1rem;
                 box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
                 transition: all 0.3s ease;
@@ -697,13 +753,17 @@
 
             .leaderboard-student-info {
                 display: flex;
-                align-items: center;
-                gap: 0.75rem;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.25rem;
             }
 
             .leaderboard-student-name {
                 font-weight: 600;
                 font-size: 1rem;
+                white-space: normal;
+                word-wrap: break-word;
+                overflow-wrap: break-word;
             }
 
             .leaderboard-student-badges {
@@ -719,9 +779,9 @@
 
             .leaderboard-attendance-value {
                 font-weight: 700;
-                font-size: 1.1rem;
-                padding: 0.5rem 1rem;
-                border-radius: 12px;
+                font-size: 0.75rem;
+                padding: 0.25rem 0.5rem;
+                border-radius: 6px;
                 display: inline-block;
             }
 
@@ -744,12 +804,16 @@
             }
 
             .leaderboard-streak-value {
-                display: inline-flex;
-                align-items: center;
-                gap: 0.5rem;
-                padding: 0.5rem 1rem;
-                border-radius: 12px;
                 font-weight: 700;
+                font-size: 0.75rem;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 0.15rem;
+                padding: 0.25rem 0.5rem;
+                border-radius: 6px;
+                width: fit-content;
+                margin: 0 auto;
             }
 
             .leaderboard-streak-value.high {
@@ -900,7 +964,7 @@
                 .leaderboard-table th,
                 .leaderboard-table td {
                     padding: 0.6rem 0.4rem;
-                    font-size: 0.85rem;
+                    font-size: 0.75rem;
                 }
 
                 .leaderboard-rank-badge {
@@ -936,7 +1000,13 @@
             <!-- Filter Section -->
             <div class="leaderboard-filter-section">
                 <div class="leaderboard-filter-wrapper">
-                    <span class="leaderboard-filter-label">📚 Filter by Course:</span>
+                    <span class="leaderboard-filter-label">🗓️ Semester:</span>
+                    <select id="leaderboard-semester-filter">
+                        <option value="">All Semesters</option>
+                    </select>
+                </div>
+                <div class="leaderboard-filter-wrapper">
+                    <span class="leaderboard-filter-label">📚 Course:</span>
                     <select id="leaderboard-course-filter">
                         <option value="">All Courses</option>
                     </select>
@@ -992,8 +1062,8 @@
                         <thead>
                             <tr>
                                 <th>Rank</th>
-                                <th>Student</th>
-                                <th>Attendance</th>
+                                <th>Student Name</th>
+                                <th>ATT.</th>
                                 <th>Streak</th>
                             </tr>
                         </thead>

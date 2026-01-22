@@ -1,0 +1,15 @@
+my ARISE one software that work locally without internet and with internet through cloud in one classroom where this is one biometric smart scanner connected to teacher laptop hotspot where arise server is in the pendrive running on a teacher's laptop and when the pendrive plug in the laptop and get the inetrnet connection and autmatically it will create a backup in cloud and update the db in in cloud arise server 
+ 
+ so basicall for an example ARISE is a software that is customisable for one specific classroom lets example i am currenty pursuing MCA from sarala birla university so my classrom is MCA 2024-2026 batch so our ARISE attendance db is for MCA(2024-2026) batch attendance where in mca we have only 4 semeseters 
+ 
+ i want to make our A.R.I.S.E project that work both for online and offlne and classed as you undertsand from the project bleprint pdf 
+ 
+ but i want analytics section bot in the admina and but also in teacher panel the analytics of admin panel is for provide all ttype of analytics and trends of one classroom batch it provide not just analytics but also provide trends and  all the organisational level analysis for the imporvements of the specific classroom batch. But in the teacher panel analytics section it should provide only their course specific analytics and all the analysis trends for one course 
+ 
+ i hope you understand the analytics section 
+ 
+ but in student PWA it should provide the semester wise or all semester or specific semester options selection to check there in detail in depth attendance with having aspecial features like `status and improveme` 
+ 
+ so i want you guide me all the improvements which i need and also you suggest me the impeovement which will be necessary for this project and also make the ARISE truly a revolutionary product 
+ 
+ please help me how to improve our ARISE project with step by step so it will become exceptionally good and complete finished product for launch

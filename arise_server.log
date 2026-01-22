@@ -1,5 +1,25 @@
-2026-01-11 13:15:25,043 - INFO - Server started - Auto-expire scheduler active
-2026-01-11 13:15:32,780 - ERROR - Exception on /api/teacher/batchcodes [GET]
+2026-01-22 16:36:55,185 - INFO - Teacher login attempt - CourseCode: MCA101
+2026-01-22 16:36:55,187 - INFO - Teacher login successful - Course: Introduction To Programming
+2026-01-22 16:43:23,442 - INFO - Scheduler initialized - Email alerts DISABLED
+2026-01-22 16:43:23,449 - INFO - Server started - Auto-expire scheduler active
+2026-01-22 16:54:35,531 - INFO - Server started - Auto-expire scheduler active
+2026-01-22 17:10:28,879 - INFO - Server started - Auto-expire scheduler active
+2026-01-22 17:10:40,662 - INFO - Teacher login attempt - CourseCode: MCA101
+2026-01-22 17:10:40,663 - INFO - Teacher login successful - Course: Introduction To Programming
+2026-01-22 17:53:51,365 - INFO - Server started - Auto-expire scheduler active
+2026-01-22 17:55:44,947 - INFO - Server started - Auto-expire scheduler active
+2026-01-22 17:56:23,591 - INFO - Teacher login attempt - CourseCode: MCA101
+2026-01-22 17:56:23,593 - INFO - Teacher login successful - Course: Introduction To Programming
+2026-01-22 18:04:58,517 - INFO - Server started - Auto-expire scheduler active
+2026-01-22 18:19:51,069 - INFO - Server started - Auto-expire scheduler active
+2026-01-22 18:25:18,708 - INFO - Server started - Auto-expire scheduler active
+2026-01-22 18:30:04,630 - INFO - Server started - Auto-expire scheduler active
+2026-01-22 18:36:24,681 - INFO - Server started - Auto-expire scheduler active
+2026-01-22 18:41:11,585 - INFO - Server started - Auto-expire scheduler active
+2026-01-22 18:44:13,926 - INFO - Server started - Auto-expire scheduler active
+2026-01-22 19:12:11,184 - INFO - Server started - Auto-expire scheduler active
+2026-01-22 19:23:20,378 - INFO - Server started - Auto-expire scheduler active
+2026-01-22 19:23:38,379 - ERROR - Exception on /api/student/dashboard [GET]
 Traceback (most recent call last):
   File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 1511, in wsgi_app
     response = self.full_dispatch_request()
@@ -10,850 +30,13 @@ Traceback (most recent call last):
   File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 902, in dispatch_request
     return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
-  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\server.py", line 536, in get_batchcodes
-    batchcodes = [row['batchcode'] for row in conn.execute("SELECT batchcode FROM courses ORDER BY batchcode").fetchall()]
-                                              ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-sqlite3.OperationalError: no such table: courses
-2026-01-11 13:15:39,769 - ERROR - Exception on /api/teacher/batchcodes [GET]
-Traceback (most recent call last):
-  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 1511, in wsgi_app
-    response = self.full_dispatch_request()
-  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 919, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 917, in full_dispatch_request
-    rv = self.dispatch_request()
-  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 902, in dispatch_request
-    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
-           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
-  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\server.py", line 536, in get_batchcodes
-    batchcodes = [row['batchcode'] for row in conn.execute("SELECT batchcode FROM courses ORDER BY batchcode").fetchall()]
-                                              ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-sqlite3.OperationalError: no such table: courses
-2026-01-11 13:15:40,666 - ERROR - Exception on /api/teacher/batchcodes [GET]
-Traceback (most recent call last):
-  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 1511, in wsgi_app
-    response = self.full_dispatch_request()
-  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 919, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 917, in full_dispatch_request
-    rv = self.dispatch_request()
-  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 902, in dispatch_request
-    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
-           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
-  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\server.py", line 536, in get_batchcodes
-    batchcodes = [row['batchcode'] for row in conn.execute("SELECT batchcode FROM courses ORDER BY batchcode").fetchall()]
-                                              ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-sqlite3.OperationalError: no such table: courses
-2026-01-11 13:15:41,385 - ERROR - Exception on /api/teacher/batchcodes [GET]
-Traceback (most recent call last):
-  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 1511, in wsgi_app
-    response = self.full_dispatch_request()
-  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 919, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 917, in full_dispatch_request
-    rv = self.dispatch_request()
-  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 902, in dispatch_request
-    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
-           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
-  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\server.py", line 536, in get_batchcodes
-    batchcodes = [row['batchcode'] for row in conn.execute("SELECT batchcode FROM courses ORDER BY batchcode").fetchall()]
-                                              ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-sqlite3.OperationalError: no such table: courses
-2026-01-11 13:15:56,864 - ERROR - Exception on /api/teacher/batchcodes [GET]
-Traceback (most recent call last):
-  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 1511, in wsgi_app
-    response = self.full_dispatch_request()
-  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 919, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 917, in full_dispatch_request
-    rv = self.dispatch_request()
-  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 902, in dispatch_request
-    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
-           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
-  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\server.py", line 536, in get_batchcodes
-    batchcodes = [row['batchcode'] for row in conn.execute("SELECT batchcode FROM courses ORDER BY batchcode").fetchall()]
-                                              ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-sqlite3.OperationalError: no such table: courses
-2026-01-11 13:20:25,044 - ERROR - Error in auto_expire_sessions: no such table: sessions
-Traceback (most recent call last):
-  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\server.py", line 1421, in auto_expire_sessions
-    expired_sessions = conn.execute("""
-                       ~~~~~~~~~~~~^^^^
-        SELECT id, course_id, start_time, end_time
-        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    ...<2 lines>...
-        AND datetime(end_time) < datetime(?)
-        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    """, (now_str,)).fetchall()
-    ^^^^^^^^^^^^^^^^
-sqlite3.OperationalError: no such table: sessions
-2026-01-11 13:31:09,414 - INFO - Server started - Auto-expire scheduler active
-2026-01-11 13:31:20,979 - ERROR - Exception on /api/teacher/batchcodes [GET]
-Traceback (most recent call last):
-  File "d:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 1511, in wsgi_app
-    response = self.full_dispatch_request()
-  File "d:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 919, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-  File "d:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 917, in full_dispatch_request
-    rv = self.dispatch_request()
-  File "d:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 902, in dispatch_request
-    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
-           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
-  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\server.py", line 536, in get_batchcodes
-    batchcodes = [row['batchcode'] for row in conn.execute("SELECT batchcode FROM courses ORDER BY batchcode").fetchall()]
-                                              ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-sqlite3.OperationalError: no such table: courses
-2026-01-11 13:31:41,043 - INFO - Server started - Auto-expire scheduler active
-2026-01-11 13:35:18,276 - INFO - Server started - Auto-expire scheduler active
-2026-01-11 13:35:22,955 - ERROR - Exception on /api/teacher/batchcodes [GET]
-Traceback (most recent call last):
-  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 1511, in wsgi_app
-    response = self.full_dispatch_request()
-  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 919, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 917, in full_dispatch_request
-    rv = self.dispatch_request()
-  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 902, in dispatch_request
-    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
-           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
-  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\server.py", line 536, in get_batchcodes
-    batchcodes = [row['batchcode'] for row in conn.execute("SELECT batchcode FROM courses ORDER BY batchcode").fetchall()]
-                                              ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-sqlite3.OperationalError: no such table: courses
-2026-01-11 13:35:23,958 - ERROR - Exception on /api/teacher/batchcodes [GET]
-Traceback (most recent call last):
-  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 1511, in wsgi_app
-    response = self.full_dispatch_request()
-  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 919, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 917, in full_dispatch_request
-    rv = self.dispatch_request()
-  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 902, in dispatch_request
-    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
-           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
-  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\server.py", line 536, in get_batchcodes
-    batchcodes = [row['batchcode'] for row in conn.execute("SELECT batchcode FROM courses ORDER BY batchcode").fetchall()]
-                                              ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-sqlite3.OperationalError: no such table: courses
-2026-01-11 13:35:24,729 - ERROR - Exception on /api/teacher/batchcodes [GET]
-Traceback (most recent call last):
-  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 1511, in wsgi_app
-    response = self.full_dispatch_request()
-  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 919, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 917, in full_dispatch_request
-    rv = self.dispatch_request()
-  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 902, in dispatch_request
-    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
-           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
-  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\server.py", line 536, in get_batchcodes
-    batchcodes = [row['batchcode'] for row in conn.execute("SELECT batchcode FROM courses ORDER BY batchcode").fetchall()]
-                                              ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-sqlite3.OperationalError: no such table: courses
-2026-01-11 13:35:25,228 - ERROR - Exception on /api/teacher/batchcodes [GET]
-Traceback (most recent call last):
-  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 1511, in wsgi_app
-    response = self.full_dispatch_request()
-  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 919, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 917, in full_dispatch_request
-    rv = self.dispatch_request()
-  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 902, in dispatch_request
-    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
-           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
-  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\server.py", line 536, in get_batchcodes
-    batchcodes = [row['batchcode'] for row in conn.execute("SELECT batchcode FROM courses ORDER BY batchcode").fetchall()]
-                                              ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-sqlite3.OperationalError: no such table: courses
-2026-01-11 13:35:25,372 - ERROR - Exception on /api/teacher/batchcodes [GET]
-Traceback (most recent call last):
-  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 1511, in wsgi_app
-    response = self.full_dispatch_request()
-  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 919, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 917, in full_dispatch_request
-    rv = self.dispatch_request()
-  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 902, in dispatch_request
-    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
-           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
-  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\server.py", line 536, in get_batchcodes
-    batchcodes = [row['batchcode'] for row in conn.execute("SELECT batchcode FROM courses ORDER BY batchcode").fetchall()]
-                                              ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-sqlite3.OperationalError: no such table: courses
-2026-01-11 13:35:25,533 - ERROR - Exception on /api/teacher/batchcodes [GET]
-Traceback (most recent call last):
-  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 1511, in wsgi_app
-    response = self.full_dispatch_request()
-  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 919, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 917, in full_dispatch_request
-    rv = self.dispatch_request()
-  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 902, in dispatch_request
-    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
-           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
-  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\server.py", line 536, in get_batchcodes
-    batchcodes = [row['batchcode'] for row in conn.execute("SELECT batchcode FROM courses ORDER BY batchcode").fetchall()]
-                                              ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-sqlite3.OperationalError: no such table: courses
-2026-01-11 13:35:25,688 - ERROR - Exception on /api/teacher/batchcodes [GET]
-Traceback (most recent call last):
-  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 1511, in wsgi_app
-    response = self.full_dispatch_request()
-  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 919, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 917, in full_dispatch_request
-    rv = self.dispatch_request()
-  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 902, in dispatch_request
-    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
-           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
-  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\server.py", line 536, in get_batchcodes
-    batchcodes = [row['batchcode'] for row in conn.execute("SELECT batchcode FROM courses ORDER BY batchcode").fetchall()]
-                                              ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-sqlite3.OperationalError: no such table: courses
-2026-01-11 13:35:25,841 - ERROR - Exception on /api/teacher/batchcodes [GET]
-Traceback (most recent call last):
-  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 1511, in wsgi_app
-    response = self.full_dispatch_request()
-  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 919, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 917, in full_dispatch_request
-    rv = self.dispatch_request()
-  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 902, in dispatch_request
-    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
-           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
-  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\server.py", line 536, in get_batchcodes
-    batchcodes = [row['batchcode'] for row in conn.execute("SELECT batchcode FROM courses ORDER BY batchcode").fetchall()]
-                                              ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-sqlite3.OperationalError: no such table: courses
-2026-01-11 13:35:26,006 - ERROR - Exception on /api/teacher/batchcodes [GET]
-Traceback (most recent call last):
-  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 1511, in wsgi_app
-    response = self.full_dispatch_request()
-  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 919, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 917, in full_dispatch_request
-    rv = self.dispatch_request()
-  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 902, in dispatch_request
-    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
-           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
-  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\server.py", line 536, in get_batchcodes
-    batchcodes = [row['batchcode'] for row in conn.execute("SELECT batchcode FROM courses ORDER BY batchcode").fetchall()]
-                                              ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-sqlite3.OperationalError: no such table: courses
-2026-01-11 13:35:26,162 - ERROR - Exception on /api/teacher/batchcodes [GET]
-Traceback (most recent call last):
-  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 1511, in wsgi_app
-    response = self.full_dispatch_request()
-  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 919, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 917, in full_dispatch_request
-    rv = self.dispatch_request()
-  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 902, in dispatch_request
-    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
-           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
-  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\server.py", line 536, in get_batchcodes
-    batchcodes = [row['batchcode'] for row in conn.execute("SELECT batchcode FROM courses ORDER BY batchcode").fetchall()]
-                                              ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-sqlite3.OperationalError: no such table: courses
-2026-01-11 13:35:26,303 - ERROR - Exception on /api/teacher/batchcodes [GET]
-Traceback (most recent call last):
-  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 1511, in wsgi_app
-    response = self.full_dispatch_request()
-  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 919, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 917, in full_dispatch_request
-    rv = self.dispatch_request()
-  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 902, in dispatch_request
-    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
-           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
-  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\server.py", line 536, in get_batchcodes
-    batchcodes = [row['batchcode'] for row in conn.execute("SELECT batchcode FROM courses ORDER BY batchcode").fetchall()]
-                                              ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-sqlite3.OperationalError: no such table: courses
-2026-01-11 13:35:26,462 - ERROR - Exception on /api/teacher/batchcodes [GET]
-Traceback (most recent call last):
-  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 1511, in wsgi_app
-    response = self.full_dispatch_request()
-  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 919, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 917, in full_dispatch_request
-    rv = self.dispatch_request()
-  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 902, in dispatch_request
-    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
-           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
-  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\server.py", line 536, in get_batchcodes
-    batchcodes = [row['batchcode'] for row in conn.execute("SELECT batchcode FROM courses ORDER BY batchcode").fetchall()]
-                                              ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-sqlite3.OperationalError: no such table: courses
-2026-01-11 13:35:26,617 - ERROR - Exception on /api/teacher/batchcodes [GET]
-Traceback (most recent call last):
-  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 1511, in wsgi_app
-    response = self.full_dispatch_request()
-  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 919, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 917, in full_dispatch_request
-    rv = self.dispatch_request()
-  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 902, in dispatch_request
-    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
-           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
-  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\server.py", line 536, in get_batchcodes
-    batchcodes = [row['batchcode'] for row in conn.execute("SELECT batchcode FROM courses ORDER BY batchcode").fetchall()]
-                                              ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-sqlite3.OperationalError: no such table: courses
-2026-01-11 13:35:26,775 - ERROR - Exception on /api/teacher/batchcodes [GET]
-Traceback (most recent call last):
-  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 1511, in wsgi_app
-    response = self.full_dispatch_request()
-  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 919, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 917, in full_dispatch_request
-    rv = self.dispatch_request()
-  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 902, in dispatch_request
-    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
-           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
-  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\server.py", line 536, in get_batchcodes
-    batchcodes = [row['batchcode'] for row in conn.execute("SELECT batchcode FROM courses ORDER BY batchcode").fetchall()]
-                                              ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-sqlite3.OperationalError: no such table: courses
-2026-01-11 13:35:26,926 - ERROR - Exception on /api/teacher/batchcodes [GET]
-Traceback (most recent call last):
-  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 1511, in wsgi_app
-    response = self.full_dispatch_request()
-  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 919, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 917, in full_dispatch_request
-    rv = self.dispatch_request()
-  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 902, in dispatch_request
-    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
-           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
-  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\server.py", line 536, in get_batchcodes
-    batchcodes = [row['batchcode'] for row in conn.execute("SELECT batchcode FROM courses ORDER BY batchcode").fetchall()]
-                                              ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-sqlite3.OperationalError: no such table: courses
-2026-01-11 13:35:27,152 - ERROR - Exception on /api/teacher/batchcodes [GET]
-Traceback (most recent call last):
-  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 1511, in wsgi_app
-    response = self.full_dispatch_request()
-  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 919, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 917, in full_dispatch_request
-    rv = self.dispatch_request()
-  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 902, in dispatch_request
-    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
-           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
-  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\server.py", line 536, in get_batchcodes
-    batchcodes = [row['batchcode'] for row in conn.execute("SELECT batchcode FROM courses ORDER BY batchcode").fetchall()]
-                                              ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-sqlite3.OperationalError: no such table: courses
-2026-01-11 13:36:12,822 - INFO - Server started - Auto-expire scheduler active
-2026-01-11 13:36:18,713 - ERROR - Exception on /api/teacher/batchcodes [GET]
-Traceback (most recent call last):
-  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 1511, in wsgi_app
-    response = self.full_dispatch_request()
-  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 919, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 917, in full_dispatch_request
-    rv = self.dispatch_request()
-  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 902, in dispatch_request
-    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
-           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
-  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\server.py", line 536, in get_batchcodes
-    batchcodes = [row['batchcode'] for row in conn.execute("SELECT batchcode FROM courses ORDER BY batchcode").fetchall()]
-                                              ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-sqlite3.OperationalError: no such table: courses
-2026-01-11 13:37:17,945 - INFO - Server started - Auto-expire scheduler active
-2026-01-11 13:37:50,063 - INFO - Semester created - Name: MCA Fall Semester 2025
-2026-01-11 13:38:03,496 - INFO - Teacher created - Name: Professor Rao
-2026-01-11 13:38:48,754 - INFO - Student created - Roll: MCAX24R065
-2026-01-11 13:39:04,754 - INFO - Course created - Name: Introduction To Programming, Batchcode: MCA101
-2026-01-11 13:39:42,213 - INFO - Teacher login attempt - Batchcode: MCA101
-2026-01-11 13:39:42,214 - INFO - Teacher login successful - Course: Introduction To Programming
-2026-01-11 13:39:46,370 - INFO - Creating session - Duration: 30min, Grace: 5min, Start: 2026-01-11 13:39:46, Scheduled end: 2026-01-11 14:14:46
-2026-01-11 13:39:46,374 - INFO - Session started - ID: 1, Course: 1, Duration: 30min (+5min grace)
-2026-01-11 13:39:52,016 - INFO - Manual override attempt - Session: 1, Student: MCAX24R065, Reason: 'hasjhdjsa'
-2026-01-11 13:39:52,021 - INFO - Manual override SUCCESS - Student: Sourabh Kumar Gupta (MCAX24R065), Session: 1, Course: 1, Reason: 'hasjhdjsa'
-2026-01-11 13:41:39,253 - INFO - Server started - Auto-expire scheduler active
-2026-01-11 13:41:49,829 - INFO - Teacher login attempt - Batchcode: MCA101
-2026-01-11 13:41:49,831 - INFO - Teacher login successful - Course: Introduction To Programming
-2026-01-11 13:41:51,947 - INFO - Creating session - Duration: 30min, Grace: 5min, Start: 2026-01-11 13:41:51, Scheduled end: 2026-01-11 14:16:51
-2026-01-11 13:41:51,953 - INFO - Session started - ID: 144, Course: 1, Duration: 30min (+5min grace)
-2026-01-11 13:41:56,769 - INFO - Session manually ended - ID: 144
-2026-01-11 19:33:33,340 - INFO - Server started - Auto-expire scheduler active
-2026-01-11 19:33:49,196 - INFO - Teacher login attempt - Batchcode: MCA101
-2026-01-11 19:33:49,199 - INFO - Teacher login successful - Course: Introduction To Programming
-2026-01-11 19:33:55,592 - INFO - Creating session - Duration: 30min, Grace: 5min, Start: 2026-01-11 19:33:55, Scheduled end: 2026-01-11 20:08:55
-2026-01-11 19:33:55,597 - INFO - Session started - ID: 145, Course: 1, Duration: 30min (+5min grace)
-2026-01-11 19:34:03,987 - INFO - Session manually ended - ID: 145
-2026-01-11 19:36:54,713 - INFO - Teacher created - Name: Professor Shyam
-2026-01-11 19:37:52,432 - INFO - Teacher created - Name: Shyam Singh
-2026-01-11 19:38:16,266 - INFO - Teacher created - Name: narak mehat
-2026-01-11 19:38:30,395 - INFO - Teacher created - Name: Pumpkin
-2026-01-11 19:46:13,807 - INFO - Teacher created - Name: Shyam Singh
-2026-01-11 19:46:39,558 - INFO - Teacher created - Name: newBie
-2026-01-11 19:46:56,624 - INFO - Teacher created - Name: ieiq
-2026-01-11 19:53:24,866 - INFO - Server started - Auto-expire scheduler active
-2026-01-11 19:57:52,388 - INFO - Server started - Auto-expire scheduler active
-2026-01-11 19:58:19,959 - INFO - Teacher created - Name: newBie12
-2026-01-11 19:59:29,190 - INFO - Server started - Auto-expire scheduler active
-2026-01-11 20:05:12,961 - INFO - Teacher login attempt - Batchcode: MCA101
-2026-01-11 20:05:12,962 - INFO - Teacher login successful - Course: Introduction To Programming
-2026-01-11 20:05:17,141 - INFO - Creating session - Duration: 30min, Grace: 5min, Start: 2026-01-11 20:05:17, Scheduled end: 2026-01-11 20:40:17
-2026-01-11 20:05:17,144 - INFO - Session started - ID: 146, Course: 1, Duration: 30min (+5min grace)
-2026-01-11 20:05:41,110 - INFO - Session manually ended - ID: 146
-2026-01-11 20:06:17,821 - INFO - Server started - Auto-expire scheduler active
-2026-01-11 20:46:37,894 - INFO - Server started - Auto-expire scheduler active
-2026-01-11 21:17:56,076 - INFO - Server started - Auto-expire scheduler active
-2026-01-11 21:41:03,852 - INFO - Server started - Auto-expire scheduler active
-2026-01-11 21:54:35,189 - INFO - Server started - Auto-expire scheduler active
-2026-01-15 00:12:27,862 - INFO - Server started - Auto-expire scheduler active
-2026-01-15 00:12:42,251 - INFO - Teacher login attempt - CourseCode: None
-2026-01-15 00:12:42,252 - WARNING - Login failed - Invalid course_code: None
-2026-01-15 00:12:48,733 - INFO - Teacher login attempt - CourseCode: None
-2026-01-15 00:12:48,734 - WARNING - Login failed - Invalid course_code: None
-2026-01-15 00:12:49,625 - INFO - Teacher login attempt - CourseCode: None
-2026-01-15 00:12:49,629 - WARNING - Login failed - Invalid course_code: None
-2026-01-15 00:12:49,804 - INFO - Teacher login attempt - CourseCode: None
-2026-01-15 00:12:49,805 - WARNING - Login failed - Invalid course_code: None
-2026-01-15 00:12:50,032 - INFO - Teacher login attempt - CourseCode: None
-2026-01-15 00:12:50,033 - WARNING - Login failed - Invalid course_code: None
-2026-01-15 00:13:10,672 - INFO - Teacher login attempt - CourseCode: None
-2026-01-15 00:13:10,673 - WARNING - Login failed - Invalid course_code: None
-2026-01-15 00:13:18,136 - INFO - Teacher login attempt - CourseCode: None
-2026-01-15 00:13:18,136 - WARNING - Login failed - Invalid course_code: None
-2026-01-15 00:13:28,602 - INFO - Teacher login attempt - CourseCode: None
-2026-01-15 00:13:28,602 - WARNING - Login failed - Invalid course_code: None
-2026-01-15 00:13:38,050 - INFO - Teacher login attempt - CourseCode: None
-2026-01-15 00:13:38,051 - WARNING - Login failed - Invalid course_code: None
-2026-01-15 00:18:00,897 - INFO - Teacher login attempt - CourseCode: None
-2026-01-15 00:18:00,899 - WARNING - Login failed - Invalid course_code: None
-2026-01-15 00:21:24,400 - INFO - Teacher login attempt - CourseCode: None
-2026-01-15 00:21:24,400 - WARNING - Login failed - Invalid course_code: None
-2026-01-15 00:21:25,003 - INFO - Teacher login attempt - CourseCode: None
-2026-01-15 00:21:25,003 - WARNING - Login failed - Invalid course_code: None
-2026-01-15 00:21:25,217 - INFO - Teacher login attempt - CourseCode: None
-2026-01-15 00:21:25,219 - WARNING - Login failed - Invalid course_code: None
-2026-01-15 00:21:25,404 - INFO - Teacher login attempt - CourseCode: None
-2026-01-15 00:21:25,405 - WARNING - Login failed - Invalid course_code: None
-2026-01-15 00:21:25,630 - INFO - Teacher login attempt - CourseCode: None
-2026-01-15 00:21:25,631 - WARNING - Login failed - Invalid course_code: None
-2026-01-15 00:21:30,320 - INFO - Teacher login attempt - CourseCode: None
-2026-01-15 00:21:30,321 - WARNING - Login failed - Invalid course_code: None
-2026-01-15 00:21:31,156 - INFO - Teacher login attempt - CourseCode: None
-2026-01-15 00:21:31,156 - WARNING - Login failed - Invalid course_code: None
-2026-01-15 00:21:31,845 - INFO - Teacher login attempt - CourseCode: None
-2026-01-15 00:21:31,846 - WARNING - Login failed - Invalid course_code: None
-2026-01-15 00:21:35,111 - INFO - Teacher login attempt - CourseCode: None
-2026-01-15 00:21:35,112 - WARNING - Login failed - Invalid course_code: None
-2026-01-15 00:21:35,817 - INFO - Teacher login attempt - CourseCode: None
-2026-01-15 00:21:35,818 - WARNING - Login failed - Invalid course_code: None
-2026-01-15 00:25:14,186 - INFO - Teacher login attempt - CourseCode: None
-2026-01-15 00:25:14,190 - WARNING - Login failed - Invalid course_code: None
-2026-01-15 00:28:06,193 - INFO - Server started - Auto-expire scheduler active
-2026-01-15 00:28:15,732 - INFO - Teacher login attempt - CourseCode: MCA101
-2026-01-15 00:28:15,734 - INFO - Teacher login successful - Course: Introduction To Programming
-2026-01-15 00:28:25,800 - INFO - Creating session - Duration: 30min, Grace: 5min, Start: 2026-01-15 00:28:25, Scheduled end: 2026-01-15 01:03:25
-2026-01-15 00:28:25,805 - INFO - Session started - ID: 147, Course: 1, Duration: 30min (+5min grace)
-2026-01-15 00:28:33,909 - INFO - Session manually ended - ID: 147
-2026-01-15 16:12:53,228 - INFO - Server started - Auto-expire scheduler active
-2026-01-15 16:13:05,593 - INFO - Teacher login attempt - CourseCode: MCA101
-2026-01-15 16:13:05,598 - INFO - Teacher login successful - Course: Introduction To Programming
-2026-01-15 16:13:31,930 - INFO - Creating session - Duration: 30min, Grace: 5min, Start: 2026-01-15 16:13:31, Scheduled end: 2026-01-15 16:48:31
-2026-01-15 16:13:31,935 - INFO - Session started - ID: 148, Course: 1, Duration: 30min (+5min grace)
-2026-01-15 16:13:46,584 - INFO - Attendance attempt - Roll ID: 1
-2026-01-15 16:13:46,590 - INFO - Attendance marked - Roll ID 1, Session: 148, Student: 1
-2026-01-15 16:14:06,953 - WARNING - Device heartbeat stale - Last seen 18.0 seconds ago
-2026-01-15 16:14:11,954 - WARNING - Device heartbeat stale - Last seen 23.0 seconds ago
-2026-01-15 16:14:16,957 - WARNING - Device heartbeat stale - Last seen 28.0 seconds ago
-2026-01-15 16:14:21,955 - WARNING - Device heartbeat stale - Last seen 33.0 seconds ago
-2026-01-15 16:14:26,961 - WARNING - Device heartbeat stale - Last seen 38.0 seconds ago
-2026-01-15 16:14:31,957 - WARNING - Device heartbeat stale - Last seen 43.0 seconds ago
-2026-01-15 16:14:36,952 - WARNING - Device heartbeat stale - Last seen 48.0 seconds ago
-2026-01-15 16:14:43,487 - WARNING - Device heartbeat stale - Last seen 54.5 seconds ago
-2026-01-15 16:14:46,952 - WARNING - Device heartbeat stale - Last seen 58.0 seconds ago
-2026-01-15 16:14:51,951 - WARNING - Device heartbeat stale - Last seen 63.0 seconds ago
-2026-01-15 16:14:56,958 - WARNING - Device heartbeat stale - Last seen 68.0 seconds ago
-2026-01-15 16:15:01,956 - WARNING - Device heartbeat stale - Last seen 73.0 seconds ago
-2026-01-15 16:15:06,953 - WARNING - Device heartbeat stale - Last seen 78.0 seconds ago
-2026-01-15 16:15:11,961 - WARNING - Device heartbeat stale - Last seen 83.0 seconds ago
-2026-01-15 16:15:16,957 - WARNING - Device heartbeat stale - Last seen 88.0 seconds ago
-2026-01-15 16:15:21,950 - WARNING - Device heartbeat stale - Last seen 93.0 seconds ago
-2026-01-15 16:15:26,966 - WARNING - Device heartbeat stale - Last seen 98.0 seconds ago
-2026-01-15 16:15:31,965 - WARNING - Device heartbeat stale - Last seen 103.0 seconds ago
-2026-01-15 16:15:36,961 - WARNING - Device heartbeat stale - Last seen 108.0 seconds ago
-2026-01-15 16:15:41,948 - WARNING - Device heartbeat stale - Last seen 113.0 seconds ago
-2026-01-15 16:15:46,958 - WARNING - Device heartbeat stale - Last seen 118.0 seconds ago
-2026-01-15 16:15:51,950 - WARNING - Device heartbeat stale - Last seen 123.0 seconds ago
-2026-01-15 16:15:56,962 - WARNING - Device heartbeat stale - Last seen 128.0 seconds ago
-2026-01-15 16:16:01,954 - WARNING - Device heartbeat stale - Last seen 133.0 seconds ago
-2026-01-15 16:16:06,953 - WARNING - Device heartbeat stale - Last seen 138.0 seconds ago
-2026-01-15 16:16:11,954 - WARNING - Device heartbeat stale - Last seen 143.0 seconds ago
-2026-01-15 16:16:17,990 - WARNING - Device heartbeat stale - Last seen 149.0 seconds ago
-2026-01-15 16:16:21,954 - WARNING - Device heartbeat stale - Last seen 153.0 seconds ago
-2026-01-15 16:16:26,961 - WARNING - Device heartbeat stale - Last seen 158.0 seconds ago
-2026-01-15 16:16:31,949 - WARNING - Device heartbeat stale - Last seen 163.0 seconds ago
-2026-01-15 16:16:36,960 - WARNING - Device heartbeat stale - Last seen 168.0 seconds ago
-2026-01-15 16:16:41,965 - WARNING - Device heartbeat stale - Last seen 173.0 seconds ago
-2026-01-15 16:16:59,561 - INFO - Attendance attempt - Roll ID: 2
-2026-01-15 16:16:59,567 - INFO - Attendance marked - Roll ID 2, Session: 148, Student: 2
-2026-01-15 16:17:05,871 - INFO - Session manually ended - ID: 148
-2026-01-15 16:32:01,150 - INFO - Teacher login attempt - CourseCode: MCA101
-2026-01-15 16:32:01,154 - INFO - Teacher login successful - Course: Introduction To Programming
-2026-01-15 16:32:03,376 - INFO - Creating session - Duration: 30min, Grace: 5min, Start: 2026-01-15 16:32:03, Scheduled end: 2026-01-15 17:07:03
-2026-01-15 16:32:03,381 - INFO - Session started - ID: 149, Course: 1, Duration: 30min (+5min grace)
-2026-01-15 16:32:10,173 - INFO - Attendance attempt - Roll ID: 1
-2026-01-15 16:32:10,181 - INFO - Attendance marked - Roll ID 1, Session: 149, Student: 1
-2026-01-15 16:32:28,413 - WARNING - Device heartbeat stale - Last seen 16.0 seconds ago
-2026-01-15 16:32:33,410 - WARNING - Device heartbeat stale - Last seen 21.0 seconds ago
-2026-01-15 16:32:38,405 - WARNING - Device heartbeat stale - Last seen 26.0 seconds ago
-2026-01-15 16:32:43,408 - WARNING - Device heartbeat stale - Last seen 31.0 seconds ago
-2026-01-15 16:32:48,397 - WARNING - Device heartbeat stale - Last seen 36.0 seconds ago
-2026-01-15 16:32:53,553 - WARNING - Device heartbeat stale - Last seen 41.2 seconds ago
-2026-01-15 16:33:07,877 - INFO - Session manually ended - ID: 149
-2026-01-16 12:40:59,582 - INFO - Server started - Auto-expire scheduler active
-2026-01-16 12:41:16,608 - INFO - Teacher login attempt - CourseCode: MCA101
-2026-01-16 12:41:16,611 - INFO - Teacher login successful - Course: Introduction To Programming
-2026-01-16 12:41:20,454 - INFO - Creating session - Duration: 30min, Grace: 5min, Start: 2026-01-16 12:41:20, Scheduled end: 2026-01-16 13:16:20
-2026-01-16 12:41:20,459 - INFO - Session started - ID: 150, Course: 1, Duration: 30min (+5min grace)
-2026-01-16 12:41:28,584 - INFO - Session manually ended - ID: 150
-2026-01-16 12:41:42,020 - INFO - Teacher login attempt - CourseCode: MCA101
-2026-01-16 12:41:42,021 - INFO - Teacher login successful - Course: Introduction To Programming
-2026-01-16 12:41:53,850 - INFO - Creating session - Duration: 30min, Grace: 5min, Start: 2026-01-16 12:41:53, Scheduled end: 2026-01-16 13:16:53
-2026-01-16 12:41:53,854 - INFO - Session started - ID: 151, Course: 1, Duration: 30min (+5min grace)
-2026-01-16 12:42:05,720 - INFO - Session manually ended - ID: 151
-2026-01-16 12:42:20,727 - INFO - Teacher login attempt - CourseCode: MCA101
-2026-01-16 12:42:20,728 - INFO - Teacher login successful - Course: Introduction To Programming
-2026-01-16 12:42:42,392 - INFO - Creating session - Duration: 30min, Grace: 5min, Start: 2026-01-16 12:42:42, Scheduled end: 2026-01-16 13:17:42
-2026-01-16 12:42:42,395 - INFO - Session started - ID: 152, Course: 1, Duration: 30min (+5min grace)
-2026-01-16 12:42:57,408 - WARNING - Device heartbeat stale - Last seen 15.3 seconds ago
-2026-01-16 12:43:00,465 - INFO - Session manually ended - ID: 152
-2026-01-16 12:43:16,385 - INFO - Teacher login attempt - CourseCode: MCA101
-2026-01-16 12:43:16,387 - INFO - Teacher login successful - Course: Introduction To Programming
-2026-01-16 12:43:18,902 - INFO - Creating session - Duration: 30min, Grace: 5min, Start: 2026-01-16 12:43:18, Scheduled end: 2026-01-16 13:18:18
-2026-01-16 12:43:18,905 - INFO - Session started - ID: 153, Course: 1, Duration: 30min (+5min grace)
-2026-01-16 12:43:27,846 - INFO - Attendance attempt - Roll ID: 1
-2026-01-16 12:43:27,852 - INFO - Attendance marked - Roll ID 1, Session: 153, Student: 1
-2026-01-16 12:43:37,982 - INFO - Attendance attempt - Roll ID: 2
-2026-01-16 12:43:37,987 - INFO - Attendance marked - Roll ID 2, Session: 153, Student: 2
-2026-01-16 12:43:47,615 - INFO - Session manually ended - ID: 153
-2026-01-16 12:43:56,552 - INFO - Teacher login attempt - CourseCode: MCA101
-2026-01-16 12:43:56,553 - INFO - Teacher login successful - Course: Introduction To Programming
-2026-01-16 12:44:00,931 - INFO - Creating session - Duration: 30min, Grace: 5min, Start: 2026-01-16 12:44:00, Scheduled end: 2026-01-16 13:19:00
-2026-01-16 12:44:00,935 - INFO - Session started - ID: 154, Course: 1, Duration: 30min (+5min grace)
-2026-01-16 12:44:15,950 - WARNING - Device heartbeat stale - Last seen 15.1 seconds ago
-2026-01-16 12:44:20,956 - WARNING - Device heartbeat stale - Last seen 20.1 seconds ago
-2026-01-16 12:44:25,957 - WARNING - Device heartbeat stale - Last seen 25.1 seconds ago
-2026-01-16 12:44:30,955 - WARNING - Device heartbeat stale - Last seen 30.1 seconds ago
-2026-01-16 12:44:35,955 - WARNING - Device heartbeat stale - Last seen 35.1 seconds ago
-2026-01-16 12:44:40,949 - WARNING - Device heartbeat stale - Last seen 40.1 seconds ago
-2026-01-16 12:44:45,950 - WARNING - Device heartbeat stale - Last seen 45.1 seconds ago
-2026-01-16 12:44:50,949 - WARNING - Device heartbeat stale - Last seen 50.1 seconds ago
-2026-01-16 12:44:55,955 - WARNING - Device heartbeat stale - Last seen 55.1 seconds ago
-2026-01-16 12:45:00,961 - WARNING - Device heartbeat stale - Last seen 60.1 seconds ago
-2026-01-16 12:45:05,952 - WARNING - Device heartbeat stale - Last seen 65.1 seconds ago
-2026-01-16 12:45:10,948 - WARNING - Device heartbeat stale - Last seen 70.1 seconds ago
-2026-01-16 12:45:16,443 - WARNING - Device heartbeat stale - Last seen 75.6 seconds ago
-2026-01-16 12:45:20,950 - WARNING - Device heartbeat stale - Last seen 80.1 seconds ago
-2026-01-16 12:45:36,197 - INFO - Session manually ended - ID: 154
-2026-01-16 12:47:31,487 - INFO - Server started - Auto-expire scheduler active
-2026-01-16 12:47:41,798 - INFO - Teacher login attempt - CourseCode: MCA101
-2026-01-16 12:47:41,799 - INFO - Teacher login successful - Course: Introduction To Programming
-2026-01-16 12:48:05,525 - INFO - Creating session - Duration: 30min, Grace: 5min, Start: 2026-01-16 12:48:05, Scheduled end: 2026-01-16 13:23:05
-2026-01-16 12:48:05,528 - INFO - Session started - ID: 155, Course: 1, Duration: 30min (+5min grace)
-2026-01-16 12:49:20,976 - WARNING - Device heartbeat stale - Last seen 18.4 seconds ago
-2026-01-16 12:49:25,554 - WARNING - Device heartbeat stale - Last seen 22.9 seconds ago
-2026-01-16 12:49:30,551 - WARNING - Device heartbeat stale - Last seen 27.9 seconds ago
-2026-01-16 12:49:35,550 - WARNING - Device heartbeat stale - Last seen 32.9 seconds ago
-2026-01-16 12:49:40,542 - WARNING - Device heartbeat stale - Last seen 37.9 seconds ago
-2026-01-16 12:49:45,541 - WARNING - Device heartbeat stale - Last seen 42.9 seconds ago
-2026-01-16 12:49:51,461 - WARNING - Device heartbeat stale - Last seen 48.8 seconds ago
-2026-01-16 12:49:55,923 - WARNING - Device heartbeat stale - Last seen 53.3 seconds ago
-2026-01-16 12:50:00,918 - WARNING - Device heartbeat stale - Last seen 58.3 seconds ago
-2026-01-16 12:52:53,013 - INFO - Session manually ended - ID: 155
-2026-01-16 23:52:54,967 - INFO - Server started - Auto-expire scheduler active
-2026-01-16 23:53:07,793 - INFO - Teacher login attempt - CourseCode: MCA101
-2026-01-16 23:53:07,795 - INFO - Teacher login successful - Course: Introduction To Programming
-2026-01-16 23:53:10,467 - INFO - Creating session - Duration: 30min, Grace: 5min, Start: 2026-01-16 23:53:10, Scheduled end: 2026-01-17 00:28:10
-2026-01-16 23:53:10,472 - INFO - Session started - ID: 156, Course: 1, Duration: 30min (+5min grace)
-2026-01-16 23:53:24,949 - INFO - Attendance attempt - Roll ID: 1
-2026-01-16 23:53:24,954 - INFO - Attendance marked - Roll ID 1, Session: 156, Student: 1
-2026-01-16 23:53:29,556 - INFO - Attendance attempt - Roll ID: 2
-2026-01-16 23:53:29,561 - INFO - Attendance marked - Roll ID 2, Session: 156, Student: 2
-2026-01-16 23:53:34,166 - INFO - Attendance attempt - Roll ID: 1
-2026-01-16 23:53:34,168 - INFO - Attendance duplicate - Roll ID 1 already marked in session 156
-2026-01-16 23:53:38,159 - INFO - Attendance attempt - Roll ID: 2
-2026-01-16 23:53:38,161 - INFO - Attendance duplicate - Roll ID 2 already marked in session 156
-2026-01-16 23:53:49,526 - INFO - Attendance attempt - Roll ID: 3
-2026-01-16 23:53:49,527 - WARNING - Attendance failed - Roll ID 3 not enrolled in course 1
-2026-01-16 23:53:50,488 - WARNING - Device heartbeat stale - Last seen 15.1 seconds ago
-2026-01-16 23:53:56,590 - INFO - Attendance attempt - Roll ID: 3
-2026-01-16 23:53:56,591 - WARNING - Attendance failed - Roll ID 3 not enrolled in course 1
-2026-01-16 23:54:02,049 - INFO - Attendance attempt - Roll ID: 3
-2026-01-16 23:54:02,050 - WARNING - Attendance failed - Roll ID 3 not enrolled in course 1
-2026-01-16 23:54:28,706 - INFO - Session manually ended - ID: 156
-2026-01-17 00:02:39,720 - INFO - Teacher login attempt - CourseCode: MCA101
-2026-01-17 00:02:39,727 - INFO - Teacher login successful - Course: Introduction To Programming
-2026-01-17 00:02:42,351 - INFO - Creating session - Duration: 30min, Grace: 5min, Start: 2026-01-17 00:02:42, Scheduled end: 2026-01-17 00:37:42
-2026-01-17 00:02:42,355 - INFO - Session started - ID: 157, Course: 1, Duration: 30min (+5min grace)
-2026-01-17 00:02:54,387 - INFO - Attendance attempt - Roll ID: 1
-2026-01-17 00:02:54,392 - INFO - Attendance marked - Roll ID 1, Session: 157, Student: 1
-2026-01-17 00:07:07,897 - WARNING - Device heartbeat stale - Last seen 44.2 seconds ago
-2026-01-17 00:14:07,901 - WARNING - Device heartbeat stale - Last seen 30.1 seconds ago
-2026-01-17 00:15:07,903 - WARNING - Device heartbeat stale - Last seen 90.1 seconds ago
-2026-01-17 00:16:35,089 - WARNING - Device heartbeat stale - Last seen 40.3 seconds ago
-2026-01-17 00:16:37,378 - WARNING - Device heartbeat stale - Last seen 42.6 seconds ago
-2026-01-17 00:16:45,432 - INFO - Attendance attempt - Roll ID: 1
-2026-01-17 00:16:45,433 - INFO - Attendance duplicate - Roll ID 1 already marked in session 157
-2026-01-17 00:16:50,418 - INFO - Attendance attempt - Roll ID: 2
-2026-01-17 00:16:50,424 - INFO - Attendance marked - Roll ID 2, Session: 157, Student: 2
-2026-01-17 00:16:57,484 - INFO - Attendance attempt - Roll ID: 2
-2026-01-17 00:16:57,485 - INFO - Attendance duplicate - Roll ID 2 already marked in session 157
-2026-01-17 00:17:07,369 - WARNING - Device heartbeat stale - Last seen 15.7 seconds ago
-2026-01-17 00:17:08,593 - INFO - Session manually ended - ID: 157
-2026-01-17 15:30:59,576 - INFO - Server started - Auto-expire scheduler active
-2026-01-17 15:31:12,458 - INFO - Teacher login attempt - CourseCode: MCA101
-2026-01-17 15:31:12,460 - INFO - Teacher login successful - Course: Introduction To Programming
-2026-01-17 15:31:15,726 - INFO - Creating session - Duration: 30min, Grace: 5min, Start: 2026-01-17 15:31:15, Scheduled end: 2026-01-17 16:06:15
-2026-01-17 15:31:15,731 - INFO - Session started - ID: 158, Course: 1, Duration: 30min (+5min grace)
-2026-01-17 15:31:42,937 - INFO - Attendance attempt - Roll ID: 1
-2026-01-17 15:31:42,945 - INFO - Attendance marked - Roll ID 1, Session: 158, Student: 1
-2026-01-17 15:31:49,657 - INFO - Attendance attempt - Roll ID: 2
-2026-01-17 15:31:49,664 - INFO - Attendance marked - Roll ID 2, Session: 158, Student: 2
-2026-01-17 15:37:39,092 - INFO - Session manually ended - ID: 158
-2026-01-17 16:51:27,721 - INFO - Server started - Auto-expire scheduler active
-2026-01-17 20:00:02,896 - INFO - Email alert scheduler initialized - Absent alerts every 10min, Daily summaries at 5 PM
-2026-01-17 20:00:02,901 - INFO - Server started - Auto-expire scheduler active
-2026-01-17 20:01:34,471 - INFO - Teacher login attempt - CourseCode: MCA101
-2026-01-17 20:01:34,472 - INFO - Teacher login successful - Course: Introduction To Programming
-2026-01-17 20:02:06,359 - INFO - Creating session - Duration: 30min, Grace: 5min, Start: 2026-01-17 20:02:06, Scheduled end: 2026-01-17 20:37:06
-2026-01-17 20:02:06,364 - INFO - Session started - ID: 159, Course: 1, Duration: 30min (+5min grace)
-2026-01-17 20:02:20,907 - INFO - Attendance attempt - Roll ID: 1
-2026-01-17 20:02:26,379 - WARNING - Device heartbeat stale - Last seen 16.6 seconds ago
-2026-01-17 20:02:34,096 - INFO - Attendance marked - Roll ID 1
-2026-01-17 20:03:39,184 - INFO - Session manually ended - ID: 159
-2026-01-17 20:04:59,210 - INFO - Teacher login attempt - CourseCode: MCA101
-2026-01-17 20:04:59,211 - INFO - Teacher login successful - Course: Introduction To Programming
-2026-01-17 20:05:06,206 - INFO - Creating session - Duration: 30min, Grace: 5min, Start: 2026-01-17 20:05:06, Scheduled end: 2026-01-17 20:40:06
-2026-01-17 20:05:06,210 - INFO - Session started - ID: 160, Course: 1, Duration: 30min (+5min grace)
-2026-01-17 20:05:14,993 - INFO - Attendance attempt - Roll ID: 2
-2026-01-17 20:05:19,993 - INFO - Attendance marked - Roll ID 2
-2026-01-17 20:09:56,222 - WARNING - Device heartbeat stale - Last seen 16.4 seconds ago
-2026-01-17 20:12:08,202 - INFO - Session manually ended - ID: 160
-2026-01-17 20:33:35,225 - INFO - Email alert scheduler initialized - Absent alerts every 10min, Daily summaries at 5 PM
-2026-01-17 20:33:35,230 - INFO - Server started - Auto-expire scheduler active
-2026-01-17 20:33:56,766 - INFO - Teacher login attempt - CourseCode: MCA101
-2026-01-17 20:33:56,768 - INFO - Teacher login successful - Course: Introduction To Programming
-2026-01-17 20:34:04,238 - INFO - Creating session - Duration: 30min, Grace: 5min, Start: 2026-01-17 20:34:04, Scheduled end: 2026-01-17 21:09:04
-2026-01-17 20:34:04,243 - INFO - Session started - ID: 161, Course: 1, Duration: 30min (+5min grace)
-2026-01-17 20:34:19,272 - WARNING - Device heartbeat stale - Last seen 16.7 seconds ago
-2026-01-17 20:34:45,066 - INFO - Attendance attempt - Roll ID: 1
-2026-01-17 20:34:49,187 - INFO - Attendance marked - Roll ID 1
-2026-01-17 20:35:12,875 - INFO - Attendance attempt - Roll ID: 2
-2026-01-17 20:35:16,825 - INFO - Attendance marked - Roll ID 2
-2026-01-17 20:35:19,258 - WARNING - Device heartbeat stale - Last seen 16.6 seconds ago
-2026-01-17 20:36:04,395 - INFO - Manual override attempt - Session: 161, Student: MCAX24R043, Reason: 'guut'
-2026-01-17 20:36:08,120 - INFO - Manual override SUCCESS - Student: Aditya (MCAX24R043), Session: 161, Course: 1, Reason: 'guut'
-2026-01-17 20:36:19,968 - INFO - Session manually ended - ID: 161
-2026-01-17 20:36:48,883 - INFO - Teacher login attempt - CourseCode: MCA101
-2026-01-17 20:36:48,884 - INFO - Teacher login successful - Course: Introduction To Programming
-2026-01-17 20:37:01,479 - INFO - Creating session - Duration: 30min, Grace: 5min, Start: 2026-01-17 20:37:01, Scheduled end: 2026-01-17 21:12:01
-2026-01-17 20:37:01,483 - INFO - Session started - ID: 162, Course: 1, Duration: 30min (+5min grace)
-2026-01-17 20:37:10,443 - INFO - Attendance attempt - Roll ID: 1
-2026-01-17 20:37:14,997 - INFO - Attendance marked - Roll ID 1
-2026-01-17 20:37:23,655 - INFO - Attendance attempt - Roll ID: 2
-2026-01-17 20:37:27,492 - INFO - Attendance marked - Roll ID 2
-2026-01-17 20:37:44,125 - INFO - Session manually ended - ID: 162
-2026-01-17 21:18:06,838 - INFO - Email alert scheduler initialized - Absent alerts every 10min, Daily summaries at 5 PM
-2026-01-17 21:18:06,843 - INFO - Server started - Auto-expire scheduler active
-2026-01-17 21:18:30,989 - INFO - Email alert scheduler initialized - Absent alerts every 10min, Daily summaries at 5 PM
-2026-01-17 21:18:30,994 - INFO - Server started - Auto-expire scheduler active
-2026-01-17 21:19:44,944 - INFO - Teacher login attempt - CourseCode: MCA101
-2026-01-17 21:19:44,945 - INFO - Teacher login successful - Course: Introduction To Programming
-2026-01-17 21:19:53,194 - INFO - Creating session - Duration: 30min, Grace: 5min, Start: 2026-01-17 21:19:53, Scheduled end: 2026-01-17 21:54:53
-2026-01-17 21:19:53,199 - INFO - Session started - ID: 163, Course: 1, Duration: 30min (+5min grace)
-2026-01-17 21:20:09,987 - INFO - Attendance attempt - Roll ID: 1
-2026-01-17 21:20:14,130 - INFO - Attendance marked - Roll ID 1
-2026-01-17 21:20:26,089 - INFO - Attendance attempt - Roll ID: 2
-2026-01-17 21:20:30,196 - INFO - Attendance marked - Roll ID 2
-2026-01-17 21:20:42,291 - INFO - Session manually ended - ID: 163
-2026-01-17 22:22:21,583 - INFO - Email alert scheduler initialized - Absent alerts every 10min, Daily summaries at 5 PM
-2026-01-17 22:22:21,589 - INFO - Server started - Auto-expire scheduler active
-2026-01-17 22:22:40,175 - INFO - Teacher login attempt - CourseCode: MCA101
-2026-01-17 22:22:40,177 - INFO - Teacher login successful - Course: Introduction To Programming
-2026-01-17 22:23:22,076 - INFO - Creating session - Duration: 30min, Grace: 5min, Start: 2026-01-17 22:23:22, Scheduled end: 2026-01-17 22:58:22
-2026-01-17 22:23:22,080 - INFO - Session started - ID: 164, Course: 1, Duration: 30min (+5min grace)
-2026-01-17 22:23:32,098 - WARNING - Device heartbeat stale - Last seen 15.1 seconds ago
-2026-01-17 22:23:33,418 - INFO - Attendance attempt - Roll ID: 1
-2026-01-17 22:23:37,109 - WARNING - Device heartbeat stale - Last seen 20.1 seconds ago
-2026-01-17 22:23:37,897 - INFO - Attendance marked - Roll ID 1
-2026-01-17 22:23:54,462 - INFO - Session manually ended - ID: 164
-2026-01-17 22:51:44,171 - INFO - Email alert scheduler initialized - Absent alerts every 10min, Daily summaries at 5 PM
-2026-01-17 22:51:44,176 - INFO - Server started - Auto-expire scheduler active
-2026-01-17 22:51:58,146 - INFO - Teacher login attempt - CourseCode: MCA101
-2026-01-17 22:51:58,147 - INFO - Teacher login successful - Course: Introduction To Programming
-2026-01-17 22:52:36,610 - INFO - Creating session - Duration: 30min, Grace: 5min, Start: 2026-01-17 22:52:36, Scheduled end: 2026-01-17 23:27:36
-2026-01-17 22:52:36,613 - INFO - Session started - ID: 165, Course: 1, Duration: 30min (+5min grace)
-2026-01-17 22:52:47,802 - INFO - Attendance attempt - Roll ID: 2
-2026-01-17 22:52:52,034 - INFO - Email sent successfully to ziaul.business1@gmail.com
-2026-01-17 22:52:52,049 - INFO - Attendance marked - Roll ID 2
-2026-01-17 22:53:02,073 - INFO - Session manually ended - ID: 165
-2026-01-17 23:24:55,117 - INFO - Email alert scheduler initialized - Absent alerts every 10min, Daily summaries at 5 PM
-2026-01-17 23:24:55,122 - INFO - Server started - Auto-expire scheduler active
-2026-01-17 23:25:11,362 - INFO - Teacher login attempt - CourseCode: MCA101
-2026-01-17 23:25:11,363 - INFO - Teacher login successful - Course: Introduction To Programming
-2026-01-17 23:25:19,368 - INFO - Creating session - Duration: 30min, Grace: 5min, Start: 2026-01-17 23:25:19, Scheduled end: 2026-01-18 00:00:19
-2026-01-17 23:25:19,373 - INFO - Session started - ID: 166, Course: 1, Duration: 30min (+5min grace)
-2026-01-17 23:25:29,958 - INFO - Attendance attempt - Roll ID: 2
-2026-01-17 23:25:33,837 - INFO - Email sent successfully to ziaul.business1@gmail.com
-2026-01-17 23:25:33,837 - INFO - Email sent to parent: ziaul.business1@gmail.com
-2026-01-17 23:25:33,838 - INFO - Attendance marked - Roll ID 2
-2026-01-17 23:25:34,404 - WARNING - Device heartbeat stale - Last seen 18.4 seconds ago
-2026-01-17 23:25:49,979 - INFO - End session 166: Found 3 enrolled students
-2026-01-17 23:25:49,980 - INFO - End session 166: 1 students marked present
-2026-01-17 23:25:49,980 - INFO -   Absent: Sourabh Kumar Gupta - Email: sourabhkrgupta720@gmail.com
-2026-01-17 23:25:53,646 - INFO - Email sent successfully to sourabhkrgupta720@gmail.com
-2026-01-17 23:25:53,646 - INFO -     SENT to sourabhkrgupta720@gmail.com
-2026-01-17 23:25:57,467 - INFO - Email sent successfully to rajuhuptaooooo@gmail.com
-2026-01-17 23:25:57,468 - INFO -     SENT to secondary rajuhuptaooooo@gmail.com
-2026-01-17 23:25:57,468 - INFO -   Absent: Aditya - Email: sfhgsj@gmail.com
-2026-01-17 23:25:59,538 - INFO - End session 166: Found 3 enrolled students
-2026-01-17 23:25:59,538 - INFO - End session 166: 1 students marked present
-2026-01-17 23:25:59,538 - INFO -   Absent: Sourabh Kumar Gupta - Email: sourabhkrgupta720@gmail.com
-2026-01-17 23:26:01,715 - INFO - Email sent successfully to sfhgsj@gmail.com
-2026-01-17 23:26:01,715 - INFO -     SENT to sfhgsj@gmail.com
-2026-01-17 23:26:01,719 - INFO - Session ended - ID: 166, Absent alerts sent: 2
-2026-01-17 23:26:03,087 - INFO - Email sent successfully to sourabhkrgupta720@gmail.com
-2026-01-17 23:26:03,088 - INFO -     SENT to sourabhkrgupta720@gmail.com
-2026-01-17 23:26:06,608 - INFO - Email sent successfully to rajuhuptaooooo@gmail.com
-2026-01-17 23:26:06,608 - INFO -     SENT to secondary rajuhuptaooooo@gmail.com
-2026-01-17 23:26:06,608 - INFO -   Absent: Aditya - Email: sfhgsj@gmail.com
-2026-01-17 23:26:10,361 - INFO - Email sent successfully to sfhgsj@gmail.com
-2026-01-17 23:26:10,362 - INFO -     SENT to sfhgsj@gmail.com
-2026-01-17 23:26:10,366 - INFO - Session ended - ID: 166, Absent alerts sent: 2
-2026-01-17 23:29:46,921 - INFO - Email alert scheduler initialized - Absent alerts every 10min, Daily summaries at 5 PM
-2026-01-17 23:29:46,925 - INFO - Server started - Auto-expire scheduler active
-2026-01-17 23:30:57,227 - INFO - Teacher login attempt - CourseCode: MCA101
-2026-01-17 23:30:57,228 - INFO - Teacher login successful - Course: Introduction To Programming
-2026-01-17 23:31:06,737 - INFO - Creating session - Duration: 30min, Grace: 5min, Start: 2026-01-17 23:31:06, Scheduled end: 2026-01-18 00:06:06
-2026-01-17 23:31:06,742 - INFO - Session started - ID: 167, Course: 1, Duration: 30min (+5min grace)
-2026-01-17 23:31:48,700 - INFO - Attendance attempt - Roll ID: 1
-2026-01-17 23:31:52,473 - INFO - Email sent successfully to sourabhkrgupta720@gmail.com
-2026-01-17 23:31:52,474 - INFO - Email sent to parent: sourabhkrgupta720@gmail.com
-2026-01-17 23:31:52,474 - INFO - Attendance marked - Roll ID 1
-2026-01-17 23:32:03,443 - INFO - Attendance attempt - Roll ID: 2
-2026-01-17 23:32:07,172 - INFO - Email sent successfully to ziaul.business1@gmail.com
-2026-01-17 23:32:07,172 - INFO - Email sent to parent: ziaul.business1@gmail.com
-2026-01-17 23:32:07,173 - INFO - Attendance marked - Roll ID 2
-2026-01-17 23:32:33,433 - INFO - Manual override attempt - Session: 167, Student: MCAX24R043, Reason: 'jjgj'
-2026-01-17 23:32:37,009 - INFO - Email sent successfully to sfhgsj@gmail.com
-2026-01-17 23:32:37,022 - INFO - Manual override SUCCESS - Student: Aditya (MCAX24R043), Session: 167, Course: 1, Reason: 'jjgj'
-2026-01-17 23:32:54,117 - INFO - End session 167: Found 3 enrolled students
-2026-01-17 23:32:54,117 - INFO - End session 167: 3 students marked present
-2026-01-17 23:32:54,120 - INFO - Session ended - ID: 167, Absent alerts sent: 0
-2026-01-17 23:34:38,840 - INFO - Teacher login attempt - CourseCode: MCA101
-2026-01-17 23:34:38,841 - INFO - Teacher login successful - Course: Introduction To Programming
-2026-01-17 23:34:41,057 - INFO - Creating session - Duration: 30min, Grace: 5min, Start: 2026-01-17 23:34:41, Scheduled end: 2026-01-18 00:09:41
-2026-01-17 23:34:41,060 - INFO - Session started - ID: 168, Course: 1, Duration: 30min (+5min grace)
-2026-01-17 23:34:52,228 - INFO - Attendance attempt - Roll ID: 1
-2026-01-17 23:34:55,854 - INFO - Email sent successfully to sourabhkrgupta720@gmail.com
-2026-01-17 23:34:55,854 - INFO - Email sent to parent: sourabhkrgupta720@gmail.com
-2026-01-17 23:34:55,855 - INFO - Attendance marked - Roll ID 1
-2026-01-17 23:35:05,405 - INFO - End session 168: Found 3 enrolled students
-2026-01-17 23:35:05,406 - INFO - End session 168: 1 students marked present
-2026-01-17 23:35:05,406 - INFO -   Absent: Vishal Kumar - Email: ziaul.business1@gmail.com
-2026-01-17 23:35:09,068 - INFO - Email sent successfully to ziaul.business1@gmail.com
-2026-01-17 23:35:09,069 - INFO -     SENT to ziaul.business1@gmail.com
-2026-01-17 23:35:12,726 - INFO - Email sent successfully to vishal@gmail.com
-2026-01-17 23:35:12,727 - INFO -     SENT to secondary vishal@gmail.com
-2026-01-17 23:35:12,727 - INFO -   Absent: Aditya - Email: sfhgsj@gmail.com
-2026-01-17 23:35:16,270 - INFO - Email sent successfully to sfhgsj@gmail.com
-2026-01-17 23:35:16,270 - INFO -     SENT to sfhgsj@gmail.com
-2026-01-17 23:35:16,274 - INFO - Session ended - ID: 168, Absent alerts sent: 2
-2026-01-17 23:36:33,399 - INFO - Teacher login attempt - CourseCode: MCA101
-2026-01-17 23:36:33,400 - INFO - Teacher login successful - Course: Introduction To Programming
-2026-01-17 23:36:39,048 - INFO - Creating session - Duration: 30min, Grace: 5min, Start: 2026-01-17 23:36:39, Scheduled end: 2026-01-18 00:11:39
-2026-01-17 23:36:39,051 - INFO - Session started - ID: 169, Course: 1, Duration: 30min (+5min grace)
-2026-01-17 23:36:45,220 - INFO - End session 169: Found 3 enrolled students
-2026-01-17 23:36:45,220 - INFO - End session 169: 0 students marked present
-2026-01-17 23:36:45,221 - INFO -   Absent: Sourabh Kumar Gupta - Email: sourabhkrgupta720@gmail.com
-2026-01-17 23:36:48,867 - INFO - Email sent successfully to sourabhkrgupta720@gmail.com
-2026-01-17 23:36:48,867 - INFO -     SENT to sourabhkrgupta720@gmail.com
-2026-01-17 23:36:52,513 - INFO - Email sent successfully to rajuhuptaooooo@gmail.com
-2026-01-17 23:36:52,513 - INFO -     SENT to secondary rajuhuptaooooo@gmail.com
-2026-01-17 23:36:52,513 - INFO -   Absent: Vishal Kumar - Email: ziaul.business1@gmail.com
-2026-01-17 23:36:56,015 - INFO - Email sent successfully to ziaul.business1@gmail.com
-2026-01-17 23:36:56,016 - INFO -     SENT to ziaul.business1@gmail.com
-2026-01-17 23:36:59,560 - INFO - Email sent successfully to vishal@gmail.com
-2026-01-17 23:36:59,561 - INFO -     SENT to secondary vishal@gmail.com
-2026-01-17 23:36:59,561 - INFO -   Absent: Aditya - Email: sfhgsj@gmail.com
-2026-01-17 23:37:03,024 - INFO - Email sent successfully to sfhgsj@gmail.com
-2026-01-17 23:37:03,025 - INFO -     SENT to sfhgsj@gmail.com
-2026-01-17 23:37:03,029 - INFO - Session ended - ID: 169, Absent alerts sent: 32026-01-17 23:47:42,024 - INFO - Email alert scheduler initialized - Absent alerts every 10min, Daily summaries at 5 PM
-2026-01-17 23:47:42,030 - INFO - Server started - Auto-expire scheduler active
-2026-01-17 23:48:45,675 - INFO - Teacher login attempt - CourseCode: MCA101
-2026-01-17 23:48:45,676 - INFO - Teacher login successful - Course: Introduction To Programming
-2026-01-17 23:48:51,769 - INFO - Creating session - Duration: 30min, Grace: 5min, Start: 2026-01-17 23:48:51, Scheduled end: 2026-01-18 00:23:51
-2026-01-17 23:48:51,775 - INFO - Session started - ID: 170, Course: 1, Duration: 30min (+5min grace)
-2026-01-17 23:49:02,582 - INFO - Attendance attempt - Roll ID: 2
-2026-01-17 23:49:06,265 - INFO - Email sent successfully to ziaul.business1@gmail.com
-2026-01-17 23:49:06,265 - INFO - Email sent to parent: ziaul.business1@gmail.com
-2026-01-17 23:49:06,266 - INFO - Attendance marked - Roll ID 2
-2026-01-17 23:49:06,791 - WARNING - Device heartbeat stale - Last seen 19.9 seconds ago
-2026-01-17 23:49:11,798 - INFO - Attendance attempt - Roll ID: 1
-2026-01-17 23:49:16,138 - INFO - Email sent successfully to sourabhkrgupta720@gmail.com
-2026-01-17 23:49:16,139 - INFO - Email sent to parent: sourabhkrgupta720@gmail.com
-2026-01-17 23:49:16,139 - INFO - Attendance marked - Roll ID 1
-2026-01-17 23:49:26,784 - WARNING - Device heartbeat stale - Last seen 17.7 seconds ago
-2026-01-17 23:49:50,135 - INFO - End session 170: Found 2 enrolled students
-2026-01-17 23:49:50,135 - INFO - End session 170: 2 students marked present
-2026-01-17 23:49:50,138 - INFO - Session ended - ID: 170, Absent alerts sent: 0
-2026-01-18 00:14:56,573 - INFO - Email alert scheduler initialized - Absent alerts every 10min, Daily summaries at 5 PM
-2026-01-18 00:14:56,578 - INFO - Server started - Auto-expire scheduler active
-2026-01-18 00:18:27,931 - INFO - Email alert scheduler initialized - Absent alerts every 10min, Daily summaries at 5 PM
-2026-01-18 00:18:27,937 - INFO - Server started - Auto-expire scheduler active
-2026-01-18 00:24:28,509 - INFO - Email alert scheduler initialized - Absent alerts every 10min, Daily summaries at 5 PM
-2026-01-18 00:24:28,513 - INFO - Server started - Auto-expire scheduler active
-2026-01-18 00:45:54,574 - INFO - Email alert scheduler initialized - Absent alerts every 10min, Daily summaries at 5 PM
-2026-01-18 00:45:54,594 - INFO - Server started - Auto-expire scheduler active
-2026-01-18 01:01:27,535 - INFO - Email alert scheduler initialized - Absent alerts every 10min, Daily summaries at 5 PM, Batch attendance check at 8 AM
-2026-01-18 01:01:27,540 - INFO - Server started - Auto-expire scheduler active
-2026-01-18 01:02:08,955 - INFO - Email alert scheduler initialized - Absent alerts every 10min, Daily summaries at 5 PM, Batch attendance check at 8 AM
-2026-01-18 01:02:08,960 - INFO - Server started - Auto-expire scheduler active
-2026-01-18 01:04:20,304 - INFO - Email alert scheduler initialized - Absent alerts every 10min, Daily summaries at 5 PM, Batch attendance check at 8 AM
-2026-01-18 01:04:20,308 - INFO - Server started - Auto-expire scheduler active
-2026-01-18 01:11:27,182 - INFO - Email alert scheduler initialized - Absent alerts every 10min, Daily summaries at 5 PM
-2026-01-18 01:11:27,199 - INFO - Server started - Auto-expire scheduler active
-2026-01-18 01:22:08,221 - INFO - Email alert scheduler initialized - Absent alerts every 10min, Daily summaries at 5 PM
-2026-01-18 01:22:08,225 - INFO - Server started - Auto-expire scheduler active
-2026-01-18 01:29:26,861 - INFO - Email alert scheduler initialized - Absent alerts every 10min, Daily summaries at 5 PM
-2026-01-18 01:29:26,866 - INFO - Server started - Auto-expire scheduler active
-2026-01-18 01:37:49,021 - INFO - Email alert scheduler initialized - Absent alerts every 10min, Daily summaries at 5 PM
-2026-01-18 01:37:49,026 - INFO - Server started - Auto-expire scheduler active
-2026-01-18 01:54:31,598 - INFO - Email alert scheduler initialized - Absent alerts every 10min, Daily summaries at 5 PM
-2026-01-18 01:54:31,603 - INFO - Server started - Auto-expire scheduler active
-2026-01-18 02:21:51,882 - INFO - Email alert scheduler initialized - Absent alerts every 10min, Daily summaries at 5 PM
-2026-01-18 02:21:51,886 - INFO - Server started - Auto-expire scheduler active
-2026-01-18 02:25:45,729 - INFO - Email alert scheduler initialized - Absent alerts every 10min, Daily summaries at 5 PM
-2026-01-18 02:25:45,733 - INFO - Server started - Auto-expire scheduler active
-2026-01-18 02:26:46,143 - ERROR - Exception on /api/student/leaderboard [GET]
-Traceback (most recent call last):
-  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 1511, in wsgi_app
-    response = self.full_dispatch_request()
-  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 919, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 917, in full_dispatch_request
-    rv = self.dispatch_request()
-  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 902, in dispatch_request
-    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
-           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
-  File "D:\Hackathon\feature 2 implementation\A.R.I.S.E\server.py", line 158, in decorated
+  File "D:\Hackathon\Final little bit improvement\A.R.I.S.E\server.py", line 155, in decorated
     return f(data, *args, **kwargs)
-  File "D:\Hackathon\feature 2 implementation\A.R.I.S.E\server.py", line 2425, in get_leaderboard
-    elif course_ids:
-         ^^^^^^^^^^
-UnboundLocalError: cannot access local variable 'course_ids' where it is not associated with a value
-2026-01-18 02:31:24,740 - INFO - Email alert scheduler initialized - Absent alerts every 10min, Daily summaries at 5 PM
-2026-01-18 02:31:24,744 - INFO - Server started - Auto-expire scheduler active
-2026-01-18 02:32:14,871 - ERROR - Exception on /api/student/leaderboard [GET]
+  File "D:\Hackathon\Final little bit improvement\A.R.I.S.E\server.py", line 1288, in get_student_dashboard
+    "semester_id": course.get('semester_id'),
+                   ^^^^^^^^^^
+AttributeError: 'sqlite3.Row' object has no attribute 'get'
+2026-01-22 19:23:48,214 - ERROR - Exception on /api/student/dashboard [GET]
 Traceback (most recent call last):
   File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 1511, in wsgi_app
     response = self.full_dispatch_request()
@@ -864,23 +47,13 @@ Traceback (most recent call last):
   File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 902, in dispatch_request
     return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
-  File "D:\Hackathon\feature 2 implementation\A.R.I.S.E\server.py", line 158, in decorated
+  File "D:\Hackathon\Final little bit improvement\A.R.I.S.E\server.py", line 155, in decorated
     return f(data, *args, **kwargs)
-  File "D:\Hackathon\feature 2 implementation\A.R.I.S.E\server.py", line 2434, in get_leaderboard
-    streaks = calculate_streaks(conn, sid, any_course['id']) if any_course else {'current_streak': 0, 'longest_streak': 0}
-              ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "D:\Hackathon\feature 2 implementation\A.R.I.S.E\server.py", line 2243, in calculate_streaks
-    sessions = conn.execute("""
-               ~~~~~~~~~~~~^^^^
-        SELECT s.id, s.created_at
-        ^^^^^^^^^^^^^^^^^^^^^^^^^
-    ...<2 lines>...
-        ORDER BY s.created_at DESC
-        ^^^^^^^^^^^^^^^^^^^^^^^^^^
-    """, (course_id,)).fetchall()
-    ^^^^^^^^^^^^^^^^^^
-sqlite3.OperationalError: no such column: s.created_at
-2026-01-18 02:32:49,385 - ERROR - Exception on /api/student/leaderboard [GET]
+  File "D:\Hackathon\Final little bit improvement\A.R.I.S.E\server.py", line 1288, in get_student_dashboard
+    "semester_id": course.get('semester_id'),
+                   ^^^^^^^^^^
+AttributeError: 'sqlite3.Row' object has no attribute 'get'
+2026-01-22 19:23:48,405 - ERROR - Exception on /api/student/dashboard [GET]
 Traceback (most recent call last):
   File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 1511, in wsgi_app
     response = self.full_dispatch_request()
@@ -891,150 +64,308 @@ Traceback (most recent call last):
   File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 902, in dispatch_request
     return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
-  File "D:\Hackathon\feature 2 implementation\A.R.I.S.E\server.py", line 158, in decorated
+  File "D:\Hackathon\Final little bit improvement\A.R.I.S.E\server.py", line 155, in decorated
     return f(data, *args, **kwargs)
-  File "D:\Hackathon\feature 2 implementation\A.R.I.S.E\server.py", line 2434, in get_leaderboard
-    streaks = calculate_streaks(conn, sid, any_course['id']) if any_course else {'current_streak': 0, 'longest_streak': 0}
-              ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "D:\Hackathon\feature 2 implementation\A.R.I.S.E\server.py", line 2243, in calculate_streaks
-    sessions = conn.execute("""
-               ~~~~~~~~~~~~^^^^
-        SELECT s.id, s.created_at
-        ^^^^^^^^^^^^^^^^^^^^^^^^^
-    ...<2 lines>...
-        ORDER BY s.created_at DESC
-        ^^^^^^^^^^^^^^^^^^^^^^^^^^
-    """, (course_id,)).fetchall()
-    ^^^^^^^^^^^^^^^^^^
-sqlite3.OperationalError: no such column: s.created_at
-2026-01-18 02:37:30,344 - INFO - Email alert scheduler initialized - Absent alerts every 10min, Daily summaries at 5 PM
-2026-01-18 02:37:30,349 - INFO - Server started - Auto-expire scheduler active
-2026-01-18 02:45:47,700 - INFO - Email alert scheduler initialized - Absent alerts every 10min, Daily summaries at 5 PM
-2026-01-18 02:45:47,705 - INFO - Server started - Auto-expire scheduler active
-2026-01-18 02:57:24,843 - INFO - Email alert scheduler initialized - Absent alerts every 10min, Daily summaries at 5 PM
-2026-01-18 02:57:24,848 - INFO - Server started - Auto-expire scheduler active
-2026-01-18 03:05:55,239 - INFO - Email alert scheduler initialized - Absent alerts every 10min, Daily summaries at 5 PM
-2026-01-18 03:05:55,245 - INFO - Server started - Auto-expire scheduler active
-2026-01-18 03:08:00,707 - INFO - Email alert scheduler initialized - Absent alerts every 10min, Daily summaries at 5 PM
-2026-01-18 03:08:00,713 - INFO - Server started - Auto-expire scheduler active
-2026-01-18 03:08:49,227 - INFO - Email alert scheduler initialized - Absent alerts every 10min, Daily summaries at 5 PM
-2026-01-18 03:08:49,232 - INFO - Server started - Auto-expire scheduler active
-2026-01-18 03:09:13,487 - INFO - Email alert scheduler initialized - Absent alerts every 10min, Daily summaries at 5 PM
-2026-01-18 03:09:13,492 - INFO - Server started - Auto-expire scheduler active
-2026-01-18 03:10:15,790 - INFO - Email alert scheduler initialized - Absent alerts every 10min, Daily summaries at 5 PM
-2026-01-18 03:10:15,795 - INFO - Server started - Auto-expire scheduler active
-2026-01-18 03:18:55,815 - INFO - Email alert scheduler initialized - Absent alerts every 10min, Daily summaries at 5 PM
-2026-01-18 03:18:55,821 - INFO - Server started - Auto-expire scheduler active
-2026-01-18 03:47:01,167 - INFO - Email alert scheduler initialized - Absent alerts every 10min, Daily summaries at 5 PM
-2026-01-18 03:47:01,172 - INFO - Server started - Auto-expire scheduler active
-2026-01-18 03:50:42,579 - INFO - Email alert scheduler initialized - Absent alerts every 10min, Daily summaries at 5 PM
-2026-01-18 03:50:42,585 - INFO - Server started - Auto-expire scheduler active
-2026-01-18 03:59:45,359 - INFO - Email alert scheduler initialized - Absent alerts every 10min, Daily summaries at 5 PM
-2026-01-18 03:59:45,363 - INFO - Server started - Auto-expire scheduler active
-2026-01-18 04:42:18,088 - INFO - Email alert scheduler initialized - Absent alerts every 10min, Daily summaries at 5 PM
-2026-01-18 04:42:18,093 - INFO - Server started - Auto-expire scheduler active
-2026-01-18 05:38:24,408 - INFO - Email alert scheduler initialized - Absent alerts every 10min, Daily summaries at 5 PM
-2026-01-18 05:38:24,417 - INFO - Server started - Auto-expire scheduler active
-2026-01-18 05:43:13,751 - INFO - Email alert scheduler initialized - Absent alerts every 10min, Daily summaries at 5 PM
-2026-01-18 05:43:13,771 - INFO - Server started - Auto-expire scheduler active
-2026-01-18 05:49:33,068 - INFO - Email alert scheduler initialized - Absent alerts every 10min, Daily summaries at 5 PM
-2026-01-18 05:49:33,074 - INFO - Server started - Auto-expire scheduler active
-2026-01-18 06:11:45,292 - INFO - Email alert scheduler initialized - Absent alerts every 10min, Daily summaries at 5 PM
-2026-01-18 06:11:45,298 - INFO - Server started - Auto-expire scheduler active
-2026-01-18 06:22:04,050 - INFO - Email alert scheduler initialized - Absent alerts every 10min, Daily summaries at 5 PM
-2026-01-18 06:22:04,055 - INFO - Server started - Auto-expire scheduler active
-2026-01-18 06:26:21,645 - INFO - Email alert scheduler initialized - Absent alerts every 10min, Daily summaries at 5 PM
-2026-01-18 06:26:21,650 - INFO - Server started - Auto-expire scheduler active
-2026-01-18 06:57:40,677 - INFO - Email alert scheduler initialized - Absent alerts every 10min, Daily summaries at 5 PM
-2026-01-18 06:57:40,682 - INFO - Server started - Auto-expire scheduler active
-2026-01-18 07:21:47,092 - INFO - Email alert scheduler initialized - Absent alerts every 10min, Daily summaries at 5 PM
-2026-01-18 07:21:47,097 - INFO - Server started - Auto-expire scheduler active
-2026-01-18 07:56:36,635 - INFO - Email alert scheduler initialized - Absent alerts every 10min, Daily summaries at 5 PM
-2026-01-18 07:56:36,639 - INFO - Server started - Auto-expire scheduler active
-2026-01-18 08:33:20,911 - INFO - Email alert scheduler initialized - Absent alerts every 10min, Daily summaries at 5 PM
-2026-01-18 08:33:20,930 - INFO - Server started - Auto-expire scheduler active
-2026-01-18 08:58:56,914 - INFO - Email alert scheduler initialized - Absent alerts every 10min, Daily summaries at 5 PM
-2026-01-18 08:58:56,920 - INFO - Server started - Auto-expire scheduler active
-2026-01-18 09:21:07,490 - INFO - Email alert scheduler initialized - Absent alerts every 10min, Daily summaries at 5 PM
-2026-01-18 09:21:07,498 - INFO - Server started - Auto-expire scheduler active
-2026-01-18 09:27:49,127 - INFO - Email alert scheduler initialized - Absent alerts every 10min, Daily summaries at 5 PM
-2026-01-18 09:27:49,132 - INFO - Server started - Auto-expire scheduler active
-2026-01-18 09:29:25,792 - INFO - Email alert scheduler initialized - Absent alerts every 10min, Daily summaries at 5 PM
-2026-01-18 09:29:25,797 - INFO - Server started - Auto-expire scheduler active
-2026-01-18 09:31:50,533 - INFO - Email alert scheduler initialized - Absent alerts every 10min, Daily summaries at 5 PM
-2026-01-18 09:31:50,538 - INFO - Server started - Auto-expire scheduler active
-2026-01-18 09:33:55,555 - INFO - Email alert scheduler initialized - Absent alerts every 10min, Daily summaries at 5 PM
-2026-01-18 09:33:55,561 - INFO - Server started - Auto-expire scheduler active
-2026-01-18 09:38:06,016 - INFO - Email alert scheduler initialized - Absent alerts every 10min, Daily summaries at 5 PM
-2026-01-18 09:38:06,022 - INFO - Server started - Auto-expire scheduler active
-2026-01-18 09:46:30,770 - INFO - Email alert scheduler initialized - Absent alerts every 10min, Daily summaries at 5 PM
-2026-01-18 09:46:30,775 - INFO - Server started - Auto-expire scheduler active
-2026-01-18 10:04:05,090 - INFO - Email alert scheduler initialized - Absent alerts every 10min, Daily summaries at 5 PM
-2026-01-18 10:04:05,101 - INFO - Server started - Auto-expire scheduler active
-2026-01-18 10:07:02,025 - INFO - Email alert scheduler initialized - Absent alerts every 10min, Daily summaries at 5 PM
-2026-01-18 10:07:02,030 - INFO - Server started - Auto-expire scheduler active
-2026-01-18 10:08:37,327 - INFO - Teacher login attempt - CourseCode: MCA101
-2026-01-18 10:08:37,328 - INFO - Teacher login successful - Course: Introduction To Programming
-2026-01-18 10:08:44,268 - INFO - Creating session - Duration: 30min, Grace: 5min, Start: 2026-01-18 10:08:44, Scheduled end: 2026-01-18 10:43:44
-2026-01-18 10:08:44,273 - INFO - Session started - ID: 171, Course: 1, Duration: 30min (+5min grace)
-2026-01-18 10:09:24,840 - WARNING - Device heartbeat stale - Last seen 16.7 seconds ago
-2026-01-18 10:09:29,292 - WARNING - Device heartbeat stale - Last seen 21.2 seconds ago
-2026-01-18 10:09:34,299 - WARNING - Device heartbeat stale - Last seen 26.2 seconds ago
-2026-01-18 10:09:39,301 - WARNING - Device heartbeat stale - Last seen 31.2 seconds ago
-2026-01-18 10:09:45,847 - WARNING - Device heartbeat stale - Last seen 37.7 seconds ago
-2026-01-18 10:09:49,350 - WARNING - Device heartbeat stale - Last seen 41.2 seconds ago
-2026-01-18 10:09:54,297 - WARNING - Device heartbeat stale - Last seen 46.2 seconds ago
-2026-01-18 10:10:59,504 - INFO - End session 171: Found 2 enrolled students
-2026-01-18 10:10:59,504 - INFO - End session 171: 2 students marked present
-2026-01-18 10:10:59,507 - INFO - Session ended - ID: 171, Absent alerts sent: 0
-2026-01-18 10:22:48,164 - INFO - Email alert scheduler initialized - Absent alerts every 10min, Daily summaries at 5 PM
-2026-01-18 10:22:48,169 - INFO - Server started - Auto-expire scheduler active
-2026-01-18 10:23:00,288 - INFO - Teacher login attempt - CourseCode: MCA101
-2026-01-18 10:23:00,290 - INFO - Teacher login successful - Course: Introduction To Programming
-2026-01-18 10:23:11,250 - INFO - Creating session - Duration: 30min, Grace: 5min, Start: 2026-01-18 10:23:11, Scheduled end: 2026-01-18 10:58:11
-2026-01-18 10:23:11,254 - INFO - Session started - ID: 172, Course: 1, Duration: 30min (+5min grace)
-2026-01-18 10:23:26,276 - WARNING - Device heartbeat stale - Last seen 15.8 seconds ago
-2026-01-18 10:23:31,275 - WARNING - Device heartbeat stale - Last seen 20.8 seconds ago
-2026-01-18 10:23:36,282 - WARNING - Device heartbeat stale - Last seen 25.8 seconds ago
-2026-01-18 10:23:41,274 - WARNING - Device heartbeat stale - Last seen 30.8 seconds ago
-2026-01-18 10:23:46,271 - WARNING - Device heartbeat stale - Last seen 35.8 seconds ago
-2026-01-18 10:23:51,276 - WARNING - Device heartbeat stale - Last seen 40.8 seconds ago
-2026-01-18 10:23:56,275 - WARNING - Device heartbeat stale - Last seen 45.8 seconds ago
-2026-01-18 10:24:01,271 - WARNING - Device heartbeat stale - Last seen 50.8 seconds ago
-2026-01-18 10:24:06,284 - WARNING - Device heartbeat stale - Last seen 55.8 seconds ago
-2026-01-18 10:24:11,274 - WARNING - Device heartbeat stale - Last seen 60.8 seconds ago
-2026-01-18 10:24:13,438 - INFO - End session 172: Found 2 enrolled students
-2026-01-18 10:24:13,438 - INFO - End session 172: 0 students marked present
-2026-01-18 10:24:13,438 - INFO -   Absent: Sourabh Kumar Gupta - Email: sourabhkrgupta720@gmail.com
-2026-01-18 10:24:17,326 - INFO - Email sent successfully to sourabhkrgupta720@gmail.com
-2026-01-18 10:24:17,327 - INFO -     SENT to sourabhkrgupta720@gmail.com
-2026-01-18 10:24:20,966 - INFO - Email sent successfully to rajuhuptaooooo@gmail.com
-2026-01-18 10:24:20,966 - INFO -     SENT to secondary rajuhuptaooooo@gmail.com
-2026-01-18 10:24:20,967 - INFO -   Absent: Vishal Kumar - Email: ziaul.business1@gmail.com
-2026-01-18 10:24:24,463 - INFO - Email sent successfully to ziaul.business1@gmail.com
-2026-01-18 10:24:24,463 - INFO -     SENT to ziaul.business1@gmail.com
-2026-01-18 10:24:28,100 - INFO - Email sent successfully to vishal@gmail.com
-2026-01-18 10:24:28,100 - INFO -     SENT to secondary vishal@gmail.com
-2026-01-18 10:24:28,104 - INFO - Session ended - ID: 172, Absent alerts sent: 2
-2026-01-18 10:30:50,280 - INFO - Email alert scheduler initialized - Absent alerts every 10min, Daily summaries at 5 PM
-2026-01-18 10:30:50,302 - INFO - Server started - Auto-expire scheduler active
-2026-01-18 10:31:08,798 - INFO - Teacher login attempt - CourseCode: MCA101
-2026-01-18 10:31:08,800 - INFO - Teacher login successful - Course: Introduction To Programming
-2026-01-18 10:31:11,357 - INFO - Creating session - Duration: 30min, Grace: 5min, Start: 2026-01-18 10:31:11, Scheduled end: 2026-01-18 11:06:11
-2026-01-18 10:31:11,370 - INFO - Session started - ID: 173, Course: 1, Duration: 30min (+5min grace)
-2026-01-18 10:31:56,398 - WARNING - Device heartbeat stale - Last seen 19.8 seconds ago
-2026-01-18 10:32:01,397 - WARNING - Device heartbeat stale - Last seen 24.8 seconds ago
-2026-01-18 10:32:06,396 - WARNING - Device heartbeat stale - Last seen 29.8 seconds ago
-2026-01-18 10:32:11,393 - WARNING - Device heartbeat stale - Last seen 34.8 seconds ago
-2026-01-18 10:32:17,727 - WARNING - Device heartbeat stale - Last seen 41.2 seconds ago
-2026-01-18 10:32:21,492 - WARNING - Device heartbeat stale - Last seen 44.9 seconds ago
-2026-01-18 10:32:24,284 - INFO - [BULK SYNC] Processing 2 roll IDs: [1, 2]
-2026-01-18 10:32:28,413 - INFO - Email sent successfully to sourabhkrgupta720@gmail.com
-2026-01-18 10:32:28,414 - INFO -   [SUCCESS] Roll 1 marked - Alert sent to sourabhkrgupta720@gmail.com
-2026-01-18 10:32:32,210 - INFO - Email sent successfully to ziaul.business1@gmail.com
-2026-01-18 10:32:32,210 - INFO -   [SUCCESS] Roll 2 marked - Alert sent to ziaul.business1@gmail.com
-2026-01-18 10:32:32,213 - INFO - [BULK SYNC] Complete - 2/2 successful
-2026-01-18 10:32:41,401 - WARNING - Device heartbeat stale - Last seen 18.3 seconds ago
-2026-01-18 10:32:55,548 - INFO - End session 173: Found 2 enrolled students
-2026-01-18 10:32:55,549 - INFO - End session 173: 2 students marked present
-2026-01-18 10:32:55,552 - INFO - Session ended - ID: 173, Absent alerts sent: 0
+  File "D:\Hackathon\Final little bit improvement\A.R.I.S.E\server.py", line 1288, in get_student_dashboard
+    "semester_id": course.get('semester_id'),
+                   ^^^^^^^^^^
+AttributeError: 'sqlite3.Row' object has no attribute 'get'
+2026-01-22 19:23:48,636 - ERROR - Exception on /api/student/dashboard [GET]
+Traceback (most recent call last):
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "D:\Hackathon\Final little bit improvement\A.R.I.S.E\server.py", line 155, in decorated
+    return f(data, *args, **kwargs)
+  File "D:\Hackathon\Final little bit improvement\A.R.I.S.E\server.py", line 1288, in get_student_dashboard
+    "semester_id": course.get('semester_id'),
+                   ^^^^^^^^^^
+AttributeError: 'sqlite3.Row' object has no attribute 'get'
+2026-01-22 19:24:09,632 - ERROR - Exception on /api/student/dashboard [GET]
+Traceback (most recent call last):
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "D:\Hackathon\Final little bit improvement\A.R.I.S.E\server.py", line 155, in decorated
+    return f(data, *args, **kwargs)
+  File "D:\Hackathon\Final little bit improvement\A.R.I.S.E\server.py", line 1288, in get_student_dashboard
+    "semester_id": course.get('semester_id'),
+                   ^^^^^^^^^^
+AttributeError: 'sqlite3.Row' object has no attribute 'get'
+2026-01-22 19:24:14,231 - ERROR - Exception on /api/student/dashboard [GET]
+Traceback (most recent call last):
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "D:\Hackathon\Final little bit improvement\A.R.I.S.E\server.py", line 155, in decorated
+    return f(data, *args, **kwargs)
+  File "D:\Hackathon\Final little bit improvement\A.R.I.S.E\server.py", line 1288, in get_student_dashboard
+    "semester_id": course.get('semester_id'),
+                   ^^^^^^^^^^
+AttributeError: 'sqlite3.Row' object has no attribute 'get'
+2026-01-22 19:24:14,439 - ERROR - Exception on /api/student/dashboard [GET]
+Traceback (most recent call last):
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "D:\Hackathon\Final little bit improvement\A.R.I.S.E\server.py", line 155, in decorated
+    return f(data, *args, **kwargs)
+  File "D:\Hackathon\Final little bit improvement\A.R.I.S.E\server.py", line 1288, in get_student_dashboard
+    "semester_id": course.get('semester_id'),
+                   ^^^^^^^^^^
+AttributeError: 'sqlite3.Row' object has no attribute 'get'
+2026-01-22 19:24:28,489 - ERROR - Exception on /api/student/dashboard [GET]
+Traceback (most recent call last):
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "D:\Hackathon\Final little bit improvement\A.R.I.S.E\server.py", line 155, in decorated
+    return f(data, *args, **kwargs)
+  File "D:\Hackathon\Final little bit improvement\A.R.I.S.E\server.py", line 1288, in get_student_dashboard
+    "semester_id": course.get('semester_id'),
+                   ^^^^^^^^^^
+AttributeError: 'sqlite3.Row' object has no attribute 'get'
+2026-01-22 19:28:35,164 - INFO - Server started - Auto-expire scheduler active
+2026-01-22 19:44:03,221 - INFO - Server started - Auto-expire scheduler active
+2026-01-22 19:50:36,276 - INFO - Server started - Auto-expire scheduler active
+2026-01-22 19:54:00,843 - INFO - Server started - Auto-expire scheduler active
+2026-01-22 19:54:33,839 - ERROR - Exception on /api/student/leaderboard [GET]
+Traceback (most recent call last):
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "D:\Hackathon\Final little bit improvement\A.R.I.S.E\server.py", line 155, in decorated
+    return f(data, *args, **kwargs)
+  File "D:\Hackathon\Final little bit improvement\A.R.I.S.E\server.py", line 2102, in get_leaderboard
+    students = conn.execute(students_query, params).fetchall()
+               ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+sqlite3.OperationalError: no such column: e.semester_id
+2026-01-22 19:54:54,638 - ERROR - Exception on /api/student/leaderboard [GET]
+Traceback (most recent call last):
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "D:\Hackathon\Final little bit improvement\A.R.I.S.E\server.py", line 155, in decorated
+    return f(data, *args, **kwargs)
+  File "D:\Hackathon\Final little bit improvement\A.R.I.S.E\server.py", line 2102, in get_leaderboard
+    students = conn.execute(students_query, params).fetchall()
+               ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+sqlite3.OperationalError: no such column: e.semester_id
+2026-01-22 19:55:06,177 - ERROR - Exception on /api/student/leaderboard [GET]
+Traceback (most recent call last):
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "D:\Hackathon\Final little bit improvement\A.R.I.S.E\server.py", line 155, in decorated
+    return f(data, *args, **kwargs)
+  File "D:\Hackathon\Final little bit improvement\A.R.I.S.E\server.py", line 2102, in get_leaderboard
+    students = conn.execute(students_query, params).fetchall()
+               ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+sqlite3.OperationalError: no such column: e.semester_id
+2026-01-22 19:55:26,720 - ERROR - Exception on /api/student/leaderboard [GET]
+Traceback (most recent call last):
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "D:\Hackathon\Final little bit improvement\A.R.I.S.E\server.py", line 155, in decorated
+    return f(data, *args, **kwargs)
+  File "D:\Hackathon\Final little bit improvement\A.R.I.S.E\server.py", line 2102, in get_leaderboard
+    students = conn.execute(students_query, params).fetchall()
+               ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+sqlite3.OperationalError: no such column: e.semester_id
+2026-01-22 19:55:40,230 - ERROR - Exception on /api/student/leaderboard [GET]
+Traceback (most recent call last):
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "D:\Hackathon\Final little bit improvement\A.R.I.S.E\server.py", line 155, in decorated
+    return f(data, *args, **kwargs)
+  File "D:\Hackathon\Final little bit improvement\A.R.I.S.E\server.py", line 2102, in get_leaderboard
+    students = conn.execute(students_query, params).fetchall()
+               ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+sqlite3.OperationalError: no such column: e.semester_id
+2026-01-22 19:58:38,419 - INFO - Server started - Auto-expire scheduler active
+2026-01-22 19:59:29,669 - ERROR - Exception on /api/student/leaderboard [GET]
+Traceback (most recent call last):
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "D:\Hackathon\Final little bit improvement\A.R.I.S.E\server.py", line 155, in decorated
+    return f(data, *args, **kwargs)
+  File "D:\Hackathon\Final little bit improvement\A.R.I.S.E\server.py", line 2102, in get_leaderboard
+    params = []
+           ^^^^
+sqlite3.OperationalError: no such column: e.semester_id
+2026-01-22 20:05:10,882 - INFO - Server started - Auto-expire scheduler active
+2026-01-22 20:10:16,974 - INFO - Server started - Auto-expire scheduler active
+2026-01-22 20:17:05,660 - INFO - Server started - Auto-expire scheduler active
+2026-01-22 20:23:52,241 - INFO - Server started - Auto-expire scheduler active
+2026-01-22 20:27:58,669 - INFO - Server started - Auto-expire scheduler active
+2026-01-22 20:31:07,204 - INFO - Server started - Auto-expire scheduler active
+2026-01-22 20:34:20,207 - INFO - Server started - Auto-expire scheduler active
+2026-01-22 20:39:40,113 - INFO - Server started - Auto-expire scheduler active
+2026-01-22 20:42:40,543 - INFO - Server started - Auto-expire scheduler active
+2026-01-22 20:46:54,797 - INFO - Server started - Auto-expire scheduler active
+2026-01-22 20:50:20,051 - INFO - Server started - Auto-expire scheduler active
+2026-01-22 20:55:31,093 - INFO - Server started - Auto-expire scheduler active
+2026-01-22 20:59:58,467 - INFO - Server started - Auto-expire scheduler active
+2026-01-22 21:04:04,860 - INFO - Server started - Auto-expire scheduler active
+2026-01-22 21:09:18,838 - INFO - Server started - Auto-expire scheduler active
+2026-01-22 21:20:19,420 - INFO - Server started - Auto-expire scheduler active
+2026-01-22 21:20:39,401 - ERROR - Error in analytics trends: no such column: s.date
+2026-01-22 21:23:01,335 - ERROR - Error in analytics trends: no such column: s.date
+2026-01-22 21:23:48,776 - ERROR - Error in analytics trends: no such column: s.date
+2026-01-22 21:27:08,573 - INFO - Server started - Auto-expire scheduler active
+2026-01-22 21:33:55,648 - INFO - Server started - Auto-expire scheduler active
+2026-01-22 21:38:39,427 - ERROR - Error in analytics trends: no such column: s.date
+2026-01-22 21:47:50,814 - INFO - Server started - Auto-expire scheduler active
+2026-01-22 21:53:41,586 - INFO - Server started - Auto-expire scheduler active
+2026-01-22 21:59:43,640 - INFO - Server started - Auto-expire scheduler active
+2026-01-22 22:04:06,171 - INFO - Server started - Auto-expire scheduler active
+2026-01-22 22:12:50,863 - INFO - Server started - Auto-expire scheduler active
+2026-01-22 22:13:04,254 - INFO - Server started - Auto-expire scheduler active
+2026-01-22 22:18:38,958 - INFO - Server started - Auto-expire scheduler active
+2026-01-22 22:45:04,880 - INFO - Server started - Auto-expire scheduler active
+2026-01-22 22:50:43,268 - INFO - Server started - Auto-expire scheduler active
+2026-01-22 22:54:16,687 - INFO - Server started - Auto-expire scheduler active
+2026-01-22 22:54:49,651 - ERROR - Error on request:
+Traceback (most recent call last):
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\werkzeug\serving.py", line 370, in run_wsgi
+    execute(self.server.app)
+    ~~~~~~~^^^^^^^^^^^^^^^^^
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\werkzeug\serving.py", line 355, in execute
+    data = self.rfile.read(10_000_000)
+MemoryError
+2026-01-22 22:54:49,652 - ERROR - Error on request:
+Traceback (most recent call last):
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\werkzeug\serving.py", line 370, in run_wsgi
+    execute(self.server.app)
+    ~~~~~~~^^^^^^^^^^^^^^^^^
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\werkzeug\serving.py", line 355, in execute
+    data = self.rfile.read(10_000_000)
+MemoryError
+2026-01-22 22:54:49,653 - ERROR - Error on request:
+Traceback (most recent call last):
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\werkzeug\serving.py", line 370, in run_wsgi
+    execute(self.server.app)
+    ~~~~~~~^^^^^^^^^^^^^^^^^
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\werkzeug\serving.py", line 355, in execute
+    data = self.rfile.read(10_000_000)
+MemoryError
+2026-01-22 22:54:49,656 - ERROR - Error on request:
+Traceback (most recent call last):
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\werkzeug\serving.py", line 370, in run_wsgi
+    execute(self.server.app)
+    ~~~~~~~^^^^^^^^^^^^^^^^^
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\werkzeug\serving.py", line 355, in execute
+    data = self.rfile.read(10_000_000)
+MemoryError
+2026-01-22 22:54:49,655 - ERROR - Error on request:
+Traceback (most recent call last):
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\werkzeug\serving.py", line 370, in run_wsgi
+    execute(self.server.app)
+    ~~~~~~~^^^^^^^^^^^^^^^^^
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\werkzeug\serving.py", line 355, in execute
+    data = self.rfile.read(10_000_000)
+MemoryError
+2026-01-22 22:55:49,965 - INFO - Server started - Auto-expire scheduler active
+2026-01-22 22:56:38,443 - ERROR - Error on request:
+Traceback (most recent call last):
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\werkzeug\serving.py", line 370, in run_wsgi
+    execute(self.server.app)
+    ~~~~~~~^^^^^^^^^^^^^^^^^
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\werkzeug\serving.py", line 355, in execute
+    data = self.rfile.read(10_000_000)
+MemoryError
+2026-01-22 22:56:38,444 - ERROR - Error on request:
+Traceback (most recent call last):
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\werkzeug\serving.py", line 370, in run_wsgi
+    execute(self.server.app)
+    ~~~~~~~^^^^^^^^^^^^^^^^^
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\werkzeug\serving.py", line 355, in execute
+    data = self.rfile.read(10_000_000)
+MemoryError
+2026-01-22 22:56:41,804 - ERROR - Error on request:
+Traceback (most recent call last):
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\werkzeug\serving.py", line 370, in run_wsgi
+    execute(self.server.app)
+    ~~~~~~~^^^^^^^^^^^^^^^^^
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\werkzeug\serving.py", line 355, in execute
+    data = self.rfile.read(10_000_000)
+MemoryError
+2026-01-22 22:56:42,911 - ERROR - Error on request:
+Traceback (most recent call last):
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\werkzeug\serving.py", line 370, in run_wsgi
+    execute(self.server.app)
+    ~~~~~~~^^^^^^^^^^^^^^^^^
+  File "D:\PROJECT A.R.I.S.E\New Features testing in ARISE\A.R.I.S.E\venv\Lib\site-packages\werkzeug\serving.py", line 355, in execute
+    data = self.rfile.read(10_000_000)
+MemoryError
+2026-01-22 23:04:44,580 - INFO - Server started - Auto-expire scheduler active
+2026-01-22 23:17:25,576 - INFO - Server started - Auto-expire scheduler active

@@ -77,13 +77,13 @@ document.addEventListener('DOMContentLoaded', () => {
     'view-courses': document.getElementById('view-courses-table-body'),
     // --- NEW: References for the Enrollment Roster feature ---
     'enrollment-roster': document.getElementById(
-      'enrollment-roster-table-body'
+      'enrollment-roster-table-body',
     ),
   };
 
   // --- NEW: Reference to the semester selector for the roster ---
   const rosterSemesterSelect = document.getElementById(
-    'select-roster-semester'
+    'select-roster-semester',
   );
 
   // --- 4. API HELPER ---
@@ -130,10 +130,10 @@ document.addEventListener('DOMContentLoaded', () => {
     tab.addEventListener('click', () => {
       switchTab(mainTabs, tab);
       const firstSubTab = document.querySelector(
-        `#${tab.dataset.tab} .sub-tab-button`
+        `#${tab.dataset.tab} .sub-tab-button`,
       );
       if (firstSubTab) firstSubTab.click();
-    })
+    }),
   );
 
   manageSubTabs.forEach((subTab) =>
@@ -141,14 +141,14 @@ document.addEventListener('DOMContentLoaded', () => {
       switchTab(manageSubTabs, subTab);
       currentEntity = subTab.dataset.subtab;
       loadDataForCurrentTab();
-    })
+    }),
   );
 
   viewSubTabs.forEach((subTab) =>
     subTab.addEventListener('click', () => {
       switchTab(viewSubTabs, subTab);
       loadDataForViewTab(subTab.dataset.subtab);
-    })
+    }),
   );
 
   // --- Logout and Modal Listeners ---
@@ -156,7 +156,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const confirmed = await Modal.confirm(
       'Are you sure you want to logout?',
       'Confirm Logout',
-      'warning'
+      'warning',
     );
 
     if (confirmed) {
@@ -170,10 +170,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const confirmed = await Modal.confirm(
       `Are you sure you want to delete this ${entity.slice(
         0,
-        -1
+        -1,
       )} (#${id})? This action cannot be undone.`,
       'Confirm Delete',
-      'error'
+      'error',
     );
 
     if (confirmed) {
@@ -239,13 +239,12 @@ document.addEventListener('DOMContentLoaded', () => {
   async function loadDataForViewTab(viewEntity) {
     if (viewEntity === 'enrollment-roster') {
       await populateRosterSemesterDropdown();
-      tableBodies[
-        'enrollment-roster'
-      ].innerHTML = `<tr><td colspan="4">Please select a semester above to view the roster.</td></tr>`;
+      tableBodies['enrollment-roster'].innerHTML =
+        `<tr><td colspan="4">Please select a semester above to view the roster.</td></tr>`;
     } else {
       const entity = viewEntity.replace('view-', '');
       const items = await api.get(
-        entity === 'courses' ? 'courses-view' : entity
+        entity === 'courses' ? 'courses-view' : entity,
       );
       const tbody = tableBodies[viewEntity];
       if (!tbody) return;
@@ -566,11 +565,11 @@ document.addEventListener('DOMContentLoaded', () => {
       '<option value="">-- Select a Teacher --</option>';
     semesters.forEach(
       (s) =>
-        (semesterSelect.innerHTML += `<option value="${s.id}">${s.semester_name}</option>`)
+        (semesterSelect.innerHTML += `<option value="${s.id}">${s.semester_name}</option>`),
     );
     teachers.forEach(
       (t) =>
-        (teacherSelect.innerHTML += `<option value="${t.id}">${t.teacher_name}</option>`)
+        (teacherSelect.innerHTML += `<option value="${t.id}">${t.teacher_name}</option>`),
     );
   }
 
@@ -596,30 +595,30 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // --- COURSE ENROLLMENT MANAGEMENT (Fully Functional) ---
   const enrollmentCourseSelect = document.getElementById(
-    'select-enrollment-course'
+    'select-enrollment-course',
   );
   const availableStudentsList = document.getElementById(
-    'available-students-list'
+    'available-students-list',
   );
   const enrolledStudentsTbody = document.getElementById(
-    'enrolled-students-table-body'
+    'enrolled-students-table-body',
   );
   const enrollButton = document.getElementById('enroll-button');
   const unenrollButton = document.getElementById('unenroll-button');
   const saveEnrollmentsButton = document.getElementById(
-    'save-enrollments-button'
+    'save-enrollments-button',
   );
   let availableStudentsData = [];
   let enrolledStudentsData = [];
 
   const selectAllAvailableBtn = document.getElementById('select-all-available');
   const deselectAllAvailableBtn = document.getElementById(
-    'deselect-all-available'
+    'deselect-all-available',
   );
 
   const selectAllEnrolledBtn = document.getElementById('select-all-enrolled');
   const deselectAllEnrolledBtn = document.getElementById(
-    'deselect-all-enrolled'
+    'deselect-all-enrolled',
   );
 
   async function populateEnrollmentCourseDropdown() {
@@ -629,7 +628,7 @@ document.addEventListener('DOMContentLoaded', () => {
       '<option value="">-- Select a Course --</option>';
     courses.forEach(
       (c) =>
-        (enrollmentCourseSelect.innerHTML += `<option value="${c.id}">${c.course_name} (${c.course_code})</option>`)
+        (enrollmentCourseSelect.innerHTML += `<option value="${c.id}">${c.course_name} (${c.course_code})</option>`),
     );
     enrollmentCourseSelect.value = currentVal;
   }
@@ -696,24 +695,24 @@ document.addEventListener('DOMContentLoaded', () => {
   // Select / Deselect All for Available Students
   selectAllAvailableBtn?.addEventListener('click', () => {
     Array.from(availableStudentsList.querySelectorAll('tr')).forEach((tr) =>
-      tr.classList.add('selected')
+      tr.classList.add('selected'),
     );
   });
   deselectAllAvailableBtn?.addEventListener('click', () => {
     Array.from(availableStudentsList.querySelectorAll('tr')).forEach((tr) =>
-      tr.classList.remove('selected')
+      tr.classList.remove('selected'),
     );
   });
 
   // Select / Deselect All for Enrolled Students
   selectAllEnrolledBtn?.addEventListener('click', () => {
     Array.from(enrolledStudentsTbody.querySelectorAll('tr')).forEach((tr) =>
-      tr.classList.add('selected')
+      tr.classList.add('selected'),
     );
   });
   deselectAllEnrolledBtn?.addEventListener('click', () => {
     Array.from(enrolledStudentsTbody.querySelectorAll('tr')).forEach((tr) =>
-      tr.classList.remove('selected')
+      tr.classList.remove('selected'),
     );
   });
 
@@ -744,7 +743,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   enrollButton.addEventListener('click', () => {
     const selectedRows = Array.from(
-      availableStudentsList.querySelectorAll('tr.selected')
+      availableStudentsList.querySelectorAll('tr.selected'),
     );
     selectedRows.forEach((row) => {
       const studentId = parseInt(row.dataset.id);
@@ -755,11 +754,11 @@ document.addEventListener('DOMContentLoaded', () => {
           student_id: student.id,
           class_roll_id:
             extractLastThreeAsNumber(
-              student.university_roll_no || student.enrollment_no
+              student.university_roll_no || student.enrollment_no,
             ) || null,
         });
         availableStudentsData = availableStudentsData.filter(
-          (s) => s.id !== studentId
+          (s) => s.id !== studentId,
         );
       }
     });
@@ -769,12 +768,12 @@ document.addEventListener('DOMContentLoaded', () => {
   // NEW: Fully functional unenroll logic
   unenrollButton.addEventListener('click', () => {
     const selectedRows = Array.from(
-      enrolledStudentsTbody.querySelectorAll('tr.selected')
+      enrolledStudentsTbody.querySelectorAll('tr.selected'),
     );
     selectedRows.forEach((row) => {
       const studentId = parseInt(row.dataset.studentId);
       const student = enrolledStudentsData.find(
-        (s) => s.student_id === studentId
+        (s) => s.student_id === studentId,
       );
       if (student) {
         const fullStudentData = {
@@ -786,7 +785,7 @@ document.addEventListener('DOMContentLoaded', () => {
           availableStudentsData.push(fullStudentData);
         }
         enrolledStudentsData = enrolledStudentsData.filter(
-          (s) => s.student_id !== studentId
+          (s) => s.student_id !== studentId,
         );
       }
     });
@@ -811,7 +810,7 @@ document.addEventListener('DOMContentLoaded', () => {
         Modal.alert(
           `Error: Student ${row.cells[0].textContent} must have a valid, positive Class Roll ID.`,
           'Validation Error',
-          'error'
+          'error',
         );
         hasError = true;
       }
@@ -820,7 +819,7 @@ document.addEventListener('DOMContentLoaded', () => {
         Modal.alert(
           `Error: Duplicate Class Roll ID #${classRollId}. IDs must be unique for this course.`,
           'Validation Error',
-          'error'
+          'error',
         );
         hasError = true;
       }
@@ -838,28 +837,28 @@ document.addEventListener('DOMContentLoaded', () => {
     const confirmed = await Modal.confirm(
       `Save enrollment for ${finalEnrollments.length} student(s)?`,
       'Confirm Save',
-      'warning'
+      'warning',
     );
 
     if (!confirmed) return;
 
     const response = await api.post(
       `enrollments/${courseId}`,
-      finalEnrollments
+      finalEnrollments,
     );
 
     if (response.ok) {
       await Modal.alert(
         'Enrollments saved successfully!',
         'Success',
-        'success'
+        'success',
       );
     } else {
       const error = await response.json();
       await Modal.alert(
         `Failed to save enrollments: ${error.message}`,
         'Error',
-        'error'
+        'error',
       );
     }
   });
@@ -879,9 +878,8 @@ document.addEventListener('DOMContentLoaded', () => {
     if (semesterId) {
       loadEnrollmentRoster(semesterId);
     } else {
-      tableBodies[
-        'enrollment-roster'
-      ].innerHTML = `<tr><td colspan="4">Please select a semester above to view the roster.</td></tr>`;
+      tableBodies['enrollment-roster'].innerHTML =
+        `<tr><td colspan="4">Please select a semester above to view the roster.</td></tr>`;
     }
   });
 
