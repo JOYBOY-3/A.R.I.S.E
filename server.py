@@ -244,6 +244,28 @@ def admin_login():
     
     return jsonify({"message": "Invalid credentials"}), 401
 
+# --- System Configuration API ---
+@app.route('/api/admin/config', methods=['GET', 'POST'])
+@token_required
+def manage_config(user_data):
+    conn = get_db_connection()
+    if request.method == 'GET':
+        row = conn.execute("SELECT value FROM system_settings WHERE key = 'batch_name'").fetchone()
+        batch_name = row['value'] if row else "My Classroom Pod"
+        conn.close()
+        return jsonify({"batch_name": batch_name})
+    
+    if request.method == 'POST':
+        data = request.get_json()
+        new_name = data.get('batch_name', '').strip()
+        if not new_name:
+            return jsonify({"error": "Batch name cannot be empty"}), 400
+        
+        conn.execute("INSERT OR REPLACE INTO system_settings (key, value) VALUES ('batch_name', ?)", (new_name,))
+        conn.commit()
+        conn.close()
+        return jsonify({"message": "System configuration updated."})
+
 # --- Semester Management API (Full CRUD) ---
 @app.route('/api/admin/semesters', methods=['GET', 'POST'])
 @token_required

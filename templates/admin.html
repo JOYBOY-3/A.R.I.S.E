@@ -19,15 +19,38 @@
 
   <div class="container">
     <div class="header-container">
-      <h1>A.R.I.S.E. Admin Panel</h1>
+      <div>
+        <h1>A.R.I.S.E. Admin Panel</h1>
+        <h2 id="batch-identity-display" style="font-size: 1.1rem; color: var(--text-muted); margin-top: 0.2rem; font-weight: normal;">Loading Identity...</h2>
+      </div>
       <button id="logout-button" class="button-danger">Logout</button>
     </div>
 
     <div class="tabs">
+      <button class="tab-button" data-tab="settings">⚙️ Settings</button>
       <button class="tab-button active" data-tab="manage">Manage Data</button>
       <button class="tab-button" data-tab="view">View Data</button>
       <button class="tab-button" data-tab="tools">Tools</button>
       <button class="tab-button" data-tab="analytics">Analytics</button>
+    </div>
+
+    <!-- ======================= SETTINGS TAB CONTENT ======================= -->
+    <div id="settings" class="tab-content">
+      <h2>System Settings</h2>
+      <div class="management-section">
+        <h3>Classroom / Batch Identity</h3>
+        <p class="description" style="color: var(--text-muted); margin-bottom: 1rem;">
+          Set the unique name for this classroom installation (e.g., "SBU MCA 2024-2026"). 
+          This name will appear on all reports and analytics to identify this specific pod.
+        </p>
+        <form id="settings-form" class="management-form" style="max-width: 500px;">
+          <div>
+            <label for="setting-batch-name">Batch Name</label>
+            <input type="text" id="setting-batch-name" placeholder="e.g. SBU MCA 2024-2026" required />
+          </div>
+          <button type="submit" class="button-primary" style="margin-top: 1rem;">Save Identity</button>
+        </form>
+      </div>
     </div>
 
     <!-- ======================= MANAGE DATA TAB CONTENT ======================= -->

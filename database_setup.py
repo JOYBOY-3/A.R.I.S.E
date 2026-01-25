@@ -129,6 +129,17 @@ def setup_database():
         )
         """)
         print("Table 'attendance_records' created.")
+
+        # 9. System Settings Table: Stores global configuration like "Batch Name".
+        cursor.execute("""
+        CREATE TABLE IF NOT EXISTS system_settings (
+            key TEXT PRIMARY KEY,
+            value TEXT NOT NULL
+        )
+        """)
+        # Insert default batch name if not exists
+        cursor.execute("INSERT OR IGNORE INTO system_settings (key, value) VALUES (?, ?)", ('batch_name', 'My Classroom Pod'))
+        print("Table 'system_settings' created.")
         
         print("\n--- All tables created successfully.")
 

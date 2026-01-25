@@ -911,10 +911,62 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // --- 11. INITIALIZATION ---
+  // --- 11. SYSTEM IDENTITY (SETTINGS) ---
+  const batchIdentityDisplay = document.getElementById(
+    'batch-identity-display',
+  );
+  const settingsForm = document.getElementById('settings-form');
+  const batchNameInput = document.getElementById('setting-batch-name');
+
+  async function loadSystemIdentity() {
+    try {
+      const config = await api.get('config');
+      if (config.batch_name) {
+        if (batchIdentityDisplay)
+          batchIdentityDisplay.textContent = config.batch_name;
+        if (batchNameInput) batchNameInput.value = config.batch_name;
+      }
+    } catch (err) {
+      console.error('Failed to load identity', err);
+      if (batchIdentityDisplay)
+        batchIdentityDisplay.textContent = 'Classroom Identity';
+    }
+  }
+
+  if (settingsForm) {
+    settingsForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const newName = batchNameInput.value.trim();
+      if (!newName) return;
+
+      const response = await api.post('config', { batch_name: newName });
+
+      // Fix: api.post returns a Response object, not JSON directly
+      let result;
+      try {
+        result = await response.json();
+      } catch (e) {
+        result = {};
+      }
+
+      if (response.ok) {
+        await Modal.alert('System Identity Updated!', 'Success', 'success');
+        loadSystemIdentity(); // Refresh display
+      } else {
+        await Modal.alert(
+          `Failed to update identity: ${result.message || 'Unknown error'}`,
+          'Error',
+          'error',
+        );
+      }
+    });
+  }
+
+  // --- 12. INITIALIZATION ---
   // This is the main function that runs when the page first loads. It sets up the default
   // view and pre-loads all the necessary data from the server.
   function initialize() {
+    loadSystemIdentity();
     // Programmatically click the "Manage Data" tab to set the initial view.
     document.querySelector('.tab-button[data-tab="manage"]').click();
   }
