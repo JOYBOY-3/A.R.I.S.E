@@ -110,7 +110,8 @@ def setup_database():
             start_time DATETIME NOT NULL,
             end_time DATETIME,
             is_active BOOLEAN DEFAULT 0,
-            session_type TEXT DEFAULT 'offline' NOT NULL
+            session_type TEXT DEFAULT 'offline' NOT NULL,
+            topic TEXT
         )
         """)
         print("Table 'sessions' created.")

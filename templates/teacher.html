@@ -1,165 +1,366 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Teacher Dashboard</title>
-    <link rel="stylesheet" href="/static/css/base.css" />
-    <link rel="stylesheet" href="/static/css/modal.css" />
-    <link rel="stylesheet" href="/static/css/teacher.css" />
-  </head>
-  <body>
 
-      <!-- Theme Toggle Button -->
-    <button class="theme-toggle" onclick="toggleTheme()" title="Toggle Dark Mode">
-        <span id="theme-icon">🌙</span>
-    </button>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Teacher Dashboard - A.R.I.S.E.</title>
+  <link rel="stylesheet" href="/static/css/base.css" />
+  <link rel="stylesheet" href="/static/css/modal.css" />
+  <link rel="stylesheet" href="/static/css/teacher.css" />
+</head>
 
-    <div class="container">
+<body>
+
+  <!-- Theme Toggle Button -->
+  <button class="theme-toggle" onclick="toggleTheme()" title="Toggle Dark Mode">
+    <span id="theme-icon">🌙</span>
+  </button>
+
+  <div class="container">
+    <!-- ================================================== -->
+    <!-- VIEW 1: LOGIN                                      -->
+    <!-- ================================================== -->
+    <div id="login-view" class="view-container active">
+      <h1>A.R.I.S.E. Teacher Portal</h1>
+      <div class="form-container">
+        <div class="form-grid">
+          <div class="course-select-wrapper">
+            <label for="course-search-input">Course Code</label>
+            <div class="searchable-select" id="course-dropdown-container">
+              <input type="text" id="course-search-input" placeholder="Search or select course..." autocomplete="off" />
+              <div class="dropdown-arrow">▼</div>
+              <div class="dropdown-options" id="course-dropdown-options">
+                <!-- Options will be populated by JavaScript -->
+              </div>
+            </div>
+            <input type="hidden" id="course-code-input" />
+          </div>
+          <div>
+            <label for="pin-input">Your PIN</label>
+            <input type="password" id="pin-input" placeholder="Enter PIN" />
+          </div>
+        </div>
+        <button id="login-button" class="button-primary">Login</button>
+        <p id="login-message" class="error-message"></p>
+      </div>
+    </div>
+
+    <!-- ================================================== -->
+    <!-- DASHBOARD CONTAINER (Post-Login)                   -->
+    <!-- ================================================== -->
+    <div id="dashboard-container" style="display: none">
+
+      <!-- Header with Course Name and Logout -->
+      <div class="header-container">
+        <div>
+          <h1 id="dashboard-course-name">Course Name</h1>
+          <p id="dashboard-course-code" class="course-code-display"></p>
+        </div>
+        <button id="logout-button" class="button-danger">Logout</button>
+      </div>
+
+      <!-- Tab Navigation -->
+      <div class="tabs" id="main-tabs">
+        <button class="tab-button active" data-tab="home">🏠 Home</button>
+        <button class="tab-button" data-tab="analytics">📊 Analytics</button>
+        <button class="tab-button" data-tab="history">🕒 History</button>
+        <button class="tab-button" data-tab="reports">📄 Reports</button>
+      </div>
+
       <!-- ================================================== -->
-      <!-- VIEW 1: LOGIN                                        -->
+      <!-- HOME TAB                                           -->
       <!-- ================================================== -->
-      <div id="login-view" class="view-container active">
-        <h1>A.R.I.S.E. Teacher Portal</h1>
-        <div class="form-container">
+      <div id="home-tab" class="tab-content active">
+
+        <!-- Home Tab: Session Setup Screen -->
+        <div id="setup-screen" class="home-screen active">
+          <h2>Start New Session</h2>
           <div class="form-grid">
             <div>
-              <label for="course-code-input">Course Code</label>
-              <select id="course-code-input">
-                <option value="">-- Select Course Code --</option>
-              </select>
+              <label for="session-date-input">Session Date</label>
+              <input type="date" id="session-date-input" />
             </div>
             <div>
-              <label for="pin-input">Your PIN</label>
-              <input type="password" id="pin-input" placeholder="Enter PIN" />
+              <label for="duration-input">Duration (minutes)</label>
+              <input type="number" id="duration-input" min="10" value="30" />
+            </div>
+            <div style="grid-column: 1 / -1;">
+              <label for="topic-input">Session Topic (Optional)</label>
+              <input type="text" id="topic-input" placeholder="e.g. Write today lecture topics" />
             </div>
           </div>
-          <button id="login-button" class="button-primary">Login</button>
-          <p id="login-message" class="error-message"></p>
-        </div>
-      </div>
-
-      <!-- ================================================== -->
-      <!-- VIEW 2: SESSION SETUP                              -->
-      <!-- ================================================== -->
-      <div id="setup-view" class="view-container" style="display: none">
-        <h1 id="setup-course-name"></h1>
-        <h2>Session Setup</h2>
-        <div class="form-grid">
-          <div>
-            <label for="session-date-input">Session Date</label>
-            <input type="date" id="session-date-input" />
-          </div>
-          <div>
-            <label for="duration-input">Duration (minutes)</label>
-            <input type="number" id="duration-input" min="10" value="30" />
-          </div>
-        </div>
-        <button id="confirm-setup-button" class="button-primary">
-          Confirm & Next
-        </button>
-      </div>
-
-      <!-- ================================================== -->
-      <!-- VIEW 3: SESSION TYPE SELECTION                   -->
-      <!-- ================================================== -->
-      <div id="type-view" class="view-container" style="display: none">
-        <h1>Select Session Type</h1>
-        <div class="session-type-options">
-          <button id="start-offline-button" class="session-type-btn">
-            <h3>Offline Class</h3>
-            <p>Use Smart Scanner for biometric attendance.</p>
-          </button>
-          <button id="start-online-button" class="session-type-btn">
-            <h3>Online Class</h3>
-            <p>Use secure link for remote attendance.</p>
+          <button id="confirm-setup-button" class="button-primary">
+            Confirm & Next
           </button>
         </div>
+
+        <!-- Home Tab: Session Type Selection -->
+        <div id="type-screen" class="home-screen" style="display: none">
+          <button id="back-to-setup-button" class="back-button">
+            ← Back to Setup
+          </button>
+          <h2>Select Session Type</h2>
+          <div class="session-type-options">
+            <button id="start-offline-button" class="session-type-btn">
+              <h3>Offline Class</h3>
+              <p>Use Smart Scanner for biometric attendance.</p>
+            </button>
+            <button id="start-online-button" class="session-type-btn">
+              <h3>Online Class</h3>
+              <p>Use secure link for remote attendance.</p>
+            </button>
+          </div>
+        </div>
+
+        <!-- Home Tab: Live Offline Dashboard -->
+        <div id="live-screen" class="home-screen" style="display: none">
+          <div class="live-dashboard-grid">
+            <div class="live-info-panel">
+              <div class="stat-card">
+                <h3>Live Attendance</h3>
+                <p class="live-counter">
+                  <span id="attendance-count">0</span> /
+                  <span id="total-students">0</span>
+                </p>
+              </div>
+              <div id="device-status-widget" class="stat-card">
+                <h4>Smart Scanner Status</h4>
+                <p id="device-status-text">Awaiting first heartbeat...</p>
+              </div>
+              <div class="session-controls stat-card">
+                <h4>Session Controls</h4>
+                <button id="extend-session-button" class="button-secondary">
+                  Extend (+10 min)
+                </button>
+                <button id="end-session-button" class="button-danger">
+                  End Session Now
+                </button>
+              </div>
+            </div>
+            <div class="unmarked-students-panel">
+              <h3>Unmarked Students</h3>
+              <input type="text" id="search-input" placeholder="Search by Roll ID or Name..." autocomplete="off" />
+              <div class="table-container">
+                <table class="data-table" id="unmarked-students-table">
+                  <thead>
+                    <tr>
+                      <th>Class Roll</th>
+                      <th>Name</th>
+                      <th>Univ. Roll No.</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <!-- Student rows will be added here by JavaScript -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Home Tab: Post-Session Report -->
+        <div id="post-session-screen" class="home-screen" style="display: none">
+          <h2>Session Complete</h2>
+          <h3 id="post-session-topic"></h3>
+          <div class="report-controls">
+            <button id="export-excel-button" class="button-primary">
+              Export to Excel
+            </button>
+            <button id="new-session-button" class="button-secondary">
+              Start New Session
+            </button>
+          </div>
+          <div class="table-container responsive-table responsive-table-container">
+            <table class="data-table" id="report-table">
+              <thead>
+                <!-- Header will be generated by JavaScript -->
+              </thead>
+              <tbody>
+                <!-- Report rows will be generated by JavaScript -->
+              </tbody>
+            </table>
+          </div>
+        </div>
       </div>
 
       <!-- ================================================== -->
-      <!-- VIEW 4: LIVE OFFLINE DASHBOARD                       -->
+      <!-- ANALYTICS TAB                                      -->
       <!-- ================================================== -->
-      <div id="live-offline-view" class="view-container" style="display: none">
-        <h1 id="live-course-name"></h1>
-        <div class="live-dashboard-grid">
-          <div class="live-info-panel">
-            <div class="stat-card">
-              <h3>Live Attendance</h3>
-              <p class="live-counter">
-                <span id="attendance-count">0</span> /
-                <span id="total-students">0</span>
+      <div id="analytics-tab" class="tab-content">
+        <div id="analytics-loading" class="loading-indicator">
+          <p>Loading analytics...</p>
+        </div>
+
+        <div id="analytics-content" style="display: none">
+          <!-- Quick Stats Cards -->
+          <div class="analytics-stats-grid">
+            <div class="analytics-stat-card">
+              <div class="stat-icon">📊</div>
+              <div class="stat-info">
+                <h4>Average Attendance</h4>
+                <p class="stat-value" id="avg-attendance">--%</p>
+              </div>
+            </div>
+            <div class="analytics-stat-card">
+              <div class="stat-icon">📅</div>
+              <div class="stat-info">
+                <h4>Total Sessions</h4>
+                <p class="stat-value" id="total-sessions">--</p>
+              </div>
+            </div>
+            <div class="analytics-stat-card">
+              <div class="stat-icon">👥</div>
+              <div class="stat-info">
+                <h4>Enrolled Students</h4>
+                <p class="stat-value" id="enrolled-count">--</p>
+              </div>
+            </div>
+            <div class="analytics-stat-card warning">
+              <div class="stat-icon">⚠️</div>
+              <div class="stat-info">
+                <h4>At Risk Students</h4>
+                <p class="stat-value" id="at-risk-count">--</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Attendance Trend Graph -->
+          <div class="analytics-section">
+            <h3>📈 Attendance Trend</h3>
+            <div id="trend-graph-container">
+              <img id="trend-graph-image" alt="Attendance Trend Graph" />
+              <p id="trend-graph-placeholder" class="placeholder-text">
+                Need at least 2 sessions to show trend
               </p>
             </div>
-            <div id="device-status-widget" class="stat-card">
-              <h4>Smart Scanner Status</h4>
-              <p id="device-status-text">Awaiting first heartbeat...</p>
-            </div>
-            <div class="session-controls stat-card">
-              <h4>Session Controls</h4>
-              <button id="extend-session-button" class="button-secondary">
-                Extend (+10 min)
-              </button>
-              <button id="end-session-button" class="button-danger">
-                End Session Now
-              </button>
-            </div>
           </div>
-          <div class="unmarked-students-panel">
-            <h3>Unmarked Students</h3>
-            <input
-              type="text"
-              id="search-input"
-              placeholder="Search by Roll ID or Name..."
-            />
-            <div class="table-container">
-              <table class="data-table" id="unmarked-students-table">
+
+          <!-- At-Risk Students Table -->
+          <div class="analytics-section">
+            <h3>⚠️ Students At Risk (&lt;75% Attendance)</h3>
+            <div id="at-risk-container">
+              <table class="data-table" id="at-risk-table">
                 <thead>
                   <tr>
-                    <th>Class Roll</th>
+                    <th>Roll</th>
                     <th>Name</th>
-                    <th>Univ. Roll No.</th>
-                    <th>Action</th>
+                    <th>Attendance</th>
+                    <th>Status</th>
+                    <th>Sessions Needed</th>
                   </tr>
                 </thead>
-                <tbody>
-                  <!-- Student rows will be added here by JavaScript -->
+                <tbody id="at-risk-tbody">
+                  <!-- At-risk students will be added here -->
                 </tbody>
               </table>
+              <p id="no-at-risk-message" class="success-message" style="display: none">
+                ✅ No students are at risk! All students have 75%+ attendance.
+              </p>
             </div>
           </div>
         </div>
       </div>
 
       <!-- ================================================== -->
-      <!-- VIEW 5: POST-SESSION REPORT                          -->
+      <!-- HISTORY TAB                                        -->
       <!-- ================================================== -->
-      <div id="report-view" class="view-container" style="display: none">
-        <h1>Attendance Report</h1>
-        <h2 id="report-course-name"></h2>
-        <div class="report-controls">
-          <button id="export-excel-button" class="button-primary">
-            Export to Excel
-          </button>
-          <button id="new-session-button" class="button-secondary">
-            Start New Session
-          </button>
+      <div id="history-tab" class="tab-content">
+        <div id="history-loading" class="loading-indicator">
+          <p>Loading session history...</p>
         </div>
-        <div
-          class="table-container responsive-table responsive-table-container"
-        >
-          <table class="data-table" id="report-table">
-            <thead>
-              <!-- Header will be generated by JavaScript -->
-            </thead>
-            <tbody>
-              <!-- Report rows will be generated by JavaScript -->
-            </tbody>
-          </table>
+
+        <div id="history-content" style="display: none">
+          <div id="history-list" class="session-history-list">
+            <!-- Session cards will be inserted here by JavaScript -->
+          </div>
+          <p id="no-history-message" class="empty-message" style="display: none">
+            No sessions found for this course.
+          </p>
+        </div>
+      </div>
+
+      <!-- ================================================== -->
+      <!-- REPORTS TAB                                        -->
+      <!-- ================================================== -->
+      <div id="reports-tab" class="tab-content">
+        <div id="reports-loading" class="loading-indicator">
+          <p>Loading attendance matrix...</p>
+        </div>
+
+        <div id="reports-content" style="display: none">
+          <div class="report-controls">
+            <button id="reports-export-excel-button" class="button-primary">
+              Export to Excel
+            </button>
+          </div>
+          <div class="table-container responsive-table responsive-table-container">
+            <table class="data-table" id="reports-matrix-table">
+              <thead>
+                <!-- Header will be generated by JavaScript -->
+              </thead>
+              <tbody>
+                <!-- Report rows will be generated by JavaScript -->
+              </tbody>
+            </table>
+          </div>
+          <p id="no-reports-message" class="empty-message" style="display: none">
+            No sessions to display. Start a session to see the attendance matrix.
+          </p>
+        </div>
+      </div>
+
+    </div>
+    <!-- End Dashboard Container -->
+
+  </div>
+
+  <!-- ================================================== -->
+  <!-- SESSION DETAIL MODAL (for History Tab)             -->
+  <!-- ================================================== -->
+  <div id="session-detail-modal" class="session-modal-overlay" style="display: none">
+    <div class="session-modal">
+      <div class="session-modal-header">
+        <h3 id="modal-session-title">Session Details</h3>
+        <button id="close-session-modal" class="modal-close-btn">&times;</button>
+      </div>
+      <div class="session-modal-body">
+        <div class="modal-session-info">
+          <p><strong>Date:</strong> <span id="modal-session-date"></span></p>
+          <p><strong>Topic:</strong> <span id="modal-session-topic"></span></p>
+          <p><strong>Type:</strong> <span id="modal-session-type"></span></p>
+        </div>
+
+        <div class="modal-attendance-summary">
+          <div class="summary-card present">
+            <span class="summary-count" id="modal-present-count">0</span>
+            <span class="summary-label">Present</span>
+          </div>
+          <div class="summary-card absent">
+            <span class="summary-count" id="modal-absent-count">0</span>
+            <span class="summary-label">Absent</span>
+          </div>
+        </div>
+
+        <div class="modal-tabs">
+          <button class="modal-tab-btn active" data-modal-tab="present">Present Students</button>
+          <button class="modal-tab-btn" data-modal-tab="absent">Absent Students</button>
+        </div>
+
+        <div id="modal-present-list" class="modal-student-list active">
+          <!-- Present students list -->
+        </div>
+
+        <div id="modal-absent-list" class="modal-student-list" style="display: none">
+          <!-- Absent students list with "Mark Present" buttons -->
         </div>
       </div>
     </div>
-    <script src="/static/js/modal.js"></script>
-    <script src="/static/js/teacher.js"></script>
-  </body>
+  </div>
+
+  <script src="/static/js/modal.js"></script>
+  <script src="/static/js/teacher.js"></script>
+</body>
+
 </html>

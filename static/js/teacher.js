@@ -1,7 +1,8 @@
 //=========================================================
-// A.R.I.S.E. Teacher Dashboard - FIXED VERSION with Modal System
-// - Replaced all alert/confirm/prompt with custom modals
-// - Improved error handling and UX
+// A.R.I.S.E. Teacher Dashboard - Enhanced SPA Version
+// - Tab-based navigation with localStorage persistence
+// - Analytics, History, and Reports tabs
+// - Session detail modal with retroactive editing
 //=========================================================
 
 // Initialize dark mode BEFORE page loads
@@ -27,91 +28,427 @@ document.addEventListener('DOMContentLoaded', () => {
   const icon = document.getElementById('theme-icon');
   if (icon) icon.textContent = theme === 'dark' ? '☀️' : '🌙';
 
-  // --- 1. GLOBAL STATE & REFERENCES ---
-  const views = {
-    login: document.getElementById('login-view'),
-    setup: document.getElementById('setup-view'),
-    type: document.getElementById('type-view'),
-    liveOffline: document.getElementById('live-offline-view'),
-    report: document.getElementById('report-view'),
-  };
+  // =============================================================
+  // 1. GLOBAL STATE & REFERENCES
+  // =============================================================
+  const STORAGE_KEY = 'arise_teacher_session';
 
   let sessionState = {
     courseId: null,
+    courseName: null,
+    courseCode: null,
     sessionId: null,
     allStudents: [],
     liveUpdateInterval: null,
     endTime: null,
     countdownInterval: null,
+    currentTab: 'home',
+    currentHomeScreen: 'setup', // setup, type, live, post-session
+    isLoggedIn: false,
   };
 
-  // Get references to all interactive elements
+  // DOM References - Login View
+  const loginView = document.getElementById('login-view');
+  const dashboardContainer = document.getElementById('dashboard-container');
   const loginButton = document.getElementById('login-button');
   const courseCodeInput = document.getElementById('course-code-input');
   const pinInput = document.getElementById('pin-input');
   const loginMessage = document.getElementById('login-message');
-  const setupCourseName = document.getElementById('setup-course-name');
+
+  // DOM References - Dashboard Header
+  const dashboardCourseName = document.getElementById('dashboard-course-name');
+  const dashboardCourseCode = document.getElementById('dashboard-course-code');
+  const logoutButton = document.getElementById('logout-button');
+
+  // DOM References - Tabs
+  const mainTabs = document.getElementById('main-tabs');
+  const tabButtons = mainTabs.querySelectorAll('.tab-button');
+  const tabContents = document.querySelectorAll('.tab-content');
+
+  // DOM References - Home Tab Screens
+  const homeScreens = document.querySelectorAll('.home-screen');
+  const setupScreen = document.getElementById('setup-screen');
+  const typeScreen = document.getElementById('type-screen');
+  const liveScreen = document.getElementById('live-screen');
+  const postSessionScreen = document.getElementById('post-session-screen');
+
+  // DOM References - Session Setup
   const sessionDateInput = document.getElementById('session-date-input');
   const durationInput = document.getElementById('duration-input');
+  const topicInput = document.getElementById('topic-input');
   const confirmSetupButton = document.getElementById('confirm-setup-button');
+  const backToSetupButton = document.getElementById('back-to-setup-button');
   const startOfflineButton = document.getElementById('start-offline-button');
   const startOnlineButton = document.getElementById('start-online-button');
-  const liveCourseName = document.getElementById('live-course-name');
+
+  // DOM References - Live Session
   const attendanceCountSpan = document.getElementById('attendance-count');
   const totalStudentsSpan = document.getElementById('total-students');
   const deviceStatusText = document.getElementById('device-status-text');
   const searchInput = document.getElementById('search-input');
-  const unmarkedStudentsTbody = document.querySelector(
-    '#unmarked-students-table tbody'
-  );
+  const unmarkedStudentsTbody = document.querySelector('#unmarked-students-table tbody');
   const extendSessionButton = document.getElementById('extend-session-button');
   const endSessionButton = document.getElementById('end-session-button');
-  const reportCourseName = document.getElementById('report-course-name');
+
+  // DOM References - Post Session
+  const postSessionTopic = document.getElementById('post-session-topic');
   const exportExcelButton = document.getElementById('export-excel-button');
   const newSessionButton = document.getElementById('new-session-button');
   const reportTable = document.getElementById('report-table');
 
-  // Populate Course_Code dropdown
+  // DOM References - Analytics Tab
+  const analyticsLoading = document.getElementById('analytics-loading');
+  const analyticsContent = document.getElementById('analytics-content');
+  const avgAttendanceEl = document.getElementById('avg-attendance');
+  const totalSessionsEl = document.getElementById('total-sessions');
+  const enrolledCountEl = document.getElementById('enrolled-count');
+  const atRiskCountEl = document.getElementById('at-risk-count');
+  const trendGraphImage = document.getElementById('trend-graph-image');
+  const trendGraphPlaceholder = document.getElementById('trend-graph-placeholder');
+  const atRiskTbody = document.getElementById('at-risk-tbody');
+  const noAtRiskMessage = document.getElementById('no-at-risk-message');
+
+  // DOM References - History Tab
+  const historyLoading = document.getElementById('history-loading');
+  const historyContent = document.getElementById('history-content');
+  const historyList = document.getElementById('history-list');
+  const noHistoryMessage = document.getElementById('no-history-message');
+
+  // DOM References - Reports Tab
+  const reportsLoading = document.getElementById('reports-loading');
+  const reportsContent = document.getElementById('reports-content');
+  const reportsExportButton = document.getElementById('reports-export-excel-button');
+  const reportsMatrixTable = document.getElementById('reports-matrix-table');
+  const noReportsMessage = document.getElementById('no-reports-message');
+
+  // DOM References - Session Detail Modal
+  const sessionDetailModal = document.getElementById('session-detail-modal');
+  const closeSessionModalBtn = document.getElementById('close-session-modal');
+  const modalSessionTitle = document.getElementById('modal-session-title');
+  const modalSessionDate = document.getElementById('modal-session-date');
+  const modalSessionTopic = document.getElementById('modal-session-topic');
+  const modalSessionType = document.getElementById('modal-session-type');
+  const modalPresentCount = document.getElementById('modal-present-count');
+  const modalAbsentCount = document.getElementById('modal-absent-count');
+  const modalPresentList = document.getElementById('modal-present-list');
+  const modalAbsentList = document.getElementById('modal-absent-list');
+  const modalTabBtns = document.querySelectorAll('.modal-tab-btn');
+
+  // =============================================================
+  // 2. LOCALSTORAGE PERSISTENCE (SPA Engine)
+  // =============================================================
+  function saveState() {
+    const persistentState = {
+      courseId: sessionState.courseId,
+      courseName: sessionState.courseName,
+      courseCode: sessionState.courseCode,
+      sessionId: sessionState.sessionId,
+      currentTab: sessionState.currentTab,
+      currentHomeScreen: sessionState.currentHomeScreen,
+      isLoggedIn: sessionState.isLoggedIn,
+      endTime: sessionState.endTime ? sessionState.endTime.toISOString() : null,
+    };
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(persistentState));
+  }
+
+  function loadState() {
+    const stored = localStorage.getItem(STORAGE_KEY);
+    if (stored) {
+      try {
+        const parsed = JSON.parse(stored);
+        return parsed;
+      } catch (e) {
+        console.error('Failed to parse stored state:', e);
+        return null;
+      }
+    }
+    return null;
+  }
+
+  function clearState() {
+    localStorage.removeItem(STORAGE_KEY);
+    sessionState = {
+      courseId: null,
+      courseName: null,
+      courseCode: null,
+      sessionId: null,
+      allStudents: [],
+      liveUpdateInterval: null,
+      endTime: null,
+      countdownInterval: null,
+      currentTab: 'home',
+      currentHomeScreen: 'setup',
+      isLoggedIn: false,
+    };
+  }
+
+  // =============================================================
+  // 3. VIEW MANAGEMENT
+  // =============================================================
+  function showLoginView() {
+    loginView.classList.add('active');
+    loginView.style.display = 'block';
+    dashboardContainer.style.display = 'none';
+  }
+
+  function showDashboard() {
+    loginView.classList.remove('active');
+    loginView.style.display = 'none';
+    dashboardContainer.style.display = 'block';
+
+    // Update header
+    dashboardCourseName.textContent = sessionState.courseName || 'Course Dashboard';
+    dashboardCourseCode.textContent = sessionState.courseCode ? `Code: ${sessionState.courseCode}` : '';
+  }
+
+  function switchTab(tabName) {
+    sessionState.currentTab = tabName;
+    saveState();
+
+    // Update tab buttons
+    tabButtons.forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.tab === tabName);
+    });
+
+    // Update tab content
+    tabContents.forEach(content => {
+      content.classList.toggle('active', content.id === `${tabName}-tab`);
+    });
+
+    // Load tab data if needed
+    if (tabName === 'analytics') {
+      loadAnalyticsTab();
+    } else if (tabName === 'history') {
+      loadHistoryTab();
+    } else if (tabName === 'reports') {
+      loadReportsTab();
+    }
+  }
+
+  function switchHomeScreen(screenName) {
+    sessionState.currentHomeScreen = screenName;
+    saveState();
+
+    homeScreens.forEach(screen => {
+      screen.classList.remove('active');
+      screen.style.display = 'none';
+    });
+
+    const targetScreen = document.getElementById(`${screenName}-screen`);
+    if (targetScreen) {
+      targetScreen.classList.add('active');
+      targetScreen.style.display = 'block';
+    }
+  }
+
+  // 4. INITIALIZATION & SESSION RESTORE
+  // =============================================================
+
+  // Searchable dropdown elements
+  const courseSearchInput = document.getElementById('course-search-input');
+  const courseDropdownContainer = document.getElementById('course-dropdown-container');
+  const courseDropdownOptions = document.getElementById('course-dropdown-options');
+  let allCourses = []; // Store all courses for filtering
+
   async function loadCourseCodes() {
     try {
       const response = await fetch('/api/teacher/course-codes');
-      const courseCodes = await response.json();
-      courseCodeInput.innerHTML =
-        '<option value="">-- Select Course Code --</option>';
-      courseCodes.forEach((code) => {
-        const option = document.createElement('option');
-        option.value = code;
-        option.textContent = code;
-        courseCodeInput.appendChild(option);
-      });
+      const courses = await response.json();
+      allCourses = courses; // Store for filtering
+      renderDropdownOptions(courses);
     } catch (err) {
-      courseCodeInput.innerHTML = '<option value="">(Failed to load)</option>';
+      courseDropdownOptions.innerHTML = '<div class="no-results-message">Failed to load courses</div>';
     }
   }
 
-  loadCourseCodes();
+  function renderDropdownOptions(courses) {
+    courseDropdownOptions.innerHTML = '';
 
-  courseCodeInput.addEventListener('change', () => {
-    loginButton.disabled = !courseCodeInput.value || !pinInput.value;
+    if (courses.length === 0) {
+      courseDropdownOptions.innerHTML = '<div class="no-results-message">No matching courses found</div>';
+      return;
+    }
+
+    courses.forEach(course => {
+      const optionDiv = document.createElement('div');
+      optionDiv.className = 'dropdown-option';
+      optionDiv.dataset.code = course.code;
+      optionDiv.dataset.name = course.name;
+      optionDiv.innerHTML = `<span class="course-code">${course.code}</span><span class="course-name">(${course.name})</span>`;
+
+      optionDiv.addEventListener('click', () => {
+        selectCourse(course);
+      });
+
+      courseDropdownOptions.appendChild(optionDiv);
+    });
+  }
+
+  function selectCourse(course) {
+    courseCodeInput.value = course.code;
+    courseSearchInput.value = `${course.code} (${course.name})`;
+    courseDropdownContainer.classList.remove('open');
+    validateLoginForm();
+  }
+
+  function filterCourses(searchTerm) {
+    const term = searchTerm.toLowerCase().trim();
+    if (!term) {
+      renderDropdownOptions(allCourses);
+      return;
+    }
+
+    const filtered = allCourses.filter(c =>
+      c.code.toLowerCase().includes(term) ||
+      c.name.toLowerCase().includes(term)
+    );
+    renderDropdownOptions(filtered);
+  }
+
+  // Dropdown event handlers
+  courseSearchInput.addEventListener('click', () => {
+    courseDropdownContainer.classList.add('open');
   });
 
-  pinInput.addEventListener('input', () => {
-    loginButton.disabled = !courseCodeInput.value || !pinInput.value;
+  courseSearchInput.addEventListener('input', (e) => {
+    courseDropdownContainer.classList.add('open');
+    filterCourses(e.target.value);
+    // Clear selection if user types
+    if (courseCodeInput.value && !e.target.value.includes(courseCodeInput.value)) {
+      courseCodeInput.value = '';
+      validateLoginForm();
+    }
   });
+
+  courseSearchInput.addEventListener('focus', () => {
+    courseDropdownContainer.classList.add('open');
+  });
+
+  // Close dropdown when clicking outside
+  document.addEventListener('click', (e) => {
+    if (!courseDropdownContainer.contains(e.target)) {
+      courseDropdownContainer.classList.remove('open');
+    }
+  });
+
+  // Keyboard navigation for dropdown
+  courseSearchInput.addEventListener('keydown', (e) => {
+    const options = courseDropdownOptions.querySelectorAll('.dropdown-option');
+    let highlighted = courseDropdownOptions.querySelector('.dropdown-option.highlighted');
+
+    if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      courseDropdownContainer.classList.add('open');
+      if (!highlighted) {
+        options[0]?.classList.add('highlighted');
+      } else {
+        highlighted.classList.remove('highlighted');
+        const next = highlighted.nextElementSibling;
+        if (next && next.classList.contains('dropdown-option')) {
+          next.classList.add('highlighted');
+          next.scrollIntoView({ block: 'nearest' });
+        } else {
+          options[0]?.classList.add('highlighted');
+        }
+      }
+    } else if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      if (highlighted) {
+        highlighted.classList.remove('highlighted');
+        const prev = highlighted.previousElementSibling;
+        if (prev && prev.classList.contains('dropdown-option')) {
+          prev.classList.add('highlighted');
+          prev.scrollIntoView({ block: 'nearest' });
+        } else {
+          options[options.length - 1]?.classList.add('highlighted');
+        }
+      }
+    } else if (e.key === 'Enter') {
+      e.preventDefault();
+      if (highlighted) {
+        selectCourse({ code: highlighted.dataset.code, name: highlighted.dataset.name });
+      }
+    } else if (e.key === 'Escape') {
+      courseDropdownContainer.classList.remove('open');
+    }
+  });
+
+  async function initializeApp() {
+    await loadCourseCodes();
+
+    const storedState = loadState();
+
+    if (storedState && storedState.isLoggedIn && storedState.courseId) {
+      // Validate the stored session with the server
+      try {
+        const response = await fetch(`/api/teacher/validate-session/${storedState.courseId}`);
+        const data = await response.json();
+
+        if (data.valid) {
+          // Restore session state
+          sessionState.courseId = storedState.courseId;
+          sessionState.courseName = data.course.course_name;
+          sessionState.courseCode = data.course.course_code;
+          sessionState.isLoggedIn = true;
+          sessionState.currentTab = storedState.currentTab || 'home';
+
+          // Check for active session
+          if (data.has_active_session) {
+            sessionState.sessionId = data.active_session.id;
+            sessionState.endTime = new Date(data.active_session.end_time.replace(' ', 'T'));
+            sessionState.currentHomeScreen = 'live';
+
+            // Use the students returned from validate-session
+            if (data.students && data.students.length > 0) {
+              sessionState.allStudents = data.students;
+              totalStudentsSpan.textContent = sessionState.allStudents.length;
+            }
+
+            // Clear search input to prevent browser autofill issues
+            searchInput.value = '';
+
+            showDashboard();
+            switchTab(sessionState.currentTab);
+            switchHomeScreen('live');
+
+            // Start live updates which will populate the unmarked list
+            startLiveUpdates();
+            startCountdownTimer();
+            console.log('Restored active session from localStorage with', sessionState.allStudents.length, 'students');
+          } else {
+            sessionState.currentHomeScreen = storedState.currentHomeScreen || 'setup';
+            sessionState.sessionId = null;
+
+            showDashboard();
+            switchTab(sessionState.currentTab);
+            switchHomeScreen(sessionState.currentHomeScreen);
+            console.log('Restored dashboard state (no active session)');
+          }
+          return;
+        }
+      } catch (error) {
+        console.error('Session validation failed:', error);
+      }
+    }
+
+    // Default: show login
+    clearState();
+    showLoginView();
+    sessionDateInput.value = new Date().toISOString().split('T')[0];
+  }
+
+  // =============================================================
+  // 5. LOGIN WORKFLOW
+  // =============================================================
+  function validateLoginForm() {
+    loginButton.disabled = !courseCodeInput.value || !pinInput.value;
+  }
+
+  courseCodeInput.addEventListener('change', validateLoginForm);
+  pinInput.addEventListener('input', validateLoginForm);
 
   loginButton.disabled = true;
 
-  // --- 2. VIEW MANAGEMENT ---
-  function showView(viewName) {
-    Object.values(views).forEach((view) => {
-      if (view) view.style.display = 'none';
-    });
-    if (views[viewName]) {
-      views[viewName].style.display = 'block';
-    }
-  }
-
-  // --- 3. LOGIN WORKFLOW ---
   loginButton.addEventListener('click', async () => {
     const courseCode = courseCodeInput.value.trim();
     const pin = pinInput.value.trim();
@@ -136,11 +473,20 @@ document.addEventListener('DOMContentLoaded', () => {
       if (response.ok) {
         loginMessage.textContent = '';
         sessionState.courseId = data.course_id;
-        setupCourseName.textContent = data.course_name;
+        sessionState.courseName = data.course_name;
+        sessionState.courseCode = courseCode;
+        sessionState.isLoggedIn = true;
+        sessionState.currentTab = 'home';
+        sessionState.currentHomeScreen = 'setup';
+
         durationInput.value = data.default_duration;
         sessionDateInput.value = new Date().toISOString().split('T')[0];
+
+        saveState();
+        showDashboard();
+        switchTab('home');
+        switchHomeScreen('setup');
         validateSetupForm();
-        showView('setup');
       } else {
         loginMessage.textContent = data.message || 'Login failed.';
       }
@@ -152,12 +498,46 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // --- 4. SESSION SETUP & START WORKFLOW ---
+  // =============================================================
+  // 6. LOGOUT
+  // =============================================================
+  logoutButton.addEventListener('click', async () => {
+    const confirmed = await Modal.confirm(
+      'Are you sure you want to logout? Any unsaved changes will be lost.',
+      'Confirm Logout',
+      'warning'
+    );
+
+    if (!confirmed) return;
+
+    stopLiveUpdates();
+    stopCountdownTimer();
+    clearState();
+
+    // Reset form fields
+    loginMessage.textContent = '';
+    courseCodeInput.value = '';
+    courseSearchInput.value = '';
+    pinInput.value = '';
+    loginButton.disabled = true;
+
+    showLoginView();
+  });
+
+  // =============================================================
+  // 7. TAB NAVIGATION
+  // =============================================================
+  tabButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      switchTab(btn.dataset.tab);
+    });
+  });
+
+  // =============================================================
+  // 8. HOME TAB - SESSION SETUP & START
+  // =============================================================
   function validateSetupForm() {
-    const isValid =
-      sessionDateInput.value &&
-      durationInput.value &&
-      parseInt(durationInput.value) > 0;
+    const isValid = sessionDateInput.value && durationInput.value && parseInt(durationInput.value) > 0;
     confirmSetupButton.disabled = !isValid;
   }
 
@@ -165,29 +545,57 @@ document.addEventListener('DOMContentLoaded', () => {
   durationInput.addEventListener('input', validateSetupForm);
 
   confirmSetupButton.addEventListener('click', () => {
-    showView('type');
+    switchHomeScreen('type');
   });
 
-  startOfflineButton.addEventListener('click', () => {
-    startSession('offline');
+  backToSetupButton.addEventListener('click', () => {
+    switchHomeScreen('setup');
   });
 
-  // FIXED: Use Modal instead of alert
-  startOnlineButton.addEventListener('click', async () => {
-    await Modal.alert(
-      'Online session functionality will be implemented in a future module.',
-      'Coming Soon',
+  startOfflineButton.addEventListener('click', async () => {
+    const confirmed = await Modal.confirm(
+      `Are you sure you want to start an <strong>Offline Class</strong> session?<br><br>
+       <span style="color: var(--text-secondary); font-size: 0.9em;">
+       📅 Date: ${sessionDateInput.value}<br>
+       ⏱️ Duration: ${durationInput.value} minutes<br>
+       ${topicInput.value ? '📝 Topic: ' + topicInput.value : ''}
+       </span>`,
+      'Start Offline Session',
       'info'
     );
+
+    if (confirmed) {
+      startSession('offline');
+    }
+  });
+
+  startOnlineButton.addEventListener('click', async () => {
+    const confirmed = await Modal.confirm(
+      `Are you sure you want to start an <strong>Online Class</strong> session?<br><br>
+       <span style="color: var(--text-secondary); font-size: 0.9em;">
+       📅 Date: ${sessionDateInput.value}<br>
+       ⏱️ Duration: ${durationInput.value} minutes<br>
+       ${topicInput.value ? '📝 Topic: ' + topicInput.value : ''}
+       </span>`,
+      'Start Online Session',
+      'info'
+    );
+
+    if (confirmed) {
+      await Modal.alert(
+        'Online session functionality will be implemented in a future module.',
+        'Coming Soon',
+        'info'
+      );
+    }
   });
 
   async function startSession(sessionType) {
     const sessionDate = sessionDateInput.value;
     const now = new Date();
-    const start_time = new Date(
-      `${sessionDate}T${now.toTimeString().split(' ')[0]}`
-    ).toISOString();
+    const start_time = new Date(`${sessionDate}T${now.toTimeString().split(' ')[0]}`).toISOString();
     const duration_minutes = durationInput.value;
+    const topic = topicInput ? topicInput.value.trim() : '';
 
     try {
       const response = await fetch('/api/teacher/start-session', {
@@ -198,6 +606,7 @@ document.addEventListener('DOMContentLoaded', () => {
           start_datetime: start_time,
           duration_minutes,
           session_type: sessionType,
+          topic: topic,
         }),
       });
 
@@ -208,34 +617,28 @@ document.addEventListener('DOMContentLoaded', () => {
         sessionState.allStudents = data.students;
         const endTimeStr = data.end_time;
         sessionState.endTime = new Date(endTimeStr.replace(' ', 'T'));
+        sessionState.currentHomeScreen = 'live';
 
-        liveCourseName.textContent = setupCourseName.textContent;
         totalStudentsSpan.textContent = sessionState.allStudents.length;
         searchInput.value = '';
         renderUnmarkedStudents(sessionState.allStudents);
+
+        saveState();
+        switchHomeScreen('live');
         startLiveUpdates();
         startCountdownTimer();
-        showView('liveOffline');
       } else {
-        // FIXED: Use Modal instead of alert
-        await Modal.alert(
-          `Error starting session: ${data.message}`,
-          'Error',
-          'error'
-        );
+        await Modal.alert(`Error starting session: ${data.message}`, 'Error', 'error');
       }
     } catch (error) {
       console.error('Start session error:', error);
-      // FIXED: Use Modal instead of alert
-      await Modal.alert(
-        'A network error occurred while starting the session.',
-        'Network Error',
-        'error'
-      );
+      await Modal.alert('A network error occurred while starting the session.', 'Network Error', 'error');
     }
   }
 
-  // --- 5. LIVE DASHBOARD WORKFLOW ---
+  // =============================================================
+  // 9. LIVE DASHBOARD
+  // =============================================================
   function startLiveUpdates() {
     if (sessionState.liveUpdateInterval) {
       clearInterval(sessionState.liveUpdateInterval);
@@ -280,11 +683,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const now = new Date();
     const timeLeft = sessionState.endTime - now;
+    const countdownEl = document.getElementById('countdown-display');
 
     if (timeLeft <= 0) {
-      document.getElementById('countdown-display').textContent = 'Expired';
-      document.getElementById('countdown-display').style.color =
-        'var(--danger-color)';
+      if (countdownEl) {
+        countdownEl.textContent = 'Expired';
+        countdownEl.style.color = 'var(--danger-color)';
+      }
       clearInterval(sessionState.countdownInterval);
       console.log('Countdown reached 0:00 - triggering expire check');
       checkAndExpireSession();
@@ -296,13 +701,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const seconds = totalSeconds % 60;
     const display = `${minutes}:${seconds.toString().padStart(2, '0')}`;
 
-    document.getElementById('countdown-display').textContent = display;
-
-    const countdownEl = document.getElementById('countdown-display');
-    if (minutes < 5) {
-      countdownEl.style.color = 'var(--danger-color)';
-    } else {
-      countdownEl.style.color = 'var(--primary-color)';
+    if (countdownEl) {
+      countdownEl.textContent = display;
+      countdownEl.style.color = minutes < 5 ? 'var(--danger-color)' : 'var(--primary-color)';
     }
   }
 
@@ -310,30 +711,17 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!sessionState.sessionId) return;
 
     try {
-      const response = await fetch(
-        `/api/teacher/session/${sessionState.sessionId}/check-expire`,
-        {
-          method: 'POST',
-        }
-      );
+      const response = await fetch(`/api/teacher/session/${sessionState.sessionId}/check-expire`, { method: 'POST' });
       const data = await response.json();
 
       if (data.expired) {
         console.log('Session confirmed expired by server');
         stopLiveUpdates();
         stopCountdownTimer();
-        // FIXED: Use Modal instead of alert
-        await Modal.alert(
-          'Session has automatically ended due to time expiration.',
-          'Session Expired',
-          'warning'
-        );
-        loadReport(sessionState.sessionId);
+        await Modal.alert('Session has automatically ended due to time expiration.', 'Session Expired', 'warning');
+        loadPostSessionReport(sessionState.sessionId);
       } else if (data.status === 'active') {
-        console.warn(
-          'Countdown expired but server says session still active. Seconds remaining:',
-          data.seconds_remaining
-        );
+        console.warn('Countdown expired but server says session still active. Seconds remaining:', data.seconds_remaining);
         setTimeout(checkAndExpireSession, 10000);
       }
     } catch (error) {
@@ -349,73 +737,52 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // ✅ UPDATED: Better device status handling with timestamp validation
   async function updateLiveStatus() {
     if (!sessionState.sessionId) return;
 
     try {
       // Get attendance status
-      const statusResponse = await fetch(
-        `/api/teacher/session/${sessionState.sessionId}/status`
-      );
+      const statusResponse = await fetch(`/api/teacher/session/${sessionState.sessionId}/status`);
       const statusData = await statusResponse.json();
 
       if (statusResponse.ok) {
-        // Check if session auto-expired
         if (statusData.session_active === false) {
           console.log('Session auto-expired detected');
           stopLiveUpdates();
           stopCountdownTimer();
-          await Modal.alert(
-            'Session has automatically ended due to time expiration.',
-            'Session Expired',
-            'warning'
-          );
-          loadReport(sessionState.sessionId);
+          await Modal.alert('Session has automatically ended due to time expiration.', 'Session Expired', 'warning');
+          loadPostSessionReport(sessionState.sessionId);
           return;
         }
 
-        // Update unmarked students list
+        // Update allStudents if we don't have them yet
+        if (sessionState.allStudents.length === 0 && statusData.all_students) {
+          sessionState.allStudents = statusData.all_students;
+          totalStudentsSpan.textContent = sessionState.allStudents.length;
+        }
+
         const markedUnivRollNos = new Set(statusData.marked_students);
-        const unmarkedStudents = sessionState.allStudents.filter(
-          (s) => !markedUnivRollNos.has(s.university_roll_no)
-        );
+        const unmarkedStudents = sessionState.allStudents.filter(s => !markedUnivRollNos.has(s.university_roll_no));
         renderUnmarkedStudents(unmarkedStudents);
         attendanceCountSpan.textContent = markedUnivRollNos.size;
       }
 
-      // ✅ NEW: Enhanced device status with offline detection
+      // Device status
       const deviceResponse = await fetch('/api/teacher/device-status');
       const deviceData = await deviceResponse.json();
 
       if (deviceResponse.ok) {
         if (deviceData.status === 'online') {
-          // Device is online and heartbeat is fresh
-          const strength =
-            deviceData.wifi_strength > -67
-              ? 'Strong'
-              : deviceData.wifi_strength > -80
-              ? 'Okay'
-              : 'Weak';
-
+          const strength = deviceData.wifi_strength > -67 ? 'Strong' : deviceData.wifi_strength > -80 ? 'Okay' : 'Weak';
           deviceStatusText.innerHTML = `✅ Online (${strength})<br>🔋 ${deviceData.battery}% | 📝 Q: ${deviceData.queue_count} | 🔄 S: ${deviceData.sync_count}`;
         } else if (deviceData.status === 'offline') {
-          // Device is offline (heartbeat stale or missing)
           if (deviceData.last_seen !== undefined) {
-            // Show last known data with offline indicator
-            deviceStatusText.innerHTML = `❌ Offline (${
-              deviceData.last_seen
-            }s ago)<br>🔋 Last: ${deviceData.battery || '?'}% | 📝 Q: ${
-              deviceData.queue_count || 0
-            }`;
+            deviceStatusText.innerHTML = `❌ Offline (${deviceData.last_seen}s ago)<br>🔋 Last: ${deviceData.battery || '?'}% | 📝 Q: ${deviceData.queue_count || 0}`;
           } else {
             deviceStatusText.innerHTML = `❌ Offline / No Data<br>Waiting for device...`;
           }
         } else {
-          // Error or unknown status
-          deviceStatusText.innerHTML = `⚠️ Status Unknown<br>${
-            deviceData.message || 'Check connection'
-          }`;
+          deviceStatusText.innerHTML = `⚠️ Status Unknown<br>${deviceData.message || 'Check connection'}`;
         }
       } else {
         deviceStatusText.innerHTML = `❌ Error<br>Cannot fetch status`;
@@ -431,11 +798,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const searchTerm = searchInput.value.toLowerCase();
 
     students
-      .filter(
-        (s) =>
-          s.student_name.toLowerCase().includes(searchTerm) ||
-          s.class_roll_id.toString().includes(searchTerm)
-      )
+      .filter(s => s.student_name.toLowerCase().includes(searchTerm) || s.class_roll_id.toString().includes(searchTerm))
       .forEach((student) => {
         const row = document.createElement('tr');
         row.innerHTML = `
@@ -452,23 +815,14 @@ document.addEventListener('DOMContentLoaded', () => {
     updateLiveStatus();
   });
 
-  // FIXED: Use Modal.prompt instead of prompt
   unmarkedStudentsTbody.addEventListener('click', async (event) => {
     if (event.target.classList.contains('manual-mark-btn')) {
       const univ_roll_no = event.target.dataset.univRoll;
-
-      // Find student name for better UX
-      const student = sessionState.allStudents.find(
-        (s) => s.university_roll_no === univ_roll_no
-      );
+      const student = sessionState.allStudents.find(s => s.university_roll_no === univ_roll_no);
       const studentName = student ? student.student_name : 'this student';
 
-      const reason = await Modal.prompt(
-        `Marking attendance for <strong>${studentName}</strong>.<br><br>Please provide a brief reason:`,
-        'Manual Attendance Entry',
-        '',
-        'info'
-      );
+      // Show custom reason selection modal
+      const reason = await showReasonSelectionModal(studentName);
 
       if (reason && reason.trim() !== '') {
         try {
@@ -483,34 +837,135 @@ document.addEventListener('DOMContentLoaded', () => {
           });
 
           if (response.ok) {
-            await Modal.alert(
-              'Attendance marked successfully!',
-              'Success',
-              'success'
-            );
+            await Modal.alert('Attendance marked successfully!', 'Success', 'success');
             updateLiveStatus();
           } else {
             const errorData = await response.json();
-            await Modal.alert(
-              `Failed to mark attendance: ${errorData.message}`,
-              'Error',
-              'error'
-            );
+            await Modal.alert(`Failed to mark attendance: ${errorData.message}`, 'Error', 'error');
           }
         } catch (error) {
           console.error('Manual override error:', error);
-          await Modal.alert(
-            'A network error occurred.',
-            'Network Error',
-            'error'
-          );
+          await Modal.alert('A network error occurred.', 'Network Error', 'error');
         }
       }
     }
   });
 
-  // --- 6. SESSION CONTROL & REPORTING ---
-  // FIXED: Use Modal.confirm instead of confirm
+  // Custom reason selection modal for manual attendance
+  function showReasonSelectionModal(studentName) {
+    return new Promise((resolve) => {
+      const predefinedReasons = [
+        { icon: '🤕', label: 'Finger Injury', value: 'Finger Injury - Unable to use biometric scanner' },
+        { icon: '📱', label: 'Device Malfunction', value: 'Device Malfunction - Scanner not working properly' },
+        { icon: '🏥', label: 'Medical Condition', value: 'Medical Condition - Skin condition affecting fingerprint' },
+        { icon: '⏰', label: 'Late Arrival', value: 'Late Arrival - Verified by teacher' },
+        { icon: '⚡', label: 'Technical Issue', value: 'Technical Issue - System connectivity problem' },
+        { icon: '✏️', label: 'Other', value: 'OTHER' }
+      ];
+
+      // Create modal overlay
+      const overlay = document.createElement('div');
+      overlay.className = 'reason-modal-overlay';
+      overlay.innerHTML = `
+        <div class="reason-modal">
+          <div class="reason-modal-header">
+            <h3>📝 Manual Attendance</h3>
+            <p>Marking attendance for <strong>${studentName}</strong></p>
+          </div>
+          <div class="reason-modal-body">
+            <p class="reason-instruction">Select a reason for manual entry:</p>
+            <div class="reason-options">
+              ${predefinedReasons.map((r, i) => `
+                <div class="reason-option" data-index="${i}" data-value="${r.value}">
+                  <span class="reason-icon">${r.icon}</span>
+                  <span class="reason-label">${r.label}</span>
+                </div>
+              `).join('')}
+            </div>
+            <div class="other-reason-container" style="display: none;">
+              <label for="other-reason-input">Please specify the reason:</label>
+              <textarea id="other-reason-input" placeholder="Enter custom reason..." rows="2"></textarea>
+            </div>
+          </div>
+          <div class="reason-modal-footer">
+            <button class="btn-cancel">Cancel</button>
+            <button class="btn-confirm" disabled>Confirm</button>
+          </div>
+        </div>
+      `;
+
+      document.body.appendChild(overlay);
+
+      let selectedReason = '';
+      const reasonOptions = overlay.querySelectorAll('.reason-option');
+      const otherContainer = overlay.querySelector('.other-reason-container');
+      const otherInput = overlay.querySelector('#other-reason-input');
+      const confirmBtn = overlay.querySelector('.btn-confirm');
+      const cancelBtn = overlay.querySelector('.btn-cancel');
+
+      // Handle reason selection
+      reasonOptions.forEach(option => {
+        option.addEventListener('click', () => {
+          // Remove previous selection
+          reasonOptions.forEach(o => o.classList.remove('selected'));
+          option.classList.add('selected');
+
+          const value = option.dataset.value;
+
+          if (value === 'OTHER') {
+            otherContainer.style.display = 'block';
+            otherInput.focus();
+            selectedReason = '';
+            confirmBtn.disabled = true;
+          } else {
+            otherContainer.style.display = 'none';
+            selectedReason = value;
+            confirmBtn.disabled = false;
+          }
+        });
+      });
+
+      // Handle other input
+      otherInput.addEventListener('input', () => {
+        selectedReason = otherInput.value.trim() ? `Other: ${otherInput.value.trim()}` : '';
+        confirmBtn.disabled = !selectedReason;
+      });
+
+      // Handle confirm
+      confirmBtn.addEventListener('click', () => {
+        overlay.remove();
+        resolve(selectedReason);
+      });
+
+      // Handle cancel
+      cancelBtn.addEventListener('click', () => {
+        overlay.remove();
+        resolve(null);
+      });
+
+      // Close on overlay click
+      overlay.addEventListener('click', (e) => {
+        if (e.target === overlay) {
+          overlay.remove();
+          resolve(null);
+        }
+      });
+
+      // ESC to close
+      const escHandler = (e) => {
+        if (e.key === 'Escape') {
+          overlay.remove();
+          document.removeEventListener('keydown', escHandler);
+          resolve(null);
+        }
+      };
+      document.addEventListener('keydown', escHandler);
+    });
+  }
+
+  // =============================================================
+  // 10. SESSION CONTROLS - End & Extend
+  // =============================================================
   endSessionButton.addEventListener('click', async () => {
     const confirmed = await Modal.confirm(
       'Are you sure you want to end this session? This action cannot be undone.',
@@ -523,78 +978,55 @@ document.addEventListener('DOMContentLoaded', () => {
     stopLiveUpdates();
     stopCountdownTimer();
 
-    await fetch(`/api/teacher/session/${sessionState.sessionId}/end`, {
-      method: 'POST',
-    });
+    await fetch(`/api/teacher/session/${sessionState.sessionId}/end`, { method: 'POST' });
 
-    loadReport(sessionState.sessionId);
+    loadPostSessionReport(sessionState.sessionId);
   });
 
-  // FIXED: Use Modal.confirm and Modal.alert instead of alert/confirm
   extendSessionButton.addEventListener('click', async () => {
     const countdownEl = document.getElementById('countdown-display');
     if (countdownEl && countdownEl.textContent === 'Expired') {
-      await Modal.alert(
-        'Cannot extend - session has already expired. Please end the session and start a new one.',
-        'Session Expired',
-        'warning'
-      );
+      await Modal.alert('Cannot extend - session has already expired. Please end the session and start a new one.', 'Session Expired', 'warning');
       return;
     }
 
-    const confirmed = await Modal.confirm(
-      'Do you want to extend this session by 10 minutes?',
-      'Extend Session',
-      'info'
-    );
-
+    const confirmed = await Modal.confirm('Do you want to extend this session by 10 minutes?', 'Extend Session', 'info');
     if (!confirmed) return;
 
     try {
-      const response = await fetch(
-        `/api/teacher/session/${sessionState.sessionId}/extend`,
-        {
-          method: 'POST',
-        }
-      );
+      const response = await fetch(`/api/teacher/session/${sessionState.sessionId}/extend`, { method: 'POST' });
 
       if (response.ok) {
         const data = await response.json();
         const newEndTimeStr = data.new_end_time;
         sessionState.endTime = new Date(newEndTimeStr.replace(' ', 'T'));
+        saveState();
         console.log('Session extended. New end time:', sessionState.endTime);
-        await Modal.alert(
-          'Session extended by 10 minutes successfully!',
-          'Success',
-          'success'
-        );
+        await Modal.alert('Session extended by 10 minutes successfully!', 'Success', 'success');
       } else {
         const error = await response.json();
-        await Modal.alert(
-          error.message || 'Failed to extend session.',
-          'Error',
-          'error'
-        );
+        await Modal.alert(error.message || 'Failed to extend session.', 'Error', 'error');
       }
     } catch (error) {
       console.error('Extend session error:', error);
-      await Modal.alert(
-        'Network error while extending session.',
-        'Network Error',
-        'error'
-      );
+      await Modal.alert('Network error while extending session.', 'Network Error', 'error');
     }
   });
 
-  async function loadReport(sessionId) {
+  // =============================================================
+  // 11. POST-SESSION REPORT (Within Home Tab)
+  // =============================================================
+  async function loadPostSessionReport(sessionId) {
     try {
       const response = await fetch(`/api/teacher/report/${sessionId}`);
       const data = await response.json();
 
       if (response.ok) {
-        renderReportTable(data);
-        reportCourseName.textContent = liveCourseName.textContent;
-        showView('report');
+        renderReportTable(data, reportTable);
+        postSessionTopic.textContent = topicInput.value || 'Session completed';
+        sessionState.currentHomeScreen = 'post-session';
+        saveState();
+        switchHomeScreen('post-session');
       } else {
         await Modal.alert('Failed to load report.', 'Error', 'error');
       }
@@ -603,16 +1035,13 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  function renderReportTable(data) {
-    reportTable.innerHTML = '';
+  function renderReportTable(data, tableEl) {
+    tableEl.innerHTML = '';
 
     const thead = document.createElement('thead');
-    let headerHtml =
-      '<tr><th>Class Roll</th><th>Name</th><th>Univ. Roll No.</th>';
+    let headerHtml = '<tr><th>Class Roll</th><th>Name</th><th>Univ. Roll No.</th>';
 
-    const sortedSessions = data.sessions.sort(
-      (a, b) => new Date(a.start_time) - new Date(b.start_time)
-    );
+    const sortedSessions = data.sessions.sort((a, b) => new Date(a.start_time) - new Date(b.start_time));
 
     sortedSessions.forEach((session) => {
       const dt = new Date(session.start_time);
@@ -626,19 +1055,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
     headerHtml += '</tr>';
     thead.innerHTML = headerHtml;
-    reportTable.appendChild(thead);
+    tableEl.appendChild(thead);
 
     const tbody = document.createElement('tbody');
-    const presentSet = new Set(data.present_set.map((p) => `${p[0]}_${p[1]}`));
+    const presentSet = new Set(data.present_set.map(p => `${p[0]}_${p[1]}`));
 
     data.students.forEach((student) => {
       let rowHtml = `<tr><td data-label="Class Roll">${student.class_roll_id}</td><td data-label="Name">${student.student_name}</td><td data-label="Univ. Roll No.">${student.university_roll_no}</td>`;
 
       sortedSessions.forEach((session) => {
-        const sessionLabel = new Date(session.start_time).toLocaleDateString(
-          'en-GB',
-          { day: '2-digit', month: 'short' }
-        );
+        const sessionLabel = new Date(session.start_time).toLocaleDateString('en-GB', { day: '2-digit', month: 'short' });
         if (presentSet.has(`${session.id}_${student.id}`)) {
           rowHtml += `<td data-label="${sessionLabel}"><span title="Present">✅</span></td>`;
         } else {
@@ -650,17 +1076,13 @@ document.addEventListener('DOMContentLoaded', () => {
       tbody.innerHTML += rowHtml;
     });
 
-    reportTable.appendChild(tbody);
+    tableEl.appendChild(tbody);
 
-    const tableContainer = document.querySelector(
-      '.responsive-table-container'
-    );
+    // Auto-scroll to latest session
+    const tableContainer = tableEl.closest('.responsive-table-container');
     if (tableContainer) {
       requestAnimationFrame(() => {
-        tableContainer.scrollTo({
-          left: tableContainer.scrollWidth,
-          behavior: 'smooth',
-        });
+        tableContainer.scrollTo({ left: tableContainer.scrollWidth, behavior: 'smooth' });
       });
     }
   }
@@ -670,18 +1092,333 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   newSessionButton.addEventListener('click', () => {
-    sessionState = {
-      courseId: null,
-      sessionId: null,
-      allStudents: [],
-      liveUpdateInterval: null,
-    };
-    loginMessage.textContent = '';
-    courseCodeInput.value = '';
-    pinInput.value = '';
-    showView('login');
+    sessionState.sessionId = null;
+    sessionState.allStudents = [];
+    sessionState.endTime = null;
+    sessionState.currentHomeScreen = 'setup';
+    topicInput.value = '';
+    sessionDateInput.value = new Date().toISOString().split('T')[0];
+    saveState();
+    switchHomeScreen('setup');
+    validateSetupForm();
   });
 
-  // --- INITIALIZATION ---
-  showView('login');
+  // =============================================================
+  // 12. ANALYTICS TAB
+  // =============================================================
+  async function loadAnalyticsTab() {
+    if (!sessionState.courseId) return;
+
+    analyticsLoading.style.display = 'flex';
+    analyticsContent.style.display = 'none';
+
+    try {
+      const response = await fetch(`/api/teacher/analytics/${sessionState.courseId}`);
+      const data = await response.json();
+
+      if (response.ok) {
+        // Update stat cards
+        avgAttendanceEl.textContent = `${data.avg_attendance_percent}%`;
+        totalSessionsEl.textContent = data.total_sessions;
+        enrolledCountEl.textContent = data.enrolled_count || '--';
+        atRiskCountEl.textContent = data.at_risk_students ? data.at_risk_students.length : 0;
+
+        // Trend graph
+        if (data.trend_graph_base64) {
+          // Backend returns full data URI, use directly
+          trendGraphImage.src = data.trend_graph_base64;
+          trendGraphImage.style.display = 'block';
+          trendGraphPlaceholder.style.display = 'none';
+        } else {
+          trendGraphImage.style.display = 'none';
+          trendGraphPlaceholder.style.display = 'block';
+        }
+
+        // At-risk students table
+        atRiskTbody.innerHTML = '';
+        if (data.at_risk_students && data.at_risk_students.length > 0) {
+          noAtRiskMessage.style.display = 'none';
+          document.getElementById('at-risk-table').style.display = 'table';
+
+          data.at_risk_students.forEach(student => {
+            const statusClass = student.attendance_percent < 50 ? 'status-critical' : 'status-warning';
+            const row = document.createElement('tr');
+            row.innerHTML = `
+              <td>${student.class_roll_id}</td>
+              <td>${student.student_name}</td>
+              <td>${student.attendance_percent}%</td>
+              <td><span class="${statusClass}">${student.status}</span></td>
+              <td>${student.sessions_needed}</td>
+            `;
+            atRiskTbody.appendChild(row);
+          });
+        } else {
+          document.getElementById('at-risk-table').style.display = 'none';
+          noAtRiskMessage.style.display = 'block';
+        }
+
+        analyticsLoading.style.display = 'none';
+        analyticsContent.style.display = 'block';
+      } else {
+        await Modal.alert('Failed to load analytics.', 'Error', 'error');
+        analyticsLoading.innerHTML = '<p>Failed to load analytics.</p>';
+      }
+    } catch (error) {
+      console.error('Analytics loading error:', error);
+      analyticsLoading.innerHTML = '<p>Error loading analytics.</p>';
+    }
+  }
+
+  // =============================================================
+  // 13. HISTORY TAB
+  // =============================================================
+  async function loadHistoryTab() {
+    if (!sessionState.courseId) return;
+
+    historyLoading.style.display = 'flex';
+    historyContent.style.display = 'none';
+
+    try {
+      const response = await fetch(`/api/teacher/history/${sessionState.courseId}`);
+      const data = await response.json();
+
+      if (response.ok) {
+        historyList.innerHTML = '';
+
+        if (data.sessions && data.sessions.length > 0) {
+          noHistoryMessage.style.display = 'none';
+
+          data.sessions.forEach(session => {
+            const badgeClass = session.attendance_percent >= 75 ? 'good' : session.attendance_percent >= 50 ? 'warning' : 'critical';
+            const activeClass = session.is_active ? 'active-session' : '';
+
+            const card = document.createElement('div');
+            card.className = `session-history-card ${activeClass}`;
+            card.dataset.sessionId = session.id;
+            card.innerHTML = `
+              <div class="session-card-info">
+                <h4>${session.date} at ${session.time}</h4>
+                <p class="session-topic">${session.topic}</p>
+                <p>${session.session_type === 'offline' ? '📍 Offline' : '🌐 Online'}${session.is_active ? ' • 🟢 Active' : ''}</p>
+              </div>
+              <div class="session-card-stats">
+                <span class="attendance-badge ${badgeClass}">${session.present_count}/${session.total_students} (${session.attendance_percent}%)</span>
+              </div>
+            `;
+            card.addEventListener('click', () => showSessionDetailModal(session.id));
+            historyList.appendChild(card);
+          });
+        } else {
+          noHistoryMessage.style.display = 'block';
+        }
+
+        historyLoading.style.display = 'none';
+        historyContent.style.display = 'block';
+      } else {
+        await Modal.alert('Failed to load session history.', 'Error', 'error');
+        historyLoading.innerHTML = '<p>Failed to load history.</p>';
+      }
+    } catch (error) {
+      console.error('History loading error:', error);
+      historyLoading.innerHTML = '<p>Error loading history.</p>';
+    }
+  }
+
+  // =============================================================
+  // 14. SESSION DETAIL MODAL (For History Tab)
+  // =============================================================
+  let currentModalSessionId = null;
+
+  async function showSessionDetailModal(sessionId) {
+    currentModalSessionId = sessionId;
+    sessionDetailModal.style.display = 'flex';
+
+    try {
+      const response = await fetch(`/api/teacher/session-detail/${sessionId}`);
+      const data = await response.json();
+
+      if (response.ok) {
+        modalSessionTitle.textContent = 'Session Details';
+        modalSessionDate.textContent = data.start_time;
+        modalSessionTopic.textContent = data.topic;
+        modalSessionType.textContent = data.session_type === 'offline' ? 'Offline Class' : 'Online Class';
+        modalPresentCount.textContent = data.present_count;
+        modalAbsentCount.textContent = data.absent_count;
+
+        // Render present students
+        modalPresentList.innerHTML = '';
+        data.present_students.forEach(student => {
+          const item = document.createElement('div');
+          item.className = 'modal-student-item';
+          item.innerHTML = `
+            <div class="modal-student-info">
+              <div class="student-name">${student.student_name}</div>
+              <div class="student-roll">Roll: ${student.class_roll_id} | Univ: ${student.university_roll_no}</div>
+              ${student.method ? `<div class="attendance-method">via ${student.method}</div>` : ''}
+            </div>
+          `;
+          modalPresentList.appendChild(item);
+        });
+
+        // Render absent students with mark present button
+        modalAbsentList.innerHTML = '';
+        data.absent_students.forEach(student => {
+          const item = document.createElement('div');
+          item.className = 'modal-student-item';
+          item.innerHTML = `
+            <div class="modal-student-info">
+              <div class="student-name">${student.student_name}</div>
+              <div class="student-roll">Roll: ${student.class_roll_id} | Univ: ${student.university_roll_no}</div>
+            </div>
+            <button class="mark-present-btn" data-student-id="${student.student_id}" data-student-name="${student.student_name}">
+              Mark Present
+            </button>
+          `;
+          modalAbsentList.appendChild(item);
+        });
+
+        // Reset to present tab
+        switchModalTab('present');
+      } else {
+        await Modal.alert('Failed to load session details.', 'Error', 'error');
+        sessionDetailModal.style.display = 'none';
+      }
+    } catch (error) {
+      console.error('Session detail error:', error);
+      sessionDetailModal.style.display = 'none';
+    }
+  }
+
+  function switchModalTab(tabName) {
+    modalTabBtns.forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.modalTab === tabName);
+    });
+    modalPresentList.classList.toggle('active', tabName === 'present');
+    modalPresentList.style.display = tabName === 'present' ? 'block' : 'none';
+    modalAbsentList.classList.toggle('active', tabName === 'absent');
+    modalAbsentList.style.display = tabName === 'absent' ? 'block' : 'none';
+  }
+
+  modalTabBtns.forEach(btn => {
+    btn.addEventListener('click', () => switchModalTab(btn.dataset.modalTab));
+  });
+
+  closeSessionModalBtn.addEventListener('click', () => {
+    sessionDetailModal.style.display = 'none';
+  });
+
+  // Close modal on overlay click
+  sessionDetailModal.addEventListener('click', (e) => {
+    if (e.target === sessionDetailModal) {
+      sessionDetailModal.style.display = 'none';
+    }
+  });
+
+  // Retroactive attendance marking
+  modalAbsentList.addEventListener('click', async (event) => {
+    if (event.target.classList.contains('mark-present-btn')) {
+      const studentId = event.target.dataset.studentId;
+      const studentName = event.target.dataset.studentName;
+
+      const reason = await Modal.prompt(
+        `Mark <strong>${studentName}</strong> as present retroactively.<br><br>Please provide a reason (required for audit):`,
+        'Retroactive Attendance',
+        '',
+        'info'
+      );
+
+      if (reason && reason.trim() !== '') {
+        try {
+          const response = await fetch('/api/teacher/update-attendance', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              session_id: currentModalSessionId,
+              student_id: parseInt(studentId),
+              action: 'mark_present',
+              manual_reason: reason.trim(),
+            }),
+          });
+
+          const data = await response.json();
+
+          if (response.ok) {
+            await Modal.alert('Attendance updated successfully!', 'Success', 'success');
+            // Refresh the modal
+            showSessionDetailModal(currentModalSessionId);
+            // Also refresh history tab in background
+            loadHistoryTab();
+          } else {
+            await Modal.alert(data.error || 'Failed to update attendance.', 'Error', 'error');
+          }
+        } catch (error) {
+          console.error('Update attendance error:', error);
+          await Modal.alert('Network error while updating attendance.', 'Network Error', 'error');
+        }
+      }
+    }
+  });
+
+  // =============================================================
+  // 15. REPORTS TAB
+  // =============================================================
+  async function loadReportsTab() {
+    if (!sessionState.courseId) return;
+
+    reportsLoading.style.display = 'flex';
+    reportsContent.style.display = 'none';
+
+    try {
+      // Get history to find a session for the report
+      const historyResponse = await fetch(`/api/teacher/history/${sessionState.courseId}`);
+      const historyData = await historyResponse.json();
+
+      if (!historyData.sessions || historyData.sessions.length === 0) {
+        reportsLoading.style.display = 'none';
+        reportsContent.style.display = 'block';
+        noReportsMessage.style.display = 'block';
+        reportsMatrixTable.style.display = 'none';
+        return;
+      }
+
+      // Use the most recent session for the full matrix
+      const latestSessionId = historyData.sessions[0].id;
+
+      const response = await fetch(`/api/teacher/report/${latestSessionId}`);
+      const data = await response.json();
+
+      if (response.ok && data.sessions && data.sessions.length > 0) {
+        noReportsMessage.style.display = 'none';
+        reportsMatrixTable.style.display = 'table';
+        renderReportTable(data, reportsMatrixTable);
+
+        // Store latest session for export
+        sessionState.latestSessionId = latestSessionId;
+      } else {
+        noReportsMessage.style.display = 'block';
+        reportsMatrixTable.style.display = 'none';
+      }
+
+      reportsLoading.style.display = 'none';
+      reportsContent.style.display = 'block';
+    } catch (error) {
+      console.error('Reports loading error:', error);
+      reportsLoading.innerHTML = '<p>Error loading reports.</p>';
+    }
+  }
+
+  reportsExportButton.addEventListener('click', () => {
+    if (sessionState.latestSessionId) {
+      window.open(`/api/teacher/report/export/${sessionState.latestSessionId}`);
+    } else if (sessionState.sessionId) {
+      window.open(`/api/teacher/report/export/${sessionState.sessionId}`);
+    } else {
+      Modal.alert('No session available for export.', 'Export Error', 'warning');
+    }
+  });
+
+  // =============================================================
+  // INITIALIZATION
+  // =============================================================
+  initializeApp();
 });

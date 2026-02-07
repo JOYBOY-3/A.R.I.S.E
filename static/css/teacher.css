@@ -140,8 +140,15 @@ Teacher Dashboard - FINAL FIXED VERSION
 }
 
 @keyframes pulse-green {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.7; }
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.7;
+  }
 }
 
 /* Offline state - red */
@@ -208,8 +215,7 @@ Teacher Dashboard - FINAL FIXED VERSION
   overflow-x: auto;
   border: 1px solid var(--border-color);
   border-radius: var(--border-radius-sm);
-  max-height: 70vh;
-  overflow-y: auto;
+  /* Removed max-height and overflow-y to allow full page scrolling */
   -webkit-overflow-scrolling: touch;
 }
 
@@ -217,6 +223,25 @@ Teacher Dashboard - FINAL FIXED VERSION
   min-width: 100%;
   border-collapse: separate;
   border-spacing: 0;
+}
+
+/* Zebra Striping for better readability */
+.responsive-table .data-table tbody tr:nth-child(even) td {
+  background-color: rgba(0, 0, 0, 0.02);
+  /* Very subtle stripe */
+}
+
+/* Ensure sticky columns keep their background on even rows */
+.responsive-table .data-table tbody tr:nth-child(even) td:first-child,
+.responsive-table .data-table tbody tr:nth-child(even) td:nth-child(2),
+.responsive-table .data-table tbody tr:nth-child(even) td:nth-child(3) {
+  background-color: var(--bg-secondary);
+}
+
+/* Full Row Hover Effect */
+.responsive-table .data-table tbody tr:hover td {
+  background-color: var(--bg-hover) !important;
+  transition: background-color 0.2s ease;
 }
 
 /* CRITICAL FIX: Sticky columns on ALL screen sizes */
@@ -325,6 +350,7 @@ Teacher Dashboard - FINAL FIXED VERSION
 
 /* Mobile View (max-width: 768px) */
 @media (max-width: 768px) {
+
   /* Session Type Cards */
   .session-type-options {
     grid-template-columns: 1fr;
@@ -434,7 +460,7 @@ Teacher Dashboard - FINAL FIXED VERSION
   /* ========================================= */
   /* MOBILE: Report Table - COMPACT TABLE (No Cards!) */
   /* ========================================= */
-  
+
   /* Make everything smaller but keep table structure */
   .responsive-table .data-table {
     font-size: 0.7rem;
@@ -642,6 +668,7 @@ Teacher Dashboard - FINAL FIXED VERSION
   from {
     opacity: 0;
   }
+
   to {
     opacity: 1;
   }
@@ -649,6 +676,7 @@ Teacher Dashboard - FINAL FIXED VERSION
 
 /* Print styles for reports */
 @media print {
+
   .theme-toggle,
   .report-controls,
   .session-controls {
@@ -673,5 +701,946 @@ Teacher Dashboard - FINAL FIXED VERSION
   .responsive-table .data-table th,
   .responsive-table .data-table td {
     position: static !important;
+  }
+}
+
+
+/* ==========================================================
+   SPA ENHANCEMENTS - Header, Tabs, Analytics, History, Modal
+   ========================================================== */
+
+/* --- Header Container with Logout --- */
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--spacing-md);
+  border-bottom: 2px solid var(--border-color);
+  padding-bottom: var(--spacing-sm);
+  flex-wrap: wrap;
+  gap: var(--spacing-sm);
+}
+
+.header-container h1 {
+  margin-bottom: 0;
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.course-code-display {
+  color: var(--text-muted);
+  font-size: var(--font-size-sm);
+  margin: 0;
+}
+
+/* --- Tab Navigation --- */
+.tabs {
+  display: flex;
+  border-bottom: 2px solid var(--border-color);
+  margin-bottom: var(--spacing-md);
+  gap: 4px;
+  overflow-x: auto;
+  flex-wrap: wrap;
+}
+
+.tab-button {
+  padding: 12px 20px;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  color: var(--text-secondary);
+  border-bottom: 3px solid transparent;
+  transition: all var(--transition-fast);
+  white-space: nowrap;
+}
+
+.tab-button.active {
+  color: var(--primary-color);
+  border-bottom-color: var(--primary-color);
+  background-color: var(--bg-hover);
+}
+
+.tab-button:hover {
+  background-color: var(--bg-hover);
+}
+
+/* --- Tab Content Visibility --- */
+.tab-content {
+  display: none;
+  animation: fadeIn 0.3s ease;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+/* --- Home Screen Switching (within Home Tab) --- */
+.home-screen {
+  display: none;
+  animation: fadeIn 0.3s ease;
+}
+
+.home-screen.active {
+  display: block;
+}
+
+/* --- Back Button --- */
+.back-button {
+  background: transparent;
+  border: none;
+  color: var(--primary-color);
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  cursor: pointer;
+  padding: var(--spacing-xs) 0;
+  margin-bottom: var(--spacing-sm);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  transition: all var(--transition-fast);
+}
+
+.back-button:hover {
+  color: var(--primary-hover);
+  transform: translateX(-3px);
+}
+
+/* --- Loading Indicator --- */
+.loading-indicator {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 200px;
+  color: var(--text-secondary);
+}
+
+.loading-indicator p {
+  font-size: var(--font-size-lg);
+}
+
+/* --- Empty/Success Messages --- */
+.empty-message,
+.success-message,
+.placeholder-text {
+  text-align: center;
+  padding: var(--spacing-lg);
+  color: var(--text-secondary);
+  font-size: var(--font-size-base);
+}
+
+.success-message {
+  color: var(--success-color);
+  background-color: rgba(40, 167, 69, 0.1);
+  border-radius: var(--border-radius-sm);
+}
+
+/* ==========================================================
+   ANALYTICS TAB STYLES
+   ========================================================== */
+
+.analytics-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-lg);
+}
+
+.analytics-stat-card {
+  background: linear-gradient(135deg, var(--bg-hover) 0%, var(--bg-secondary) 100%);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  padding: var(--spacing-md);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  transition: all var(--transition-fast);
+}
+
+.analytics-stat-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.analytics-stat-card.warning {
+  border-color: var(--warning-color);
+  background: linear-gradient(135deg, rgba(255, 193, 7, 0.1) 0%, var(--bg-secondary) 100%);
+}
+
+.stat-icon {
+  font-size: 2rem;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--bg-secondary);
+  border-radius: var(--border-radius-sm);
+}
+
+.stat-info h4 {
+  margin: 0 0 var(--spacing-xs) 0;
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.stat-info .stat-value {
+  font-size: var(--font-size-xl);
+  font-weight: 700;
+  color: var(--primary-color);
+  margin: 0;
+}
+
+/* Analytics Sections */
+.analytics-section {
+  margin-bottom: var(--spacing-xl);
+}
+
+.analytics-section h3 {
+  margin-bottom: var(--spacing-md);
+  padding-bottom: var(--spacing-xs);
+  border-bottom: 1px solid var(--border-color);
+}
+
+/* Trend Graph Container */
+#trend-graph-container {
+  background-color: var(--bg-hover);
+  border-radius: var(--border-radius);
+  padding: var(--spacing-md);
+  text-align: center;
+  min-height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#trend-graph-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--border-radius-sm);
+}
+
+/* At-Risk Status Badges */
+#at-risk-table .status-critical {
+  background-color: var(--danger-color);
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+}
+
+#at-risk-table .status-warning {
+  background-color: var(--warning-color);
+  color: #212529;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+}
+
+/* ==========================================================
+   HISTORY TAB STYLES
+   ========================================================== */
+
+.session-history-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.session-history-card {
+  background-color: var(--bg-hover);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-sm);
+  padding: var(--spacing-md);
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: var(--spacing-md);
+  align-items: center;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.session-history-card:hover {
+  border-color: var(--primary-color);
+  box-shadow: var(--shadow-sm);
+  transform: translateX(3px);
+}
+
+.session-history-card.active-session {
+  border-color: var(--success-color);
+  background: linear-gradient(135deg, rgba(40, 167, 69, 0.1) 0%, var(--bg-hover) 100%);
+}
+
+.session-card-info h4 {
+  margin: 0 0 var(--spacing-xs) 0;
+  color: var(--text-primary);
+  font-size: var(--font-size-base);
+}
+
+.session-card-info p {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: var(--font-size-sm);
+}
+
+.session-card-info .session-topic {
+  color: var(--primary-color);
+  font-weight: 500;
+}
+
+.session-card-stats {
+  text-align: right;
+}
+
+.session-card-stats .attendance-badge {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: var(--border-radius-sm);
+  font-weight: 600;
+  font-size: var(--font-size-base);
+}
+
+.attendance-badge.good {
+  background-color: rgba(40, 167, 69, 0.15);
+  color: var(--success-color);
+}
+
+.attendance-badge.warning {
+  background-color: rgba(255, 193, 7, 0.15);
+  color: #856404;
+}
+
+.attendance-badge.critical {
+  background-color: rgba(220, 53, 69, 0.15);
+  color: var(--danger-color);
+}
+
+/* ==========================================================
+   SESSION DETAIL MODAL STYLES
+   ========================================================== */
+
+.session-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 900;
+  /* Lower than prompt modal (1000) so prompts appear on top */
+  padding: var(--spacing-md);
+  animation: fadeIn 0.2s ease;
+}
+
+.session-modal {
+  background-color: var(--bg-secondary);
+  border-radius: var(--border-radius);
+  width: 100%;
+  max-width: 700px;
+  max-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--shadow-lg);
+  animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.session-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--spacing-md);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.session-modal-header h3 {
+  margin: 0;
+  color: var(--primary-color);
+}
+
+.modal-close-btn {
+  background: transparent;
+  border: none;
+  font-size: 1.5rem;
+  color: var(--text-secondary);
+  cursor: pointer;
+  padding: 0;
+  line-height: 1;
+  transition: all var(--transition-fast);
+}
+
+.modal-close-btn:hover {
+  color: var(--danger-color);
+  transform: scale(1.1);
+}
+
+.session-modal-body {
+  padding: var(--spacing-md);
+  overflow-y: auto;
+}
+
+.modal-session-info {
+  margin-bottom: var(--spacing-md);
+}
+
+.modal-session-info p {
+  margin: var(--spacing-xs) 0;
+  font-size: var(--font-size-sm);
+}
+
+/* Modal Attendance Summary */
+.modal-attendance-summary {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-md);
+}
+
+.summary-card {
+  text-align: center;
+  padding: var(--spacing-md);
+  border-radius: var(--border-radius-sm);
+}
+
+.summary-card.present {
+  background-color: rgba(40, 167, 69, 0.15);
+}
+
+.summary-card.absent {
+  background-color: rgba(220, 53, 69, 0.15);
+}
+
+.summary-count {
+  display: block;
+  font-size: var(--font-size-2xl);
+  font-weight: 700;
+}
+
+.summary-card.present .summary-count {
+  color: var(--success-color);
+}
+
+.summary-card.absent .summary-count {
+  color: var(--danger-color);
+}
+
+.summary-label {
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+}
+
+/* Modal Tabs */
+.modal-tabs {
+  display: flex;
+  gap: var(--spacing-xs);
+  margin-bottom: var(--spacing-md);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.modal-tab-btn {
+  padding: var(--spacing-sm) var(--spacing-md);
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+  font-weight: 600;
+  color: var(--text-secondary);
+  transition: all var(--transition-fast);
+}
+
+.modal-tab-btn.active {
+  color: var(--primary-color);
+  border-bottom-color: var(--primary-color);
+}
+
+.modal-tab-btn:hover {
+  color: var(--primary-color);
+}
+
+/* Modal Student Lists */
+.modal-student-list {
+  display: none;
+}
+
+.modal-student-list.active {
+  display: block;
+}
+
+.modal-student-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--spacing-sm);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.modal-student-item:last-child {
+  border-bottom: none;
+}
+
+.modal-student-info {
+  flex: 1;
+}
+
+.modal-student-info .student-name {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.modal-student-info .student-roll {
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+}
+
+.modal-student-info .attendance-method {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+.mark-present-btn {
+  padding: 6px 12px;
+  background-color: var(--success-color);
+  color: white;
+  border: none;
+  border-radius: var(--border-radius-sm);
+  cursor: pointer;
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  transition: all var(--transition-fast);
+}
+
+.mark-present-btn:hover {
+  background-color: #218838;
+  transform: scale(1.05);
+}
+
+/* ==========================================================
+   RESPONSIVE STYLES FOR NEW COMPONENTS
+   ========================================================== */
+
+@media (max-width: 768px) {
+  .header-container {
+    flex-direction: column;
+    align-items: stretch;
+    text-align: center;
+  }
+
+  .header-container button {
+    width: 100%;
+  }
+
+  .tabs {
+    flex-direction: row;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .tab-button {
+    flex-shrink: 0;
+    padding: 10px 14px;
+    font-size: var(--font-size-sm);
+  }
+
+  .analytics-stats-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-sm);
+  }
+
+  .analytics-stat-card {
+    flex-direction: column;
+    text-align: center;
+    padding: var(--spacing-sm);
+  }
+
+  .stat-icon {
+    font-size: 1.5rem;
+    width: 40px;
+    height: 40px;
+  }
+
+  .stat-info .stat-value {
+    font-size: var(--font-size-lg);
+  }
+
+  .session-history-card {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-sm);
+  }
+
+  .session-card-stats {
+    text-align: left;
+  }
+
+  .session-modal {
+    max-height: 90vh;
+    margin: var(--spacing-sm);
+  }
+
+  .modal-attendance-summary {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-sm);
+  }
+
+  .summary-count {
+    font-size: var(--font-size-xl);
+  }
+}
+
+@media (max-width: 480px) {
+  .analytics-stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .tab-button {
+    padding: 8px 12px;
+    font-size: 0.85rem;
+  }
+
+  .modal-tabs {
+    flex-wrap: wrap;
+  }
+
+  .modal-tab-btn {
+    flex: 1;
+    text-align: center;
+    padding: var(--spacing-xs) var(--spacing-sm);
+    font-size: var(--font-size-sm);
+  }
+
+  .modal-student-item {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--spacing-sm);
+  }
+
+  .mark-present-btn {
+    width: 100%;
+  }
+}
+
+/* ==========================================================
+   SEARCHABLE COURSE DROPDOWN STYLES
+   ========================================================== */
+
+.course-select-wrapper {
+  width: 100%;
+}
+
+.searchable-select {
+  position: relative;
+  width: 100%;
+}
+
+.searchable-select input[type="text"] {
+  width: 100%;
+  padding-right: 35px;
+  cursor: pointer;
+}
+
+.dropdown-arrow {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: var(--text-secondary);
+  font-size: 0.7rem;
+  transition: transform var(--transition-fast);
+}
+
+.searchable-select.open .dropdown-arrow {
+  transform: translateY(-50%) rotate(180deg);
+}
+
+.dropdown-options {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--primary-color);
+  border-top: none;
+  border-radius: 0 0 var(--border-radius-sm) var(--border-radius-sm);
+  max-height: 250px;
+  overflow-y: auto;
+  z-index: 1000;
+  display: none;
+  box-shadow: var(--shadow-md);
+}
+
+.searchable-select.open .dropdown-options {
+  display: block;
+}
+
+.dropdown-option {
+  padding: var(--spacing-sm) var(--spacing-md);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.dropdown-option:last-child {
+  border-bottom: none;
+}
+
+.dropdown-option:hover,
+.dropdown-option.highlighted {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.dropdown-option .course-code {
+  font-weight: 700;
+  color: inherit;
+}
+
+.dropdown-option .course-name {
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+  margin-left: 8px;
+}
+
+.dropdown-option:hover .course-name,
+.dropdown-option.highlighted .course-name {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.no-results-message {
+  padding: var(--spacing-md);
+  text-align: center;
+  color: var(--text-secondary);
+  font-style: italic;
+}
+
+/* ==========================================================
+   REASON SELECTION MODAL FOR MANUAL ATTENDANCE
+   ========================================================== */
+
+.reason-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+  padding: var(--spacing-md);
+  animation: fadeIn 0.2s ease;
+}
+
+.reason-modal {
+  background-color: var(--bg-secondary);
+  border-radius: var(--border-radius-lg);
+  max-width: 380px;
+  width: 100%;
+  box-shadow: var(--shadow-lg);
+  animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.reason-modal-header {
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-bottom: 1px solid var(--border-color);
+  text-align: center;
+}
+
+.reason-modal-header h3 {
+  margin: 0 0 4px 0;
+  color: var(--primary-color);
+  font-size: var(--font-size-md);
+}
+
+.reason-modal-header p {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: var(--font-size-sm);
+}
+
+.reason-modal-body {
+  padding: var(--spacing-sm) var(--spacing-md);
+}
+
+.reason-instruction {
+  margin: 0 0 var(--spacing-sm) 0;
+  color: var(--text-primary);
+  font-weight: 500;
+  font-size: var(--font-size-sm);
+}
+
+.reason-options {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+}
+
+.reason-option {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 4px;
+  background-color: var(--bg-primary);
+  border: 2px solid var(--border-color);
+  border-radius: var(--border-radius-sm);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  min-height: 55px;
+}
+
+.reason-option:hover {
+  border-color: var(--primary-color);
+  background-color: rgba(59, 130, 246, 0.1);
+  transform: translateY(-2px);
+}
+
+.reason-option.selected {
+  border-color: var(--primary-color);
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.reason-option.selected .reason-label {
+  color: white;
+}
+
+.reason-icon {
+  font-size: 1.2rem;
+  margin-bottom: 2px;
+}
+
+.reason-label {
+  font-size: 10px;
+  font-weight: 600;
+  text-align: center;
+  color: var(--text-primary);
+  line-height: 1.2;
+}
+
+.other-reason-container {
+  margin-top: var(--spacing-md);
+  padding: var(--spacing-md);
+  background-color: var(--bg-primary);
+  border-radius: var(--border-radius-sm);
+  border: 1px solid var(--border-color);
+}
+
+.other-reason-container label {
+  display: block;
+  margin-bottom: var(--spacing-sm);
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+.other-reason-container textarea {
+  width: 100%;
+  padding: var(--spacing-sm);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-sm);
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
+  font-family: inherit;
+  resize: vertical;
+}
+
+.other-reason-container textarea:focus {
+  outline: none;
+  border-color: var(--primary-color);
+}
+
+.reason-modal-footer {
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-top: 1px solid var(--border-color);
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--spacing-sm);
+}
+
+.reason-modal-footer .btn-cancel {
+  padding: var(--spacing-sm) var(--spacing-lg);
+  background-color: transparent;
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-sm);
+  color: var(--text-secondary);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.reason-modal-footer .btn-cancel:hover {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+.reason-modal-footer .btn-confirm {
+  padding: var(--spacing-sm) var(--spacing-lg);
+  background-color: var(--primary-color);
+  border: none;
+  border-radius: var(--border-radius-sm);
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.reason-modal-footer .btn-confirm:hover:not(:disabled) {
+  background-color: var(--primary-hover);
+}
+
+.reason-modal-footer .btn-confirm:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+  .reason-options {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .reason-option {
+    padding: var(--spacing-sm);
+    min-height: 70px;
+  }
+
+  .reason-icon {
+    font-size: 1.4rem;
+  }
+
+  .reason-label {
+    font-size: var(--font-size-xs);
   }
 }

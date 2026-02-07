@@ -600,11 +600,16 @@ def get_enrollment_roster(user_data, semester_id):
 #This cod eis fo rgetting the course code and sending it to teacher.js login part to show COURSECODE FIELD in dropdown in the login page of teacher interface 
 @app.route('/api/teacher/course-codes', methods=['GET'])
 def get_course_codes():
-    """Returns all course codes for the teacher login dropdown."""
+    """Returns all course codes with names for the teacher login dropdown."""
     conn = get_db_connection()
-    course_codes = [row['course_code'] for row in conn.execute("SELECT course_code FROM courses ORDER BY course_code").fetchall()]
+    courses = conn.execute("""
+        SELECT course_code, course_name 
+        FROM courses 
+        ORDER BY course_code
+    """).fetchall()
+    result = [{"code": row['course_code'], "name": row['course_name']} for row in courses]
     conn.close()
-    return jsonify(course_codes)
+    return jsonify(result)
 
 
 # Teacher Login API 
@@ -676,20 +681,23 @@ def teacher_start_session():
     # Calculate end time
     end_time = start_time + datetime.timedelta(minutes=duration_minutes + grace_period_minutes)
     
+    topic = data.get('topic') # Get the topic from request
+    
     logger.info(f"Creating session - Duration: {duration_minutes}min, Grace: {grace_period_minutes}min, "
                 f"Start: {start_time.strftime('%Y-%m-%d %H:%M:%S')}, "
-                f"Scheduled end: {end_time.strftime('%Y-%m-%d %H:%M:%S')}")
+                f"Scheduled end: {end_time.strftime('%Y-%m-%d %H:%M:%S')}, Topic: {topic}")
     
     # Create new session
     cursor = conn.cursor()
     cursor.execute(
         """INSERT INTO sessions 
-           (course_id, start_time, end_time, is_active, session_type) 
-           VALUES (?, ?, ?, 1, ?)""",
+           (course_id, start_time, end_time, is_active, session_type, topic) 
+           VALUES (?, ?, ?, 1, ?, ?)""",
         (data['course_id'], 
          start_time.strftime('%Y-%m-%d %H:%M:%S'),
          end_time.strftime('%Y-%m-%d %H:%M:%S'),
-         data['session_type'])
+         data['session_type'],
+         topic)
     )
     session_id = cursor.lastrowid
     conn.commit()
@@ -1161,6 +1169,459 @@ def export_session_report(session_id):
         download_name=f"Attendance_Report_{course['course_name']}_{datetime.date.today()}.xlsx",
         mimetype='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
     )
+
+
+# =================================================================
+#   TEACHER API ENDPOINTS (Dashboard Analytics & History)
+# =================================================================
+
+@app.route('/api/teacher/analytics/<int:course_id>', methods=['GET'])
+def get_teacher_analytics(course_id):
+    """
+    Returns comprehensive analytics for the teacher dashboard.
+    Includes: avg attendance, at-risk students, trend graph (base64).
+    """
+    try:
+        conn = get_db_connection()
+        
+        # Get all sessions for this course
+        sessions_cursor = conn.execute("""
+            SELECT id, start_time, topic 
+            FROM sessions 
+            WHERE course_id = ? 
+            ORDER BY start_time
+        """, (course_id,)).fetchall()
+        sessions = [dict(row) for row in sessions_cursor]
+        
+        if not sessions:
+            conn.close()
+            return jsonify({
+                "total_sessions": 0,
+                "avg_attendance_percent": 0,
+                "at_risk_students": [],
+                "trend_graph_base64": None,
+                "message": "No sessions found for this course"
+            })
+        
+        # Get total enrolled students
+        enrolled_count = conn.execute("""
+            SELECT COUNT(*) as count FROM enrollments WHERE course_id = ?
+        """, (course_id,)).fetchone()['count']
+        
+        if enrolled_count == 0:
+            conn.close()
+            return jsonify({
+                "total_sessions": len(sessions),
+                "avg_attendance_percent": 0,
+                "at_risk_students": [],
+                "trend_graph_base64": None,
+                "message": "No students enrolled in this course"
+            })
+        
+        session_ids = [s['id'] for s in sessions]
+        placeholders = ','.join('?' for _ in session_ids)
+        
+        # Get all attendance records for these sessions
+        records = conn.execute(f"""
+            SELECT session_id, student_id 
+            FROM attendance_records 
+            WHERE session_id IN ({placeholders})
+        """, session_ids).fetchall()
+        
+        # Create attendance lookup
+        attendance_by_session = {}
+        attendance_by_student = {}
+        
+        for rec in records:
+            # Count per session
+            sid = rec['session_id']
+            if sid not in attendance_by_session:
+                attendance_by_session[sid] = 0
+            attendance_by_session[sid] += 1
+            
+            # Count per student
+            stud_id = rec['student_id']
+            if stud_id not in attendance_by_student:
+                attendance_by_student[stud_id] = 0
+            attendance_by_student[stud_id] += 1
+        
+        # Calculate average attendance percentage
+        total_possible = len(sessions) * enrolled_count
+        total_present = sum(attendance_by_session.values())
+        avg_percent = (total_present / total_possible * 100) if total_possible > 0 else 0
+        
+        # Prepare session data for trend graph
+        sessions_data = []
+        for session in sessions:
+            sessions_data.append({
+                'date': session['start_time'],
+                'present_count': attendance_by_session.get(session['id'], 0),
+                'total_students': enrolled_count,
+                'topic': session.get('topic', '')
+            })
+        
+        # Generate trend graph
+        trend_graph = analytics.generate_attendance_trend_graph(sessions_data)
+        
+        # Get all enrolled students for at-risk calculation
+        students_cursor = conn.execute("""
+            SELECT s.id as student_id, s.student_name, s.university_roll_no, e.class_roll_id
+            FROM students s
+            JOIN enrollments e ON s.id = e.student_id
+            WHERE e.course_id = ?
+        """, (course_id,)).fetchall()
+        
+        students_data = []
+        for student in students_cursor:
+            students_data.append({
+                'student_id': student['student_id'],
+                'student_name': student['student_name'],
+                'university_roll_no': student['university_roll_no'],
+                'class_roll_id': student['class_roll_id'],
+                'present_count': attendance_by_student.get(student['student_id'], 0),
+                'total_sessions': len(sessions)
+            })
+        
+        # Get at-risk students
+        at_risk = analytics.get_at_risk_students(students_data)
+        
+        conn.close()
+        
+        return jsonify({
+            "total_sessions": len(sessions),
+            "enrolled_count": enrolled_count,
+            "avg_attendance_percent": round(avg_percent, 1),
+            "at_risk_students": at_risk,
+            "trend_graph_base64": trend_graph
+        })
+        
+    except Exception as e:
+        logger.error(f"Error in teacher analytics: {e}", exc_info=True)
+        return jsonify({"error": "Failed to load analytics"}), 500
+
+
+@app.route('/api/teacher/history/<int:course_id>', methods=['GET'])
+def get_teacher_history(course_id):
+    """
+    Returns list of past sessions for the course.
+    Includes present count and total students for each session.
+    """
+    try:
+        conn = get_db_connection()
+        
+        # Get enrolled student count
+        enrolled_count = conn.execute("""
+            SELECT COUNT(*) as count FROM enrollments WHERE course_id = ?
+        """, (course_id,)).fetchone()['count']
+        
+        # Get all sessions for this course (most recent first)
+        sessions_cursor = conn.execute("""
+            SELECT id, start_time, end_time, session_type, topic, is_active
+            FROM sessions 
+            WHERE course_id = ?
+            ORDER BY start_time DESC
+        """, (course_id,)).fetchall()
+        
+        sessions = []
+        for session in sessions_cursor:
+            # Get attendance count for this session
+            present_count = conn.execute("""
+                SELECT COUNT(*) as count 
+                FROM attendance_records 
+                WHERE session_id = ?
+            """, (session['id'],)).fetchone()['count']
+            
+            # Parse date nicely
+            try:
+                start_dt = datetime.datetime.strptime(session['start_time'], '%Y-%m-%d %H:%M:%S')
+                date_display = start_dt.strftime('%d %b %Y')
+                time_display = start_dt.strftime('%I:%M %p')
+            except:
+                date_display = session['start_time'][:10] if session['start_time'] else 'Unknown'
+                time_display = ''
+            
+            sessions.append({
+                'id': session['id'],
+                'date': date_display,
+                'time': time_display,
+                'start_time': session['start_time'],
+                'end_time': session['end_time'],
+                'session_type': session['session_type'],
+                'topic': session['topic'] or 'No topic',
+                'is_active': session['is_active'],
+                'present_count': present_count,
+                'total_students': enrolled_count,
+                'attendance_percent': round((present_count / enrolled_count * 100), 1) if enrolled_count > 0 else 0
+            })
+        
+        conn.close()
+        
+        return jsonify({
+            "sessions": sessions,
+            "total_count": len(sessions)
+        })
+        
+    except Exception as e:
+        logger.error(f"Error loading teacher history: {e}", exc_info=True)
+        return jsonify({"error": "Failed to load history"}), 500
+
+
+@app.route('/api/teacher/session-detail/<int:session_id>', methods=['GET'])
+def get_session_detail(session_id):
+    """
+    Returns detailed attendance record for a specific session.
+    Shows all students with their attendance status.
+    """
+    try:
+        conn = get_db_connection()
+        
+        # Get session info
+        session = conn.execute("""
+            SELECT s.id, s.course_id, s.start_time, s.topic, s.session_type, s.is_active
+            FROM sessions s
+            WHERE s.id = ?
+        """, (session_id,)).fetchone()
+        
+        if not session:
+            conn.close()
+            return jsonify({"error": "Session not found"}), 404
+        
+        # Get all enrolled students
+        students_cursor = conn.execute("""
+            SELECT s.id as student_id, s.student_name, s.university_roll_no, e.class_roll_id
+            FROM students s
+            JOIN enrollments e ON s.id = e.student_id
+            WHERE e.course_id = ?
+            ORDER BY e.class_roll_id
+        """, (session['course_id'],)).fetchall()
+        
+        # Get attendance records for this session
+        records = conn.execute("""
+            SELECT student_id, override_method, manual_reason, timestamp
+            FROM attendance_records
+            WHERE session_id = ?
+        """, (session_id,)).fetchall()
+        
+        # Create attendance lookup
+        attendance_map = {rec['student_id']: dict(rec) for rec in records}
+        
+        # Build student list with status
+        present_students = []
+        absent_students = []
+        
+        for student in students_cursor:
+            student_data = {
+                'student_id': student['student_id'],
+                'student_name': student['student_name'],
+                'university_roll_no': student['university_roll_no'],
+                'class_roll_id': student['class_roll_id']
+            }
+            
+            if student['student_id'] in attendance_map:
+                record = attendance_map[student['student_id']]
+                student_data['status'] = 'present'
+                student_data['method'] = record.get('override_method', 'fingerprint')
+                student_data['reason'] = record.get('manual_reason', '')
+                present_students.append(student_data)
+            else:
+                student_data['status'] = 'absent'
+                absent_students.append(student_data)
+        
+        conn.close()
+        
+        return jsonify({
+            "session_id": session['id'],
+            "start_time": session['start_time'],
+            "topic": session['topic'] or 'No topic',
+            "session_type": session['session_type'],
+            "is_active": session['is_active'],
+            "present_students": present_students,
+            "absent_students": absent_students,
+            "present_count": len(present_students),
+            "absent_count": len(absent_students),
+            "total_students": len(present_students) + len(absent_students)
+        })
+        
+    except Exception as e:
+        logger.error(f"Error loading session detail: {e}", exc_info=True)
+        return jsonify({"error": "Failed to load session details"}), 500
+
+
+@app.route('/api/teacher/update-attendance', methods=['POST'])
+def update_attendance_retroactive():
+    """
+    Retroactively update attendance for a past session.
+    Allows marking absent students as present or removing attendance.
+    Requires a reason for audit trail.
+    """
+    try:
+        data = request.get_json()
+        
+        # Validate required fields
+        valid, error = validate_required_fields(data, ['session_id', 'student_id', 'action', 'manual_reason'])
+        if not valid:
+            logger.warning(f"Update attendance failed - {error}")
+            return jsonify({"error": error}), 400
+        
+        session_id = data['session_id']
+        student_id = data['student_id']
+        action = data['action']  # 'mark_present' or 'mark_absent'
+        reason = data['manual_reason'].strip()
+        
+        if not reason:
+            return jsonify({"error": "Reason is required for retroactive changes"}), 400
+        
+        if action not in ['mark_present', 'mark_absent']:
+            return jsonify({"error": "Invalid action. Use 'mark_present' or 'mark_absent'"}), 400
+        
+        conn = get_db_connection()
+        
+        # Verify session exists
+        session = conn.execute("SELECT id, course_id FROM sessions WHERE id = ?", (session_id,)).fetchone()
+        if not session:
+            conn.close()
+            return jsonify({"error": "Session not found"}), 404
+        
+        # Verify student is enrolled in this course
+        enrollment = conn.execute("""
+            SELECT 1 FROM enrollments WHERE student_id = ? AND course_id = ?
+        """, (student_id, session['course_id'])).fetchone()
+        if not enrollment:
+            conn.close()
+            return jsonify({"error": "Student not enrolled in this course"}), 400
+        
+        if action == 'mark_present':
+            # Check if already marked present
+            existing = conn.execute("""
+                SELECT id FROM attendance_records WHERE session_id = ? AND student_id = ?
+            """, (session_id, student_id)).fetchone()
+            
+            if existing:
+                conn.close()
+                return jsonify({"error": "Student is already marked present"}), 400
+            
+            # Insert attendance record with retroactive flag
+            conn.execute("""
+                INSERT INTO attendance_records 
+                (session_id, student_id, override_method, manual_reason)
+                VALUES (?, ?, 'retroactive_manual', ?)
+            """, (session_id, student_id, reason))
+            conn.commit()
+            
+            logger.info(f"Retroactive attendance - MARKED PRESENT - Session: {session_id}, "
+                        f"Student: {student_id}, Reason: '{reason}'")
+            
+            conn.close()
+            return jsonify({
+                "status": "success",
+                "message": "Student marked present"
+            })
+            
+        elif action == 'mark_absent':
+            # Check if attendance record exists
+            existing = conn.execute("""
+                SELECT id FROM attendance_records WHERE session_id = ? AND student_id = ?
+            """, (session_id, student_id)).fetchone()
+            
+            if not existing:
+                conn.close()
+                return jsonify({"error": "Student is not marked present for this session"}), 400
+            
+            # Delete the attendance record
+            conn.execute("""
+                DELETE FROM attendance_records WHERE session_id = ? AND student_id = ?
+            """, (session_id, student_id))
+            conn.commit()
+            
+            logger.info(f"Retroactive attendance - MARKED ABSENT - Session: {session_id}, "
+                        f"Student: {student_id}, Reason: '{reason}'")
+            
+            conn.close()
+            return jsonify({
+                "status": "success",
+                "message": "Attendance record removed"
+            })
+            
+    except Exception as e:
+        logger.error(f"Error updating attendance: {e}", exc_info=True)
+        return jsonify({"error": "Failed to update attendance"}), 500
+
+
+@app.route('/api/teacher/validate-session/<int:course_id>', methods=['GET'])
+def validate_teacher_session(course_id):
+    """
+    Validates if a course exists and checks for any active session.
+    Used by SPA to restore session after page refresh.
+    Also returns enrolled students if there's an active session.
+    """
+    try:
+        conn = get_db_connection()
+        
+        # Check if course exists
+        course = conn.execute("""
+            SELECT c.id, c.course_name, c.course_code, c.default_duration_minutes, t.teacher_name
+            FROM courses c
+            JOIN teachers t ON c.teacher_id = t.id
+            WHERE c.id = ?
+        """, (course_id,)).fetchone()
+        
+        if not course:
+            conn.close()
+            return jsonify({"valid": False, "message": "Course not found"}), 404
+        
+        # Check for active session
+        active_session = conn.execute("""
+            SELECT id, start_time, end_time, topic, session_type
+            FROM sessions
+            WHERE course_id = ? AND is_active = 1
+        """, (course_id,)).fetchone()
+        
+        result = {
+            "valid": True,
+            "course": {
+                "id": course['id'],
+                "course_name": course['course_name'],
+                "course_code": course['course_code'],
+                "default_duration": course['default_duration_minutes'],
+                "teacher_name": course['teacher_name']
+            },
+            "has_active_session": active_session is not None
+        }
+        
+        if active_session:
+            result["active_session"] = {
+                "id": active_session['id'],
+                "start_time": active_session['start_time'],
+                "end_time": active_session['end_time'],
+                "topic": active_session['topic'],
+                "session_type": active_session['session_type']
+            }
+            
+            # Also fetch enrolled students for session restore
+            students_cursor = conn.execute("""
+                SELECT s.id, s.student_name, s.university_roll_no, e.class_roll_id
+                FROM students s
+                JOIN enrollments e ON s.id = e.student_id
+                WHERE e.course_id = ?
+                ORDER BY e.class_roll_id
+            """, (course_id,)).fetchall()
+            
+            result["students"] = [
+                {
+                    "id": row['id'],
+                    "student_name": row['student_name'],
+                    "university_roll_no": row['university_roll_no'],
+                    "class_roll_id": row['class_roll_id']
+                }
+                for row in students_cursor
+            ]
+        
+        conn.close()
+        return jsonify(result)
+        
+    except Exception as e:
+        logger.error(f"Error validating session: {e}", exc_info=True)
+        return jsonify({"valid": False, "error": "Validation failed"}), 500
 
 
 # END OF PART 2
