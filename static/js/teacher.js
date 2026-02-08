@@ -1014,6 +1014,306 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // =============================================================
+  // EMERGENCY MODE - Bulk Manual Attendance
+  // =============================================================
+  const emergencyModeButton = document.getElementById('emergency-mode-button');
+
+  emergencyModeButton.addEventListener('click', async () => {
+    const confirmed = await Modal.confirm(
+      `<strong>⚠️ Emergency Mode</strong><br><br>
+       This mode is for device failures only. It allows you to manually mark multiple students as Present or Absent.<br><br>
+       <span style="color: var(--warning-color);">Use this only when the Smart Scanner is not working.</span>`,
+      'Activate Emergency Mode',
+      'warning'
+    );
+
+    if (confirmed) {
+      showEmergencyModeModal();
+    }
+  });
+
+  function showEmergencyModeModal() {
+    // Get current attendance status
+    const markedStudents = new Set();
+
+    // Create modal
+    const overlay = document.createElement('div');
+    overlay.className = 'emergency-modal-overlay';
+    overlay.innerHTML = `
+      <div class="emergency-modal">
+        <div class="emergency-modal-header">
+          <h3>⚠️ Emergency Attendance Mode</h3>
+          <p>Select students and mark them Present or Absent</p>
+        </div>
+        
+        <div class="emergency-mode-toggle">
+          <button class="mode-btn present-mode active" data-mode="present">
+            ✅ Mark Present
+          </button>
+          <button class="mode-btn absent-mode" data-mode="absent">
+            ❌ Mark Absent
+          </button>
+        </div>
+        
+        <div class="emergency-student-list">
+          <div class="emergency-select-all">
+            <label>
+              <input type="checkbox" id="select-all-students" />
+              Select All Unmarked
+            </label>
+            <span class="selection-count">0 selected</span>
+          </div>
+          <div class="student-grid" id="emergency-student-grid">
+            <!-- Students will be populated here -->
+          </div>
+        </div>
+        
+        <div class="emergency-modal-footer">
+          <button class="btn-close-emergency">Cancel</button>
+          <div class="emergency-actions">
+            <button class="btn-mark-selected" disabled>Apply to Selected (0)</button>
+          </div>
+        </div>
+      </div>
+    `;
+
+    document.body.appendChild(overlay);
+
+    let currentMode = 'present'; // 'present' or 'absent'
+    let selectedStudents = new Set();
+
+    const studentGrid = overlay.querySelector('#emergency-student-grid');
+    const modeBtns = overlay.querySelectorAll('.mode-btn');
+    const selectAllCheckbox = overlay.querySelector('#select-all-students');
+    const selectionCount = overlay.querySelector('.selection-count');
+    const markSelectedBtn = overlay.querySelector('.btn-mark-selected');
+    const closeBtn = overlay.querySelector('.btn-close-emergency');
+
+    // Fetch current status and populate grid
+    fetchAndPopulateStudents();
+
+    async function fetchAndPopulateStudents() {
+      try {
+        const statusResponse = await fetch(`/api/teacher/session/${sessionState.sessionId}/status`);
+        const statusData = await statusResponse.json();
+
+        const markedRollNos = new Set(statusData.marked_students || []);
+        const absentRollNos = new Set(statusData.absent_students || []);
+        let allStudents = sessionState.allStudents || [];
+
+        // Sort by class roll ID for easy scrolling
+        allStudents = [...allStudents].sort((a, b) => {
+          const rollA = parseInt(a.class_roll_id) || 0;
+          const rollB = parseInt(b.class_roll_id) || 0;
+          return rollA - rollB;
+        });
+
+        studentGrid.innerHTML = '';
+
+        allStudents.forEach(student => {
+          const isPresent = markedRollNos.has(student.university_roll_no);
+          const isAbsent = absentRollNos.has(student.university_roll_no);
+          const isProcessed = isPresent || isAbsent;
+
+          const div = document.createElement('div');
+          div.className = `student-item ${isPresent ? 'marked-present' : ''} ${isAbsent ? 'marked-absent' : ''}`;
+          div.dataset.univRoll = student.university_roll_no;
+          div.dataset.marked = isProcessed ? 'true' : 'false';
+
+          // Show ✅ for present, ❌ for absent, empty for unmarked
+          let statusIcon = '';
+          if (isPresent) statusIcon = '✅';
+          else if (isAbsent) statusIcon = '❌';
+
+          div.innerHTML = `
+            <input type="checkbox" ${isProcessed ? 'disabled' : ''} />
+            <div class="student-info">
+              <span class="student-roll">${student.class_roll_id}</span>
+              <span class="student-name">${student.student_name}</span>
+              <span class="student-univ-roll">${student.university_roll_no}</span>
+            </div>
+            <span class="student-status">${statusIcon}</span>
+          `;
+
+          if (!isProcessed) {
+            div.addEventListener('click', (e) => {
+              if (e.target.tagName !== 'INPUT') {
+                const checkbox = div.querySelector('input[type="checkbox"]');
+                checkbox.checked = !checkbox.checked;
+              }
+              toggleStudentSelection(student.university_roll_no, div);
+            });
+          }
+
+          studentGrid.appendChild(div);
+        });
+      } catch (error) {
+        console.error('Error fetching students:', error);
+        studentGrid.innerHTML = '<p style="text-align:center;color:var(--danger-color)">Failed to load students</p>';
+      }
+    }
+
+    function toggleStudentSelection(univRollNo, element) {
+      const checkbox = element.querySelector('input[type="checkbox"]');
+      if (checkbox.checked) {
+        selectedStudents.add(univRollNo);
+        element.classList.add('selected');
+      } else {
+        selectedStudents.delete(univRollNo);
+        element.classList.remove('selected');
+      }
+      updateSelectionCount();
+    }
+
+    function updateSelectionCount() {
+      const count = selectedStudents.size;
+      selectionCount.textContent = `${count} selected`;
+      markSelectedBtn.textContent = `Apply ${currentMode === 'present' ? '✅ Present' : '❌ Absent'} to Selected (${count})`;
+      markSelectedBtn.disabled = count === 0;
+
+      // Update select all checkbox state
+      const unmarkedItems = studentGrid.querySelectorAll('.student-item:not(.marked-present)');
+      const allChecked = unmarkedItems.length > 0 && selectedStudents.size === unmarkedItems.length;
+      selectAllCheckbox.checked = allChecked;
+    }
+
+    // Mode toggle
+    modeBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        modeBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        currentMode = btn.dataset.mode;
+        updateSelectionCount();
+      });
+    });
+
+    // Select all
+    selectAllCheckbox.addEventListener('change', () => {
+      const unmarkedItems = studentGrid.querySelectorAll('.student-item:not(.marked-present)');
+      unmarkedItems.forEach(item => {
+        const checkbox = item.querySelector('input[type="checkbox"]');
+        checkbox.checked = selectAllCheckbox.checked;
+        const univRollNo = item.dataset.univRoll;
+        if (selectAllCheckbox.checked) {
+          selectedStudents.add(univRollNo);
+          item.classList.add('selected');
+        } else {
+          selectedStudents.delete(univRollNo);
+          item.classList.remove('selected');
+        }
+      });
+      updateSelectionCount();
+    });
+
+    // Apply marking
+    markSelectedBtn.addEventListener('click', async () => {
+      if (selectedStudents.size === 0) return;
+
+      let confirmMessage = '';
+      let studentsToMark = [];
+
+      if (currentMode === 'present') {
+        // Present mode: only mark selected students as present
+        confirmMessage = `Mark <strong>${selectedStudents.size} selected students</strong> as <strong>PRESENT</strong>?`;
+        studentsToMark = Array.from(selectedStudents).map(roll => ({ roll, status: 'present' }));
+      } else {
+        // Absent mode: mark selected as absent, ALL unselected as present
+        const unmarkedItems = studentGrid.querySelectorAll('.student-item:not(.marked-present):not(.marked-absent)');
+        const allUnmarkedRolls = Array.from(unmarkedItems).map(item => item.dataset.univRoll);
+        const unselectedCount = allUnmarkedRolls.length - selectedStudents.size;
+
+        confirmMessage = `
+          <strong>Absent Mode Summary:</strong><br><br>
+          ❌ <strong>${selectedStudents.size}</strong> selected students → ABSENT<br>
+          ✅ <strong>${unselectedCount}</strong> unselected students → PRESENT<br><br>
+          <span style="font-size: 0.9em; color: var(--text-secondary);">
+          This will mark ALL remaining students.
+          </span>`;
+
+        // Build list: selected = absent, unselected = present
+        studentsToMark = allUnmarkedRolls.map(roll => ({
+          roll,
+          status: selectedStudents.has(roll) ? 'absent' : 'present'
+        }));
+      }
+
+      const confirmed = await Modal.confirm(
+        confirmMessage,
+        'Confirm Bulk Marking',
+        currentMode === 'present' ? 'success' : 'warning'
+      );
+
+      if (!confirmed) return;
+
+      markSelectedBtn.disabled = true;
+      markSelectedBtn.textContent = 'Applying...';
+
+      try {
+        const response = await fetch('/api/teacher/emergency-bulk-mark', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            session_id: sessionState.sessionId,
+            students: studentsToMark,
+            reason: 'Emergency Mode - Device Failure'
+          })
+        });
+
+        if (response.ok) {
+          const data = await response.json();
+          const totalMarked = (data.present_count || 0) + (data.absent_count || 0);
+          let successMessage = '';
+
+          if (currentMode === 'present') {
+            successMessage = `Successfully marked ${data.present_count || totalMarked} students as PRESENT!`;
+          } else {
+            successMessage = `✅ ${data.present_count || 0} marked PRESENT<br>❌ ${data.absent_count || 0} marked ABSENT`;
+          }
+
+          await Modal.alert(successMessage, 'Success', 'success');
+
+          // Refresh the student list
+          selectedStudents.clear();
+          await fetchAndPopulateStudents();
+          updateSelectionCount();
+
+          // Update live dashboard
+          updateLiveStatus();
+        } else {
+          const error = await response.json();
+          await Modal.alert(error.message || 'Failed to mark students', 'Error', 'error');
+        }
+      } catch (error) {
+        console.error('Bulk mark error:', error);
+        await Modal.alert('Network error while marking students', 'Error', 'error');
+      }
+
+      markSelectedBtn.disabled = false;
+      updateSelectionCount();
+    });
+
+    // Close modal
+    closeBtn.addEventListener('click', () => {
+      overlay.remove();
+    });
+
+    overlay.addEventListener('click', (e) => {
+      if (e.target === overlay) {
+        overlay.remove();
+      }
+    });
+
+    // ESC to close
+    const escHandler = (e) => {
+      if (e.key === 'Escape') {
+        overlay.remove();
+        document.removeEventListener('keydown', escHandler);
+      }
+    };
+    document.addEventListener('keydown', escHandler);
+  }
+
+  // =============================================================
   // 11. POST-SESSION REPORT (Within Home Tab)
   // =============================================================
   async function loadPostSessionReport(sessionId) {

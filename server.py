@@ -814,8 +814,114 @@ def manual_override():
         # Catch any unexpected errors and log them
         logger.error(f"Manual override EXCEPTION: {str(e)}", exc_info=True)
         return jsonify({"status": "error", "message": "Server error occurred"}), 500
-    
 
+
+@app.route('/api/teacher/emergency-bulk-mark', methods=['POST'])
+def emergency_bulk_mark():
+    """
+    Emergency Mode: Bulk mark multiple students as Present or Absent.
+    Each student in the array has their own status.
+    Used when the Smart Scanner device fails.
+    """
+    try:
+        data = request.get_json()
+        
+        if not data:
+            return jsonify({"status": "error", "message": "No data provided"}), 400
+        
+        session_id = data.get('session_id')
+        students = data.get('students', [])
+        reason = data.get('reason', 'Emergency Mode')
+        
+        if not session_id:
+            return jsonify({"status": "error", "message": "Session ID required"}), 400
+        
+        if not students or len(students) == 0:
+            return jsonify({"status": "error", "message": "No students selected"}), 400
+        
+        logger.info(f"Emergency bulk mark - Session: {session_id}, Students: {len(students)}")
+        
+        conn = get_db_connection()
+        
+        # Verify session is active
+        session = conn.execute(
+            "SELECT id, course_id FROM sessions WHERE id = ? AND is_active = 1",
+            (session_id,)
+        ).fetchone()
+        
+        if not session:
+            conn.close()
+            return jsonify({"status": "error", "message": "Session is not active"}), 400
+        
+        present_count = 0
+        absent_count = 0
+        skipped_count = 0
+        
+        for student_data in students:
+            # Handle both formats: simple roll string or {roll, status} object
+            if isinstance(student_data, dict):
+                univ_roll_no = student_data.get('roll')
+                status = student_data.get('status', 'present')
+            else:
+                univ_roll_no = student_data
+                status = 'present'
+            
+            # Find the student
+            student = conn.execute(
+                "SELECT id, student_name FROM students WHERE university_roll_no = ?",
+                (univ_roll_no,)
+            ).fetchone()
+            
+            if not student:
+                skipped_count += 1
+                continue
+            
+            # Check if already marked
+            existing = conn.execute(
+                "SELECT id FROM attendance_records WHERE session_id = ? AND student_id = ?",
+                (session['id'], student['id'])
+            ).fetchone()
+            
+            if existing:
+                skipped_count += 1
+                continue
+            
+            if status == 'present':
+                # Insert attendance record for present
+                conn.execute(
+                    """INSERT INTO attendance_records 
+                       (session_id, student_id, override_method, manual_reason) 
+                       VALUES (?, ?, 'emergency_mode', ?)""",
+                    (session['id'], student['id'], reason)
+                )
+                present_count += 1
+            else:
+                # Insert attendance record for absent (with special override method)
+                conn.execute(
+                    """INSERT INTO attendance_records 
+                       (session_id, student_id, override_method, manual_reason) 
+                       VALUES (?, ?, 'emergency_mode_absent', ?)""",
+                    (session['id'], student['id'], reason + ' - Marked Absent')
+                )
+                absent_count += 1
+        
+        conn.commit()
+        conn.close()
+        
+        logger.info(f"Emergency bulk mark SUCCESS - "
+                    f"Present: {present_count}, Absent: {absent_count}, Skipped: {skipped_count}")
+        
+        return jsonify({
+            "status": "success",
+            "message": f"Marked {present_count} present, {absent_count} absent",
+            "present_count": present_count,
+            "absent_count": absent_count,
+            "skipped_count": skipped_count
+        })
+        
+    except Exception as e:
+        logger.error(f"Emergency bulk mark EXCEPTION: {str(e)}", exc_info=True)
+        return jsonify({"status": "error", "message": "Server error occurred"}), 500
 
 
 
@@ -1029,24 +1135,34 @@ def get_live_session_status(session_id):
     
     if not session:
         conn.close()
-        return jsonify({"session_active": False, "marked_students": []}), 404
+        return jsonify({"session_active": False, "marked_students": [], "absent_students": []}), 404
     
     is_active = bool(session['is_active'])
     
-    # Get marked students
-    records_cursor = conn.execute("""
+    # Get marked students (present - NOT marked as absent)
+    present_cursor = conn.execute("""
         SELECT s.university_roll_no
         FROM attendance_records ar
         JOIN students s ON ar.student_id = s.id
-        WHERE ar.session_id = ?
+        WHERE ar.session_id = ? AND (ar.override_method IS NULL OR ar.override_method != 'emergency_mode_absent')
     """, (session_id,)).fetchall()
     
-    marked_students = [row['university_roll_no'] for row in records_cursor]
+    # Get absent students (marked as absent via emergency mode)
+    absent_cursor = conn.execute("""
+        SELECT s.university_roll_no
+        FROM attendance_records ar
+        JOIN students s ON ar.student_id = s.id
+        WHERE ar.session_id = ? AND ar.override_method = 'emergency_mode_absent'
+    """, (session_id,)).fetchall()
+    
+    marked_students = [row['university_roll_no'] for row in present_cursor]
+    absent_students = [row['university_roll_no'] for row in absent_cursor]
     conn.close()
     
     return jsonify({
         "session_active": is_active,  # CRITICAL: Frontend needs this
-        "marked_students": marked_students
+        "marked_students": marked_students,
+        "absent_students": absent_students
     })
 
 @app.route('/api/teacher/report/<int:session_id>', methods=['GET'])
@@ -1087,13 +1203,23 @@ def get_session_report(session_id):
         return jsonify({"students": students, "sessions": sessions, "records": {}})
 
     placeholders = ','.join('?' for _ in session_ids)
-    records_cursor = conn.execute(f"""
+    # Get present records (NOT emergency_mode_absent)
+    present_cursor = conn.execute(f"""
         SELECT session_id, student_id FROM attendance_records
         WHERE session_id IN ({placeholders})
+        AND (override_method IS NULL OR override_method != 'emergency_mode_absent')
     """, session_ids).fetchall()
     
-    # Create a fast lookup set for presence check: (session_id, student_id)
-    present_set = set((rec['session_id'], rec['student_id']) for rec in records_cursor)
+    # Get absent records (emergency_mode_absent only)
+    absent_cursor = conn.execute(f"""
+        SELECT session_id, student_id FROM attendance_records
+        WHERE session_id IN ({placeholders})
+        AND override_method = 'emergency_mode_absent'
+    """, session_ids).fetchall()
+    
+    # Create fast lookup sets for presence/absence check: (session_id, student_id)
+    present_set = set((rec['session_id'], rec['student_id']) for rec in present_cursor)
+    absent_set = set((rec['session_id'], rec['student_id']) for rec in absent_cursor)
     
     conn.close()
 
@@ -1101,7 +1227,8 @@ def get_session_report(session_id):
     report_data = {
         "students": students,
         "sessions": sessions,
-        "present_set": list(present_set) # Convert set to list for JSON
+        "present_set": list(present_set),  # Convert set to list for JSON
+        "absent_set": list(absent_set)     # Absent students marked via emergency mode
     }
     
     return jsonify(report_data)
@@ -1128,10 +1255,24 @@ def export_session_report(session_id):
     ).fetchall()]
     session_ids = [s['id'] for s in sessions]
     present_set = set()
+    absent_set = set()
     if session_ids:
         placeholders = ','.join('?' for _ in session_ids)
-        records_cursor = conn.execute(f"SELECT session_id, student_id FROM attendance_records WHERE session_id IN ({placeholders})", session_ids).fetchall()
-        present_set = set((rec['session_id'], rec['student_id']) for rec in records_cursor)
+        # Get present records (NOT emergency_mode_absent)
+        present_cursor = conn.execute(f"""
+            SELECT session_id, student_id FROM attendance_records 
+            WHERE session_id IN ({placeholders})
+            AND (override_method IS NULL OR override_method != 'emergency_mode_absent')
+        """, session_ids).fetchall()
+        present_set = set((rec['session_id'], rec['student_id']) for rec in present_cursor)
+        
+        # Get absent records (emergency_mode_absent only)
+        absent_cursor = conn.execute(f"""
+            SELECT session_id, student_id FROM attendance_records 
+            WHERE session_id IN ({placeholders})
+            AND override_method = 'emergency_mode_absent'
+        """, session_ids).fetchall()
+        absent_set = set((rec['session_id'], rec['student_id']) for rec in absent_cursor)
     conn.close()
 
     # --- Create Excel Workbook in Memory ---
@@ -1221,11 +1362,12 @@ def get_teacher_analytics(course_id):
         session_ids = [s['id'] for s in sessions]
         placeholders = ','.join('?' for _ in session_ids)
         
-        # Get all attendance records for these sessions
+        # Get all attendance records for these sessions (exclude emergency_mode_absent)
         records = conn.execute(f"""
             SELECT session_id, student_id 
             FROM attendance_records 
             WHERE session_id IN ({placeholders})
+            AND (override_method IS NULL OR override_method != 'emergency_mode_absent')
         """, session_ids).fetchall()
         
         # Create attendance lookup
@@ -1324,11 +1466,12 @@ def get_teacher_history(course_id):
         
         sessions = []
         for session in sessions_cursor:
-            # Get attendance count for this session
+            # Get attendance count for this session (exclude emergency_mode_absent)
             present_count = conn.execute("""
                 SELECT COUNT(*) as count 
                 FROM attendance_records 
                 WHERE session_id = ?
+                AND (override_method IS NULL OR override_method != 'emergency_mode_absent')
             """, (session['id'],)).fetchone()['count']
             
             # Parse date nicely
@@ -1419,12 +1562,23 @@ def get_session_detail(session_id):
             
             if student['student_id'] in attendance_map:
                 record = attendance_map[student['student_id']]
-                student_data['status'] = 'present'
-                student_data['method'] = record.get('override_method', 'fingerprint')
-                student_data['reason'] = record.get('manual_reason', '')
-                present_students.append(student_data)
+                method = record.get('override_method', 'fingerprint')
+                
+                # Check if student was marked as absent via emergency mode
+                if method == 'emergency_mode_absent':
+                    student_data['status'] = 'absent'
+                    student_data['method'] = method
+                    student_data['reason'] = record.get('manual_reason', '')
+                    student_data['is_marked_absent'] = True  # Explicitly marked absent
+                    absent_students.append(student_data)
+                else:
+                    student_data['status'] = 'present'
+                    student_data['method'] = method
+                    student_data['reason'] = record.get('manual_reason', '')
+                    present_students.append(student_data)
             else:
                 student_data['status'] = 'absent'
+                student_data['is_marked_absent'] = False  # Unmarked (didn't show up)
                 absent_students.append(student_data)
         
         conn.close()

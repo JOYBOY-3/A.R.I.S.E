@@ -1644,3 +1644,274 @@ Teacher Dashboard - FINAL FIXED VERSION
     font-size: var(--font-size-xs);
   }
 }
+
+/* ==========================================================
+   EMERGENCY MODE STYLES
+   ========================================================== */
+
+/* Warning Button */
+.button-warning {
+  background-color: #f59e0b;
+  color: white;
+  border: none;
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-radius: var(--border-radius-sm);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  margin-top: var(--spacing-sm);
+}
+
+.button-warning:hover {
+  background-color: #d97706;
+  transform: translateY(-1px);
+}
+
+/* Emergency Modal */
+.emergency-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+  padding: var(--spacing-md);
+  animation: fadeIn 0.2s ease;
+}
+
+.emergency-modal {
+  background-color: var(--bg-secondary);
+  border-radius: var(--border-radius-lg);
+  max-width: 700px;
+  width: 100%;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 0 30px rgba(245, 158, 11, 0.3);
+  border: 2px solid #f59e0b;
+}
+
+.emergency-modal-header {
+  padding: var(--spacing-md);
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  border-radius: var(--border-radius-lg) var(--border-radius-lg) 0 0;
+  text-align: center;
+}
+
+.emergency-modal-header h3 {
+  margin: 0 0 4px 0;
+  color: white;
+  font-size: var(--font-size-lg);
+}
+
+.emergency-modal-header p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: var(--font-size-sm);
+}
+
+/* Mode Toggle */
+.emergency-mode-toggle {
+  display: flex;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-md);
+  justify-content: center;
+  background-color: var(--bg-primary);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.mode-btn {
+  padding: var(--spacing-sm) var(--spacing-lg);
+  border: 2px solid var(--border-color);
+  border-radius: var(--border-radius-sm);
+  background-color: transparent;
+  color: var(--text-secondary);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.mode-btn:hover {
+  border-color: var(--text-primary);
+  color: var(--text-primary);
+}
+
+.mode-btn.active.present-mode {
+  background-color: var(--success-color);
+  border-color: var(--success-color);
+  color: white;
+}
+
+.mode-btn.active.absent-mode {
+  background-color: var(--danger-color);
+  border-color: var(--danger-color);
+  color: white;
+}
+
+/* Student Selection Grid */
+.emergency-student-list {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--spacing-md);
+  max-height: 400px;
+}
+
+.emergency-select-all {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--spacing-md);
+  padding: var(--spacing-sm);
+  background-color: var(--bg-primary);
+  border-radius: var(--border-radius-sm);
+}
+
+.emergency-select-all label {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.selection-count {
+  color: var(--primary-color);
+  font-weight: 600;
+}
+
+.student-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.student-item {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-sm);
+  background-color: var(--bg-primary);
+  border: 2px solid var(--border-color);
+  border-radius: var(--border-radius-sm);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.student-item:hover {
+  border-color: var(--primary-color);
+}
+
+.student-item.selected {
+  border-color: var(--primary-color);
+  background-color: rgba(59, 130, 246, 0.15);
+}
+
+.student-item.marked-present {
+  border-color: var(--success-color);
+  background-color: rgba(34, 197, 94, 0.15);
+}
+
+.student-item.marked-absent {
+  border-color: var(--danger-color);
+  background-color: rgba(239, 68, 68, 0.15);
+}
+
+.student-item input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+}
+
+.student-info {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  overflow: hidden;
+}
+
+.student-name {
+  flex: 1;
+  font-weight: 500;
+  font-size: var(--font-size-sm);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.student-roll {
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+  font-weight: 600;
+  min-width: 40px;
+}
+
+.student-univ-roll {
+  font-size: 11px;
+  color: var(--text-secondary);
+  min-width: 90px;
+}
+
+.student-status {
+  font-size: 16px;
+  min-width: 24px;
+  text-align: center;
+}
+
+/* Emergency Footer */
+.emergency-modal-footer {
+  padding: var(--spacing-md);
+  border-top: 1px solid var(--border-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--spacing-sm);
+  flex-wrap: wrap;
+}
+
+.emergency-actions {
+  display: flex;
+  gap: var(--spacing-sm);
+}
+
+.btn-mark-selected {
+  padding: var(--spacing-sm) var(--spacing-lg);
+  background-color: var(--primary-color);
+  border: none;
+  border-radius: var(--border-radius-sm);
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.btn-mark-selected:hover:not(:disabled) {
+  background-color: var(--primary-hover);
+}
+
+.btn-mark-selected:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn-close-emergency {
+  padding: var(--spacing-sm) var(--spacing-lg);
+  background-color: transparent;
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-sm);
+  color: var(--text-secondary);
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.btn-close-emergency:hover {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+}
