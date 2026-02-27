@@ -985,33 +985,46 @@ def get_otp_time_remaining(interval=30):
 
 @app.route('/api/teacher/start-online-session', methods=['POST'])
 def start_online_session():
-    """
-    Start an online class session with shareable link and OTP.
-    Returns session token for URL and initial OTP.
-    """
-    data = request.get_json()
+    """Start an online class session. ONLY available on cloud server (Render)."""
+    # Only allow on cloud server
+    is_cloud = os.environ.get('IS_CLOUD_SERVER', 'false').lower() == 'true'
+    if not is_cloud:
+        return jsonify({
+            "error": "Online class attendance is only available on the cloud server.",
+            "hint": "Please access A.R.I.S.E. via the Render cloud URL to use this feature."
+        }), 403
     
-    valid, error = validate_required_fields(data, ['course_id', 'duration_minutes'])
-    if not valid:
-        logger.warning(f"[ONLINE] Session start failed - {error}")
-        return jsonify({"error": error}), 400
+    data = request.get_json()
+    if not data or 'course_id' not in data:
+        return jsonify({"error": "course_id is required"}), 400
+    
+    duration_minutes = int(data.get('duration_minutes', 30))
+    topic = data.get('topic', '')
+    
+    # Generate unique session token and OTP seed
+    session_token = secrets.token_urlsafe(16)
+    otp_seed = secrets.token_hex(32)
+    
+    start_time = datetime.datetime.now()
+    end_time = start_time + datetime.timedelta(minutes=duration_minutes)
     
     conn = get_db_connection()
+    cursor = conn.cursor()
+    
+    # Migrate: add session_token and otp_seed columns if they don't exist
+    try:
+        cursor.execute("ALTER TABLE sessions ADD COLUMN session_token TEXT")
+    except Exception:
+        pass
+    try:
+        cursor.execute("ALTER TABLE sessions ADD COLUMN otp_seed TEXT")
+    except Exception:
+        pass
     
     # Deactivate any other active sessions
     conn.execute("UPDATE sessions SET is_active = 0, end_time = ? WHERE is_active = 1",
                  (datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'),))
     
-    start_time = datetime.datetime.now()
-    duration_minutes = int(data['duration_minutes'])
-    grace_period_minutes = 5
-    end_time = start_time + datetime.timedelta(minutes=duration_minutes + grace_period_minutes)
-    
-    topic = data.get('topic', '')
-    session_token = generate_session_token()
-    otp_seed = secrets.token_hex(32)
-    
-    cursor = conn.cursor()
     cursor.execute(
         """INSERT INTO sessions 
            (course_id, start_time, end_time, is_active, session_type, topic, session_token, otp_seed) 
@@ -1036,9 +1049,9 @@ def start_online_session():
     
     current_otp = generate_otp(otp_seed)
     
-    # Build the shareable URL
-    host = request.host_url.rstrip('/')
-    session_url = f"{host}/online/{session_token}"
+    # Build the shareable URL — always use cloud server URL
+    cloud_url = os.environ.get('CLOUD_SERVER_URL', request.host_url.rstrip('/'))
+    session_url = f"{cloud_url}/online/{session_token}"
     
     logger.info(f"[ONLINE] Session started - ID: {session_id}, Token: {session_token}, "
                 f"Course: {course['course_name']}, Duration: {duration_minutes}min")
