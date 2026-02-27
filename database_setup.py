@@ -125,7 +125,9 @@ def setup_database():
             end_time DATETIME,
             is_active BOOLEAN DEFAULT 0,
             session_type TEXT DEFAULT 'offline' NOT NULL,
-            topic TEXT
+            topic TEXT,
+            session_token TEXT,
+            otp_seed TEXT
         )
         """)
         print("Table 'sessions' created.")

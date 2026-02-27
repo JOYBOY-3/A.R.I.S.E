@@ -1915,3 +1915,100 @@ Teacher Dashboard - FINAL FIXED VERSION
   background-color: var(--bg-primary);
   color: var(--text-primary);
 }
+
+/* =================================================================
+   ONLINE CLASS DASHBOARD STYLES
+================================================================= */
+
+.online-dashboard-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 16px;
+  min-height: 400px;
+}
+
+@media (max-width: 900px) {
+  .online-dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.online-info-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Share Link Card */
+.share-link-card h4 {
+  margin-bottom: 8px;
+}
+
+.share-link-row {
+  display: flex;
+  gap: 8px;
+}
+
+.share-link-input {
+  flex: 1;
+  padding: 10px;
+  background: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  color: var(--text-primary);
+  font-size: 13px;
+  font-family: 'Courier New', monospace;
+}
+
+.copy-btn {
+  padding: 10px 14px !important;
+  font-size: 16px;
+  min-width: auto;
+}
+
+.copy-feedback {
+  color: var(--success);
+  font-size: 12px;
+  margin-top: 4px;
+  min-height: 18px;
+}
+
+/* OTP Display Card */
+.otp-display-card {
+  text-align: center;
+  border: 2px solid var(--accent) !important;
+  background: linear-gradient(135deg,
+      rgba(108, 99, 255, 0.08),
+      rgba(167, 139, 250, 0.08)) !important;
+}
+
+.otp-code {
+  font-size: 42px !important;
+  font-weight: 800 !important;
+  letter-spacing: 8px;
+  font-family: 'Courier New', monospace;
+  color: var(--accent);
+  margin: 12px 0;
+  text-shadow: 0 0 20px rgba(108, 99, 255, 0.3);
+}
+
+.otp-timer-bar {
+  height: 4px;
+  background: rgba(108, 99, 255, 0.15);
+  border-radius: 2px;
+  overflow: hidden;
+  margin: 8px 0;
+}
+
+.otp-timer-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent), #a78bfa);
+  transition: width 2s linear;
+  border-radius: 2px;
+}
+
+.otp-hint-text {
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin-top: 4px;
+}

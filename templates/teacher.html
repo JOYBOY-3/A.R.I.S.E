@@ -164,6 +164,73 @@
         </div>
 
         <!-- Home Tab: Post-Session Report -->
+        <!-- Home Tab: Online Class Live Dashboard -->
+        <div id="online-live-screen" class="home-screen" style="display: none">
+          <div class="online-dashboard-grid">
+            <div class="online-info-panel">
+              <!-- Share Link -->
+              <div class="stat-card share-link-card">
+                <h4>📎 Session Link</h4>
+                <div class="share-link-row">
+                  <input type="text" id="online-session-url" readonly class="share-link-input" />
+                  <button id="copy-link-btn" class="button-secondary copy-btn" title="Copy Link">📋</button>
+                </div>
+                <p id="copy-feedback" class="copy-feedback"></p>
+              </div>
+
+              <!-- OTP Display -->
+              <div class="stat-card otp-display-card">
+                <h3>🔐 Current OTP</h3>
+                <p class="otp-code" id="online-otp-code">------</p>
+                <div class="otp-timer-bar">
+                  <div class="otp-timer-fill" id="otp-timer-fill"></div>
+                </div>
+                <p class="otp-hint-text">Share this code with students. Changes every 30 seconds.</p>
+              </div>
+
+              <!-- Live Count -->
+              <div class="stat-card">
+                <h3>Live Attendance</h3>
+                <p class="live-counter">
+                  <span id="online-attendance-count">0</span> /
+                  <span id="online-total-students">0</span>
+                </p>
+              </div>
+
+              <!-- Session Controls -->
+              <div class="session-controls stat-card">
+                <h4>Session Controls</h4>
+                <button id="online-extend-button" class="button-secondary">
+                  Extend (+10 min)
+                </button>
+                <button id="online-end-button" class="button-danger">
+                  End Session Now
+                </button>
+              </div>
+            </div>
+
+            <!-- Online Students List -->
+            <div class="unmarked-students-panel">
+              <h3>✅ Students Present</h3>
+              <div class="table-container">
+                <table class="data-table" id="online-students-table">
+                  <thead>
+                    <tr>
+                      <th>Roll</th>
+                      <th>Name</th>
+                      <th>Univ. Roll</th>
+                      <th>Time</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <!-- Filled by JavaScript -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <div id="post-session-screen" class="home-screen" style="display: none">
           <h2>Session Complete</h2>
           <h3 id="post-session-topic"></h3>

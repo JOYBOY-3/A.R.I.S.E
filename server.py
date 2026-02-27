@@ -951,6 +951,328 @@ def teacher_start_session():
         "duration_minutes": duration_minutes
     })
 
+
+# =================================================================
+#   ONLINE CLASS ATTENDANCE SYSTEM
+# =================================================================
+
+import secrets
+import hmac
+import hashlib
+import math
+
+def generate_session_token():
+    """Generate a unique, URL-safe token for online session links."""
+    return secrets.token_urlsafe(16)
+
+def generate_otp(seed, interval=30):
+    """
+    Generate a time-based OTP that rotates every `interval` seconds.
+    Uses HMAC-SHA256 with the seed and current time window.
+    """
+    time_window = int(datetime.datetime.now().timestamp()) // interval
+    message = f"{seed}:{time_window}".encode('utf-8')
+    digest = hmac.new(seed.encode('utf-8'), message, hashlib.sha256).hexdigest()
+    # Take first 6 digits
+    otp_num = int(digest[:8], 16) % 1000000
+    return f"{otp_num:06d}"
+
+def get_otp_time_remaining(interval=30):
+    """Get seconds remaining until OTP rotates."""
+    now = int(datetime.datetime.now().timestamp())
+    return interval - (now % interval)
+
+
+@app.route('/api/teacher/start-online-session', methods=['POST'])
+def start_online_session():
+    """
+    Start an online class session with shareable link and OTP.
+    Returns session token for URL and initial OTP.
+    """
+    data = request.get_json()
+    
+    valid, error = validate_required_fields(data, ['course_id', 'duration_minutes'])
+    if not valid:
+        logger.warning(f"[ONLINE] Session start failed - {error}")
+        return jsonify({"error": error}), 400
+    
+    conn = get_db_connection()
+    
+    # Deactivate any other active sessions
+    conn.execute("UPDATE sessions SET is_active = 0, end_time = ? WHERE is_active = 1",
+                 (datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'),))
+    
+    start_time = datetime.datetime.now()
+    duration_minutes = int(data['duration_minutes'])
+    grace_period_minutes = 5
+    end_time = start_time + datetime.timedelta(minutes=duration_minutes + grace_period_minutes)
+    
+    topic = data.get('topic', '')
+    session_token = generate_session_token()
+    otp_seed = secrets.token_hex(32)
+    
+    cursor = conn.cursor()
+    cursor.execute(
+        """INSERT INTO sessions 
+           (course_id, start_time, end_time, is_active, session_type, topic, session_token, otp_seed) 
+           VALUES (?, ?, ?, 1, 'online', ?, ?, ?)""",
+        (data['course_id'], 
+         start_time.strftime('%Y-%m-%d %H:%M:%S'),
+         end_time.strftime('%Y-%m-%d %H:%M:%S'),
+         topic, session_token, otp_seed)
+    )
+    session_id = cursor.lastrowid
+    conn.commit()
+    
+    # Get course info
+    course = conn.execute("SELECT course_name, course_code FROM courses WHERE id = ?", 
+                          (data['course_id'],)).fetchone()
+    
+    # Get enrolled students count
+    student_count = conn.execute("SELECT COUNT(*) as c FROM enrollments WHERE course_id = ?",
+                                 (data['course_id'],)).fetchone()['c']
+    
+    conn.close()
+    
+    current_otp = generate_otp(otp_seed)
+    
+    # Build the shareable URL
+    host = request.host_url.rstrip('/')
+    session_url = f"{host}/online/{session_token}"
+    
+    logger.info(f"[ONLINE] Session started - ID: {session_id}, Token: {session_token}, "
+                f"Course: {course['course_name']}, Duration: {duration_minutes}min")
+    
+    return jsonify({
+        "status": "success",
+        "session_id": session_id,
+        "session_token": session_token,
+        "session_url": session_url,
+        "current_otp": current_otp,
+        "otp_time_remaining": get_otp_time_remaining(),
+        "end_time": end_time.strftime('%Y-%m-%d %H:%M:%S'),
+        "duration_minutes": duration_minutes,
+        "course_name": course['course_name'] if course else '',
+        "course_code": course['course_code'] if course else '',
+        "total_students": student_count
+    })
+
+
+@app.route('/online/<token>')
+def online_attendance_page(token):
+    """Serve the student online attendance page."""
+    return render_template('online_attendance.html', token=token)
+
+
+@app.route('/api/online/session/<token>/info', methods=['GET'])
+def online_session_info(token):
+    """Get session info for the student attendance page."""
+    conn = get_db_connection()
+    session = conn.execute("""
+        SELECT s.id, s.course_id, s.start_time, s.end_time, s.is_active, s.topic,
+               c.course_name, c.course_code, t.teacher_name
+        FROM sessions s
+        JOIN courses c ON s.course_id = c.id
+        LEFT JOIN teachers t ON c.teacher_id = t.id
+        WHERE s.session_token = ?
+    """, (token,)).fetchone()
+    
+    if not session:
+        conn.close()
+        return jsonify({"error": "Session not found"}), 404
+    
+    if not session['is_active']:
+        conn.close()
+        return jsonify({"error": "Session has ended", "expired": True}), 410
+    
+    # Count already marked
+    marked_count = conn.execute(
+        "SELECT COUNT(*) as c FROM attendance_records WHERE session_id = ?",
+        (session['id'],)).fetchone()['c']
+    
+    total_students = conn.execute(
+        "SELECT COUNT(*) as c FROM enrollments WHERE course_id = ?",
+        (session['course_id'],)).fetchone()['c']
+    
+    conn.close()
+    
+    # Calculate time remaining
+    end_time = datetime.datetime.strptime(session['end_time'], '%Y-%m-%d %H:%M:%S')
+    now = datetime.datetime.now()
+    remaining_seconds = max(0, int((end_time - now).total_seconds()))
+    
+    return jsonify({
+        "course_name": session['course_name'],
+        "course_code": session['course_code'],
+        "teacher_name": session['teacher_name'] or 'Unknown',
+        "topic": session['topic'] or '',
+        "time_remaining_seconds": remaining_seconds,
+        "marked_count": marked_count,
+        "total_students": total_students,
+        "is_active": True
+    })
+
+
+@app.route('/api/online/mark-attendance', methods=['POST'])
+@limiter.limit("5 per minute")
+def online_mark_attendance():
+    """
+    Student marks attendance for an online session using roll number + OTP.
+    Anti-cheating: validates OTP, checks enrollment, prevents duplicates.
+    """
+    data = request.get_json()
+    
+    valid, error = validate_required_fields(data, ['token', 'university_roll_no', 'otp'])
+    if not valid:
+        return jsonify({"status": "error", "message": error}), 400
+    
+    token = data['token']
+    roll_no = sanitize_input(data['university_roll_no'].strip().upper())
+    submitted_otp = data['otp'].strip()
+    
+    conn = get_db_connection()
+    
+    # Find active session
+    session = conn.execute(
+        "SELECT id, course_id, otp_seed, end_time, is_active FROM sessions WHERE session_token = ?",
+        (token,)).fetchone()
+    
+    if not session:
+        conn.close()
+        logger.warning(f"[ONLINE] Attendance failed - Invalid token: {token}")
+        return jsonify({"status": "error", "message": "Invalid session link"}), 404
+    
+    if not session['is_active']:
+        conn.close()
+        return jsonify({"status": "error", "message": "Session has ended"}), 410
+    
+    # Check time window
+    end_time = datetime.datetime.strptime(session['end_time'], '%Y-%m-%d %H:%M:%S')
+    if datetime.datetime.now() > end_time:
+        conn.close()
+        return jsonify({"status": "error", "message": "Session has expired"}), 410
+    
+    # Validate OTP — check current and previous window (grace period)
+    current_otp = generate_otp(session['otp_seed'])
+    # Also accept OTP from previous 30-second window (for students typing during transition)
+    time_window_prev = (int(datetime.datetime.now().timestamp()) // 30) - 1
+    prev_message = f"{session['otp_seed']}:{time_window_prev}".encode('utf-8')
+    prev_digest = hmac.new(session['otp_seed'].encode('utf-8'), prev_message, hashlib.sha256).hexdigest()
+    prev_otp = f"{int(prev_digest[:8], 16) % 1000000:06d}"
+    
+    if submitted_otp != current_otp and submitted_otp != prev_otp:
+        conn.close()
+        logger.warning(f"[ONLINE] Wrong OTP - Roll: {roll_no}, Submitted: {submitted_otp}")
+        return jsonify({"status": "error", "message": "Invalid OTP code. Check the code displayed by your teacher."}), 403
+    
+    # Find student by university roll number
+    student = conn.execute(
+        "SELECT id, student_name FROM students WHERE UPPER(university_roll_no) = ?",
+        (roll_no,)).fetchone()
+    
+    if not student:
+        conn.close()
+        logger.warning(f"[ONLINE] Student not found - Roll: {roll_no}")
+        return jsonify({"status": "error", "message": "Student not found. Check your roll number."}), 404
+    
+    # Check enrollment
+    enrollment = conn.execute(
+        "SELECT class_roll_id FROM enrollments WHERE course_id = ? AND student_id = ?",
+        (session['course_id'], student['id'])).fetchone()
+    
+    if not enrollment:
+        conn.close()
+        logger.warning(f"[ONLINE] Not enrolled - Roll: {roll_no}, Course: {session['course_id']}")
+        return jsonify({"status": "error", "message": "You are not enrolled in this course."}), 403
+    
+    # Check duplicate
+    existing = conn.execute(
+        "SELECT id FROM attendance_records WHERE session_id = ? AND student_id = ?",
+        (session['id'], student['id'])).fetchone()
+    
+    if existing:
+        conn.close()
+        return jsonify({"status": "duplicate", "message": "Attendance already marked!", 
+                        "student_name": student['student_name']})
+    
+    # Mark attendance
+    conn.execute(
+        "INSERT INTO attendance_records (session_id, student_id, override_method) VALUES (?, ?, ?)",
+        (session['id'], student['id'], 'online_otp'))
+    conn.commit()
+    
+    logger.info(f"[ONLINE] Attendance marked - {student['student_name']} (Roll: {roll_no})")
+    conn.close()
+    
+    return jsonify({
+        "status": "success", 
+        "message": "Attendance marked successfully!",
+        "student_name": student['student_name']
+    })
+
+
+@app.route('/api/online/session/<token>/otp', methods=['GET'])
+def get_current_otp(token):
+    """Get the current OTP for a session (teacher use)."""
+    conn = get_db_connection()
+    session = conn.execute(
+        "SELECT otp_seed, is_active FROM sessions WHERE session_token = ?",
+        (token,)).fetchone()
+    conn.close()
+    
+    if not session:
+        return jsonify({"error": "Session not found"}), 404
+    if not session['is_active']:
+        return jsonify({"error": "Session ended"}), 410
+    
+    return jsonify({
+        "otp": generate_otp(session['otp_seed']),
+        "time_remaining": get_otp_time_remaining()
+    })
+
+
+@app.route('/api/teacher/session/<int:session_id>/online-status', methods=['GET'])
+def online_session_status(session_id):
+    """Get live attendance status for teacher's online session dashboard."""
+    conn = get_db_connection()
+    
+    session = conn.execute(
+        "SELECT id, course_id, is_active, session_token, otp_seed, end_time FROM sessions WHERE id = ?",
+        (session_id,)).fetchone()
+    
+    if not session:
+        conn.close()
+        return jsonify({"error": "Session not found"}), 404
+    
+    # Get marked students
+    marked = conn.execute("""
+        SELECT s.student_name, s.university_roll_no, e.class_roll_id,
+               ar.timestamp as marked_at
+        FROM attendance_records ar
+        JOIN students s ON ar.student_id = s.id
+        LEFT JOIN enrollments e ON e.student_id = s.id AND e.course_id = ?
+        WHERE ar.session_id = ?
+        ORDER BY ar.timestamp DESC
+    """, (session['course_id'], session_id)).fetchall()
+    
+    total = conn.execute(
+        "SELECT COUNT(*) as c FROM enrollments WHERE course_id = ?",
+        (session['course_id'],)).fetchone()['c']
+    
+    conn.close()
+    
+    current_otp = generate_otp(session['otp_seed']) if session['is_active'] else None
+    
+    return jsonify({
+        "is_active": bool(session['is_active']),
+        "marked_count": len(marked),
+        "total_students": total,
+        "current_otp": current_otp,
+        "otp_time_remaining": get_otp_time_remaining() if session['is_active'] else 0,
+        "marked_students": [dict(s) for s in marked],
+        "session_token": session['session_token']
+    })
+
 @app.route('/api/teacher/manual-override', methods=['POST'])
 def manual_override():
     """Handles the teacher's request to manually mark a student present."""

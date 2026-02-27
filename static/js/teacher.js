@@ -582,13 +582,175 @@ document.addEventListener('DOMContentLoaded', () => {
     );
 
     if (confirmed) {
-      await Modal.alert(
-        'Online session functionality will be implemented in a future module.',
-        'Coming Soon',
-        'info'
-      );
+      await startOnlineSession();
     }
   });
+
+  // =============================================================
+  // ONLINE SESSION MANAGEMENT
+  // =============================================================
+  let onlineOtpInterval = null;
+  let onlineStatusInterval = null;
+
+  async function startOnlineSession() {
+    try {
+      const response = await fetch('/api/teacher/start-online-session', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          course_id: sessionState.courseId,
+          duration_minutes: durationInput.value,
+          topic: topicInput ? topicInput.value.trim() : '',
+        }),
+      });
+
+      const result = await response.json();
+      if (!response.ok) {
+        await Modal.alert(result.error || 'Failed to start online session', 'Error', 'error');
+        return;
+      }
+
+      // Store session state
+      sessionState.sessionId = result.session_id;
+      sessionState.sessionToken = result.session_token;
+      sessionState.endTime = new Date(result.end_time.replace(' ', 'T'));
+      sessionState.currentHomeScreen = 'online-live';
+
+      // Populate the online dashboard
+      document.getElementById('online-session-url').value = result.session_url;
+      document.getElementById('online-otp-code').textContent = result.current_otp;
+      document.getElementById('online-total-students').textContent = result.total_students;
+      document.getElementById('online-attendance-count').textContent = '0';
+
+      // Switch to the online live screen
+      switchHomeScreen('online-live');
+      saveState();
+
+      // Start OTP rotation
+      startOtpRotation();
+      // Start live attendance polling
+      startOnlineStatusPolling();
+      // Start countdown timer
+      startCountdownTimer();
+
+    } catch (error) {
+      console.error('Online session start error:', error);
+      await Modal.alert('Failed to start online session. Check the console.', 'Error', 'error');
+    }
+  }
+
+  function startOtpRotation() {
+    if (onlineOtpInterval) clearInterval(onlineOtpInterval);
+
+    async function refreshOtp() {
+      if (!sessionState.sessionToken) return;
+      try {
+        const res = await fetch(`/api/online/session/${sessionState.sessionToken}/otp`);
+        if (res.ok) {
+          const data = await res.json();
+          document.getElementById('online-otp-code').textContent = data.otp;
+          // Update timer bar
+          const pct = (data.time_remaining / 30) * 100;
+          document.getElementById('otp-timer-fill').style.width = `${pct}%`;
+        }
+      } catch (_) { /* silent */ }
+    }
+
+    refreshOtp();
+    onlineOtpInterval = setInterval(refreshOtp, 2000);
+  }
+
+  function startOnlineStatusPolling() {
+    if (onlineStatusInterval) clearInterval(onlineStatusInterval);
+
+    async function refreshStatus() {
+      if (!sessionState.sessionId) return;
+      try {
+        const res = await fetch(`/api/teacher/session/${sessionState.sessionId}/online-status`);
+        if (res.ok) {
+          const data = await res.json();
+          document.getElementById('online-attendance-count').textContent = data.marked_count;
+          document.getElementById('online-total-students').textContent = data.total_students;
+
+          // Update student table
+          const tbody = document.querySelector('#online-students-table tbody');
+          tbody.innerHTML = '';
+          if (data.marked_students && data.marked_students.length > 0) {
+            data.marked_students.forEach(s => {
+              const row = document.createElement('tr');
+              const time = s.marked_at ? new Date(s.marked_at).toLocaleTimeString() : '';
+              row.innerHTML = `
+                <td>${s.class_roll_id || '-'}</td>
+                <td>${s.student_name}</td>
+                <td>${s.university_roll_no}</td>
+                <td>${time}</td>
+              `;
+              tbody.appendChild(row);
+            });
+          }
+
+          if (!data.is_active) {
+            clearInterval(onlineOtpInterval);
+            clearInterval(onlineStatusInterval);
+          }
+        }
+      } catch (_) { /* silent */ }
+    }
+
+    refreshStatus();
+    onlineStatusInterval = setInterval(refreshStatus, 3000);
+  }
+
+  // Copy link button
+  document.getElementById('copy-link-btn').addEventListener('click', () => {
+    const urlInput = document.getElementById('online-session-url');
+    urlInput.select();
+    navigator.clipboard.writeText(urlInput.value).then(() => {
+      const feedback = document.getElementById('copy-feedback');
+      feedback.textContent = '✅ Link copied!';
+      setTimeout(() => { feedback.textContent = ''; }, 2000);
+    });
+  });
+
+  // Online end session
+  document.getElementById('online-end-button').addEventListener('click', async () => {
+    const confirmed = await Modal.confirm(
+      'Are you sure you want to end this online session?',
+      'End Session',
+      'warning'
+    );
+    if (confirmed && sessionState.sessionId) {
+      try {
+        await fetch(`/api/teacher/session/${sessionState.sessionId}/end`, { method: 'POST' });
+        clearInterval(onlineOtpInterval);
+        clearInterval(onlineStatusInterval);
+        sessionState.sessionToken = null;
+        // Switch to post-session
+        switchHomeScreen('post-session');
+        // Load post-session report
+        loadPostSessionReport(sessionState.sessionId);
+      } catch (e) {
+        console.error('End session failed:', e);
+      }
+    }
+  });
+
+  // Online extend session
+  document.getElementById('online-extend-button').addEventListener('click', async () => {
+    if (sessionState.sessionId) {
+      try {
+        const res = await fetch(`/api/teacher/session/${sessionState.sessionId}/extend`, { method: 'POST' });
+        if (res.ok) {
+          const data = await res.json();
+          sessionState.endTime = new Date(data.new_end_time.replace(' ', 'T'));
+          await Modal.alert('Session extended by 10 minutes!', 'Extended', 'success');
+        }
+      } catch (e) {
+        console.error('Extend failed:', e);
+      }
+    }
+  });
+
 
   async function startSession(sessionType) {
     const sessionDate = sessionDateInput.value;
