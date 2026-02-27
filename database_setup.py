@@ -1,19 +1,33 @@
 import sqlite3
-import hashlib
+import bcrypt
+import os
+from dotenv import load_dotenv
 
 # =================================================================
-#   A.R.I.S.E. Database Setup Script - Definitive Version
+#   A.R.I.S.E. Database Setup Script - Production Build
 #   - Creates the complete database schema from scratch.
 #   - Adds a default administrator for first-time login.
+#   - Uses bcrypt for password hashing (production-grade security).
 # =================================================================
+
+# Load environment variables
+load_dotenv(os.path.join(os.path.dirname(os.path.abspath(__file__)), '.env'))
+
+
+def hash_password(password):
+    """Hash a password using bcrypt."""
+    return bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt()).decode('utf-8')
+
 
 def setup_database():
     """
     Connects to the database, drops old tables for a clean slate,
     creates all new tables with the final schema, and adds a default admin user.
     """
+    db_path = os.environ.get('DATABASE_PATH', 'attendance.db')
+    
     try:
-        connection = sqlite3.connect('attendance.db')
+        connection = sqlite3.connect(db_path)
         # Enable foreign key support in SQLite
         connection.execute("PRAGMA foreign_keys = ON")
         cursor = connection.cursor()
@@ -146,14 +160,15 @@ def setup_database():
 
         # --- Create a Default Admin User ---
         print("\n--- Adding default admin user...")
-        admin_password = 'admin'
-        # Securely hash the default password before storing it
-        hashed_admin_password = hashlib.sha256(admin_password.encode('utf-8')).hexdigest()
+        admin_password = os.environ.get('ADMIN_DEFAULT_PASSWORD', 'admin')
+        # Hash the default password with bcrypt (production-grade)
+        hashed_admin_password = hash_password(admin_password)
         try:
             cursor.execute("INSERT INTO admins (username, password) VALUES (?, ?)", ('admin', hashed_admin_password))
             print("Default admin user created successfully.")
             print("  Username: admin")
-            print("  Password: admin")
+            print(f"  Password: {admin_password}")
+            print("  \u26a0\ufe0f  CHANGE THIS PASSWORD IMMEDIATELY after first login!")
         except sqlite3.IntegrityError:
             print("Admin user already exists.")
 
@@ -174,4 +189,3 @@ if __name__ == '__main__':
     print("Starting database setup...")
     setup_database()
     print("\nDatabase setup complete.")
-

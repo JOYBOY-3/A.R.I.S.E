@@ -1,0 +1,45 @@
+# =================================================================
+#   A.R.I.S.E. - Production .gitignore
+# =================================================================
+
+# --- Secrets & Config ---
+.env
+*.env.local
+
+# --- Database ---
+attendance.db
+*.db-journal
+*.db-wal
+*.db-shm
+backups/
+
+# --- Logs ---
+arise_server.log
+*.log
+
+# --- Python ---
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.egg-info/
+dist/
+build/
+*.egg
+
+# --- Virtual Environment ---
+venv/
+.venv/
+env/
+
+# --- IDE ---
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# --- OS ---
+.DS_Store
+Thumbs.db
+desktop.ini

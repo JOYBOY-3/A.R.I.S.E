@@ -1,5 +1,5 @@
 # =================================================================
-#   A.R.I.S.E. Server
+#   A.R.I.S.E. Server — Production Build
 # =================================================================
 
 
@@ -9,6 +9,8 @@ import sqlite3
 import datetime
 import jwt
 import hashlib
+import bcrypt
+import html as html_module
 from functools import wraps
 
 from openpyxl import Workbook
@@ -17,9 +19,13 @@ import io
 from flask import send_file
 
 import logging
+from logging.handlers import RotatingFileHandler
 from apscheduler.schedulers.background import BackgroundScheduler
 import atexit
 import analytics
+from flask_limiter import Limiter
+from flask_limiter.util import get_remote_address
+from flask_cors import CORS
 
 
 import io
@@ -58,8 +64,9 @@ class UTF8StreamHandler(logging.StreamHandler):
 
 
 
-# Email functionality removed
+# Load production configuration
 from config import (
+    Config,
     MINIMUM_ATTENDANCE_PERCENTAGE,
     ATTENDANCE_WARNING_THRESHOLD,
     ENABLE_ATTENDANCE_ANALYTICS,
@@ -87,12 +94,22 @@ class TimedRequestHandler(WSGIRequestHandler):
 # 
 #     
 
-# --- Configure logging with filters ---
+# --- Configure logging with rotation ---
+log_file_handler = RotatingFileHandler(
+    'arise_server.log',
+    maxBytes=10 * 1024 * 1024,  # 10 MB per file
+    backupCount=5,              # Keep 5 backup files
+    encoding='utf-8'
+)
+log_file_handler.setLevel(logging.INFO)
+log_formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
+log_file_handler.setFormatter(log_formatter)
+
 logging.basicConfig(
     level=logging.INFO,
-    format='%(asctime)s - %(levelname)s - %(message)s',  # Removed %(name)s for cleaner output
+    format='%(asctime)s - %(levelname)s - %(message)s',
     handlers=[
-        logging.FileHandler('arise_server.log'),
+        log_file_handler,
         UTF8StreamHandler()
     ]
 )
@@ -111,9 +128,63 @@ logging.getLogger('apscheduler.scheduler').setLevel(logging.WARNING)
 
 # --- App Initialization ---
 app = Flask(__name__)
-# IMPORTANT: In a real production app, this should be a long, random, secret key
-# stored securely as an environment variable, not in the code.
-app.config['SECRET_KEY'] = '7c9e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2c3d4e5f6a7b8c9d0e'
+# Load SECRET_KEY from environment-based config (no more hardcoded secrets!)
+app.config['SECRET_KEY'] = Config.SECRET_KEY
+app.config['DEBUG'] = Config.DEBUG
+
+# --- CORS: Allow configurable cross-origin requests ---
+CORS(app, resources={r"/api/*": {"origins": "*"}})
+
+# --- Rate Limiting: Protect against brute-force attacks ---
+limiter = Limiter(
+    key_func=get_remote_address,
+    app=app,
+    default_limits=[Config.RATE_LIMIT_API],
+    storage_uri="memory://"
+)
+
+# --- Security Headers Middleware ---
+@app.after_request
+def add_security_headers(response):
+    """Add security headers to every response for production safety."""
+    response.headers['X-Content-Type-Options'] = 'nosniff'
+    response.headers['X-Frame-Options'] = 'SAMEORIGIN'
+    response.headers['X-XSS-Protection'] = '1; mode=block'
+    response.headers['Referrer-Policy'] = 'strict-origin-when-cross-origin'
+    # Only add HSTS in production
+    if not Config.DEBUG:
+        response.headers['Strict-Transport-Security'] = 'max-age=31536000; includeSubDomains'
+    return response
+
+# --- Input Sanitization Helper ---
+def sanitize_input(value):
+    """Sanitize user input to prevent XSS attacks."""
+    if value is None:
+        return None
+    if isinstance(value, str):
+        return html_module.escape(value.strip())
+    return value
+
+# --- Password Hashing Helpers (bcrypt) ---
+def hash_password(password):
+    """Hash a password using bcrypt (production-grade)."""
+    return bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt()).decode('utf-8')
+
+def verify_password(password, hashed):
+    """
+    Verify a password against a hash.
+    Supports both bcrypt (new) and SHA-256 (legacy) for migration period.
+    """
+    try:
+        # Try bcrypt first (new format starts with $2b$)
+        if hashed.startswith('$2b$') or hashed.startswith('$2a$'):
+            return bcrypt.checkpw(password.encode('utf-8'), hashed.encode('utf-8'))
+        else:
+            # Legacy SHA-256 fallback for existing passwords
+            sha256_hash = hashlib.sha256(password.encode('utf-8')).hexdigest()
+            return sha256_hash == hashed
+    except Exception:
+        return False
 
 # --- Request/Response Logging Middleware ---
 @app.before_request
@@ -145,7 +216,8 @@ def log_response_info(response):
 def get_db_connection():
     """Establishes a connection to the SQLite database."""
     # check_same_thread=False is needed because Flask can handle requests in different threads.
-    conn = sqlite3.connect('attendance.db', check_same_thread=False)
+    db_path = Config.DATABASE_PATH
+    conn = sqlite3.connect(db_path, check_same_thread=False)
     # This makes the database return rows that can be accessed by column name.
     conn.row_factory = sqlite3.Row
     # Enable foreign key support
@@ -234,12 +306,125 @@ def admin_page():
 def student_page():
     return render_template('student.html') # Points to the prototype for now
 
+# --- Health Check Endpoint (for monitoring and cloud deployment) ---
+@app.route('/api/health', methods=['GET'])
+@limiter.exempt
+def health_check():
+    """
+    Health check endpoint for monitoring and cloud deployment.
+    Returns server status, database connectivity, and version info.
+    """
+    status = {
+        "status": "healthy",
+        "version": "2.0.0-production",
+        "environment": "production" if not Config.DEBUG else "development",
+        "database": "unknown"
+    }
+    
+    try:
+        conn = get_db_connection()
+        conn.execute("SELECT 1").fetchone()
+        conn.close()
+        status["database"] = "connected"
+    except Exception as e:
+        status["status"] = "degraded"
+        status["database"] = f"error: {str(e)}"
+        logger.error(f"Health check - Database error: {e}")
+    
+    http_code = 200 if status["status"] == "healthy" else 503
+    return jsonify(status), http_code
 
 
 
+# =================================================================
+#   SYNC API — Cloud/Local Database Synchronization
+# =================================================================
+
+from sync_engine import SyncEngine
+
+# Initialize sync engine
+sync = SyncEngine(
+    db_path=Config.DATABASE_PATH,
+    cloud_url=Config.CLOUD_SERVER_URL,
+    api_key=Config.SYNC_API_KEY,
+    is_cloud=Config.IS_CLOUD_SERVER
+)
+
+def require_sync_api_key(f):
+    """Decorator to require sync API key authentication."""
+    @wraps(f)
+    def decorated(*args, **kwargs):
+        api_key = request.headers.get('X-Sync-API-Key', '')
+        if api_key != Config.SYNC_API_KEY:
+            logger.warning(f"[SYNC] Unauthorized sync attempt from {request.remote_addr}")
+            return jsonify({"status": "error", "message": "Invalid sync API key"}), 403
+        return f(*args, **kwargs)
+    return decorated
 
 
+@app.route('/api/sync/receive', methods=['POST'])
+@limiter.exempt
+@require_sync_api_key
+def sync_receive():
+    """
+    Receive a full database snapshot from the local server.
+    Only used by the CLOUD server.
+    """
+    if not Config.IS_CLOUD_SERVER:
+        return jsonify({"status": "error", "message": "This endpoint is only for cloud servers"}), 400
+    
+    try:
+        data = request.get_json()
+        if not data or 'db_data' not in data:
+            return jsonify({"status": "error", "message": "No database data received"}), 400
+        
+        import base64
+        db_binary = base64.b64decode(data['db_data'])
+        
+        logger.info(f"[SYNC] Receiving database snapshot: {len(db_binary)} bytes from {request.remote_addr}")
+        
+        success = sync.import_database_binary(db_binary)
+        
+        if success:
+            logger.info(f"[SYNC] Database snapshot imported successfully")
+            return jsonify({
+                "status": "success",
+                "message": f"Database imported ({len(db_binary)} bytes)",
+                "timestamp": datetime.datetime.now(datetime.timezone.utc).isoformat()
+            })
+        else:
+            return jsonify({"status": "error", "message": "Failed to import database"}), 500
+            
+    except Exception as e:
+        logger.error(f"[SYNC] Receive failed: {e}", exc_info=True)
+        return jsonify({"status": "error", "message": str(e)}), 500
 
+
+@app.route('/api/sync/push', methods=['POST'])
+@token_required
+def sync_push(user_data):
+    """
+    Trigger a sync push from local to cloud.
+    Called by admin from the LOCAL server.
+    """
+    if Config.IS_CLOUD_SERVER:
+        return jsonify({"status": "error", "message": "Cannot push from cloud server"}), 400
+    
+    logger.info(f"[SYNC] Manual sync push triggered by admin")
+    result = sync.push_to_cloud()
+    
+    status_code = 200 if result.get('status') == 'success' else 500
+    if result.get('status') == 'offline':
+        status_code = 503
+    
+    return jsonify(result), status_code
+
+
+@app.route('/api/sync/status', methods=['GET'])
+@limiter.exempt
+def sync_status():
+    """Get current sync status information."""
+    return jsonify(sync.get_sync_status())
 
 
 # =================================================================
@@ -247,6 +432,7 @@ def student_page():
 # =================================================================
 
 @app.route('/api/admin/login', methods=['POST'])
+@limiter.limit(Config.RATE_LIMIT_LOGIN)
 def admin_login():
     """Handles the administrator's login request."""
     data = request.get_json()
@@ -254,16 +440,15 @@ def admin_login():
         logger.warning(f"Admin login failed - Missing username or password")
         return jsonify({"message": "Username and password are required"}), 400
 
-    username = data['username']
+    username = sanitize_input(data['username'])
     logger.info(f"Admin login attempt - Username: {username}")
     
-    hashed_password = hashlib.sha256(data['password'].encode('utf-8')).hexdigest()
     conn = get_db_connection()
-    admin = conn.execute("SELECT id FROM admins WHERE username = ? AND password = ?", 
-                           (username, hashed_password)).fetchone()
+    admin = conn.execute("SELECT id, password FROM admins WHERE username = ?", 
+                           (username,)).fetchone()
     conn.close()
     
-    if admin:
+    if admin and verify_password(data['password'], admin['password']):
         # If login is successful, create a token that expires in 8 hours
         token = jwt.encode({
             'admin_id': admin['id'], 
@@ -368,7 +553,7 @@ def manage_teachers(user_data):
             return jsonify({"error": error}), 400
         
         conn.execute("INSERT INTO teachers (teacher_name, pin) VALUES (?, ?)",
-                     (data['teacher_name'], data['pin']))
+                     (sanitize_input(data['teacher_name']), hash_password(data['pin'])))
         conn.commit()
         conn.close()
         logger.info(f"Teacher created - Name: {data['teacher_name']}")
@@ -381,9 +566,9 @@ def manage_single_teacher(user_data, id):
     if request.method == 'PUT':
         data = request.get_json()
         if 'pin' in data and data['pin']: # Only update PIN if provided
-             conn.execute("UPDATE teachers SET teacher_name = ?, pin = ? WHERE id = ?", (data['teacher_name'], data['pin'], id))
+             conn.execute("UPDATE teachers SET teacher_name = ?, pin = ? WHERE id = ?", (sanitize_input(data['teacher_name']), hash_password(data['pin']), id))
         else:
-             conn.execute("UPDATE teachers SET teacher_name = ? WHERE id = ?", (data['teacher_name'], id))
+             conn.execute("UPDATE teachers SET teacher_name = ? WHERE id = ?", (sanitize_input(data['teacher_name']), id))
         conn.commit()
         logger.info(f"Teacher updated - ID: {id}, Name: {data['teacher_name']}")
     elif request.method == 'DELETE':
@@ -419,15 +604,15 @@ def manage_students(user_data):
             logger.warning(f"Student creation failed - {error}")
             return jsonify({"error": error}), 400
         
-        hashed_password = hashlib.sha256(data['password'].encode('utf-8')).hexdigest()
+        hashed_password = hash_password(data['password'])
         
         try:
             conn.execute("""INSERT INTO students 
                 (student_name, university_roll_no, enrollment_no, email1, email2, password) 
                 VALUES (?, ?, ?, ?, ?, ?)""",
-                (data['student_name'], data['university_roll_no'], 
-                 data['enrollment_no'], data['email1'], 
-                 data.get('email2', ''), hashed_password))
+                (sanitize_input(data['student_name']), sanitize_input(data['university_roll_no']), 
+                 sanitize_input(data['enrollment_no']), sanitize_input(data['email1']), 
+                 sanitize_input(data.get('email2', '')), hashed_password))
             conn.commit()
             logger.info(f"Student created - Roll: {data['university_roll_no']}")
         except sqlite3.IntegrityError:
@@ -446,7 +631,7 @@ def manage_single_student(user_data, id):
         data = request.get_json()
         # Check if a new password was provided
         if 'password' in data and data['password']:
-            hashed_password = hashlib.sha256(data['password'].encode('utf-8')).hexdigest()
+            hashed_password = hash_password(data['password'])
             conn.execute("""UPDATE students SET student_name = ?, university_roll_no = ?, 
                             enrollment_no = ?, email1 = ?, email2 = ?, password = ? WHERE id = ?""",
                          (data['student_name'], data['university_roll_no'], data['enrollment_no'], data['email1'], data['email2'], hashed_password, id))
@@ -681,7 +866,7 @@ def teacher_login():
         
     teacher = conn.execute("SELECT pin FROM teachers WHERE id = ?", (course['teacher_id'],)).fetchone()
     
-    if not teacher or teacher['pin'] != pin:
+    if not teacher or not verify_password(pin, teacher['pin']):
         logger.warning(f"Login failed - Invalid PIN for course_code: {course_code}")  # ADDED THIS FOR LOGGING
         conn.close()
         return jsonify({"status": "error", "message": "Invalid PIN"}), 401
@@ -1859,15 +2044,15 @@ def validate_teacher_session(course_id):
 # In our Admin-first build, these will be simple placeholders.
 
 @app.route('/api/student/login', methods=['POST'])
+@limiter.limit(Config.RATE_LIMIT_LOGIN)
 def student_login():
     data = request.get_json()
-    univ_roll_no = data.get('university_roll_no'); password = data.get('password')
+    univ_roll_no = sanitize_input(data.get('university_roll_no')); password = data.get('password')
     logger.info(f"Student login attempt - Roll: {univ_roll_no}")
-    hashed_password = hashlib.sha256(password.encode('utf-8')).hexdigest()
     conn = get_db_connection()
-    student = conn.execute("SELECT id, student_name FROM students WHERE university_roll_no = ? AND password = ?", (univ_roll_no, hashed_password)).fetchone()
+    student = conn.execute("SELECT id, student_name, password FROM students WHERE university_roll_no = ?", (univ_roll_no,)).fetchone()
     conn.close()
-    if student:
+    if student and verify_password(password, student['password']):
         token = jwt.encode({'student_id': student['id'], 'exp': datetime.datetime.now(datetime.timezone.utc) + datetime.timedelta(hours=1)}, app.config['SECRET_KEY'], algorithm="HS256")
         logger.info(f"Student login successful - Roll: {univ_roll_no}, Name: {student['student_name']}")
         return jsonify({'token': token, 'student_name': student['student_name']})
@@ -2947,18 +3132,17 @@ def get_leaderboard(user_data):
         logger.error(f"Error in get_leaderboard: {str(e)}")
         logger.error(traceback.format_exc())
         return jsonify({'message': 'Internal Server Error', 'error': str(e)}), 500
+
+
+# =================================================================
+#   Server Startup
+# =================================================================
+
 if __name__ == '__main__':
+    # Start auto-sync if configured (local server only)
+    if not Config.IS_CLOUD_SERVER and Config.CLOUD_SERVER_URL and Config.SYNC_INTERVAL_SECONDS > 0:
+        sync.start_auto_sync(Config.SYNC_INTERVAL_SECONDS)
+        logger.info(f"[SYNC] Auto-sync enabled: every {Config.SYNC_INTERVAL_SECONDS}s to {Config.CLOUD_SERVER_URL}")
+    
     # host='0.0.0.0' makes the server accessible from other devices on your network
-    app.run(host='0.0.0.0', port=5000, debug=False, request_handler=TimedRequestHandler)
-
-# END OF PART 3
-
-
-
-
-
-
-
-
-
-
+    app.run(host=Config.HOST, port=Config.PORT, debug=False, use_reloader=False, request_handler=TimedRequestHandler)

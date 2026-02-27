@@ -1,0 +1,20 @@
+services:
+  - type: web
+    name: arise-server
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: python server.py
+    envVars:
+      - key: FLASK_ENV
+        value: production
+      - key: IS_CLOUD_SERVER
+        value: "true"
+      - key: PORT
+        value: "10000"
+      - key: HOST
+        value: "0.0.0.0"
+      - key: SYNC_API_KEY
+        generateValue: true
+      - key: SECRET_KEY
+        generateValue: true
