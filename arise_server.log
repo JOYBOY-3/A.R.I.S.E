@@ -12,3 +12,847 @@
 2026-02-08 19:44:26,388 - INFO - End session 231: Found 8 enrolled students
 2026-02-08 19:44:26,389 - INFO - End session 231: 8 students marked present
 2026-02-08 19:44:26,394 - INFO - Session ended - ID: 231, Absent count: 0
+2026-02-10 10:38:19,426 - INFO - Server started - Auto-expire scheduler active
+2026-02-10 10:40:16,450 - INFO - Teacher login attempt - CourseCode: MCA101
+2026-02-10 10:40:16,454 - INFO - Teacher login successful - Course: Introduction To Programming
+2026-02-10 10:41:16,921 - INFO - Creating session - Duration: 30min, Grace: 5min, Start: 2026-02-10 10:41:16, Scheduled end: 2026-02-10 11:16:16, Topic: 
+2026-02-10 10:41:16,943 - INFO - Session started - ID: 232, Course: 1, Duration: 30min (+5min grace)
+2026-02-10 10:41:29,255 - INFO - Attendance attempt - Roll ID: 65
+2026-02-10 10:41:29,266 - INFO - Attendance marked - Roll ID 65
+2026-02-10 10:42:43,909 - INFO - Attendance attempt - Roll ID: 65
+2026-02-10 10:42:43,912 - INFO - Attendance duplicate - Roll ID 65
+2026-02-10 10:43:02,005 - WARNING - Device heartbeat stale - Last seen 15.6 seconds ago
+2026-02-10 10:43:14,935 - INFO - Attendance attempt - Roll ID: 1
+2026-02-10 10:43:14,938 - WARNING - Attendance failed - Roll ID 1 not enrolled
+2026-02-10 10:43:26,302 - INFO - Attendance attempt - Roll ID: 17
+2026-02-10 10:43:26,310 - INFO - Attendance marked - Roll ID 17
+2026-02-10 10:48:06,994 - WARNING - Device heartbeat stale - Last seen 15.8 seconds ago
+2026-02-10 10:48:11,994 - WARNING - Device heartbeat stale - Last seen 20.8 seconds ago
+2026-02-10 10:48:16,997 - WARNING - Device heartbeat stale - Last seen 25.8 seconds ago
+2026-02-10 10:48:22,021 - WARNING - Device heartbeat stale - Last seen 30.8 seconds ago
+2026-02-10 10:48:28,729 - WARNING - Device heartbeat stale - Last seen 37.5 seconds ago
+2026-02-10 10:48:32,005 - WARNING - Device heartbeat stale - Last seen 40.8 seconds ago
+2026-02-10 10:48:37,010 - WARNING - Device heartbeat stale - Last seen 45.8 seconds ago
+2026-02-10 10:48:39,564 - INFO - [BULK SYNC] Processing 2 roll IDs: [52, 69]
+2026-02-10 10:48:39,571 - INFO -   [SUCCESS] Roll 52 marked
+2026-02-10 10:48:39,573 - INFO -   [SUCCESS] Roll 69 marked
+2026-02-10 10:48:39,581 - INFO - [BULK SYNC] Complete - 2/2 successful
+2026-02-10 10:49:09,746 - INFO - End session 232: Found 8 enrolled students
+2026-02-10 10:49:09,748 - INFO - End session 232: 4 students marked present
+2026-02-10 10:49:09,750 - INFO -   Absent: Harsh Vashisth
+2026-02-10 10:49:09,751 - INFO -   Absent: Param Rathor
+2026-02-10 10:49:09,751 - INFO -   Absent: Aditya
+2026-02-10 10:49:09,752 - INFO -   Absent: Ziaul Mustafa
+2026-02-10 10:49:09,762 - INFO - Session ended - ID: 232, Absent count: 4
+2026-02-10 11:02:30,093 - INFO - Server started - Auto-expire scheduler active
+2026-02-10 11:12:05,806 - INFO - Server started - Auto-expire scheduler active
+2026-02-10 11:13:34,386 - INFO - Creating session - Duration: 30min, Grace: 5min, Start: 2026-02-10 11:13:34, Scheduled end: 2026-02-10 11:48:34, Topic: jfgHJF
+2026-02-10 11:13:34,393 - INFO - Session started - ID: 233, Course: 1, Duration: 30min (+5min grace)
+2026-02-10 11:13:54,406 - INFO - Manual override attempt - Session: 233, Student: MCAX24R019, Reason: 'Device Malfunction - Scanner not working properly'
+2026-02-10 11:13:54,420 - INFO - Manual override SUCCESS - Student: Param Rathor (MCAX24R019), Session: 233, Course: 1, Reason: 'Device Malfunction - Scanner not working properly'
+2026-02-10 11:14:19,002 - INFO - Emergency bulk mark - Session: 233, Students: 7
+2026-02-10 11:14:19,014 - INFO - Emergency bulk mark SUCCESS - Present: 5, Absent: 2, Skipped: 0
+2026-02-10 11:14:28,822 - INFO - End session 233: Found 8 enrolled students
+2026-02-10 11:14:28,823 - INFO - End session 233: 8 students marked present
+2026-02-10 11:14:28,829 - INFO - Session ended - ID: 233, Absent count: 0
+2026-02-10 13:45:54,875 - INFO - Server started - Auto-expire scheduler active
+2026-02-10 13:47:09,568 - INFO - Teacher login attempt - CourseCode: MCA101
+2026-02-10 13:47:09,570 - INFO - Teacher login successful - Course: Introduction To Programming
+2026-02-10 13:47:21,654 - INFO - Creating session - Duration: 30min, Grace: 5min, Start: 2026-02-10 13:47:21, Scheduled end: 2026-02-10 14:22:21, Topic: sjl
+2026-02-10 13:47:21,660 - INFO - Session started - ID: 234, Course: 1, Duration: 30min (+5min grace)
+2026-02-10 13:47:35,235 - INFO - Attendance attempt - Roll ID: 65
+2026-02-10 13:47:35,241 - INFO - Attendance marked - Roll ID 65
+2026-02-10 13:47:42,606 - INFO - Attendance attempt - Roll ID: 65
+2026-02-10 13:47:42,608 - INFO - Attendance duplicate - Roll ID 65
+2026-02-10 13:47:51,598 - INFO - Attendance attempt - Roll ID: 65
+2026-02-10 13:47:51,600 - INFO - Attendance duplicate - Roll ID 65
+2026-02-10 13:48:08,291 - INFO - Attendance attempt - Roll ID: 17
+2026-02-10 13:48:08,296 - INFO - Attendance marked - Roll ID 17
+2026-02-10 13:48:21,677 - WARNING - Device heartbeat stale - Last seen 15.4 seconds ago
+2026-02-10 13:48:26,681 - WARNING - Device heartbeat stale - Last seen 20.4 seconds ago
+2026-02-10 13:48:31,687 - WARNING - Device heartbeat stale - Last seen 25.4 seconds ago
+2026-02-10 13:48:36,678 - WARNING - Device heartbeat stale - Last seen 30.4 seconds ago
+2026-02-10 13:48:43,189 - WARNING - Device heartbeat stale - Last seen 36.9 seconds ago
+2026-02-10 13:48:46,496 - INFO - [BULK SYNC] Processing 2 roll IDs: [52, 69]
+2026-02-10 13:48:46,498 - INFO -   [SUCCESS] Roll 52 marked
+2026-02-10 13:48:46,499 - INFO -   [SUCCESS] Roll 69 marked
+2026-02-10 13:48:46,502 - INFO - [BULK SYNC] Complete - 2/2 successful
+2026-02-10 13:49:02,305 - INFO - Manual override attempt - Session: 234, Student: MCAX24R019, Reason: 'Finger Injury - Unable to use biometric scanner'
+2026-02-10 13:49:02,310 - INFO - Manual override SUCCESS - Student: Param Rathor (MCAX24R019), Session: 234, Course: 1, Reason: 'Finger Injury - Unable to use biometric scanner'
+2026-02-10 13:49:19,636 - INFO - End session 234: Found 8 enrolled students
+2026-02-10 13:49:19,636 - INFO - End session 234: 5 students marked present
+2026-02-10 13:49:19,637 - INFO -   Absent: Harsh Vashisth
+2026-02-10 13:49:19,637 - INFO -   Absent: Aditya
+2026-02-10 13:49:19,637 - INFO -   Absent: Ziaul Mustafa
+2026-02-10 13:49:19,641 - INFO - Session ended - ID: 234, Absent count: 3
+2026-02-10 13:55:15,240 - INFO - Server started - Auto-expire scheduler active
+2026-02-10 13:55:43,934 - INFO - Creating session - Duration: 30min, Grace: 5min, Start: 2026-02-10 13:55:43, Scheduled end: 2026-02-10 14:30:43, Topic: 
+2026-02-10 13:55:43,938 - INFO - Session started - ID: 235, Course: 1, Duration: 30min (+5min grace)
+2026-02-10 13:56:12,242 - INFO - Emergency bulk mark - Session: 235, Students: 8
+2026-02-10 13:56:12,248 - INFO - Emergency bulk mark SUCCESS - Present: 6, Absent: 2, Skipped: 0
+2026-02-10 13:56:19,278 - INFO - End session 235: Found 8 enrolled students
+2026-02-10 13:56:19,279 - INFO - End session 235: 8 students marked present
+2026-02-10 13:56:19,283 - INFO - Session ended - ID: 235, Absent count: 0
+2026-02-19 23:43:19,857 - INFO - Server started - Auto-expire scheduler active
+2026-02-19 23:43:42,296 - INFO - Teacher login attempt - CourseCode: MCA101
+2026-02-19 23:43:42,299 - INFO - Teacher login successful - Course: Introduction To Programming (ID: 1)
+2026-02-19 23:43:56,523 - INFO - Creating session - Course: 1, Duration: 30min, Grace: 5min, Start: 2026-02-19 23:43:56, Topic: 'Hello World Program'
+2026-02-19 23:43:56,539 - INFO - Session started - ID: 236, Course ID: 1, Topic: 'Hello World Program', Duration: 30 + 5 min
+2026-02-19 23:44:08,323 - INFO - Manual override attempt - Session: 236, Student Roll: MCAX24R065, Reason: 'Technical Issue - System connectivity problem'
+2026-02-19 23:44:08,329 - INFO - Manual override SUCCESS - Student: Sourabh Kumar Gupta (MCAX24R065), Session: 236, Course: 1, Method: 'teacher_manual', Reason: 'Technical Issue - System connectivity problem'
+2026-02-19 23:44:22,411 - INFO - Emergency bulk mark attempt - Session: 236, Count: 7, Reason: 'Emergency Mode - Device Failure'
+2026-02-19 23:44:22,416 - INFO - Emergency bulk mark SUCCESS - Present: 4, Absent: 3, Skipped: 0
+2026-02-19 23:44:32,830 - INFO - End session 236: Found 8 enrolled students
+2026-02-19 23:44:32,831 - INFO - End session 236: 8 students marked present
+2026-02-19 23:44:32,835 - INFO - Session ended - ID: 236, Course: 1, Present: 8, Absent: 0, Total Enrolled: 8
+2026-02-27 11:48:37,534 - INFO - Server started - Auto-expire scheduler active
+2026-02-27 11:54:00,593 - INFO - [REQUEST] GET / - Client: 127.0.0.1
+2026-02-27 11:54:01,076 - INFO - [REQUEST] GET /static/css/base.css - Client: 127.0.0.1
+2026-02-27 11:54:01,092 - INFO - [REQUEST] GET /static/css/modal.css - Client: 127.0.0.1
+2026-02-27 11:54:01,094 - INFO - [REQUEST] GET /static/css/teacher.css - Client: 127.0.0.1
+2026-02-27 11:54:01,103 - INFO - [REQUEST] GET /static/js/modal.js - Client: 127.0.0.1
+2026-02-27 11:54:01,110 - INFO - [REQUEST] GET /static/js/teacher.js - Client: 127.0.0.1
+2026-02-27 11:54:01,304 - INFO - [REQUEST] GET /api/teacher/course-codes - Client: 127.0.0.1
+2026-02-27 11:54:01,337 - INFO - [REQUEST] GET /api/teacher/validate-session/1 - Client: 127.0.0.1
+2026-02-27 11:54:01,371 - INFO - [REQUEST] GET /favicon.ico - Client: 127.0.0.1
+2026-02-27 11:54:01,384 - INFO - [RESPONSE] GET /favicon.ico - Status: 404 - 12ms
+2026-02-27 11:54:12,624 - INFO - [REQUEST] GET / - Client: 127.0.0.1
+2026-02-27 11:54:12,638 - INFO - [REQUEST] GET /static/css/base.css - Client: 127.0.0.1
+2026-02-27 11:54:12,639 - INFO - [REQUEST] GET /static/css/modal.css - Client: 127.0.0.1
+2026-02-27 11:54:12,643 - INFO - [RESPONSE] GET /static/css/base.css - Status: 304 - 5ms
+2026-02-27 11:54:12,644 - INFO - [REQUEST] GET /static/css/teacher.css - Client: 127.0.0.1
+2026-02-27 11:54:12,647 - INFO - [RESPONSE] GET /static/css/modal.css - Status: 304 - 7ms
+2026-02-27 11:54:12,649 - INFO - [REQUEST] GET /static/js/modal.js - Client: 127.0.0.1
+2026-02-27 11:54:12,654 - INFO - [REQUEST] GET /static/js/teacher.js - Client: 127.0.0.1
+2026-02-27 11:54:12,655 - INFO - [RESPONSE] GET /static/css/teacher.css - Status: 304 - 11ms
+2026-02-27 11:54:12,656 - INFO - [RESPONSE] GET /static/js/modal.js - Status: 304 - 7ms
+2026-02-27 11:54:12,661 - INFO - [RESPONSE] GET /static/js/teacher.js - Status: 304 - 7ms
+2026-02-27 11:54:12,691 - INFO - [REQUEST] GET /api/teacher/course-codes - Client: 127.0.0.1
+2026-02-27 11:54:12,761 - INFO - [REQUEST] GET / - Client: 127.0.0.1
+2026-02-27 11:54:12,776 - INFO - [REQUEST] GET /static/css/base.css - Client: 127.0.0.1
+2026-02-27 11:54:12,778 - INFO - [REQUEST] GET /static/css/modal.css - Client: 127.0.0.1
+2026-02-27 11:54:12,780 - INFO - [REQUEST] GET /static/css/teacher.css - Client: 127.0.0.1
+2026-02-27 11:54:12,783 - INFO - [RESPONSE] GET /static/css/base.css - Status: 304 - 7ms
+2026-02-27 11:54:12,785 - INFO - [RESPONSE] GET /static/css/modal.css - Status: 304 - 7ms
+2026-02-27 11:54:12,786 - INFO - [REQUEST] GET /static/js/modal.js - Client: 127.0.0.1
+2026-02-27 11:54:12,790 - INFO - [RESPONSE] GET /static/css/teacher.css - Status: 304 - 10ms
+2026-02-27 11:54:12,794 - INFO - [REQUEST] GET /static/js/teacher.js - Client: 127.0.0.1
+2026-02-27 11:54:12,804 - INFO - [RESPONSE] GET /static/js/modal.js - Status: 304 - 18ms
+2026-02-27 11:54:12,807 - INFO - [RESPONSE] GET /static/js/teacher.js - Status: 304 - 13ms
+2026-02-27 11:54:12,824 - INFO - [REQUEST] GET /api/teacher/course-codes - Client: 127.0.0.1
+2026-02-27 11:54:12,978 - INFO - [REQUEST] GET / - Client: 127.0.0.1
+2026-02-27 11:54:12,994 - INFO - [REQUEST] GET /static/css/base.css - Client: 127.0.0.1
+2026-02-27 11:54:12,997 - INFO - [REQUEST] GET /static/css/modal.css - Client: 127.0.0.1
+2026-02-27 11:54:13,001 - INFO - [RESPONSE] GET /static/css/base.css - Status: 304 - 7ms
+2026-02-27 11:54:13,003 - INFO - [REQUEST] GET /static/css/teacher.css - Client: 127.0.0.1
+2026-02-27 11:54:13,007 - INFO - [RESPONSE] GET /static/css/modal.css - Status: 304 - 10ms
+2026-02-27 11:54:13,012 - INFO - [REQUEST] GET /static/js/modal.js - Client: 127.0.0.1
+2026-02-27 11:54:13,013 - INFO - [RESPONSE] GET /static/css/teacher.css - Status: 304 - 10ms
+2026-02-27 11:54:13,022 - INFO - [REQUEST] GET /static/js/teacher.js - Client: 127.0.0.1
+2026-02-27 11:54:13,022 - INFO - [RESPONSE] GET /static/js/modal.js - Status: 304 - 11ms
+2026-02-27 11:54:13,026 - INFO - [RESPONSE] GET /static/js/teacher.js - Status: 304 - 5ms
+2026-02-27 11:54:13,045 - INFO - [REQUEST] GET /api/teacher/course-codes - Client: 127.0.0.1
+2026-02-27 11:54:13,368 - INFO - [REQUEST] GET / - Client: 127.0.0.1
+2026-02-27 11:54:13,384 - INFO - [REQUEST] GET /static/css/base.css - Client: 127.0.0.1
+2026-02-27 11:54:13,385 - INFO - [REQUEST] GET /static/css/modal.css - Client: 127.0.0.1
+2026-02-27 11:54:13,388 - INFO - [REQUEST] GET /static/css/teacher.css - Client: 127.0.0.1
+2026-02-27 11:54:13,502 - INFO - [RESPONSE] GET /static/css/modal.css - Status: 304 - 117ms
+2026-02-27 11:54:13,504 - INFO - [REQUEST] GET /static/js/modal.js - Client: 127.0.0.1
+2026-02-27 11:54:13,503 - INFO - [RESPONSE] GET /static/css/base.css - Status: 304 - 119ms
+2026-02-27 11:54:13,506 - INFO - [RESPONSE] GET /static/css/teacher.css - Status: 304 - 118ms
+2026-02-27 11:54:13,509 - INFO - [REQUEST] GET /static/js/teacher.js - Client: 127.0.0.1
+2026-02-27 11:54:13,510 - INFO - [RESPONSE] GET /static/js/modal.js - Status: 304 - 6ms
+2026-02-27 11:54:13,516 - INFO - [RESPONSE] GET /static/js/teacher.js - Status: 304 - 8ms
+2026-02-27 11:54:13,534 - INFO - [REQUEST] GET /api/teacher/course-codes - Client: 127.0.0.1
+2026-02-27 17:04:12,855 - INFO - Server started - Auto-expire scheduler active
+2026-02-27 17:04:13,995 - INFO - Device heartbeat - Battery: 100%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-27 17:04:14,303 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.34
+2026-02-27 17:04:15,086 - INFO - Device heartbeat - Battery: 100%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-27 17:04:19,477 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.34
+2026-02-27 17:04:24,622 - INFO - Device heartbeat - Battery: 100%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-27 17:04:24,906 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.34
+2026-02-27 17:04:30,022 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.34
+2026-02-27 17:04:34,524 - INFO - Device heartbeat - Battery: 100%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-27 17:04:35,063 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.34
+2026-02-27 17:04:40,263 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.34
+2026-02-27 17:04:44,561 - INFO - Device heartbeat - Battery: 100%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-27 17:04:45,285 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.34
+2026-02-27 17:04:50,407 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.34
+2026-02-27 17:04:54,721 - INFO - Device heartbeat - Battery: 100%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-27 17:04:55,445 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.34
+2026-02-27 17:05:00,539 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.34
+2026-02-27 17:05:04,786 - INFO - Device heartbeat - Battery: 100%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-27 17:05:05,560 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.34
+2026-02-27 17:05:10,697 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.34
+2026-02-27 17:05:15,301 - INFO - Device heartbeat - Battery: 100%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-27 17:05:15,816 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.34
+2026-02-27 17:05:20,933 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.34
+2026-02-27 17:05:25,018 - INFO - Device heartbeat - Battery: 100%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-27 17:05:25,960 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.34
+2026-02-27 17:05:31,097 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.34
+2026-02-27 17:05:35,060 - INFO - Device heartbeat - Battery: 100%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-27 17:05:36,294 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.34
+2026-02-27 17:05:41,415 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.34
+2026-02-27 17:05:45,410 - INFO - Device heartbeat - Battery: 100%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-27 17:05:46,632 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.34
+2026-02-27 17:05:51,846 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.34
+2026-02-27 17:05:55,431 - INFO - Device heartbeat - Battery: 97%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-27 17:05:56,961 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.34
+2026-02-27 17:06:02,039 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.34
+2026-02-27 17:06:05,671 - INFO - Device heartbeat - Battery: 3%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-27 17:06:07,108 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.34
+2026-02-27 17:06:12,248 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.34
+2026-02-27 17:06:15,704 - INFO - Device heartbeat - Battery: 3%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-27 17:06:17,350 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.34
+2026-02-27 17:06:22,468 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.34
+2026-02-27 17:06:25,839 - INFO - Device heartbeat - Battery: 3%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-27 17:06:27,504 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.34
+2026-02-27 17:06:32,622 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.34
+2026-02-27 17:06:36,078 - INFO - Device heartbeat - Battery: 4%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-27 17:06:37,748 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.34
+2026-02-27 17:06:42,760 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.34
+2026-02-27 17:06:46,236 - INFO - Device heartbeat - Battery: 4%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-27 17:06:47,883 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.34
+2026-02-27 17:06:53,022 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.34
+2026-02-27 17:06:56,261 - INFO - Device heartbeat - Battery: 4%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-27 17:06:58,116 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.34
+2026-02-27 17:07:01,801 - INFO - [REQUEST] GET / - Client: 127.0.0.1
+2026-02-27 17:07:01,848 - INFO - [REQUEST] GET /static/css/base.css - Client: 127.0.0.1
+2026-02-27 17:07:01,850 - INFO - [REQUEST] GET /static/css/modal.css - Client: 127.0.0.1
+2026-02-27 17:07:01,856 - INFO - [REQUEST] GET /static/css/teacher.css - Client: 127.0.0.1
+2026-02-27 17:07:01,860 - INFO - [RESPONSE] GET /static/css/modal.css - Status: 304 - 10ms
+2026-02-27 17:07:01,862 - INFO - [REQUEST] GET /static/js/modal.js - Client: 127.0.0.1
+2026-02-27 17:07:01,864 - INFO - [RESPONSE] GET /static/css/teacher.css - Status: 304 - 8ms
+2026-02-27 17:07:01,878 - INFO - [REQUEST] GET /static/js/teacher.js - Client: 127.0.0.1
+2026-02-27 17:07:01,886 - INFO - [RESPONSE] GET /static/js/teacher.js - Status: 304 - 8ms
+2026-02-27 17:07:01,903 - INFO - [RESPONSE] GET /static/css/base.css - Status: 304 - 55ms
+2026-02-27 17:07:02,001 - INFO - [RESPONSE] GET /static/js/modal.js - Status: 304 - 139ms
+2026-02-27 17:07:02,056 - INFO - [REQUEST] GET /api/teacher/course-codes - Client: 127.0.0.1
+2026-02-27 17:07:02,085 - INFO - [REQUEST] GET /favicon.ico - Client: 127.0.0.1
+2026-02-27 17:07:02,086 - INFO - [RESPONSE] GET /favicon.ico - Status: 404 - 1ms
+2026-02-27 17:07:03,749 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.34
+2026-02-27 17:07:06,220 - INFO - Device heartbeat - Battery: 4%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-27 17:07:08,475 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.34
+2026-02-27 17:07:13,068 - INFO - [REQUEST] GET / - Client: 127.0.0.1
+2026-02-27 17:07:13,205 - INFO - [REQUEST] GET /static/css/base.css - Client: 127.0.0.1
+2026-02-27 17:07:13,213 - INFO - [REQUEST] GET /static/css/modal.css - Client: 127.0.0.1
+2026-02-27 17:07:13,214 - INFO - [REQUEST] GET /static/css/teacher.css - Client: 127.0.0.1
+2026-02-27 17:07:13,216 - INFO - [REQUEST] GET /static/js/modal.js - Client: 127.0.0.1
+2026-02-27 17:07:13,219 - INFO - [REQUEST] GET /static/js/teacher.js - Client: 127.0.0.1
+2026-02-27 17:07:13,349 - INFO - [REQUEST] GET /api/teacher/course-codes - Client: 127.0.0.1
+2026-02-27 17:07:13,372 - INFO - [REQUEST] GET /api/teacher/validate-session/1 - Client: 127.0.0.1
+2026-02-27 17:07:13,374 - INFO - [REQUEST] GET /favicon.ico - Client: 127.0.0.1
+2026-02-27 17:07:13,375 - INFO - [RESPONSE] GET /favicon.ico - Status: 404 - 1ms
+2026-02-27 17:07:13,584 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.34
+2026-02-27 17:07:16,333 - INFO - Device heartbeat - Battery: 6%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-27 17:07:18,692 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.34
+2026-02-27 17:07:23,804 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.34
+2026-02-27 17:07:26,476 - INFO - Device heartbeat - Battery: 4%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-27 17:07:28,824 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.34
+2026-02-27 17:07:31,957 - INFO - [REQUEST] POST /api/teacher/login - Client: 127.0.0.1
+2026-02-27 17:07:31,959 - INFO - Teacher login attempt - CourseCode: MCA101
+2026-02-27 17:07:31,962 - INFO - Teacher login successful - Course: Introduction To Programming
+2026-02-27 17:07:33,957 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.34
+2026-02-27 17:07:36,602 - INFO - Device heartbeat - Battery: 4%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-27 17:07:38,959 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.34
+2026-02-27 17:07:44,098 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.34
+2026-02-27 17:07:46,752 - INFO - Device heartbeat - Battery: 4%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-27 17:07:49,106 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.34
+2026-02-27 17:07:54,229 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.34
+2026-02-27 17:07:56,893 - INFO - Device heartbeat - Battery: 2%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-27 17:07:59,245 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.34
+2026-02-27 17:07:59,515 - INFO - [REQUEST] POST /api/teacher/start-session - Client: 127.0.0.1
+2026-02-27 17:07:59,519 - INFO - Creating session - Duration: 30min, Grace: 5min, Start: 2026-02-27 17:07:59, Scheduled end: 2026-02-27 17:42:59, Topic: 
+2026-02-27 17:07:59,529 - INFO - Session started - ID: 237, Course: 1, Duration: 30min (+5min grace)
+2026-02-27 17:07:59,544 - INFO - [REQUEST] GET /api/teacher/session/237/status - Client: 127.0.0.1
+2026-02-27 17:08:04,389 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.34
+2026-02-27 17:08:04,558 - INFO - [REQUEST] GET /api/teacher/session/237/status - Client: 127.0.0.1
+2026-02-27 17:08:09,558 - INFO - [REQUEST] GET /api/teacher/session/237/status - Client: 127.0.0.1
+2026-02-27 17:08:14,575 - INFO - [REQUEST] GET /api/teacher/session/237/status - Client: 127.0.0.1
+2026-02-27 17:08:14,595 - WARNING - Device heartbeat stale - Last seen 17.7 seconds ago
+2026-02-27 17:08:14,695 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.34
+2026-02-27 17:08:14,802 - INFO - Device heartbeat - Battery: 0%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-27 17:08:18,797 - INFO - [REQUEST] POST /api/mark-attendance-by-roll-id - Client: 192.168.137.34
+2026-02-27 17:08:19,022 - INFO - Attendance attempt - Roll ID: 65
+2026-02-27 17:08:19,034 - INFO - Attendance marked - Roll ID 65
+2026-02-27 17:08:19,557 - INFO - [REQUEST] GET /api/teacher/session/237/status - Client: 127.0.0.1
+2026-02-27 17:08:21,188 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.34
+2026-02-27 17:08:24,552 - INFO - [REQUEST] GET /api/teacher/session/237/status - Client: 127.0.0.1
+2026-02-27 17:08:29,552 - INFO - [REQUEST] GET /api/teacher/session/237/status - Client: 127.0.0.1
+2026-02-27 17:08:31,333 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.34
+2026-02-27 17:08:31,486 - INFO - Device heartbeat - Battery: 2%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-27 17:08:34,546 - INFO - [REQUEST] GET /api/teacher/session/237/status - Client: 127.0.0.1
+2026-02-27 17:08:39,548 - INFO - [REQUEST] GET /api/teacher/session/237/status - Client: 127.0.0.1
+2026-02-27 17:08:41,750 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.34
+2026-02-27 17:08:42,142 - INFO - Device heartbeat - Battery: 4%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-27 17:08:44,559 - INFO - [REQUEST] GET /api/teacher/session/237/status - Client: 127.0.0.1
+2026-02-27 17:08:49,557 - INFO - [REQUEST] GET /api/teacher/session/237/status - Client: 127.0.0.1
+2026-02-27 17:08:52,224 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.34
+2026-02-27 17:08:52,377 - INFO - Device heartbeat - Battery: 6%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-27 17:08:54,553 - INFO - [REQUEST] GET /api/teacher/session/237/status - Client: 127.0.0.1
+2026-02-27 17:08:59,549 - INFO - [REQUEST] GET /api/teacher/session/237/status - Client: 127.0.0.1
+2026-02-27 17:09:02,503 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.34
+2026-02-27 17:09:02,720 - INFO - Device heartbeat - Battery: 8%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-27 17:09:04,604 - INFO - [REQUEST] GET /api/teacher/session/237/status - Client: 127.0.0.1
+2026-02-27 17:09:09,563 - INFO - [REQUEST] GET /api/teacher/session/237/status - Client: 127.0.0.1
+2026-02-27 17:09:14,550 - INFO - [REQUEST] GET /api/teacher/session/237/status - Client: 127.0.0.1
+2026-02-27 17:09:19,552 - INFO - [REQUEST] GET /api/teacher/session/237/status - Client: 127.0.0.1
+2026-02-27 17:09:19,567 - WARNING - Device heartbeat stale - Last seen 16.8 seconds ago
+2026-02-27 17:09:24,551 - INFO - [REQUEST] GET /api/teacher/session/237/status - Client: 127.0.0.1
+2026-02-27 17:09:24,565 - WARNING - Device heartbeat stale - Last seen 21.8 seconds ago
+2026-02-27 17:09:29,578 - INFO - [REQUEST] GET /api/teacher/session/237/status - Client: 127.0.0.1
+2026-02-27 17:09:29,596 - WARNING - Device heartbeat stale - Last seen 26.9 seconds ago
+2026-02-27 17:09:34,560 - INFO - [REQUEST] GET /api/teacher/session/237/status - Client: 127.0.0.1
+2026-02-27 17:09:34,575 - WARNING - Device heartbeat stale - Last seen 31.9 seconds ago
+2026-02-27 17:09:39,545 - INFO - [REQUEST] GET /api/teacher/session/237/status - Client: 127.0.0.1
+2026-02-27 17:09:39,559 - WARNING - Device heartbeat stale - Last seen 36.8 seconds ago
+2026-02-27 17:09:44,544 - INFO - [REQUEST] GET /api/teacher/session/237/status - Client: 127.0.0.1
+2026-02-27 17:09:44,555 - WARNING - Device heartbeat stale - Last seen 41.8 seconds ago
+2026-02-27 17:09:46,468 - INFO - [REQUEST] POST /api/teacher/session/237/end - Client: 127.0.0.1
+2026-02-27 17:09:46,472 - INFO - End session 237: Found 8 enrolled students
+2026-02-27 17:09:46,473 - INFO - End session 237: 1 students marked present
+2026-02-27 17:09:46,473 - INFO -   Absent: Vishal Kumar
+2026-02-27 17:09:46,474 - INFO -   Absent: Rahul Kumar
+2026-02-27 17:09:46,476 - INFO -   Absent: Harsh Vashisth
+2026-02-27 17:09:46,477 - INFO -   Absent: Param Rathor
+2026-02-27 17:09:46,478 - INFO -   Absent: Aditya
+2026-02-27 17:09:46,479 - INFO -   Absent: Ziaul Mustafa
+2026-02-27 17:09:46,479 - INFO -   Absent: Ashish Shukla
+2026-02-27 17:09:46,493 - INFO - Session ended - ID: 237, Absent count: 7
+2026-02-27 17:09:46,504 - INFO - [REQUEST] GET /api/teacher/report/237 - Client: 127.0.0.1
+2026-02-27 17:09:46,510 - INFO - Generating attendance report - SessionID: 237, CourseID: 1
+2026-02-27 17:09:46,534 - INFO - Report generated - SessionID: 237, Students: 8, Sessions: 215, Present records: 354, Absent records: 52
+2026-02-27 17:11:44,285 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.34
+2026-02-27 17:11:49,108 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.34
+2026-02-27 17:11:49,436 - INFO - Device heartbeat - Battery: 100%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-27 17:11:54,346 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.34
+2026-02-27 17:11:59,234 - INFO - Device heartbeat - Battery: 100%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-27 17:11:59,539 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.34
+2026-02-27 17:12:04,662 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.34
+2026-02-27 17:12:09,699 - INFO - Device heartbeat - Battery: 78%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-27 17:12:09,990 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.34
+2026-02-27 17:12:15,148 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.34
+2026-02-27 17:12:19,522 - INFO - Device heartbeat - Battery: 100%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-27 17:12:20,245 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.34
+2026-02-27 17:12:25,385 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.34
+2026-02-27 17:12:29,662 - INFO - Device heartbeat - Battery: 100%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-27 17:12:30,608 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.34
+2026-02-27 17:12:35,724 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.34
+2026-02-27 17:12:40,107 - INFO - Device heartbeat - Battery: 100%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-27 17:12:40,813 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.34
+2026-02-27 17:12:45,951 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.34
+2026-02-27 17:12:50,245 - INFO - Device heartbeat - Battery: 100%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-27 17:12:50,957 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.34
+2026-02-27 17:12:56,068 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.34
+2026-02-27 17:13:00,388 - INFO - Device heartbeat - Battery: 100%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-27 17:13:01,121 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.34
+2026-02-27 17:13:06,248 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.34
+2026-02-27 17:13:10,538 - INFO - Device heartbeat - Battery: 89%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-27 17:13:11,275 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.34
+2026-02-27 17:13:16,281 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.34
+2026-02-27 17:13:20,367 - INFO - Device heartbeat - Battery: 72%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-27 17:13:21,304 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.34
+2026-02-27 17:13:26,427 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.34
+2026-02-27 17:13:30,510 - INFO - Device heartbeat - Battery: 68%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-27 17:13:31,538 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.34
+2026-02-27 17:13:36,687 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.34
+2026-02-27 17:13:40,552 - INFO - Device heartbeat - Battery: 77%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-27 17:13:41,801 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.34
+2026-02-27 17:13:46,822 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.34
+2026-02-27 17:13:51,104 - INFO - Device heartbeat - Battery: 64%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-27 17:13:52,115 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.34
+2026-02-27 17:13:57,255 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.34
+2026-02-27 17:14:00,923 - INFO - Device heartbeat - Battery: 64%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-27 17:14:02,394 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.34
+2026-02-27 17:14:07,378 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.34
+2026-02-27 17:14:11,066 - INFO - Device heartbeat - Battery: 68%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-27 17:14:12,496 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.34
+2026-02-27 17:14:17,637 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.34
+2026-02-27 17:14:21,199 - INFO - Device heartbeat - Battery: 73%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-27 17:14:22,855 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.34
+2026-02-27 17:14:28,000 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.34
+2026-02-27 17:14:31,128 - INFO - Device heartbeat - Battery: 88%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-27 17:14:33,016 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.34
+2026-02-27 17:14:38,118 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.34
+2026-02-27 17:14:41,473 - INFO - Device heartbeat - Battery: 100%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-27 17:14:43,327 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.34
+2026-02-27 17:14:48,473 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.34
+2026-02-27 17:14:51,613 - INFO - Device heartbeat - Battery: 100%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-27 17:14:53,561 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.34
+2026-02-27 17:14:58,682 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.34
+2026-02-27 17:15:01,751 - INFO - Device heartbeat - Battery: 100%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-27 17:15:03,904 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.34
+2026-02-27 17:15:09,530 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.34
+2026-02-27 17:15:12,197 - INFO - Device heartbeat - Battery: 100%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-27 17:15:14,241 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.34
+2026-02-27 17:15:19,170 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.34
+2026-02-27 17:15:21,809 - INFO - Device heartbeat - Battery: 100%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-27 17:15:24,183 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.34
+2026-02-27 17:15:29,318 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.34
+2026-02-27 17:15:31,948 - INFO - Device heartbeat - Battery: 89%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-27 17:15:34,527 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.34
+2026-02-27 17:15:39,644 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.34
+2026-02-27 17:15:42,305 - INFO - Device heartbeat - Battery: 66%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-27 17:15:44,757 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.34
+2026-02-27 17:15:49,789 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.34
+2026-02-27 17:15:52,248 - INFO - Device heartbeat - Battery: 66%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-27 17:15:55,236 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.34
+2026-02-27 17:15:59,916 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.34
+2026-02-27 17:16:02,402 - INFO - Device heartbeat - Battery: 66%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-27 17:16:04,941 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.34
+2026-02-27 17:16:10,168 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.34
+2026-02-27 17:16:12,405 - INFO - Device heartbeat - Battery: 66%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-27 17:16:15,291 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.34
+2026-02-27 17:16:20,393 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.34
+2026-02-27 17:16:22,331 - INFO - Device heartbeat - Battery: 68%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-27 17:16:25,627 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.34
+2026-02-27 17:16:30,737 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.34
+2026-02-27 17:16:32,688 - INFO - Device heartbeat - Battery: 66%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-27 17:16:36,001 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.34
+2026-02-27 17:16:40,977 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.34
+2026-02-27 17:16:42,511 - INFO - Device heartbeat - Battery: 66%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-27 17:16:46,016 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.34
+2026-02-27 17:16:51,122 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.34
+2026-02-27 17:16:52,647 - INFO - Device heartbeat - Battery: 70%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-27 17:16:56,382 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.34
+2026-02-27 17:17:01,503 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.34
+2026-02-27 17:17:02,835 - INFO - Device heartbeat - Battery: 68%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-27 17:17:06,577 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.34
+2026-02-27 17:17:11,712 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.34
+2026-02-27 17:17:13,232 - INFO - Device heartbeat - Battery: 68%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-27 17:17:16,717 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.34
+2026-02-27 17:17:21,845 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.34
+2026-02-27 17:17:23,164 - INFO - Device heartbeat - Battery: 68%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-27 17:17:26,961 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.34
+2026-02-27 17:17:32,172 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.34
+2026-02-27 17:17:33,198 - INFO - Device heartbeat - Battery: 63%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-27 17:17:37,232 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.34
+2026-02-27 17:17:42,346 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.34
+2026-02-27 17:17:43,229 - INFO - Device heartbeat - Battery: 67%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-27 17:17:47,440 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.34
+2026-02-27 17:17:52,555 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.34
+2026-02-27 17:17:53,477 - INFO - Device heartbeat - Battery: 63%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-27 17:17:57,673 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.34
+2026-02-27 17:18:02,805 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.34
+2026-02-27 17:18:03,621 - INFO - Device heartbeat - Battery: 81%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-27 17:18:07,864 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.34
+2026-02-27 17:18:12,860 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.34
+2026-02-27 17:18:13,437 - INFO - Device heartbeat - Battery: 81%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-27 17:18:18,149 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.34
+2026-02-27 17:18:23,285 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.34
+2026-02-27 17:18:23,679 - INFO - Device heartbeat - Battery: 81%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-27 17:18:28,293 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.34
+2026-02-27 17:18:33,419 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.34
+2026-02-27 17:18:33,769 - INFO - Device heartbeat - Battery: 80%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-27 17:18:38,440 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.34
+2026-02-27 17:18:43,552 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.34
+2026-02-27 17:18:43,955 - INFO - Device heartbeat - Battery: 80%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-27 17:18:49,084 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.34
+2026-02-27 17:18:53,687 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.34
+2026-02-27 17:18:54,096 - INFO - Device heartbeat - Battery: 78%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-27 17:18:58,711 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.34
+2026-02-27 17:19:03,845 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.34
+2026-02-27 17:19:04,180 - INFO - Device heartbeat - Battery: 70%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-27 17:19:08,845 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.34
+2026-02-27 17:19:13,970 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.34
+2026-02-27 17:19:14,314 - INFO - Device heartbeat - Battery: 68%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-27 17:19:19,209 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.34
+2026-02-27 17:19:24,411 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.34
+2026-02-27 17:19:24,505 - INFO - Device heartbeat - Battery: 64%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-27 17:19:29,567 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.34
+2026-02-27 17:19:34,540 - INFO - Device heartbeat - Battery: 64%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-27 17:19:34,856 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.34
+2026-02-27 17:19:39,974 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.34
+2026-02-27 17:19:44,679 - INFO - Device heartbeat - Battery: 81%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-27 17:19:45,205 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.34
+2026-02-27 17:19:50,353 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.34
+2026-02-27 17:51:31,802 - INFO - [REQUEST] GET /student - Client: 192.168.137.253
+2026-02-27 17:51:31,965 - INFO - [REQUEST] GET /static/js/student.js - Client: 192.168.137.253
+2026-02-27 17:51:32,058 - INFO - [REQUEST] GET /static/css/modal.css - Client: 192.168.137.253
+2026-02-27 17:51:32,059 - INFO - [REQUEST] GET /static/css/base.css - Client: 192.168.137.253
+2026-02-27 17:51:32,060 - INFO - [REQUEST] GET /static/css/student.css - Client: 192.168.137.253
+2026-02-27 17:51:32,061 - INFO - [RESPONSE] GET /static/css/modal.css - Status: 304 - 4ms
+2026-02-27 17:51:32,062 - INFO - [RESPONSE] GET /static/css/base.css - Status: 304 - 3ms
+2026-02-27 17:51:32,072 - INFO - [RESPONSE] GET /static/css/student.css - Status: 304 - 12ms
+2026-02-27 17:51:52,916 - INFO - [REQUEST] GET /student - Client: 192.168.137.1
+2026-02-27 17:51:52,975 - INFO - [REQUEST] GET /static/css/base.css - Client: 192.168.137.1
+2026-02-27 17:51:52,986 - INFO - [REQUEST] GET /static/css/modal.css - Client: 192.168.137.1
+2026-02-27 17:51:52,987 - INFO - [REQUEST] GET /static/css/student.css - Client: 192.168.137.1
+2026-02-27 17:51:52,988 - INFO - [REQUEST] GET /static/js/student.js - Client: 192.168.137.1
+2026-02-27 17:51:52,992 - INFO - [REQUEST] GET /static/manifest.json - Client: 192.168.137.1
+2026-02-27 17:51:54,914 - INFO - [REQUEST] GET /favicon.ico - Client: 192.168.137.1
+2026-02-27 17:51:54,919 - INFO - [RESPONSE] GET /favicon.ico - Status: 404 - 5ms
+2026-02-27 17:51:55,304 - INFO - [REQUEST] GET /api/student/semesters - Client: 192.168.137.253
+2026-02-27 17:51:55,322 - INFO - [RESPONSE] GET /api/student/semesters - Status: 401 - 18ms
+2026-02-27 17:51:55,815 - INFO - [REQUEST] GET /favicon.ico - Client: 192.168.137.253
+2026-02-27 17:51:55,816 - INFO - [RESPONSE] GET /favicon.ico - Status: 404 - 1ms
+2026-02-27 17:52:08,946 - INFO - [REQUEST] GET /static/manifest.json - Client: 192.168.137.253
+2026-02-27 17:52:15,393 - INFO - [REQUEST] GET /student - Client: 192.168.137.253
+2026-02-27 17:52:15,462 - INFO - [REQUEST] GET /static/css/base.css - Client: 192.168.137.253
+2026-02-27 17:52:15,463 - INFO - [REQUEST] GET /static/css/student.css - Client: 192.168.137.253
+2026-02-27 17:52:15,463 - INFO - [REQUEST] GET /static/css/modal.css - Client: 192.168.137.253
+2026-02-27 17:52:15,466 - INFO - [REQUEST] GET /static/js/student.js - Client: 192.168.137.253
+2026-02-27 17:52:15,468 - INFO - [RESPONSE] GET /static/css/base.css - Status: 304 - 6ms
+2026-02-27 17:52:15,470 - INFO - [RESPONSE] GET /static/css/student.css - Status: 304 - 7ms
+2026-02-27 17:52:15,470 - INFO - [RESPONSE] GET /static/js/student.js - Status: 304 - 4ms
+2026-02-27 17:52:15,472 - INFO - [RESPONSE] GET /static/css/modal.css - Status: 304 - 8ms
+2026-02-27 17:53:19,533 - INFO - [REQUEST] GET / - Client: 127.0.0.1
+2026-02-27 17:53:19,592 - INFO - [REQUEST] GET /static/css/base.css - Client: 127.0.0.1
+2026-02-27 17:53:19,593 - INFO - [RESPONSE] GET /static/css/base.css - Status: 304 - 1ms
+2026-02-27 17:53:19,598 - INFO - [REQUEST] GET /static/css/modal.css - Client: 127.0.0.1
+2026-02-27 17:53:19,599 - INFO - [REQUEST] GET /static/css/teacher.css - Client: 127.0.0.1
+2026-02-27 17:53:19,601 - INFO - [REQUEST] GET /static/js/modal.js - Client: 127.0.0.1
+2026-02-27 17:53:19,817 - INFO - [REQUEST] GET /static/js/teacher.js - Client: 127.0.0.1
+2026-02-27 17:53:19,817 - INFO - [RESPONSE] GET /static/css/modal.css - Status: 304 - 220ms
+2026-02-27 17:53:19,819 - INFO - [RESPONSE] GET /static/js/teacher.js - Status: 304 - 2ms
+2026-02-27 17:53:19,820 - INFO - [RESPONSE] GET /static/css/teacher.css - Status: 304 - 220ms
+2026-02-27 17:53:19,821 - INFO - [RESPONSE] GET /static/js/modal.js - Status: 304 - 220ms
+2026-02-27 17:53:19,867 - INFO - [REQUEST] GET /api/teacher/course-codes - Client: 127.0.0.1
+2026-02-27 17:53:52,250 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.232
+2026-02-27 17:53:57,148 - INFO - Device heartbeat - Battery: 8%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-27 17:53:57,398 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.232
+2026-02-27 17:54:02,513 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.232
+2026-02-27 17:55:10,262 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.232
+2026-02-27 17:55:15,314 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.232
+2026-02-27 17:55:15,703 - INFO - Device heartbeat - Battery: 100%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-27 17:55:20,606 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.232
+2026-02-27 17:55:25,837 - INFO - Device heartbeat - Battery: 100%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-27 17:55:26,133 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.232
+2026-02-27 17:55:31,195 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.232
+2026-02-27 17:55:35,752 - INFO - Device heartbeat - Battery: 100%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-27 17:55:36,284 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.232
+2026-02-27 17:55:41,304 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.232
+2026-02-27 17:55:45,739 - INFO - Device heartbeat - Battery: 90%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-27 17:55:46,448 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.232
+2026-02-27 17:55:51,543 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.232
+2026-02-27 17:55:55,775 - INFO - Device heartbeat - Battery: 90%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-27 17:55:56,759 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.232
+2026-02-27 17:56:01,872 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.232
+2026-02-27 17:56:06,080 - INFO - Device heartbeat - Battery: 90%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-27 17:56:07,012 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.232
+2026-02-27 17:56:12,111 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.232
+2026-02-27 17:56:15,902 - INFO - Device heartbeat - Battery: 89%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-27 17:56:17,335 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.232
+2026-02-27 17:56:22,455 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.232
+2026-02-27 17:56:26,050 - INFO - Device heartbeat - Battery: 89%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-27 17:56:27,475 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.232
+2026-02-27 17:56:32,616 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.232
+2026-02-27 17:56:33,928 - INFO - [REQUEST] POST /api/student/login - Client: 192.168.137.253
+2026-02-27 17:56:33,930 - INFO - Student login attempt - Roll: MCAX24R065
+2026-02-27 17:56:33,933 - INFO - Student login successful - Roll: MCAX24R065, Name: Sourabh Kumar Gupta
+2026-02-27 17:56:34,124 - INFO - [REQUEST] GET /api/student/semesters - Client: 192.168.137.253
+2026-02-27 17:56:34,130 - INFO - [REQUEST] GET /api/student/critical-alerts - Client: 192.168.137.253
+2026-02-27 17:56:34,328 - INFO - [REQUEST] GET /api/student/dashboard - Client: 192.168.137.253
+2026-02-27 17:56:36,170 - INFO - Device heartbeat - Battery: 89%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-27 17:56:37,716 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.232
+2026-02-27 17:56:42,631 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.232
+2026-02-27 17:56:46,207 - INFO - Device heartbeat - Battery: 89%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-27 17:56:47,645 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.232
+2026-02-27 17:56:52,768 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.232
+2026-02-27 17:56:56,343 - INFO - Device heartbeat - Battery: 92%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-27 17:56:57,730 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.232
+2026-02-27 17:57:01,415 - INFO - [REQUEST] POST /api/student/login - Client: 192.168.137.253
+2026-02-27 17:57:01,415 - INFO - Student login attempt - Roll: MCAX24R065
+2026-02-27 17:57:01,416 - INFO - Student login successful - Roll: MCAX24R065, Name: Sourabh Kumar Gupta
+2026-02-27 17:57:01,486 - INFO - [REQUEST] GET /api/student/semesters - Client: 192.168.137.253
+2026-02-27 17:57:01,489 - INFO - [REQUEST] GET /api/student/critical-alerts - Client: 192.168.137.253
+2026-02-27 17:57:01,508 - INFO - [REQUEST] GET /api/student/dashboard - Client: 192.168.137.253
+2026-02-27 17:57:02,905 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.232
+2026-02-27 17:57:06,483 - INFO - Device heartbeat - Battery: 90%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-27 17:57:07,919 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.232
+2026-02-27 17:57:13,042 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.232
+2026-02-27 17:57:16,565 - INFO - Device heartbeat - Battery: 90%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-27 17:57:18,190 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.232
+2026-02-27 17:57:23,328 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.232
+2026-02-27 17:57:25,842 - INFO - [REQUEST] GET /api/student/dashboard - Client: 192.168.137.253
+2026-02-27 17:57:25,843 - INFO - [REQUEST] GET /api/student/semesters - Client: 192.168.137.253
+2026-02-27 17:57:25,892 - INFO - [REQUEST] GET /api/student/leaderboard - Client: 192.168.137.253
+2026-02-27 17:57:25,893 - INFO - Leaderboard request - StudentID: 1, CourseID: None, SemesterID: None
+2026-02-27 17:57:26,655 - INFO - Device heartbeat - Battery: 90%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-27 17:57:28,518 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.232
+2026-02-27 17:57:30,963 - INFO - [REQUEST] GET /api/student/leaderboard - Client: 192.168.137.253
+2026-02-27 17:57:30,964 - INFO - Leaderboard request - StudentID: 1, CourseID: None, SemesterID: 5
+2026-02-27 17:57:33,632 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.232
+2026-02-27 17:57:36,744 - INFO - Device heartbeat - Battery: 89%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-27 17:57:38,641 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.232
+2026-02-27 17:57:43,762 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.232
+2026-02-27 17:57:46,883 - INFO - Device heartbeat - Battery: 89%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-27 17:57:48,778 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.232
+2026-02-27 17:57:53,907 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.232
+2026-02-27 17:57:56,969 - INFO - Device heartbeat - Battery: 100%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-27 17:57:59,045 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.232
+2026-02-27 17:58:04,162 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.232
+2026-02-27 17:58:07,120 - INFO - Device heartbeat - Battery: 100%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-27 17:58:09,202 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.232
+2026-02-27 17:58:13,766 - INFO - [REQUEST] GET /api/student/leaderboard - Client: 192.168.137.253
+2026-02-27 17:58:13,767 - INFO - Leaderboard request - StudentID: 1, CourseID: None, SemesterID: 1
+2026-02-27 17:58:14,380 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.232
+2026-02-27 17:58:17,257 - INFO - Device heartbeat - Battery: 89%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-27 17:58:19,605 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.232
+2026-02-27 17:58:24,724 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.232
+2026-02-27 17:58:27,398 - INFO - Device heartbeat - Battery: 89%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-27 17:58:29,745 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.232
+2026-02-27 17:58:34,860 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.232
+2026-02-27 17:58:37,536 - INFO - Device heartbeat - Battery: 89%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-27 17:58:39,900 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.232
+2026-02-27 17:58:45,008 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.232
+2026-02-27 17:58:47,653 - INFO - Device heartbeat - Battery: 89%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-27 17:58:50,019 - INFO - [REQUEST] POST /api/student/login - Client: 192.168.137.253
+2026-02-27 17:58:50,019 - INFO - Student login attempt - Roll: MCAX24R065
+2026-02-27 17:58:50,020 - WARNING - Student login failed - Invalid credentials for roll: MCAX24R065
+2026-02-27 17:58:50,020 - INFO - [RESPONSE] POST /api/student/login - Status: 401 - 2ms
+2026-02-27 17:58:50,224 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.232
+2026-02-27 17:58:55,343 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.232
+2026-02-27 17:58:57,797 - INFO - Device heartbeat - Battery: 89%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-27 17:58:58,446 - INFO - [REQUEST] POST /api/student/login - Client: 192.168.137.253
+2026-02-27 17:58:58,446 - INFO - Student login attempt - Roll: MCAX24R065
+2026-02-27 17:58:58,447 - INFO - Student login successful - Roll: MCAX24R065, Name: Sourabh Kumar Gupta
+2026-02-27 17:58:58,514 - INFO - [REQUEST] GET /api/student/semesters - Client: 192.168.137.253
+2026-02-27 17:58:58,515 - INFO - [REQUEST] GET /api/student/critical-alerts - Client: 192.168.137.253
+2026-02-27 17:58:58,539 - INFO - [REQUEST] GET /api/student/dashboard - Client: 192.168.137.253
+2026-02-27 17:59:00,364 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.232
+2026-02-27 17:59:05,483 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.232
+2026-02-27 17:59:07,930 - INFO - Device heartbeat - Battery: 89%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-27 17:59:10,506 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.232
+2026-02-27 17:59:15,632 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.232
+2026-02-27 17:59:18,177 - INFO - Device heartbeat - Battery: 89%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-27 17:59:20,747 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.232
+2026-02-27 17:59:25,869 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.232
+2026-02-27 17:59:28,223 - INFO - Device heartbeat - Battery: 89%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-27 17:59:30,999 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.232
+2026-02-27 17:59:36,121 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.232
+2026-02-27 17:59:38,138 - INFO - Device heartbeat - Battery: 100%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-27 17:59:41,132 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.232
+2026-02-27 17:59:46,234 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.232
+2026-02-27 17:59:48,231 - INFO - Device heartbeat - Battery: 100%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-27 17:59:51,270 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.232
+2026-02-27 17:59:56,390 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.232
+2026-02-27 17:59:58,330 - INFO - Device heartbeat - Battery: 16%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-27 18:00:01,594 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.232
+2026-02-27 18:00:06,724 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.232
+2026-02-27 18:00:08,656 - INFO - Device heartbeat - Battery: 16%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-27 18:00:11,881 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.232
+2026-02-27 18:00:17,003 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.232
+2026-02-27 18:00:17,432 - INFO - [REQUEST] POST /api/teacher/login - Client: 127.0.0.1
+2026-02-27 18:00:17,433 - INFO - Teacher login attempt - CourseCode: MCA101
+2026-02-27 18:00:17,434 - INFO - Teacher login successful - Course: Introduction To Programming
+2026-02-27 18:00:18,604 - INFO - Device heartbeat - Battery: 16%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-27 18:00:22,085 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.232
+2026-02-27 18:00:23,979 - INFO - [REQUEST] POST /api/teacher/start-session - Client: 127.0.0.1
+2026-02-27 18:00:23,983 - INFO - Creating session - Duration: 30min, Grace: 5min, Start: 2026-02-27 18:00:23, Scheduled end: 2026-02-27 18:35:23, Topic: 
+2026-02-27 18:00:23,987 - INFO - Session started - ID: 238, Course: 1, Duration: 30min (+5min grace)
+2026-02-27 18:00:23,993 - INFO - [REQUEST] GET /api/teacher/session/238/status - Client: 127.0.0.1
+2026-02-27 18:00:27,208 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.232
+2026-02-27 18:00:28,998 - INFO - [REQUEST] GET /api/teacher/session/238/status - Client: 127.0.0.1
+2026-02-27 18:00:34,004 - INFO - [REQUEST] GET /api/teacher/session/238/status - Client: 127.0.0.1
+2026-02-27 18:00:34,010 - WARNING - Device heartbeat stale - Last seen 15.4 seconds ago
+2026-02-27 18:00:37,481 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.232
+2026-02-27 18:00:37,753 - INFO - Device heartbeat - Battery: 16%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-27 18:00:39,004 - INFO - [REQUEST] GET /api/teacher/session/238/status - Client: 127.0.0.1
+2026-02-27 18:00:44,005 - INFO - [REQUEST] GET /api/teacher/session/238/status - Client: 127.0.0.1
+2026-02-27 18:00:47,829 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.232
+2026-02-27 18:00:47,986 - INFO - Device heartbeat - Battery: 20%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-27 18:00:48,998 - INFO - [REQUEST] GET /api/teacher/session/238/status - Client: 127.0.0.1
+2026-02-27 18:00:54,009 - INFO - [REQUEST] GET /api/teacher/session/238/status - Client: 127.0.0.1
+2026-02-27 18:00:58,327 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.232
+2026-02-27 18:00:58,582 - INFO - Device heartbeat - Battery: 24%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-27 18:00:59,000 - INFO - [REQUEST] GET /api/teacher/session/238/status - Client: 127.0.0.1
+2026-02-27 18:01:04,003 - INFO - [REQUEST] GET /api/teacher/session/238/status - Client: 127.0.0.1
+2026-02-27 18:01:08,268 - INFO - [REQUEST] POST /api/mark-attendance-by-roll-id - Client: 192.168.137.232
+2026-02-27 18:01:08,360 - INFO - Attendance attempt - Roll ID: 65
+2026-02-27 18:01:08,368 - INFO - Attendance marked - Roll ID 65
+2026-02-27 18:01:09,010 - INFO - [REQUEST] GET /api/teacher/session/238/status - Client: 127.0.0.1
+2026-02-27 18:01:10,436 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.232
+2026-02-27 18:01:10,615 - INFO - Device heartbeat - Battery: 24%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-27 18:01:14,003 - INFO - [REQUEST] GET /api/teacher/session/238/status - Client: 127.0.0.1
+2026-02-27 18:01:19,005 - INFO - [REQUEST] GET /api/teacher/session/238/status - Client: 127.0.0.1
+2026-02-27 18:01:21,376 - INFO - [REQUEST] POST /api/mark-attendance-by-roll-id - Client: 192.168.137.232
+2026-02-27 18:01:21,583 - INFO - Attendance attempt - Roll ID: 65
+2026-02-27 18:01:21,584 - INFO - Attendance duplicate - Roll ID 65
+2026-02-27 18:01:23,669 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.232
+2026-02-27 18:01:23,824 - INFO - Device heartbeat - Battery: 24%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-27 18:01:24,009 - INFO - [REQUEST] GET /api/teacher/session/238/status - Client: 127.0.0.1
+2026-02-27 18:01:29,008 - INFO - [REQUEST] GET /api/teacher/session/238/status - Client: 127.0.0.1
+2026-02-27 18:01:33,674 - INFO - [REQUEST] POST /api/mark-attendance-by-roll-id - Client: 192.168.137.232
+2026-02-27 18:01:33,870 - INFO - Attendance attempt - Roll ID: 17
+2026-02-27 18:01:33,875 - INFO - Attendance marked - Roll ID 17
+2026-02-27 18:01:34,003 - INFO - [REQUEST] GET /api/teacher/session/238/status - Client: 127.0.0.1
+2026-02-27 18:01:35,945 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.232
+2026-02-27 18:01:36,212 - INFO - Device heartbeat - Battery: 18%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-27 18:01:38,998 - INFO - [REQUEST] GET /api/teacher/session/238/status - Client: 127.0.0.1
+2026-02-27 18:01:44,008 - INFO - [REQUEST] GET /api/teacher/session/238/status - Client: 127.0.0.1
+2026-02-27 18:01:46,290 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.232
+2026-02-27 18:01:46,562 - INFO - Device heartbeat - Battery: 18%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-27 18:01:49,007 - INFO - [REQUEST] GET /api/teacher/session/238/status - Client: 127.0.0.1
+2026-02-27 18:01:53,996 - INFO - [REQUEST] GET /api/teacher/session/238/status - Client: 127.0.0.1
+2026-02-27 18:01:59,006 - INFO - [REQUEST] GET /api/teacher/session/238/status - Client: 127.0.0.1
+2026-02-27 18:02:04,015 - INFO - [REQUEST] GET /api/teacher/session/238/status - Client: 127.0.0.1
+2026-02-27 18:02:04,022 - WARNING - Device heartbeat stale - Last seen 17.5 seconds ago
+2026-02-27 18:02:09,000 - INFO - [REQUEST] GET /api/teacher/session/238/status - Client: 127.0.0.1
+2026-02-27 18:02:09,006 - WARNING - Device heartbeat stale - Last seen 22.4 seconds ago
+2026-02-27 18:02:14,009 - INFO - [REQUEST] GET /api/teacher/session/238/status - Client: 127.0.0.1
+2026-02-27 18:02:14,015 - WARNING - Device heartbeat stale - Last seen 27.5 seconds ago
+2026-02-27 18:02:19,006 - INFO - [REQUEST] GET /api/teacher/session/238/status - Client: 127.0.0.1
+2026-02-27 18:02:19,013 - WARNING - Device heartbeat stale - Last seen 32.5 seconds ago
+2026-02-27 18:02:24,003 - INFO - [REQUEST] GET /api/teacher/session/238/status - Client: 127.0.0.1
+2026-02-27 18:02:24,009 - WARNING - Device heartbeat stale - Last seen 37.4 seconds ago
+2026-02-27 18:02:28,997 - INFO - [REQUEST] GET /api/teacher/session/238/status - Client: 127.0.0.1
+2026-02-27 18:02:29,003 - WARNING - Device heartbeat stale - Last seen 42.4 seconds ago
+2026-02-27 18:02:33,998 - INFO - [REQUEST] GET /api/teacher/session/238/status - Client: 127.0.0.1
+2026-02-27 18:02:34,003 - WARNING - Device heartbeat stale - Last seen 47.4 seconds ago
+2026-02-27 18:02:39,008 - INFO - [REQUEST] GET /api/teacher/session/238/status - Client: 127.0.0.1
+2026-02-27 18:02:39,017 - WARNING - Device heartbeat stale - Last seen 52.5 seconds ago
+2026-02-27 18:02:44,008 - INFO - [REQUEST] GET /api/teacher/session/238/status - Client: 127.0.0.1
+2026-02-27 18:02:44,013 - WARNING - Device heartbeat stale - Last seen 57.5 seconds ago
+2026-02-27 18:02:49,009 - INFO - [REQUEST] GET /api/teacher/session/238/status - Client: 127.0.0.1
+2026-02-27 18:02:49,016 - WARNING - Device heartbeat stale - Last seen 62.5 seconds ago
+2026-02-27 18:02:54,006 - INFO - [REQUEST] GET /api/teacher/session/238/status - Client: 127.0.0.1
+2026-02-27 18:02:54,014 - WARNING - Device heartbeat stale - Last seen 67.5 seconds ago
+2026-02-27 18:02:59,004 - INFO - [REQUEST] GET /api/teacher/session/238/status - Client: 127.0.0.1
+2026-02-27 18:02:59,011 - WARNING - Device heartbeat stale - Last seen 72.4 seconds ago
+2026-02-27 18:03:03,996 - INFO - [REQUEST] GET /api/teacher/session/238/status - Client: 127.0.0.1
+2026-02-27 18:03:04,003 - WARNING - Device heartbeat stale - Last seen 77.4 seconds ago
+2026-02-27 18:03:09,009 - INFO - [REQUEST] GET /api/teacher/session/238/status - Client: 127.0.0.1
+2026-02-27 18:03:09,018 - WARNING - Device heartbeat stale - Last seen 82.5 seconds ago
+2026-02-27 18:03:14,004 - INFO - [REQUEST] GET /api/teacher/session/238/status - Client: 127.0.0.1
+2026-02-27 18:03:14,010 - WARNING - Device heartbeat stale - Last seen 87.4 seconds ago
+2026-02-27 18:03:18,996 - INFO - [REQUEST] GET /api/teacher/session/238/status - Client: 127.0.0.1
+2026-02-27 18:03:19,002 - WARNING - Device heartbeat stale - Last seen 92.4 seconds ago
+2026-02-27 18:03:23,996 - INFO - [REQUEST] GET /api/teacher/session/238/status - Client: 127.0.0.1
+2026-02-27 18:03:24,002 - WARNING - Device heartbeat stale - Last seen 97.4 seconds ago
+2026-02-27 18:03:29,002 - INFO - [REQUEST] GET /api/teacher/session/238/status - Client: 127.0.0.1
+2026-02-27 18:03:29,008 - WARNING - Device heartbeat stale - Last seen 102.4 seconds ago
+2026-02-27 18:03:34,003 - INFO - [REQUEST] GET /api/teacher/session/238/status - Client: 127.0.0.1
+2026-02-27 18:03:34,009 - WARNING - Device heartbeat stale - Last seen 107.4 seconds ago
+2026-02-27 18:03:39,004 - INFO - [REQUEST] GET /api/teacher/session/238/status - Client: 127.0.0.1
+2026-02-27 18:03:39,011 - WARNING - Device heartbeat stale - Last seen 112.4 seconds ago
+2026-02-27 18:03:44,009 - INFO - [REQUEST] GET /api/teacher/session/238/status - Client: 127.0.0.1
+2026-02-27 18:03:44,015 - WARNING - Device heartbeat stale - Last seen 117.5 seconds ago
+2026-02-27 18:03:49,009 - INFO - [REQUEST] GET /api/teacher/session/238/status - Client: 127.0.0.1
+2026-02-27 18:03:49,014 - WARNING - Device heartbeat stale - Last seen 122.5 seconds ago
+2026-02-27 18:03:54,009 - INFO - [REQUEST] GET /api/teacher/session/238/status - Client: 127.0.0.1
+2026-02-27 18:03:54,015 - WARNING - Device heartbeat stale - Last seen 127.5 seconds ago
+2026-02-27 18:03:59,008 - INFO - [REQUEST] GET /api/teacher/session/238/status - Client: 127.0.0.1
+2026-02-27 18:03:59,014 - WARNING - Device heartbeat stale - Last seen 132.5 seconds ago
+2026-02-27 18:04:04,008 - INFO - [REQUEST] GET /api/teacher/session/238/status - Client: 127.0.0.1
+2026-02-27 18:04:04,013 - WARNING - Device heartbeat stale - Last seen 137.5 seconds ago
+2026-02-27 18:04:09,005 - INFO - [REQUEST] GET /api/teacher/session/238/status - Client: 127.0.0.1
+2026-02-27 18:04:09,010 - WARNING - Device heartbeat stale - Last seen 142.4 seconds ago
+2026-02-27 18:04:14,006 - INFO - [REQUEST] GET /api/teacher/session/238/status - Client: 127.0.0.1
+2026-02-27 18:04:14,011 - WARNING - Device heartbeat stale - Last seen 147.4 seconds ago
+2026-02-27 18:04:19,002 - INFO - [REQUEST] GET /api/teacher/session/238/status - Client: 127.0.0.1
+2026-02-27 18:04:19,007 - WARNING - Device heartbeat stale - Last seen 152.4 seconds ago
+2026-02-27 18:04:23,997 - INFO - [REQUEST] GET /api/teacher/session/238/status - Client: 127.0.0.1
+2026-02-27 18:04:24,002 - WARNING - Device heartbeat stale - Last seen 157.4 seconds ago
+2026-02-27 18:04:28,997 - INFO - [REQUEST] GET /api/teacher/session/238/status - Client: 127.0.0.1
+2026-02-27 18:04:29,003 - WARNING - Device heartbeat stale - Last seen 162.4 seconds ago
+2026-02-27 18:04:34,004 - INFO - [REQUEST] GET /api/teacher/session/238/status - Client: 127.0.0.1
+2026-02-27 18:04:34,010 - WARNING - Device heartbeat stale - Last seen 167.4 seconds ago
+2026-02-27 18:04:39,004 - INFO - [REQUEST] GET /api/teacher/session/238/status - Client: 127.0.0.1
+2026-02-27 18:04:39,010 - WARNING - Device heartbeat stale - Last seen 172.4 seconds ago
+2026-02-27 18:04:44,000 - INFO - [REQUEST] GET /api/teacher/session/238/status - Client: 127.0.0.1
+2026-02-27 18:04:44,006 - WARNING - Device heartbeat stale - Last seen 177.4 seconds ago
+2026-02-27 18:04:48,998 - INFO - [REQUEST] GET /api/teacher/session/238/status - Client: 127.0.0.1
+2026-02-27 18:04:49,004 - WARNING - Device heartbeat stale - Last seen 182.4 seconds ago
+2026-02-27 18:04:53,996 - INFO - [REQUEST] GET /api/teacher/session/238/status - Client: 127.0.0.1
+2026-02-27 18:04:54,002 - WARNING - Device heartbeat stale - Last seen 187.4 seconds ago
+2026-02-27 18:04:59,008 - INFO - [REQUEST] GET /api/teacher/session/238/status - Client: 127.0.0.1
+2026-02-27 18:04:59,014 - WARNING - Device heartbeat stale - Last seen 192.5 seconds ago
+2026-02-27 18:05:04,006 - INFO - [REQUEST] GET /api/teacher/session/238/status - Client: 127.0.0.1
+2026-02-27 18:05:04,012 - WARNING - Device heartbeat stale - Last seen 197.5 seconds ago
+2026-02-27 18:05:09,001 - INFO - [REQUEST] GET /api/teacher/session/238/status - Client: 127.0.0.1
+2026-02-27 18:05:09,009 - WARNING - Device heartbeat stale - Last seen 202.4 seconds ago
+2026-02-27 18:05:14,001 - INFO - [REQUEST] GET /api/teacher/session/238/status - Client: 127.0.0.1
+2026-02-27 18:05:14,007 - WARNING - Device heartbeat stale - Last seen 207.4 seconds ago
+2026-02-27 18:05:19,010 - INFO - [REQUEST] GET /api/teacher/session/238/status - Client: 127.0.0.1
+2026-02-27 18:05:19,015 - WARNING - Device heartbeat stale - Last seen 212.5 seconds ago
+2026-02-27 18:05:24,006 - INFO - [REQUEST] GET /api/teacher/session/238/status - Client: 127.0.0.1
+2026-02-27 18:05:24,015 - WARNING - Device heartbeat stale - Last seen 217.5 seconds ago
+2026-02-27 18:05:29,000 - INFO - [REQUEST] GET /api/teacher/session/238/status - Client: 127.0.0.1
+2026-02-27 18:05:29,006 - WARNING - Device heartbeat stale - Last seen 222.4 seconds ago
+2026-02-27 18:05:34,009 - INFO - [REQUEST] GET /api/teacher/session/238/status - Client: 127.0.0.1
+2026-02-27 18:05:34,014 - WARNING - Device heartbeat stale - Last seen 227.5 seconds ago
+2026-02-27 18:05:39,005 - INFO - [REQUEST] GET /api/teacher/session/238/status - Client: 127.0.0.1
+2026-02-27 18:05:39,010 - WARNING - Device heartbeat stale - Last seen 232.4 seconds ago
+2026-02-27 18:05:44,001 - INFO - [REQUEST] GET /api/teacher/session/238/status - Client: 127.0.0.1
+2026-02-27 18:05:44,007 - WARNING - Device heartbeat stale - Last seen 237.4 seconds ago
+2026-02-27 18:05:48,995 - INFO - [REQUEST] GET /api/teacher/session/238/status - Client: 127.0.0.1
+2026-02-27 18:05:49,001 - WARNING - Device heartbeat stale - Last seen 242.4 seconds ago
+2026-02-27 18:05:53,997 - INFO - [REQUEST] GET /api/teacher/session/238/status - Client: 127.0.0.1
+2026-02-27 18:05:54,002 - WARNING - Device heartbeat stale - Last seen 247.4 seconds ago
+2026-02-27 18:05:59,001 - INFO - [REQUEST] GET /api/teacher/session/238/status - Client: 127.0.0.1
+2026-02-27 18:05:59,010 - WARNING - Device heartbeat stale - Last seen 252.4 seconds ago
+2026-02-27 18:06:31,228 - INFO - [REQUEST] POST /api/teacher/login - Client: 127.0.0.1
+2026-02-27 18:06:31,229 - INFO - Teacher login attempt - CourseCode: MCA101
+2026-02-27 18:06:31,230 - INFO - Teacher login successful - Course: Introduction To Programming
+2026-02-27 18:07:39,468 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.109
+2026-02-27 18:07:39,963 - INFO - Device heartbeat - Battery: 14%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-27 18:07:50,227 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.109
+2026-02-27 18:07:50,500 - INFO - Device heartbeat - Battery: 21%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-27 18:39:12,830 - WARNING - BACKUP Auto-close: Session 238, Course 1, End: 2026-02-27 18:35:23
+2026-02-27 18:39:12,839 - INFO - Auto-closed 1 session(s)
+2026-02-27 19:41:13,511 - INFO - [REQUEST] GET /api/teacher/analytics/1 - Client: 127.0.0.1
+2026-02-27 19:41:13,512 - INFO - Loading teacher analytics - CourseID: 1
+2026-02-27 19:41:14,120 - INFO - [RESPONSE] GET /api/teacher/analytics/1 - Status: 200 - 608ms
+2026-02-27 19:52:34,361 - INFO - [REQUEST] GET /student - Client: 192.168.137.253
+2026-02-27 19:52:34,668 - INFO - [REQUEST] GET /static/css/modal.css - Client: 192.168.137.253
+2026-02-27 19:52:34,668 - INFO - [REQUEST] GET /static/css/student.css - Client: 192.168.137.253
+2026-02-27 19:52:34,675 - INFO - [RESPONSE] GET /static/css/modal.css - Status: 304 - 7ms
+2026-02-27 19:52:34,676 - INFO - [RESPONSE] GET /static/css/student.css - Status: 304 - 7ms
+2026-02-27 19:52:34,678 - INFO - [REQUEST] GET /static/css/base.css - Client: 192.168.137.253
+2026-02-27 19:52:34,680 - INFO - [RESPONSE] GET /static/css/base.css - Status: 304 - 2ms
+2026-02-27 19:52:34,693 - INFO - [REQUEST] GET /static/js/student.js - Client: 192.168.137.253
+2026-02-27 19:52:34,694 - INFO - [RESPONSE] GET /static/js/student.js - Status: 304 - 1ms
+2026-02-27 19:52:45,604 - INFO - [REQUEST] POST /api/student/login - Client: 192.168.137.253
+2026-02-27 19:52:45,605 - INFO - Student login attempt - Roll: MCAX24R065
+2026-02-27 19:52:45,614 - INFO - Student login successful - Roll: MCAX24R065, Name: Sourabh Kumar Gupta
+2026-02-27 19:52:45,633 - INFO - [REQUEST] GET /api/student/semesters - Client: 192.168.137.253
+2026-02-27 19:52:45,640 - INFO - [REQUEST] GET /api/student/critical-alerts - Client: 192.168.137.253
+2026-02-27 19:52:45,912 - INFO - [REQUEST] GET /api/student/dashboard - Client: 192.168.137.253
+2026-02-27 19:53:01,191 - INFO - [REQUEST] GET /api/student/course/1 - Client: 192.168.137.253
+2026-02-27 19:53:04,035 - INFO - [REQUEST] GET /api/student/semesters - Client: 192.168.137.253
+2026-02-27 19:53:04,037 - INFO - [REQUEST] GET /api/student/critical-alerts - Client: 192.168.137.253
+2026-02-27 19:53:04,064 - INFO - [REQUEST] GET /api/student/dashboard - Client: 192.168.137.253
+2026-02-27 19:53:05,517 - INFO - [REQUEST] GET /api/student/dashboard - Client: 192.168.137.253
+2026-02-27 19:53:05,518 - INFO - [REQUEST] GET /api/student/semesters - Client: 192.168.137.253
+2026-02-27 19:53:05,703 - INFO - [REQUEST] GET /api/student/leaderboard - Client: 192.168.137.253
+2026-02-27 19:53:05,704 - INFO - Leaderboard request - StudentID: 1, CourseID: None, SemesterID: None
+2026-02-27 19:53:09,920 - INFO - [REQUEST] GET /api/student/leaderboard - Client: 192.168.137.253
+2026-02-27 19:53:09,920 - INFO - Leaderboard request - StudentID: 1, CourseID: None, SemesterID: 1
+2026-02-27 19:54:30,673 - INFO - Server started - Auto-expire scheduler active
+2026-02-27 19:54:44,524 - INFO - [REQUEST] GET /student - Client: 192.168.137.253
+2026-02-27 19:54:44,729 - INFO - [REQUEST] GET /static/css/modal.css - Client: 192.168.137.253
+2026-02-27 19:54:44,731 - INFO - [RESPONSE] GET /static/css/modal.css - Status: 304 - 2ms
+2026-02-27 19:54:44,799 - INFO - [REQUEST] GET /static/css/base.css - Client: 192.168.137.253
+2026-02-27 19:54:44,800 - INFO - [RESPONSE] GET /static/css/base.css - Status: 304 - 1ms
+2026-02-27 19:54:47,715 - INFO - [REQUEST] GET /static/css/student.css - Client: 192.168.137.253
+2026-02-27 19:54:47,716 - INFO - [RESPONSE] GET /static/css/student.css - Status: 304 - 1ms
+2026-02-27 19:54:51,148 - INFO - [REQUEST] GET /student - Client: 192.168.137.253
+2026-02-27 19:54:51,176 - INFO - [REQUEST] GET /static/css/base.css - Client: 192.168.137.253
+2026-02-27 19:54:51,177 - INFO - [REQUEST] GET /static/css/modal.css - Client: 192.168.137.253
+2026-02-27 19:54:51,178 - INFO - [RESPONSE] GET /static/css/base.css - Status: 304 - 2ms
+2026-02-27 19:54:51,178 - INFO - [REQUEST] GET /static/css/student.css - Client: 192.168.137.253
+2026-02-27 19:54:51,179 - INFO - [RESPONSE] GET /static/css/modal.css - Status: 304 - 2ms
+2026-02-27 19:54:51,180 - INFO - [RESPONSE] GET /static/css/student.css - Status: 304 - 2ms
+2026-02-27 19:54:52,221 - INFO - [REQUEST] GET /static/js/student.js - Client: 192.168.137.253
+2026-02-27 19:54:52,392 - INFO - [REQUEST] GET /api/student/semesters - Client: 192.168.137.253
+2026-02-27 19:54:52,404 - INFO - [REQUEST] GET /api/student/dashboard - Client: 192.168.137.253
+2026-02-27 19:55:01,084 - INFO - [REQUEST] GET /api/student/course/1 - Client: 192.168.137.253
+2026-02-27 19:55:06,112 - INFO - [REQUEST] GET /api/student/semesters - Client: 192.168.137.253
+2026-02-27 19:55:06,113 - INFO - [REQUEST] GET /api/student/critical-alerts - Client: 192.168.137.253
+2026-02-27 19:55:06,145 - INFO - [REQUEST] GET /api/student/dashboard - Client: 192.168.137.253
+2026-02-27 20:01:58,198 - INFO - [REQUEST] GET /api/student/course/1 - Client: 192.168.137.253
+2026-02-27 20:02:02,470 - INFO - [REQUEST] GET /api/student/critical-alerts - Client: 192.168.137.253
+2026-02-27 20:02:02,471 - INFO - [REQUEST] GET /api/student/semesters - Client: 192.168.137.253
+2026-02-27 20:02:02,996 - INFO - [REQUEST] GET /api/student/dashboard - Client: 192.168.137.253
+2026-02-27 20:02:03,644 - INFO - [REQUEST] GET /api/student/semesters - Client: 192.168.137.253
+2026-02-27 20:02:03,746 - INFO - [REQUEST] GET /api/student/analytics - Client: 192.168.137.253
+2026-02-27 20:02:14,371 - INFO - [REQUEST] GET /api/student/semesters - Client: 192.168.137.253
+2026-02-27 20:02:14,375 - INFO - [REQUEST] GET /api/student/critical-alerts - Client: 192.168.137.253
+2026-02-27 20:02:14,563 - INFO - [REQUEST] GET /api/student/dashboard - Client: 192.168.137.253
+2026-02-27 20:02:15,903 - INFO - [REQUEST] GET /api/student/dashboard - Client: 192.168.137.253
+2026-02-27 20:02:15,905 - INFO - [REQUEST] GET /api/student/semesters - Client: 192.168.137.253
+2026-02-27 20:02:16,236 - INFO - [REQUEST] GET /api/student/leaderboard - Client: 192.168.137.253
+2026-02-27 20:02:16,237 - INFO - Leaderboard request - StudentID: 1, CourseID: None, SemesterID: None
+2026-02-27 20:02:20,214 - INFO - [REQUEST] GET /api/student/leaderboard - Client: 192.168.137.253
+2026-02-27 20:02:20,215 - INFO - Leaderboard request - StudentID: 1, CourseID: None, SemesterID: 1

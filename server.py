@@ -115,6 +115,31 @@ app = Flask(__name__)
 # stored securely as an environment variable, not in the code.
 app.config['SECRET_KEY'] = '7c9e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2c3d4e5f6a7b8c9d0e'
 
+# --- Request/Response Logging Middleware ---
+@app.before_request
+def log_request_info():
+    """Log every incoming request with method, path, and client IP."""
+    # Skip logging for high-frequency polling endpoints to reduce noise
+    skip_paths = ['/api/teacher/device-status', '/api/device/heartbeat', '/api/device/session-status']
+    if request.path in skip_paths:
+        return
+    request._start_time = time.time()
+    logger.info(f"[REQUEST] {request.method} {request.path} - Client: {request.remote_addr}")
+
+@app.after_request
+def log_response_info(response):
+    """Log response status and time taken for every request."""
+    skip_paths = ['/api/teacher/device-status', '/api/device/heartbeat', '/api/device/session-status']
+    if request.path in skip_paths:
+        return response
+    duration = 0
+    if hasattr(request, '_start_time'):
+        duration = (time.time() - request._start_time) * 1000  # ms
+    # Only log non-200 responses or slow requests (>500ms) to reduce noise
+    if response.status_code != 200 or duration > 500:
+        logger.info(f"[RESPONSE] {request.method} {request.path} - Status: {response.status_code} - {duration:.0f}ms")
+    return response
+
 # --- Database & Token Helper Functions ---
 
 def get_db_connection():
@@ -226,12 +251,16 @@ def admin_login():
     """Handles the administrator's login request."""
     data = request.get_json()
     if not data or not data.get('username') or not data.get('password'):
+        logger.warning(f"Admin login failed - Missing username or password")
         return jsonify({"message": "Username and password are required"}), 400
 
+    username = data['username']
+    logger.info(f"Admin login attempt - Username: {username}")
+    
     hashed_password = hashlib.sha256(data['password'].encode('utf-8')).hexdigest()
     conn = get_db_connection()
     admin = conn.execute("SELECT id FROM admins WHERE username = ? AND password = ?", 
-                           (data['username'], hashed_password)).fetchone()
+                           (username, hashed_password)).fetchone()
     conn.close()
     
     if admin:
@@ -240,8 +269,10 @@ def admin_login():
             'admin_id': admin['id'], 
             'exp': datetime.datetime.now(datetime.timezone.utc) + datetime.timedelta(hours=8)
         }, app.config['SECRET_KEY'], algorithm="HS256")
+        logger.info(f"Admin login successful - Username: {username}, AdminID: {admin['id']}")
         return jsonify({'token': token})
     
+    logger.warning(f"Admin login failed - Invalid credentials for username: {username}")
     return jsonify({"message": "Invalid credentials"}), 401
 
 # --- System Configuration API ---
@@ -264,6 +295,7 @@ def manage_config(user_data):
         conn.execute("INSERT OR REPLACE INTO system_settings (key, value) VALUES ('batch_name', ?)", (new_name,))
         conn.commit()
         conn.close()
+        logger.info(f"System config updated - batch_name: '{new_name}'")
         return jsonify({"message": "System configuration updated."})
 
 # --- Semester Management API (Full CRUD) ---
@@ -307,9 +339,11 @@ def manage_single_semester(user_data, id):
         data = request.get_json()
         conn.execute("UPDATE semesters SET semester_name = ? WHERE id = ?", (data['semester_name'], id))
         conn.commit()
+        logger.info(f"Semester updated - ID: {id}, Name: {data['semester_name']}")
     elif request.method == 'DELETE':
         conn.execute("DELETE FROM semesters WHERE id = ?", (id,))
         conn.commit()
+        logger.info(f"Semester deleted - ID: {id}")
     conn.close()
     return jsonify({"message": "Operation successful."})
 
@@ -351,9 +385,11 @@ def manage_single_teacher(user_data, id):
         else:
              conn.execute("UPDATE teachers SET teacher_name = ? WHERE id = ?", (data['teacher_name'], id))
         conn.commit()
+        logger.info(f"Teacher updated - ID: {id}, Name: {data['teacher_name']}")
     elif request.method == 'DELETE':
         conn.execute("DELETE FROM teachers WHERE id = ?", (id,))
         conn.commit()
+        logger.info(f"Teacher deleted - ID: {id}")
     conn.close()
     return jsonify({"message": "Operation successful."})
 
@@ -419,9 +455,11 @@ def manage_single_student(user_data, id):
                             enrollment_no = ?, email1 = ?, email2 = ? WHERE id = ?""",
                          (data['student_name'], data['university_roll_no'], data['enrollment_no'], data['email1'], data['email2'], id))
         conn.commit()
+        logger.info(f"Student updated - ID: {id}, Roll: {data['university_roll_no']}")
     elif request.method == 'DELETE':
         conn.execute("DELETE FROM students WHERE id = ?", (id,))
         conn.commit()
+        logger.info(f"Student deleted - ID: {id}")
     conn.close()
     return jsonify({"message": "Operation successful."})
 
@@ -514,9 +552,11 @@ def manage_single_course(user_data, id):
                         semester_id = ?, teacher_id = ? WHERE id = ?""",
                      (data['course_name'], data['course_code'], data['default_duration_minutes'], data['semester_id'], data['teacher_id'], id))
         conn.commit()
+        logger.info(f"Course updated - ID: {id}, Code: {data['course_code']}")
     elif request.method == 'DELETE':
         conn.execute("DELETE FROM courses WHERE id = ?", (id,))
         conn.commit()
+        logger.info(f"Course deleted - ID: {id}")
     conn.close()
     return jsonify({"message": "Operation successful."})
 
@@ -550,8 +590,10 @@ def manage_enrollments(user_data, course_id):
                 conn.execute("INSERT INTO enrollments (student_id, course_id, class_roll_id) VALUES (?, ?, ?)",
                              (student['student_id'], course_id, student['class_roll_id']))
             conn.commit()
+            logger.info(f"Enrollments updated - CourseID: {course_id}, Students enrolled: {len(enrollment_data)}")
         except Exception as e:
             conn.rollback()
+            logger.error(f"Enrollment update failed - CourseID: {course_id}, Error: {e}")
             conn.close()
             return jsonify({"status": "error", "message": f"Database error: {e}"}), 500
         conn.close()
@@ -1175,9 +1217,11 @@ def get_session_report(session_id):
     # First, get the course ID from the session ID
     course = conn.execute("SELECT course_id FROM sessions WHERE id = ?", (session_id,)).fetchone()
     if not course:
+        logger.warning(f"Report generation failed - Session {session_id} not found")
         conn.close()
         return jsonify({"error": "Session not found"}), 404
     course_id = course['course_id']
+    logger.info(f"Generating attendance report - SessionID: {session_id}, CourseID: {course_id}")
 
     # Get all students enrolled in this course
     students_cursor = conn.execute("""
@@ -1231,6 +1275,9 @@ def get_session_report(session_id):
         "absent_set": list(absent_set)     # Absent students marked via emergency mode
     }
     
+    logger.info(f"Report generated - SessionID: {session_id}, Students: {len(students)}, "
+                f"Sessions: {len(sessions)}, Present records: {len(present_set)}, Absent records: {len(absent_set)}")
+    
     return jsonify(report_data)
 
 
@@ -1248,6 +1295,7 @@ def export_session_report(session_id):
     conn = get_db_connection()
     course = conn.execute("SELECT c.course_name FROM sessions s JOIN courses c ON s.course_id = c.id WHERE s.id = ?", (session_id,)).fetchone()
     course_id = conn.execute("SELECT course_id FROM sessions WHERE id = ?", (session_id,)).fetchone()['course_id']
+    logger.info(f"Excel export started - SessionID: {session_id}, CourseID: {course_id}")
     students = [dict(row) for row in conn.execute("SELECT s.id, s.student_name, s.university_roll_no, s.enrollment_no, e.class_roll_id FROM students s JOIN enrollments e ON s.id = e.student_id WHERE e.course_id = ? ORDER BY e.class_roll_id", (course_id,)).fetchall()]
     sessions = [dict(row) for row in conn.execute(
         "SELECT id, start_time FROM sessions WHERE course_id = ? ORDER BY start_time",
@@ -1304,6 +1352,9 @@ def export_session_report(session_id):
     wb.save(in_memory_file)
     in_memory_file.seek(0) # Move cursor to the beginning of the stream
 
+    logger.info(f"Excel export complete - SessionID: {session_id}, "
+                f"Students: {len(students)}, Sessions: {len(sessions)}")
+    
     return send_file(
         in_memory_file,
         as_attachment=True,
@@ -1324,6 +1375,7 @@ def get_teacher_analytics(course_id):
     """
     try:
         conn = get_db_connection()
+        logger.info(f"Loading teacher analytics - CourseID: {course_id}")
         
         # Get all sessions for this course
         sessions_cursor = conn.execute("""
@@ -1438,7 +1490,7 @@ def get_teacher_analytics(course_id):
         })
         
     except Exception as e:
-        logger.error(f"Error in teacher analytics: {e}", exc_info=True)
+        logger.error(f"Error in teacher analytics for CourseID {course_id}: {e}", exc_info=True)
         return jsonify({"error": "Failed to load analytics"}), 500
 
 
@@ -1450,6 +1502,7 @@ def get_teacher_history(course_id):
     """
     try:
         conn = get_db_connection()
+        logger.info(f"Loading teacher history - CourseID: {course_id}")
         
         # Get enrolled student count
         enrolled_count = conn.execute("""
@@ -1505,7 +1558,7 @@ def get_teacher_history(course_id):
         })
         
     except Exception as e:
-        logger.error(f"Error loading teacher history: {e}", exc_info=True)
+        logger.error(f"Error loading teacher history for CourseID {course_id}: {e}", exc_info=True)
         return jsonify({"error": "Failed to load history"}), 500
 
 
@@ -1517,6 +1570,7 @@ def get_session_detail(session_id):
     """
     try:
         conn = get_db_connection()
+        logger.info(f"Loading session detail - SessionID: {session_id}")
         
         # Get session info
         session = conn.execute("""
@@ -1595,6 +1649,8 @@ def get_session_detail(session_id):
             "absent_count": len(absent_students),
             "total_students": len(present_students) + len(absent_students)
         })
+        logger.info(f"Session detail loaded - SessionID: {session_id}, "
+                    f"Present: {len(present_students)}, Absent: {len(absent_students)}")
         
     except Exception as e:
         logger.error(f"Error loading session detail: {e}", exc_info=True)
@@ -1720,6 +1776,7 @@ def validate_teacher_session(course_id):
         """, (course_id,)).fetchone()
         
         if not course:
+            logger.warning(f"Session validation failed - CourseID {course_id} not found")
             conn.close()
             return jsonify({"valid": False, "message": "Course not found"}), 404
         
@@ -1805,13 +1862,16 @@ def validate_teacher_session(course_id):
 def student_login():
     data = request.get_json()
     univ_roll_no = data.get('university_roll_no'); password = data.get('password')
+    logger.info(f"Student login attempt - Roll: {univ_roll_no}")
     hashed_password = hashlib.sha256(password.encode('utf-8')).hexdigest()
     conn = get_db_connection()
     student = conn.execute("SELECT id, student_name FROM students WHERE university_roll_no = ? AND password = ?", (univ_roll_no, hashed_password)).fetchone()
     conn.close()
     if student:
         token = jwt.encode({'student_id': student['id'], 'exp': datetime.datetime.now(datetime.timezone.utc) + datetime.timedelta(hours=1)}, app.config['SECRET_KEY'], algorithm="HS256")
+        logger.info(f"Student login successful - Roll: {univ_roll_no}, Name: {student['student_name']}")
         return jsonify({'token': token, 'student_name': student['student_name']})
+    logger.warning(f"Student login failed - Invalid credentials for roll: {univ_roll_no}")
     return jsonify({"message": "Invalid credentials"}), 401
 
 @app.route('/api/student/semesters', methods=['GET'])
@@ -2233,8 +2293,9 @@ def device_heartbeat():
     
     last_device_heartbeat = data
     
-    # Optional: Log heartbeat for debugging
-    # logger.debug(f"Heartbeat received - Battery: {data.get('battery')}%, Queue: {data.get('queue_count')}")
+    logger.info(f"Device heartbeat - Battery: {data.get('battery')}%, "
+                f"Queue: {data.get('queue_count')}, Sync: {data.get('sync_count')}, "
+                f"MAC: {data.get('mac_address')}")
     
     return jsonify({"status": "ok"})
 
@@ -2712,6 +2773,7 @@ def get_leaderboard(user_data):
         course_id = request.args.get('course_id', type=int)
         semester_id = request.args.get('semester_id', type=int)
         limit = request.args.get('limit', default=50, type=int)
+        logger.info(f"Leaderboard request - StudentID: {student_id}, CourseID: {course_id}, SemesterID: {semester_id}")
         
         conn = get_db_connection()
         
