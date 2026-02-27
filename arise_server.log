@@ -856,3 +856,109 @@
 2026-02-27 20:02:16,237 - INFO - Leaderboard request - StudentID: 1, CourseID: None, SemesterID: None
 2026-02-27 20:02:20,214 - INFO - [REQUEST] GET /api/student/leaderboard - Client: 192.168.137.253
 2026-02-27 20:02:20,215 - INFO - Leaderboard request - StudentID: 1, CourseID: None, SemesterID: 1
+2026-02-27 23:15:53,119 - INFO - Server started - Auto-expire scheduler active
+2026-02-27 23:16:00,189 - INFO - [REQUEST] GET / - Client: 127.0.0.1
+2026-02-27 23:16:00,247 - INFO - [REQUEST] GET /static/css/base.css - Client: 127.0.0.1
+2026-02-27 23:16:00,250 - INFO - [RESPONSE] GET /static/css/base.css - Status: 304 - 2ms
+2026-02-27 23:16:00,251 - INFO - [REQUEST] GET /static/css/modal.css - Client: 127.0.0.1
+2026-02-27 23:16:00,252 - INFO - [REQUEST] GET /static/css/teacher.css - Client: 127.0.0.1
+2026-02-27 23:16:00,255 - INFO - [REQUEST] GET /static/js/modal.js - Client: 127.0.0.1
+2026-02-27 23:16:00,258 - INFO - [REQUEST] GET /static/js/teacher.js - Client: 127.0.0.1
+2026-02-27 23:16:00,261 - INFO - [RESPONSE] GET /static/css/teacher.css - Status: 304 - 8ms
+2026-02-27 23:16:00,262 - INFO - [RESPONSE] GET /static/css/modal.css - Status: 304 - 10ms
+2026-02-27 23:16:00,264 - INFO - [RESPONSE] GET /static/js/modal.js - Status: 304 - 8ms
+2026-02-27 23:16:00,264 - INFO - [RESPONSE] GET /static/js/teacher.js - Status: 304 - 6ms
+2026-02-27 23:16:00,337 - INFO - [REQUEST] GET /api/teacher/course-codes - Client: 127.0.0.1
+2026-02-27 23:16:00,366 - INFO - [REQUEST] GET /api/teacher/validate-session/1 - Client: 127.0.0.1
+2026-02-27 23:16:00,374 - INFO - [REQUEST] GET /api/teacher/analytics/1 - Client: 127.0.0.1
+2026-02-27 23:16:00,375 - INFO - Loading teacher analytics - CourseID: 1
+2026-02-27 23:16:11,134 - INFO - [REQUEST] GET /api/teacher/history/1 - Client: 127.0.0.1
+2026-02-27 23:16:11,135 - INFO - Loading teacher history - CourseID: 1
+2026-02-27 23:16:17,310 - INFO - [REQUEST] GET /api/teacher/history/1 - Client: 127.0.0.1
+2026-02-27 23:16:17,311 - INFO - Loading teacher history - CourseID: 1
+2026-02-27 23:16:17,337 - INFO - [REQUEST] GET /api/teacher/report/238 - Client: 127.0.0.1
+2026-02-27 23:16:17,338 - INFO - Generating attendance report - SessionID: 238, CourseID: 1
+2026-02-27 23:16:17,341 - INFO - Report generated - SessionID: 238, Students: 8, Sessions: 216, Present records: 356, Absent records: 52
+2026-02-27 23:16:22,526 - INFO - [REQUEST] GET /api/teacher/history/1 - Client: 127.0.0.1
+2026-02-27 23:16:22,527 - INFO - Loading teacher history - CourseID: 1
+2026-02-27 23:16:23,715 - INFO - [REQUEST] GET /api/teacher/analytics/1 - Client: 127.0.0.1
+2026-02-27 23:16:23,715 - INFO - Loading teacher analytics - CourseID: 1
+2026-02-27 23:48:21,212 - INFO - Server started - Auto-expire scheduler active
+2026-02-27 23:55:13,244 - INFO - Server started - Auto-expire scheduler active
+2026-02-27 23:55:53,371 - INFO - [REQUEST] GET /api/health - Client: 127.0.0.1
+2026-02-27 23:55:53,407 - INFO - [REQUEST] GET /favicon.ico - Client: 127.0.0.1
+2026-02-27 23:55:53,408 - INFO - [RESPONSE] GET /favicon.ico - Status: 404 - 1ms
+2026-02-27 23:56:08,719 - INFO - [REQUEST] GET /admin-login - Client: 127.0.0.1
+2026-02-27 23:56:09,023 - INFO - [REQUEST] GET /static/css/base.css - Client: 127.0.0.1
+2026-02-27 23:56:09,335 - INFO - [REQUEST] GET /static/css/modal.css - Client: 127.0.0.1
+2026-02-27 23:56:23,499 - INFO - [REQUEST] GET / - Client: 127.0.0.1
+2026-02-27 23:56:23,543 - INFO - [REQUEST] GET /static/css/base.css - Client: 127.0.0.1
+2026-02-27 23:56:23,545 - INFO - [RESPONSE] GET /static/css/base.css - Status: 304 - 2ms
+2026-02-27 23:56:23,760 - INFO - [REQUEST] GET /static/css/teacher.css - Client: 127.0.0.1
+2026-02-27 23:56:23,853 - INFO - [REQUEST] GET /static/css/modal.css - Client: 127.0.0.1
+2026-02-27 23:56:23,854 - INFO - [REQUEST] GET /static/js/modal.js - Client: 127.0.0.1
+2026-02-27 23:56:23,856 - INFO - [RESPONSE] GET /static/css/modal.css - Status: 304 - 2ms
+2026-02-27 23:56:23,857 - INFO - [REQUEST] GET /static/js/teacher.js - Client: 127.0.0.1
+2026-02-27 23:56:24,227 - INFO - [REQUEST] GET /api/teacher/course-codes - Client: 127.0.0.1
+2026-02-27 23:56:35,827 - INFO - [REQUEST] GET /student - Client: 127.0.0.1
+2026-02-27 23:56:36,133 - INFO - [REQUEST] GET /static/css/base.css - Client: 127.0.0.1
+2026-02-27 23:56:36,134 - INFO - [RESPONSE] GET /static/css/base.css - Status: 304 - 1ms
+2026-02-27 23:56:36,196 - INFO - [REQUEST] GET /static/css/modal.css - Client: 127.0.0.1
+2026-02-27 23:56:36,196 - INFO - [REQUEST] GET /static/css/student.css - Client: 127.0.0.1
+2026-02-27 23:56:36,198 - INFO - [REQUEST] GET /static/manifest.json - Client: 127.0.0.1
+2026-02-27 23:56:36,196 - INFO - [REQUEST] GET /static/js/student.js - Client: 127.0.0.1
+2026-02-27 23:56:36,199 - INFO - [RESPONSE] GET /static/css/modal.css - Status: 304 - 3ms
+2026-02-27 23:57:32,001 - INFO - [REQUEST] GET /admin-login - Client: 127.0.0.1
+2026-02-27 23:57:32,026 - INFO - [REQUEST] GET /static/css/base.css - Client: 127.0.0.1
+2026-02-27 23:57:32,027 - INFO - [RESPONSE] GET /static/css/base.css - Status: 304 - 1ms
+2026-02-27 23:57:32,266 - INFO - [REQUEST] GET /static/css/modal.css - Client: 127.0.0.1
+2026-02-27 23:57:32,266 - INFO - [RESPONSE] GET /static/css/modal.css - Status: 304 - 1ms
+2026-02-27 23:57:46,295 - INFO - [REQUEST] POST /api/admin/login - Client: 127.0.0.1
+2026-02-27 23:57:46,302 - INFO - Admin login attempt - Username: admin
+2026-02-27 23:57:46,315 - INFO - Admin login successful - Username: admin, AdminID: 1
+2026-02-27 23:57:46,554 - INFO - [REQUEST] GET /admin - Client: 127.0.0.1
+2026-02-27 23:57:46,643 - INFO - [REQUEST] GET /static/css/base.css - Client: 127.0.0.1
+2026-02-27 23:57:46,644 - INFO - [RESPONSE] GET /static/css/base.css - Status: 304 - 1ms
+2026-02-27 23:57:46,894 - INFO - [REQUEST] GET /static/css/admin.css - Client: 127.0.0.1
+2026-02-27 23:57:46,894 - INFO - [REQUEST] GET /static/css/modal.css - Client: 127.0.0.1
+2026-02-27 23:57:46,896 - INFO - [RESPONSE] GET /static/css/modal.css - Status: 304 - 2ms
+2026-02-27 23:57:46,897 - INFO - [REQUEST] GET /static/js/admin.js - Client: 127.0.0.1
+2026-02-27 23:57:46,898 - INFO - [REQUEST] GET /static/js/modal.js - Client: 127.0.0.1
+2026-02-27 23:57:46,902 - INFO - [RESPONSE] GET /static/js/modal.js - Status: 304 - 4ms
+2026-02-27 23:57:46,939 - INFO - [REQUEST] GET /api/admin/config - Client: 127.0.0.1
+2026-02-27 23:57:47,250 - INFO - [REQUEST] GET /api/admin/semesters - Client: 127.0.0.1
+2026-02-28 00:01:42,769 - INFO - [REQUEST] GET /api/health - Client: 127.0.0.1
+2026-02-28 00:23:20,903 - INFO - Server started - Auto-expire scheduler active
+2026-02-28 00:23:22,713 - INFO - Server started - Auto-expire scheduler active
+2026-02-28 00:23:22,736 - WARNING -  * Debugger is active!
+2026-02-28 00:23:39,273 - INFO - [REQUEST] GET /api/sync/status - Client: 127.0.0.1
+2026-02-28 00:23:39,282 - INFO - [RESPONSE] GET /api/sync/status - Status: 404 - 9ms
+2026-02-28 00:24:05,258 - INFO - [REQUEST] GET /api/sync/status - Client: 127.0.0.1
+2026-02-28 00:24:05,258 - INFO - [RESPONSE] GET /api/sync/status - Status: 404 - 0ms
+2026-02-28 00:42:20,431 - INFO - Server started - Auto-expire scheduler active
+2026-02-28 00:42:42,030 - INFO - Server started - Auto-expire scheduler active
+2026-02-28 00:43:02,391 - INFO - [REQUEST] GET /api/sync/status - Client: 127.0.0.1
+2026-02-28 00:43:02,393 - INFO - [RESPONSE] GET /api/sync/status - Status: 404 - 3ms
+2026-02-28 00:43:02,643 - INFO - [REQUEST] GET /api/health - Client: 127.0.0.1
+2026-02-28 00:45:10,851 - INFO - Server started - Auto-expire scheduler active
+2026-02-28 00:58:40,247 - INFO - Server started - Auto-expire scheduler active
+2026-02-28 00:58:54,553 - INFO - [REQUEST] GET /api/sync/status - Client: 127.0.0.1
+2026-02-28 00:58:54,556 - INFO - [RESPONSE] GET /api/sync/status - Status: 404 - 3ms
+2026-02-28 01:03:40,803 - INFO - Server started - Auto-expire scheduler active
+2026-02-28 01:11:48,499 - INFO - Server started - Auto-expire scheduler active
+2026-02-28 01:13:34,163 - INFO - [REQUEST] GET /api/health - Client: 127.0.0.1
+2026-02-28 01:13:34,221 - INFO - [REQUEST] GET /api/sync/status - Client: 127.0.0.1
+2026-02-28 01:13:34,221 - INFO - [RESPONSE] GET /api/sync/status - Status: 404 - 1ms
+2026-02-28 01:13:34,260 - INFO - [REQUEST] GET /api/health - Client: 127.0.0.1
+2026-02-28 01:13:34,296 - INFO - [REQUEST] POST /api/admin/login - Client: 127.0.0.1
+2026-02-28 01:13:34,305 - INFO - Admin login attempt - Username: admin
+2026-02-28 01:13:34,310 - INFO - Admin login successful - Username: admin, AdminID: 1
+2026-02-28 01:26:48,699 - INFO - Server started - Auto-expire scheduler active
+2026-02-28 01:27:12,917 - INFO - [REQUEST] GET /api/health - Client: 127.0.0.1
+2026-02-28 01:27:12,978 - INFO - [REQUEST] GET /api/sync/status - Client: 127.0.0.1
+2026-02-28 01:27:12,999 - INFO - [REQUEST] GET /api/health - Client: 127.0.0.1
+2026-02-28 01:27:13,033 - INFO - [REQUEST] POST /api/admin/login - Client: 127.0.0.1
+2026-02-28 01:27:13,036 - INFO - Admin login attempt - Username: admin
+2026-02-28 01:27:13,039 - INFO - Admin login successful - Username: admin, AdminID: 1
+2026-02-28 01:27:13,056 - INFO - [REQUEST] GET / - Client: 127.0.0.1
+2026-02-28 01:27:13,094 - INFO - [REQUEST] GET /student - Client: 127.0.0.1
