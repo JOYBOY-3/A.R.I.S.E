@@ -84,8 +84,9 @@ class BaseConfig:
     RATE_LIMIT_API = "100 per minute"    # Max API calls per IP
     
     # --- Cloud Sync Settings ---
-    # Set IS_CLOUD_SERVER=true on the cloud instance
-    IS_CLOUD_SERVER = os.environ.get('IS_CLOUD_SERVER', 'false').lower() == 'true'
+    # Auto-detect Render.com (sets RENDER=true automatically) or manual IS_CLOUD_SERVER=true
+    _is_render = os.environ.get('RENDER', 'false').lower() == 'true'
+    IS_CLOUD_SERVER = _is_render or os.environ.get('IS_CLOUD_SERVER', 'false').lower() == 'true'
     # API key for authenticating sync requests between local and cloud
     SYNC_API_KEY = os.environ.get('SYNC_API_KEY', 'arise-sync-default-key-change-me')
     # URL of the cloud server (used by local server to push data)
