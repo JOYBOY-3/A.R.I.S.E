@@ -672,9 +672,9 @@ document.addEventListener('DOMContentLoaded', () => {
           document.getElementById('online-attendance-count').textContent = data.marked_count;
           document.getElementById('online-total-students').textContent = data.total_students;
 
-          // Update student table
-          const tbody = document.querySelector('#online-students-table tbody');
-          tbody.innerHTML = '';
+          // Update marked students table
+          const markedTbody = document.querySelector('#online-students-table tbody');
+          markedTbody.innerHTML = '';
           if (data.marked_students && data.marked_students.length > 0) {
             data.marked_students.forEach(s => {
               const row = document.createElement('tr');
@@ -685,8 +685,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 <td>${s.university_roll_no}</td>
                 <td>${time}</td>
               `;
-              tbody.appendChild(row);
+              markedTbody.appendChild(row);
             });
+          }
+
+          // Compute and render unmarked students
+          if (data.all_students) {
+            const markedRolls = new Set(data.marked_students.map(s => s.university_roll_no));
+            const unmarked = data.all_students.filter(s => !markedRolls.has(s.university_roll_no));
+            renderOnlineUnmarkedStudents(unmarked);
           }
 
           if (!data.is_active) {
@@ -700,6 +707,70 @@ document.addEventListener('DOMContentLoaded', () => {
     refreshStatus();
     onlineStatusInterval = setInterval(refreshStatus, 3000);
   }
+
+  // Render unmarked students for online mode
+  let onlineAllStudents = [];
+
+  function renderOnlineUnmarkedStudents(students) {
+    onlineAllStudents = students;
+    const unmarkedTbody = document.querySelector('#online-unmarked-table tbody');
+    unmarkedTbody.innerHTML = '';
+    const searchTerm = (document.getElementById('online-search-input').value || '').toLowerCase();
+
+    students
+      .filter(s => s.student_name.toLowerCase().includes(searchTerm) || s.class_roll_id.toString().includes(searchTerm))
+      .forEach(student => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+          <td data-label="Class Roll">${student.class_roll_id}</td>
+          <td data-label="Name">${student.student_name}</td>
+          <td data-label="Univ. Roll No.">${student.university_roll_no}</td>
+          <td data-label="Action"><button class="manual-mark-btn online-manual-mark" data-univ-roll="${student.university_roll_no}">Mark Manually</button></td>
+        `;
+        unmarkedTbody.appendChild(row);
+      });
+  }
+
+  // Search filter for online unmarked students
+  document.getElementById('online-search-input').addEventListener('input', () => {
+    renderOnlineUnmarkedStudents(onlineAllStudents);
+  });
+
+  // Manual override click handler for online mode
+  document.querySelector('#online-unmarked-table tbody').addEventListener('click', async (event) => {
+    if (event.target.classList.contains('online-manual-mark')) {
+      const univ_roll_no = event.target.dataset.univRoll;
+      const student = onlineAllStudents.find(s => s.university_roll_no === univ_roll_no);
+      const studentName = student ? student.student_name : 'this student';
+
+      // Reuse the same reason selection modal from offline mode
+      const reason = await showReasonSelectionModal(studentName);
+
+      if (reason && reason.trim() !== '') {
+        try {
+          const response = await fetch('/api/teacher/manual-override', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              session_id: sessionState.sessionId,
+              univ_roll_no,
+              reason,
+            }),
+          });
+
+          if (response.ok) {
+            await Modal.alert('Attendance marked successfully!', 'Success', 'success');
+          } else {
+            const errorData = await response.json();
+            await Modal.alert(`Failed: ${errorData.message}`, 'Error', 'error');
+          }
+        } catch (error) {
+          console.error('Online manual override error:', error);
+          await Modal.alert('A network error occurred.', 'Network Error', 'error');
+        }
+      }
+    }
+  });
 
   // Copy link button
   document.getElementById('copy-link-btn').addEventListener('click', () => {

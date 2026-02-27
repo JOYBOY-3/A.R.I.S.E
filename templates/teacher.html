@@ -209,9 +209,27 @@
               </div>
             </div>
 
-            <!-- Online Students List -->
+            <!-- Online Unmarked Students -->
             <div class="unmarked-students-panel">
-              <h3>✅ Students Present</h3>
+              <h3>📋 Unmarked Students</h3>
+              <input type="text" id="online-search-input" placeholder="Search by Roll ID or Name..."
+                autocomplete="off" />
+              <div class="table-container">
+                <table class="data-table" id="online-unmarked-table">
+                  <thead>
+                    <tr>
+                      <th>Class Roll</th>
+                      <th>Name</th>
+                      <th>Univ. Roll No.</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <!-- Filled by JavaScript -->
+                  </tbody>
+                </table>
+              </div>
+              <h3 style="margin-top: 20px;">✅ Students Present</h3>
               <div class="table-container">
                 <table class="data-table" id="online-students-table">
                   <thead>

@@ -1259,6 +1259,15 @@ def online_session_status(session_id):
         "SELECT COUNT(*) as c FROM enrollments WHERE course_id = ?",
         (session['course_id'],)).fetchone()['c']
     
+    # Get all enrolled students for unmarked list
+    all_students = conn.execute("""
+        SELECT e.class_roll_id, s.student_name, s.university_roll_no
+        FROM enrollments e
+        JOIN students s ON e.student_id = s.id
+        WHERE e.course_id = ?
+        ORDER BY e.class_roll_id
+    """, (session['course_id'],)).fetchall()
+    
     conn.close()
     
     current_otp = generate_otp(session['otp_seed']) if session['is_active'] else None
@@ -1270,6 +1279,7 @@ def online_session_status(session_id):
         "current_otp": current_otp,
         "otp_time_remaining": get_otp_time_remaining() if session['is_active'] else 0,
         "marked_students": [dict(s) for s in marked],
+        "all_students": [dict(s) for s in all_students],
         "session_token": session['session_token']
     })
 
