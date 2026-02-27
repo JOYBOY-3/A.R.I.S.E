@@ -368,10 +368,8 @@ def require_sync_api_key(f):
 def sync_receive():
     """
     Receive a full database snapshot from the local server.
-    Only used by the CLOUD server.
+    Protected by API key authentication.
     """
-    if not Config.IS_CLOUD_SERVER:
-        return jsonify({"status": "error", "message": "This endpoint is only for cloud servers"}), 400
     
     try:
         data = request.get_json()
