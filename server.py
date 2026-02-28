@@ -809,6 +809,331 @@ def get_enrollment_roster(user_data, semester_id):
     return jsonify(roster)
 
 
+# =================================================================
+#   ADMIN ANALYTICS API ENDPOINTS
+# =================================================================
+
+@app.route('/api/admin/analytics/overview', methods=['GET'])
+@token_required
+def admin_analytics_overview(user_data):
+    """Batch-wide analytics overview with KPIs."""
+    conn = get_db_connection()
+    
+    total_students = conn.execute("SELECT COUNT(*) as c FROM students").fetchone()['c']
+    total_courses = conn.execute("SELECT COUNT(*) as c FROM courses").fetchone()['c']
+    total_sessions = conn.execute("SELECT COUNT(*) as c FROM sessions").fetchone()['c']
+    total_attendance = conn.execute("SELECT COUNT(*) as c FROM attendance_records").fetchone()['c']
+    
+    # Online vs offline sessions
+    online_sessions = conn.execute(
+        "SELECT COUNT(*) as c FROM sessions WHERE session_type = 'online'").fetchone()['c']
+    offline_sessions = total_sessions - online_sessions
+    
+    # Sessions this week and month
+    sessions_this_week = conn.execute("""
+        SELECT COUNT(*) as c FROM sessions 
+        WHERE start_time >= date('now', '-7 days')
+    """).fetchone()['c']
+    
+    sessions_this_month = conn.execute("""
+        SELECT COUNT(*) as c FROM sessions 
+        WHERE start_time >= date('now', 'start of month')
+    """).fetchone()['c']
+    
+    # Average attendance per session
+    avg_attendance = conn.execute("""
+        SELECT AVG(cnt) as avg_count FROM (
+            SELECT session_id, COUNT(*) as cnt FROM attendance_records GROUP BY session_id
+        )
+    """).fetchone()['avg_count'] or 0
+    
+    # Overall attendance rate: total_marks / (total_sessions * avg_enrolled_per_course)
+    total_possible = conn.execute("""
+        SELECT SUM(enrolled) as total FROM (
+            SELECT s.id, 
+                   (SELECT COUNT(*) FROM enrollments e WHERE e.course_id = s.course_id) as enrolled
+            FROM sessions s
+        )
+    """).fetchone()['total'] or 1
+    overall_rate = round((total_attendance / total_possible) * 100, 1) if total_possible > 0 else 0
+    
+    # At-risk student count (below 75% in any course)
+    at_risk_query = conn.execute("""
+        SELECT COUNT(DISTINCT e.student_id) as c
+        FROM enrollments e
+        JOIN courses c ON e.course_id = c.id
+        WHERE (
+            SELECT COUNT(*) FROM attendance_records ar 
+            JOIN sessions s ON ar.session_id = s.id 
+            WHERE ar.student_id = e.student_id AND s.course_id = e.course_id
+        ) < 0.75 * (
+            SELECT COUNT(*) FROM sessions s WHERE s.course_id = e.course_id
+        )
+        AND (SELECT COUNT(*) FROM sessions s WHERE s.course_id = e.course_id) > 0
+    """).fetchone()['c']
+    
+    # Course-wise summary
+    course_summary = conn.execute("""
+        SELECT c.id, c.course_name, c.course_code,
+               t.teacher_name,
+               (SELECT COUNT(*) FROM enrollments e WHERE e.course_id = c.id) as enrolled_count,
+               (SELECT COUNT(*) FROM sessions s WHERE s.course_id = c.id) as session_count,
+               (SELECT COUNT(*) FROM attendance_records ar 
+                JOIN sessions s ON ar.session_id = s.id 
+                WHERE s.course_id = c.id) as total_marks
+        FROM courses c
+        LEFT JOIN teachers t ON c.teacher_id = t.id
+        ORDER BY c.course_name
+    """).fetchall()
+    
+    course_data = []
+    for row in course_summary:
+        r = dict(row)
+        possible = r['enrolled_count'] * r['session_count']
+        r['attendance_rate'] = round((r['total_marks'] / possible) * 100, 1) if possible > 0 else 0
+        course_data.append(r)
+    
+    conn.close()
+    
+    return jsonify({
+        "total_students": total_students,
+        "total_courses": total_courses,
+        "total_sessions": total_sessions,
+        "total_attendance_marks": total_attendance,
+        "online_sessions": online_sessions,
+        "offline_sessions": offline_sessions,
+        "sessions_this_week": sessions_this_week,
+        "sessions_this_month": sessions_this_month,
+        "avg_attendance_per_session": round(avg_attendance, 1),
+        "overall_attendance_rate": overall_rate,
+        "at_risk_count": at_risk_query,
+        "course_summary": course_data
+    })
+
+
+@app.route('/api/admin/analytics/course/<int:course_id>', methods=['GET'])
+@token_required
+def admin_analytics_course(user_data, course_id):
+    """Deep analytics for a specific course — per-student breakdown."""
+    conn = get_db_connection()
+    
+    course = conn.execute("""
+        SELECT c.*, t.teacher_name, sem.semester_name
+        FROM courses c
+        LEFT JOIN teachers t ON c.teacher_id = t.id
+        LEFT JOIN semesters sem ON c.semester_id = sem.id
+        WHERE c.id = ?
+    """, (course_id,)).fetchone()
+    
+    if not course:
+        conn.close()
+        return jsonify({"error": "Course not found"}), 404
+    
+    total_sessions = conn.execute(
+        "SELECT COUNT(*) as c FROM sessions WHERE course_id = ?", (course_id,)).fetchone()['c']
+    
+    # Per-student attendance
+    students = conn.execute("""
+        SELECT s.id as student_id, s.student_name, s.university_roll_no, 
+               e.class_roll_id,
+               (SELECT COUNT(*) FROM attendance_records ar 
+                JOIN sessions ses ON ar.session_id = ses.id 
+                WHERE ar.student_id = s.id AND ses.course_id = ?) as present_count
+        FROM enrollments e
+        JOIN students s ON e.student_id = s.id
+        WHERE e.course_id = ?
+        ORDER BY e.class_roll_id
+    """, (course_id, course_id)).fetchall()
+    
+    student_data = []
+    at_risk = 0
+    for row in students:
+        r = dict(row)
+        r['total_sessions'] = total_sessions
+        r['percentage'] = round((r['present_count'] / total_sessions) * 100, 1) if total_sessions > 0 else 0
+        if r['percentage'] >= 75:
+            r['status'] = 'safe'
+        elif r['percentage'] >= 60:
+            r['status'] = 'warning'
+            at_risk += 1
+        else:
+            r['status'] = 'critical'
+            at_risk += 1
+        student_data.append(r)
+    
+    # Session-wise attendance trend
+    trend = conn.execute("""
+        SELECT s.id, s.start_time, s.topic, s.session_type,
+               (SELECT COUNT(*) FROM attendance_records ar WHERE ar.session_id = s.id) as present_count,
+               (SELECT COUNT(*) FROM enrollments e WHERE e.course_id = s.course_id) as total_students
+        FROM sessions s
+        WHERE s.course_id = ?
+        ORDER BY s.start_time
+    """, (course_id,)).fetchall()
+    
+    conn.close()
+    
+    return jsonify({
+        "course": {
+            "id": course['id'],
+            "course_name": course['course_name'],
+            "course_code": course['course_code'],
+            "teacher_name": course['teacher_name'],
+            "semester_name": course['semester_name']
+        },
+        "total_sessions": total_sessions,
+        "enrolled_count": len(student_data),
+        "at_risk_count": at_risk,
+        "students": student_data,
+        "trend": [dict(r) for r in trend]
+    })
+
+
+@app.route('/api/admin/analytics/student/<int:student_id>', methods=['GET'])
+@token_required
+def admin_analytics_student(user_data, student_id):
+    """Individual student analytics across all courses."""
+    conn = get_db_connection()
+    
+    student = conn.execute(
+        "SELECT * FROM students WHERE id = ?", (student_id,)).fetchone()
+    
+    if not student:
+        conn.close()
+        return jsonify({"error": "Student not found"}), 404
+    
+    # Per-course attendance
+    courses = conn.execute("""
+        SELECT c.id as course_id, c.course_name, c.course_code, e.class_roll_id,
+               (SELECT COUNT(*) FROM sessions s WHERE s.course_id = c.id) as total_sessions,
+               (SELECT COUNT(*) FROM attendance_records ar 
+                JOIN sessions s ON ar.session_id = s.id 
+                WHERE ar.student_id = ? AND s.course_id = c.id) as present_count
+        FROM enrollments e
+        JOIN courses c ON e.course_id = c.id
+        WHERE e.student_id = ?
+        ORDER BY c.course_name
+    """, (student_id, student_id)).fetchall()
+    
+    course_data = []
+    total_present = 0
+    total_possible = 0
+    for row in courses:
+        r = dict(row)
+        r['percentage'] = round((r['present_count'] / r['total_sessions']) * 100, 1) if r['total_sessions'] > 0 else 0
+        if r['percentage'] >= 75:
+            r['status'] = 'safe'
+        elif r['percentage'] >= 60:
+            r['status'] = 'warning'
+        else:
+            r['status'] = 'critical'
+        total_present += r['present_count']
+        total_possible += r['total_sessions']
+        course_data.append(r)
+    
+    overall_pct = round((total_present / total_possible) * 100, 1) if total_possible > 0 else 0
+    
+    # Absent sessions (last 10)
+    absent_sessions = conn.execute("""
+        SELECT s.id, s.start_time, c.course_name, c.course_code
+        FROM sessions s
+        JOIN courses c ON s.course_id = c.id
+        JOIN enrollments e ON e.course_id = c.id AND e.student_id = ?
+        WHERE s.id NOT IN (
+            SELECT ar.session_id FROM attendance_records ar WHERE ar.student_id = ?
+        )
+        ORDER BY s.start_time DESC
+        LIMIT 20
+    """, (student_id, student_id)).fetchall()
+    
+    conn.close()
+    
+    return jsonify({
+        "student": {
+            "id": student['id'],
+            "student_name": student['student_name'],
+            "university_roll_no": student['university_roll_no'],
+            "enrollment_no": student['enrollment_no']
+        },
+        "overall_percentage": overall_pct,
+        "overall_status": 'safe' if overall_pct >= 75 else ('warning' if overall_pct >= 60 else 'critical'),
+        "total_present": total_present,
+        "total_possible": total_possible,
+        "courses": course_data,
+        "recent_absences": [dict(r) for r in absent_sessions]
+    })
+
+
+@app.route('/api/admin/analytics/trends', methods=['GET'])
+@token_required
+def admin_analytics_trends(user_data):
+    """Time-series analytics: daily attendance, day-of-week, online vs offline."""
+    conn = get_db_connection()
+    
+    # Daily attendance counts (last 30 days)
+    daily = conn.execute("""
+        SELECT DATE(s.start_time) as date,
+               COUNT(DISTINCT s.id) as session_count,
+               COUNT(ar.id) as attendance_count,
+               SUM(CASE WHEN s.session_type = 'online' THEN 1 ELSE 0 END) as online_marks,
+               SUM(CASE WHEN s.session_type != 'online' THEN 1 ELSE 0 END) as offline_marks
+        FROM sessions s
+        LEFT JOIN attendance_records ar ON ar.session_id = s.id
+        WHERE s.start_time >= date('now', '-30 days')
+        GROUP BY DATE(s.start_time)
+        ORDER BY date
+    """).fetchall()
+    
+    # Day-of-week pattern
+    dow = conn.execute("""
+        SELECT 
+            CASE CAST(strftime('%w', s.start_time) AS INTEGER)
+                WHEN 0 THEN 'Sun' WHEN 1 THEN 'Mon' WHEN 2 THEN 'Tue'
+                WHEN 3 THEN 'Wed' WHEN 4 THEN 'Thu' WHEN 5 THEN 'Fri' WHEN 6 THEN 'Sat'
+            END as day_name,
+            CAST(strftime('%w', s.start_time) AS INTEGER) as day_num,
+            COUNT(DISTINCT s.id) as session_count,
+            AVG(sub.cnt) as avg_attendance
+        FROM sessions s
+        LEFT JOIN (
+            SELECT session_id, COUNT(*) as cnt FROM attendance_records GROUP BY session_id
+        ) sub ON sub.session_id = s.id
+        GROUP BY day_num
+        ORDER BY day_num
+    """).fetchall()
+    
+    # Online vs Offline totals
+    type_split = conn.execute("""
+        SELECT 
+            s.session_type,
+            COUNT(DISTINCT s.id) as session_count,
+            COUNT(ar.id) as attendance_count
+        FROM sessions s
+        LEFT JOIN attendance_records ar ON ar.session_id = s.id
+        GROUP BY s.session_type
+    """).fetchall()
+    
+    # Course-wise session count for bar chart
+    course_sessions = conn.execute("""
+        SELECT c.course_code,
+               COUNT(DISTINCT s.id) as session_count,
+               COUNT(ar.id) as total_marks,
+               (SELECT COUNT(*) FROM enrollments e WHERE e.course_id = c.id) as enrolled
+        FROM courses c
+        LEFT JOIN sessions s ON s.course_id = c.id
+        LEFT JOIN attendance_records ar ON ar.session_id = s.id
+        GROUP BY c.id
+        ORDER BY c.course_code
+    """).fetchall()
+    
+    conn.close()
+    
+    return jsonify({
+        "daily": [dict(r) for r in daily],
+        "day_of_week": [dict(r) for r in dow],
+        "session_type_split": [dict(r) for r in type_split],
+        "course_sessions": [dict(r) for r in course_sessions]
+    })
 
 
 

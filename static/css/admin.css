@@ -18,7 +18,8 @@ Admin Panel Complete Styles - IMPROVED UX VERSION
 }
 
 /* Tab Navigation */
-.tabs, .sub-tabs {
+.tabs,
+.sub-tabs {
   display: flex;
   border-bottom: 2px solid var(--border-color);
   margin-bottom: var(--spacing-md);
@@ -27,7 +28,8 @@ Admin Panel Complete Styles - IMPROVED UX VERSION
   flex-wrap: wrap;
 }
 
-.tab-button, .sub-tab-button {
+.tab-button,
+.sub-tab-button {
   padding: 12px 20px;
   border: none;
   background-color: transparent;
@@ -40,13 +42,15 @@ Admin Panel Complete Styles - IMPROVED UX VERSION
   white-space: nowrap;
 }
 
-.tab-button.active, .sub-tab-button.active {
+.tab-button.active,
+.sub-tab-button.active {
   color: var(--primary-color);
   border-bottom-color: var(--primary-color);
   background-color: var(--bg-hover);
 }
 
-.tab-button:hover, .sub-tab-button:hover {
+.tab-button:hover,
+.sub-tab-button:hover {
   background-color: var(--bg-hover);
 }
 
@@ -121,7 +125,7 @@ Admin Panel Complete Styles - IMPROVED UX VERSION
   font-size: 0.85rem;
   border-radius: 6px;
   border: 1px solid transparent;
-  background: rgba(255,255,255,0.02);
+  background: rgba(255, 255, 255, 0.02);
   color: var(--text-secondary);
   transition: all var(--transition-fast);
 }
@@ -172,9 +176,11 @@ Admin Panel Complete Styles - IMPROVED UX VERSION
 .data-table tbody tr {
   transition: background-color 0.12s ease, color 0.12s ease;
 }
+
 .data-table tbody tr:hover {
   background-color: var(--bg-hover);
 }
+
 .data-table tbody tr.selected {
   background-color: var(--primary-color);
   color: white;
@@ -195,7 +201,8 @@ Admin Panel Complete Styles - IMPROVED UX VERSION
   padding: 12px;
   display: flex;
   flex-direction: column;
-  overflow: hidden; /* ensures table bottom is contained */
+  overflow: hidden;
+  /* ensures table bottom is contained */
 }
 
 /* Make table fill the box and show clear separators */
@@ -245,7 +252,7 @@ Admin Panel Complete Styles - IMPROVED UX VERSION
   font-size: 0.85rem;
   border-radius: 6px;
   border: 1px solid transparent;
-  background: rgba(255,255,255,0.02);
+  background: rgba(255, 255, 255, 0.02);
   color: var(--text-secondary);
   transition: all var(--transition-fast);
 }
@@ -500,9 +507,17 @@ Admin Panel Complete Styles - IMPROVED UX VERSION
   }
 
   /* Reorder for better UX */
-  #enrollment-ui > div:first-child { order: 1; }
-  .enrollment-controls { order: 2; }
-  #enrollment-ui > div:last-child { order: 3; }
+  #enrollment-ui>div:first-child {
+    order: 1;
+  }
+
+  .enrollment-controls {
+    order: 2;
+  }
+
+  #enrollment-ui>div:last-child {
+    order: 3;
+  }
 
   .form-grid {
     grid-template-columns: 1fr;
@@ -520,17 +535,20 @@ Admin Panel Complete Styles - IMPROVED UX VERSION
     width: 100%;
   }
 
-  .tabs, .sub-tabs {
+  .tabs,
+  .sub-tabs {
     flex-direction: column;
     border-bottom: none;
   }
 
-  .tab-button, .sub-tab-button {
+  .tab-button,
+  .sub-tab-button {
     border-bottom: none;
     border-left: 3px solid transparent;
   }
 
-  .tab-button.active, .sub-tab-button.active {
+  .tab-button.active,
+  .sub-tab-button.active {
     border-left-color: var(--primary-color);
   }
 
@@ -594,11 +612,13 @@ Admin Panel Complete Styles - IMPROVED UX VERSION
   }
 
   .data-table td {
-    text-align: left; /* FIXED: Changed from right to left */
+    text-align: left;
+    /* FIXED: Changed from right to left */
     padding: 8px 0;
     border-bottom: 1px solid var(--border-color);
     position: relative;
-    padding-left: 0; /* FIXED: Removed 50% padding */
+    padding-left: 0;
+    /* FIXED: Removed 50% padding */
   }
 
   .data-table td:last-child {
@@ -608,9 +628,12 @@ Admin Panel Complete Styles - IMPROVED UX VERSION
   /* IMPROVED: Labels above content, not side-by-side */
   .data-table td::before {
     content: attr(data-label);
-    display: block; /* FIXED: Changed to block */
-    width: 100%; /* FIXED: Full width */
-    margin-bottom: 4px; /* FIXED: Space between label and content */
+    display: block;
+    /* FIXED: Changed to block */
+    width: 100%;
+    /* FIXED: Full width */
+    margin-bottom: 4px;
+    /* FIXED: Space between label and content */
     font-weight: 600;
     color: var(--text-secondary);
     text-transform: uppercase;
@@ -707,8 +730,342 @@ Admin Panel Complete Styles - IMPROVED UX VERSION
   }
 
   .class-roll-id-input {
-    width: 80px; /* IMPROVED: Better width on small screens */
+    width: 80px;
+    /* IMPROVED: Better width on small screens */
     padding: 8px;
     font-size: 0.85rem;
+  }
+}
+
+/* =========================================================
+   ANALYTICS DASHBOARD STYLES
+   ========================================================= */
+
+/* KPI Cards Grid */
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.kpi-grid-small {
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  margin-bottom: 16px;
+}
+
+.kpi-card {
+  background: var(--bg-secondary);
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+  border: 1px solid var(--border-color);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.kpi-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  border-radius: 12px 12px 0 0;
+}
+
+.kpi-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.kpi-icon {
+  font-size: 1.8rem;
+  margin-bottom: 8px;
+}
+
+.kpi-value {
+  font-size: 2rem;
+  font-weight: 800;
+  line-height: 1.2;
+  margin-bottom: 4px;
+}
+
+.kpi-label {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--text-secondary);
+  font-weight: 600;
+}
+
+/* KPI Color Variants */
+.kpi-blue::before {
+  background: linear-gradient(90deg, #3b82f6, #60a5fa);
+}
+
+.kpi-blue .kpi-value {
+  color: #60a5fa;
+}
+
+.kpi-purple::before {
+  background: linear-gradient(90deg, #8b5cf6, #a78bfa);
+}
+
+.kpi-purple .kpi-value {
+  color: #a78bfa;
+}
+
+.kpi-green::before {
+  background: linear-gradient(90deg, #22c55e, #4ade80);
+}
+
+.kpi-green .kpi-value {
+  color: #4ade80;
+}
+
+.kpi-gold::before {
+  background: linear-gradient(90deg, #eab308, #facc15);
+}
+
+.kpi-gold .kpi-value {
+  color: #facc15;
+}
+
+.kpi-red::before {
+  background: linear-gradient(90deg, #ef4444, #f87171);
+}
+
+.kpi-red .kpi-value {
+  color: #f87171;
+}
+
+.kpi-teal::before {
+  background: linear-gradient(90deg, #06b6d4, #22d3ee);
+}
+
+.kpi-teal .kpi-value {
+  color: #22d3ee;
+}
+
+.kpi-orange::before {
+  background: linear-gradient(90deg, #f97316, #fb923c);
+}
+
+.kpi-orange .kpi-value {
+  color: #fb923c;
+}
+
+.kpi-cyan::before {
+  background: linear-gradient(90deg, #0891b2, #06b6d4);
+}
+
+.kpi-cyan .kpi-value {
+  color: #06b6d4;
+}
+
+/* Status Badges */
+.status-badge {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.status-safe {
+  background: rgba(34, 197, 94, 0.15);
+  color: #22c55e;
+}
+
+.status-warning {
+  background: rgba(234, 179, 8, 0.15);
+  color: #eab308;
+}
+
+.status-critical {
+  background: rgba(239, 68, 68, 0.15);
+  color: #ef4444;
+}
+
+/* Chart Containers */
+.chart-container {
+  background: var(--bg-secondary);
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 20px;
+  border: 1px solid var(--border-color);
+  position: relative;
+  height: 300px;
+}
+
+.chart-container-small {
+  height: 260px;
+}
+
+.chart-container canvas {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+/* Charts Grid (2-column) */
+.charts-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.chart-card {
+  background: var(--bg-secondary);
+  border-radius: 12px;
+  padding: 20px;
+  border: 1px solid var(--border-color);
+}
+
+.chart-card h3 {
+  margin: 0 0 12px 0;
+  font-size: 1rem;
+  color: var(--text-primary);
+}
+
+.chart-card .chart-container {
+  border: none;
+  padding: 0;
+  margin-bottom: 0;
+  background: transparent;
+}
+
+/* Analytics Controls */
+.analytics-controls {
+  margin-bottom: 20px;
+}
+
+.analytics-controls label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  letter-spacing: 0.5px;
+}
+
+.analytics-controls select {
+  width: 100%;
+  max-width: 450px;
+}
+
+/* Course Info Bar */
+.course-info-bar {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+  padding: 12px 16px;
+  background: var(--bg-secondary);
+  border-radius: 10px;
+  border: 1px solid var(--border-color);
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.course-info-bar span {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.course-info-bar span:first-child {
+  font-size: 1.1rem;
+  color: var(--primary-color);
+}
+
+/* Student Profile Card */
+.student-profile-card {
+  background: var(--bg-secondary);
+  border-radius: 12px;
+  padding: 24px;
+  border: 1px solid var(--border-color);
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.student-profile-card h3 {
+  font-size: 1.3rem;
+  margin: 0;
+  color: var(--text-primary);
+}
+
+.student-profile-card p {
+  color: var(--text-secondary);
+  margin: 4px 0 0 0;
+  font-size: 0.9rem;
+}
+
+.sa-overall-badge {
+  font-size: 1.8rem;
+  font-weight: 800;
+  padding: 12px 24px;
+  border-radius: 12px;
+  margin-left: auto;
+}
+
+.sa-badge-safe {
+  background: rgba(34, 197, 94, 0.15);
+  color: #22c55e;
+}
+
+.sa-badge-warning {
+  background: rgba(234, 179, 8, 0.15);
+  color: #eab308;
+}
+
+.sa-badge-critical {
+  background: rgba(239, 68, 68, 0.15);
+  color: #ef4444;
+}
+
+/* Student search input in course analytics */
+#ca-student-search {
+  width: 100%;
+  max-width: 400px;
+  margin-bottom: 12px;
+}
+
+/* Responsive: Analytics */
+@media (max-width: 900px) {
+  .charts-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .kpi-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .kpi-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .kpi-value {
+    font-size: 1.5rem;
+  }
+
+  .student-profile-card {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .sa-overall-badge {
+    margin-left: 0;
+  }
+
+  .course-info-bar {
+    flex-direction: column;
+    gap: 8px;
   }
 }

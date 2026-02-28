@@ -21,7 +21,9 @@
     <div class="header-container">
       <div>
         <h1>A.R.I.S.E. Admin Panel</h1>
-        <h2 id="batch-identity-display" style="font-size: 1.1rem; color: var(--text-muted); margin-top: 0.2rem; font-weight: normal;">Loading Identity...</h2>
+        <h2 id="batch-identity-display"
+          style="font-size: 1.1rem; color: var(--text-muted); margin-top: 0.2rem; font-weight: normal;">Loading
+          Identity...</h2>
       </div>
       <button id="logout-button" class="button-danger">Logout</button>
     </div>
@@ -40,7 +42,7 @@
       <div class="management-section">
         <h3>Classroom / Batch Identity</h3>
         <p class="description" style="color: var(--text-muted); margin-bottom: 1rem;">
-          Set the unique name for this classroom installation (e.g., "SBU MCA 2024-2026"). 
+          Set the unique name for this classroom installation (e.g., "SBU MCA 2024-2026").
           This name will appear on all reports and analytics to identify this specific pod.
         </p>
         <form id="settings-form" class="management-form" style="max-width: 500px;">
@@ -430,17 +432,204 @@
 
     <!-- ======================= ANALYTICS TAB CONTENT ======================= -->
     <div id="analytics" class="tab-content">
-      <h2>Analytics</h2>
-      <p>
-        The analytics dashboard will be implemented here in a future module.
-      </p>
+      <h2>📊 Analytics Dashboard</h2>
+
+      <div class="sub-tabs">
+        <button class="sub-tab-button active" data-subtab="analytics-overview">Overview</button>
+        <button class="sub-tab-button" data-subtab="analytics-course">Course Analytics</button>
+        <button class="sub-tab-button" data-subtab="analytics-student">Student Lookup</button>
+        <button class="sub-tab-button" data-subtab="analytics-trends">Trends</button>
+      </div>
+
+      <!-- ========== OVERVIEW ========== -->
+      <div id="analytics-overview" class="tab-content active">
+        <div class="kpi-grid">
+          <div class="kpi-card kpi-blue">
+            <div class="kpi-icon">👥</div>
+            <div class="kpi-value" id="kpi-total-students">--</div>
+            <div class="kpi-label">Total Students</div>
+          </div>
+          <div class="kpi-card kpi-purple">
+            <div class="kpi-icon">📚</div>
+            <div class="kpi-value" id="kpi-total-courses">--</div>
+            <div class="kpi-label">Courses</div>
+          </div>
+          <div class="kpi-card kpi-green">
+            <div class="kpi-icon">📋</div>
+            <div class="kpi-value" id="kpi-total-sessions">--</div>
+            <div class="kpi-label">Total Sessions</div>
+          </div>
+          <div class="kpi-card kpi-gold">
+            <div class="kpi-icon">📈</div>
+            <div class="kpi-value" id="kpi-overall-rate">--%</div>
+            <div class="kpi-label">Overall Attendance</div>
+          </div>
+          <div class="kpi-card kpi-red">
+            <div class="kpi-icon">⚠️</div>
+            <div class="kpi-value" id="kpi-at-risk">--</div>
+            <div class="kpi-label">At-Risk Students</div>
+          </div>
+          <div class="kpi-card kpi-teal">
+            <div class="kpi-icon">🌐</div>
+            <div class="kpi-value" id="kpi-online-sessions">--</div>
+            <div class="kpi-label">Online Sessions</div>
+          </div>
+          <div class="kpi-card kpi-orange">
+            <div class="kpi-icon">📅</div>
+            <div class="kpi-value" id="kpi-sessions-week">--</div>
+            <div class="kpi-label">This Week</div>
+          </div>
+          <div class="kpi-card kpi-cyan">
+            <div class="kpi-icon">📊</div>
+            <div class="kpi-value" id="kpi-avg-attendance">--</div>
+            <div class="kpi-label">Avg per Session</div>
+          </div>
+        </div>
+
+        <h3>Course-wise Summary</h3>
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Course Code</th>
+              <th>Course Name</th>
+              <th>Teacher</th>
+              <th>Enrolled</th>
+              <th>Sessions</th>
+              <th>Attendance %</th>
+            </tr>
+          </thead>
+          <tbody id="course-summary-tbody"></tbody>
+        </table>
+      </div>
+
+      <!-- ========== COURSE ANALYTICS ========== -->
+      <div id="analytics-course" class="tab-content">
+        <div class="analytics-controls">
+          <label for="analytics-course-select">Select Course:</label>
+          <select id="analytics-course-select">
+            <option value="">-- Select a Course --</option>
+          </select>
+        </div>
+
+        <div id="course-analytics-content" style="display:none;">
+          <div class="course-info-bar">
+            <span id="ca-course-name"></span>
+            <span id="ca-teacher"></span>
+            <span id="ca-semester"></span>
+          </div>
+
+          <div class="kpi-grid kpi-grid-small">
+            <div class="kpi-card kpi-blue">
+              <div class="kpi-value" id="ca-enrolled">--</div>
+              <div class="kpi-label">Enrolled</div>
+            </div>
+            <div class="kpi-card kpi-green">
+              <div class="kpi-value" id="ca-sessions">--</div>
+              <div class="kpi-label">Sessions</div>
+            </div>
+            <div class="kpi-card kpi-red">
+              <div class="kpi-value" id="ca-at-risk">--</div>
+              <div class="kpi-label">At Risk</div>
+            </div>
+          </div>
+
+          <h3>📈 Attendance Trend</h3>
+          <div class="chart-container"><canvas id="course-trend-chart"></canvas></div>
+
+          <h3>Per-Student Attendance</h3>
+          <input type="text" id="ca-student-search" placeholder="Search by name or roll..." autocomplete="off" />
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Class Roll</th>
+                <th>Name</th>
+                <th>Univ. Roll</th>
+                <th>Present</th>
+                <th>Total</th>
+                <th>%</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody id="ca-students-tbody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ========== STUDENT LOOKUP ========== -->
+      <div id="analytics-student" class="tab-content">
+        <div class="analytics-controls">
+          <label for="student-lookup-select">Select Student:</label>
+          <select id="student-lookup-select">
+            <option value="">-- Select a Student --</option>
+          </select>
+        </div>
+
+        <div id="student-analytics-content" style="display:none;">
+          <div class="student-profile-card">
+            <h3 id="sa-student-name"></h3>
+            <p id="sa-student-roll"></p>
+            <div class="sa-overall-badge" id="sa-overall-badge">--</div>
+          </div>
+
+          <h3>Attendance per Course</h3>
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Course Code</th>
+                <th>Course Name</th>
+                <th>Class Roll</th>
+                <th>Present</th>
+                <th>Total</th>
+                <th>%</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody id="sa-courses-tbody"></tbody>
+          </table>
+
+          <h3>Recent Absences</h3>
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Course</th>
+              </tr>
+            </thead>
+            <tbody id="sa-absences-tbody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ========== TRENDS ========== -->
+      <div id="analytics-trends" class="tab-content">
+        <div class="charts-grid">
+          <div class="chart-card">
+            <h3>📈 Daily Attendance (Last 30 Days)</h3>
+            <div class="chart-container"><canvas id="daily-trend-chart"></canvas></div>
+          </div>
+          <div class="chart-card">
+            <h3>📅 Day-of-Week Pattern</h3>
+            <div class="chart-container"><canvas id="dow-chart"></canvas></div>
+          </div>
+          <div class="chart-card">
+            <h3>🌐 Online vs Offline</h3>
+            <div class="chart-container chart-container-small"><canvas id="type-split-chart"></canvas></div>
+          </div>
+          <div class="chart-card">
+            <h3>📚 Course Comparison</h3>
+            <div class="chart-container"><canvas id="course-comparison-chart"></canvas></div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
 
   <!-- JavaScript Files -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
   <script src="/static/js/modal.js"></script>
   <script src="/static/js/admin.js"></script>
+  <script src="/static/js/admin-analytics.js"></script>
 </body>
 
 </html>

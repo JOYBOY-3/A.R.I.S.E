@@ -52,6 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const mainTabs = document.querySelectorAll('.tab-button');
   const manageSubTabs = document.querySelectorAll('#manage .sub-tab-button');
   const viewSubTabs = document.querySelectorAll('#view .sub-tab-button');
+  const analyticsSubTabs = document.querySelectorAll('#analytics .sub-tab-button');
   const logoutButton = document.getElementById('logout-button');
 
   // --- References to all the FORMS ---
@@ -148,6 +149,12 @@ document.addEventListener('DOMContentLoaded', () => {
     subTab.addEventListener('click', () => {
       switchTab(viewSubTabs, subTab);
       loadDataForViewTab(subTab.dataset.subtab);
+    }),
+  );
+
+  analyticsSubTabs.forEach((subTab) =>
+    subTab.addEventListener('click', () => {
+      switchTab(analyticsSubTabs, subTab);
     }),
   );
 
@@ -274,9 +281,8 @@ document.addEventListener('DOMContentLoaded', () => {
           <td data-label="Name">${item.student_name}</td>
           <td data-label="Univ. Roll No.">${item.university_roll_no}</td>
           <td data-label="Enrollment No.">${item.enrollment_no}</td>
-          <td data-label="Emails">${item.email1 || ''}<br>${
-            item.email2 || ''
-          }</td>
+          <td data-label="Emails">${item.email1 || ''}<br>${item.email2 || ''
+            }</td>
         `;
         }
         if (entity === 'courses') {
@@ -341,9 +347,8 @@ document.addEventListener('DOMContentLoaded', () => {
     currentEditId = id;
     const form = forms[entity];
     const submitButton = form.querySelector('button[type="submit"]');
-    submitButton.textContent = `Update ${
-      entity.charAt(0).toUpperCase() + entity.slice(1, -1)
-    }`;
+    submitButton.textContent = `Update ${entity.charAt(0).toUpperCase() + entity.slice(1, -1)
+      }`;
     submitButton.className = 'button-secondary';
     const cells = row.querySelectorAll('td');
     if (entity === 'semesters') {
@@ -475,11 +480,9 @@ document.addEventListener('DOMContentLoaded', () => {
       <td data-label="Enrollment No.">${item.enrollment_no}</td>
       <td data-label="Emails">${item.email1 || ''}<br>${item.email2 || ''}</td>
       <td data-label="Actions" class="actions-cell">
-        <button class="button-secondary edit-btn" data-id="${
-          item.id
+        <button class="button-secondary edit-btn" data-id="${item.id
         }">Edit</button>
-        <button class="button-danger delete-btn" data-id="${
-          item.id
+        <button class="button-danger delete-btn" data-id="${item.id
         }">Delete</button>
       </td>
     `;
@@ -538,11 +541,9 @@ document.addEventListener('DOMContentLoaded', () => {
       <td data-label="Semester">${item.semester_name || 'N/A'}</td>
       <td data-label="Teacher">${item.teacher_name || 'N/A'}</td>
       <td data-label="Actions" class="actions-cell">
-        <button class="button-secondary edit-btn" data-id="${
-          item.id
+        <button class="button-secondary edit-btn" data-id="${item.id
         }">Edit</button>
-        <button class="button-danger delete-btn" data-id="${
-          item.id
+        <button class="button-danger delete-btn" data-id="${item.id
         }">Delete</button>
       </td>
     `;
@@ -657,9 +658,8 @@ document.addEventListener('DOMContentLoaded', () => {
       .forEach((student) => {
         const row = document.createElement('tr');
         row.dataset.id = student.id;
-        row.innerHTML = `<td>${student.student_name}</td><td class="right">${
-          student.university_roll_no || ''
-        }</td>`;
+        row.innerHTML = `<td>${student.student_name}</td><td class="right">${student.university_roll_no || ''
+          }</td>`;
         availableTbody.appendChild(row);
       });
 
@@ -668,11 +668,9 @@ document.addEventListener('DOMContentLoaded', () => {
       .forEach((student) => {
         const row = document.createElement('tr');
         row.dataset.studentId = student.student_id;
-        row.innerHTML = `<td>${
-          student.student_name
-        }</td><td><input type="number" class="class-roll-id-input" value="${
-          student.class_roll_id || ''
-        }" min="1"></td>`;
+        row.innerHTML = `<td>${student.student_name
+          }</td><td><input type="number" class="class-roll-id-input" value="${student.class_roll_id || ''
+          }" min="1"></td>`;
         enrolledStudentsTbody.appendChild(row);
       });
   }
