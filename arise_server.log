@@ -5240,3 +5240,1342 @@ sqlite3.OperationalError: no such column: ar.created_at
 2026-02-28 05:24:10,731 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
 2026-02-28 05:24:12,036 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
 2026-02-28 05:24:12,729 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:24:15,847 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:24:15,848 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:24:16,731 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:24:18,043 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:24:18,728 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:24:21,048 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:24:21,049 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:24:22,729 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:24:24,041 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:24:24,735 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:24:27,046 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:24:27,047 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:24:28,735 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:24:30,044 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:24:30,731 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:24:33,045 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:24:33,045 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:24:34,734 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:24:36,043 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:24:36,731 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:24:39,041 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:24:39,041 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:24:40,731 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:24:42,037 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:24:42,728 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:24:45,040 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:24:45,040 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:24:46,728 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:24:48,047 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:24:48,732 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:24:51,034 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:24:51,035 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:24:52,735 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:24:54,039 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:24:54,732 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:24:57,042 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:24:57,043 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:24:58,734 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:25:00,053 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:25:00,730 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:25:03,051 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:25:03,052 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:25:04,731 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:25:06,039 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:25:06,727 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:25:09,038 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:25:09,038 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:25:10,729 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:25:12,049 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:25:12,732 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:25:13,058 - INFO - [SYNC] Starting push to cloud: https://a-r-i-s-e.onrender.com
+2026-02-28 05:25:13,992 - INFO - [SYNC] Database binary exported: 118784 bytes (116.0 KB)
+2026-02-28 05:25:14,740 - INFO - [SYNC] Push complete - Cloud response: success
+2026-02-28 05:25:14,740 - INFO - [SYNC] Auto-sync result: success
+2026-02-28 05:25:15,046 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:25:15,046 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:25:16,727 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:25:18,035 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:25:18,732 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:25:21,034 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:25:21,034 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:25:22,733 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:25:24,045 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:25:24,728 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:25:27,042 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:25:27,042 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:25:29,048 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:25:29,730 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:25:31,040 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:25:32,733 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:25:33,042 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:25:35,034 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:25:35,732 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:25:37,046 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:25:38,731 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:25:39,036 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:25:41,037 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:25:41,733 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:25:43,042 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:25:44,729 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:25:45,043 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:25:47,044 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:25:47,730 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:25:49,044 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:25:50,734 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:25:51,048 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:25:53,033 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:25:53,728 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:25:55,031 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:25:56,742 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:25:57,055 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:25:59,044 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:25:59,730 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:26:01,046 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:26:02,730 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:26:03,033 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:26:05,053 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:26:05,733 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:26:07,042 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:26:08,732 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:26:09,043 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:26:10,731 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:26:12,037 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:26:12,729 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:26:15,047 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:26:15,047 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:26:16,729 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:26:18,045 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:26:18,731 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:26:21,053 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:26:21,053 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:26:22,728 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:26:24,052 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:26:24,732 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:26:27,035 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:26:27,036 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:26:28,731 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:26:30,037 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:26:30,732 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:26:33,038 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:26:33,038 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:26:34,730 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:26:36,038 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:26:36,729 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:26:39,041 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:26:39,042 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:26:40,731 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:26:42,042 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:26:42,735 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:26:45,047 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:26:45,048 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:26:46,730 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:26:48,046 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:26:48,733 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:26:51,044 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:26:51,044 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:26:52,735 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:26:54,036 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:26:54,731 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:26:57,031 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:26:57,046 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:26:58,732 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:27:00,043 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:27:00,728 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:27:03,049 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:27:03,049 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:27:04,729 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:27:06,044 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:27:06,735 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:27:09,040 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:27:09,042 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:27:10,728 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:27:12,049 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:27:12,733 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:27:15,040 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:27:15,040 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:27:16,734 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:27:18,039 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:27:18,731 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:27:21,037 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:27:21,038 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:27:22,731 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:27:24,037 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:27:24,729 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:27:27,038 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:27:27,038 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:27:28,728 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:27:30,044 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:27:30,734 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:27:33,038 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:27:33,039 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:27:34,728 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:27:36,044 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:27:36,730 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:27:39,032 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:27:39,033 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:27:40,734 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:27:42,041 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:27:42,730 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:27:45,041 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:27:45,041 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:27:46,734 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:27:48,037 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:27:48,728 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:27:51,048 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:27:51,048 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:27:52,730 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:27:54,043 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:27:54,731 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:27:57,040 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:27:57,040 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:27:58,727 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:28:00,036 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:28:00,732 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:28:03,044 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:28:03,045 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:28:04,729 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:28:06,044 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:28:06,729 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:28:09,051 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:28:09,052 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:28:10,732 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:28:12,043 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:28:12,728 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:28:15,047 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:28:15,047 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:28:16,729 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:28:18,051 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:28:18,734 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:28:21,039 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:28:21,040 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:28:22,727 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:28:24,040 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:28:24,733 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:28:27,033 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:28:27,034 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:28:28,733 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:28:30,039 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:28:30,728 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:28:33,051 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:28:33,051 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:28:34,731 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:28:36,036 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:28:36,727 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:28:39,037 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:28:39,038 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:28:40,729 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:28:42,049 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:28:42,732 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:28:45,037 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:28:45,037 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:28:46,740 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:28:48,046 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:28:48,731 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:28:51,038 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:28:51,038 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:28:52,731 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:28:54,037 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:28:54,729 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:28:57,038 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:28:57,039 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:28:58,728 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:29:00,044 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:29:00,727 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:29:03,039 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:29:03,039 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:29:04,729 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:29:06,038 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:29:06,733 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:29:09,045 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:29:09,046 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:29:10,731 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:29:12,034 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:29:12,731 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:29:15,035 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:29:15,036 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:29:16,731 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:29:18,038 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:29:18,729 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:29:21,037 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:29:21,038 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:29:22,730 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:29:24,044 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:29:24,727 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:29:27,045 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:29:27,046 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:29:28,728 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:29:30,040 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:29:30,731 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:29:33,045 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:29:33,045 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:29:34,733 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:29:36,037 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:29:36,732 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:29:39,038 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:29:39,039 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:29:40,733 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:29:42,038 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:29:42,729 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:29:45,038 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:29:45,039 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:29:46,733 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:29:48,052 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:29:48,727 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:29:51,039 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:29:51,039 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:29:52,728 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:29:54,040 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:29:54,733 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:29:57,046 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:29:57,047 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:29:58,736 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:30:00,044 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:30:00,729 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:30:03,044 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:30:03,045 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:30:04,730 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:30:06,036 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:30:06,728 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:30:09,048 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:30:09,048 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:30:10,730 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:30:12,050 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:30:12,727 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:30:15,037 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:30:15,037 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:30:15,486 - INFO - [SYNC] Starting push to cloud: https://a-r-i-s-e.onrender.com
+2026-02-28 05:30:16,414 - INFO - [SYNC] Database binary exported: 118784 bytes (116.0 KB)
+2026-02-28 05:30:16,728 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:30:17,940 - INFO - [SYNC] Push complete - Cloud response: success
+2026-02-28 05:30:17,941 - INFO - [SYNC] Auto-sync result: success
+2026-02-28 05:30:18,042 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:30:18,733 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:30:21,047 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:30:21,048 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:30:22,734 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:30:24,048 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:30:24,732 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:30:27,038 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:30:27,039 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:30:28,733 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:30:30,041 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:30:30,730 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:30:31,061 - INFO - [REQUEST] POST /api/teacher/session/244/check-expire - Client: 127.0.0.1
+2026-02-28 05:30:33,052 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:30:33,052 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:30:34,732 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:30:36,053 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:30:36,734 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:30:39,050 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:30:39,050 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:30:40,730 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:30:42,042 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:30:42,731 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:30:45,037 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:30:45,037 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:30:46,734 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:30:48,040 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:30:48,731 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:30:51,048 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:30:51,048 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:30:52,732 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:30:54,042 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:30:54,729 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:30:57,045 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:30:57,046 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:30:58,730 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:31:00,043 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:31:00,727 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:31:03,040 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:31:03,041 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:31:04,727 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:31:06,041 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:31:06,733 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:31:09,036 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:31:09,037 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:31:10,734 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:31:12,037 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:31:12,730 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:31:15,030 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:31:15,031 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:31:16,731 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:31:18,037 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:31:18,728 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:31:21,036 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:31:21,036 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:31:22,729 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:31:24,035 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:31:24,726 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:31:27,048 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:31:27,049 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:31:28,728 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:31:30,045 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:31:30,730 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:31:33,036 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:31:33,037 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:31:34,736 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:31:36,044 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:31:36,730 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:31:39,050 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:31:39,051 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:31:40,731 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:31:42,035 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:31:42,728 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:31:45,045 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:31:45,046 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:31:46,729 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:31:48,044 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:31:48,735 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:31:51,048 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:31:51,048 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:31:52,728 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:31:54,043 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:31:54,732 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:31:57,044 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:31:57,044 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:31:58,733 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:32:00,041 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:32:00,730 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:32:03,039 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:32:03,040 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:32:04,731 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:32:06,038 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:32:06,728 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:32:09,045 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:32:09,046 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:32:10,730 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:32:12,038 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:32:12,734 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:32:15,046 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:32:15,047 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:32:16,727 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:32:18,039 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:32:18,732 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:32:21,043 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:32:21,044 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:32:22,733 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:32:24,038 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:32:24,731 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:32:27,050 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:32:27,050 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:32:28,731 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:32:30,044 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:32:30,727 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:32:33,048 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:32:33,048 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:32:34,729 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:32:36,041 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:32:36,730 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:32:39,037 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:32:39,038 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:32:40,732 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:32:42,040 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:32:42,729 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:32:45,039 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:32:45,039 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:32:46,733 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:32:48,039 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:32:48,923 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:32:51,050 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:32:51,050 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:32:52,738 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:32:54,044 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:32:54,727 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:32:57,043 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:32:57,043 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:32:58,728 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:33:00,040 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:33:00,734 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:33:03,036 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:33:03,037 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:33:04,728 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:33:06,046 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:33:06,731 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:33:09,043 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:33:09,044 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:33:10,732 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:33:12,046 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:33:12,729 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:33:15,046 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:33:15,046 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:33:16,731 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:33:18,041 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:33:18,727 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:33:21,037 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:33:21,038 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:33:22,729 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:33:24,051 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:33:24,731 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:33:27,037 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:33:27,037 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:33:28,734 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:33:30,044 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:33:30,729 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:33:33,035 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:33:33,035 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:33:34,732 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:33:36,042 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:33:36,728 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:33:39,048 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:33:39,049 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:33:40,729 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:33:42,045 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:33:42,727 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:33:45,040 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:33:45,041 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:33:46,728 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:33:48,051 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:33:48,733 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:33:51,046 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:33:51,047 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:33:52,735 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:33:54,039 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:33:54,730 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:33:57,043 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:33:57,044 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:33:58,732 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:34:00,037 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:34:00,728 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:34:03,044 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:34:03,045 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:34:04,730 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:34:06,036 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:34:06,727 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:34:09,046 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:34:09,047 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:34:10,728 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:34:12,051 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:34:12,733 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:34:15,045 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:34:15,046 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:34:16,734 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:34:18,043 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:34:18,730 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:34:21,037 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:34:21,038 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:34:22,732 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:34:24,044 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:34:24,730 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:34:27,037 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:34:27,038 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:34:28,731 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:34:30,051 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:34:30,727 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:34:33,037 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:34:33,038 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:34:34,729 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:34:36,049 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:34:36,731 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:34:39,040 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:34:39,041 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:34:40,733 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:34:42,039 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:34:42,731 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:34:45,041 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:34:45,042 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:34:46,731 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:34:48,047 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:34:48,728 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:34:51,038 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:34:51,038 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:34:52,730 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:34:54,036 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:34:54,735 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:34:57,049 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:34:57,050 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:34:58,728 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:35:00,048 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:35:00,733 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:35:03,041 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:35:03,041 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:35:04,734 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:35:06,039 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:35:06,730 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:35:09,033 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:35:09,033 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:35:10,729 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:35:12,046 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:35:12,728 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:35:15,047 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:35:15,047 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:35:16,730 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:35:18,043 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:35:18,727 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:35:19,027 - INFO - [SYNC] Starting push to cloud: https://a-r-i-s-e.onrender.com
+2026-02-28 05:35:19,453 - INFO - [SYNC] Database binary exported: 118784 bytes (116.0 KB)
+2026-02-28 05:35:21,012 - INFO - [SYNC] Push complete - Cloud response: success
+2026-02-28 05:35:21,013 - INFO - [SYNC] Auto-sync result: success
+2026-02-28 05:35:21,044 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:35:21,045 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:35:22,728 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:35:24,037 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:35:24,732 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:35:27,032 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:35:27,033 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:35:28,734 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:35:30,038 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:35:30,730 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:35:33,043 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:35:33,044 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:35:34,732 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:35:36,045 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:35:36,727 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:35:39,048 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:35:39,048 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:35:40,730 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:35:42,042 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:35:42,734 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:35:45,041 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:35:45,042 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:35:46,727 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:35:48,044 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:35:48,730 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:35:51,036 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:35:51,036 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:35:52,731 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:35:54,041 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:35:54,730 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:35:57,041 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:35:57,041 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:35:58,731 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:36:00,046 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:36:00,728 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:36:03,040 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:36:03,041 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:36:04,730 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:36:06,051 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:36:06,733 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:36:09,042 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:36:09,043 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:36:10,726 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:36:12,040 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:36:12,731 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:36:15,042 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:36:15,043 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:36:16,732 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:36:21,962 - INFO - Server started - Auto-expire scheduler active
+2026-02-28 05:36:21,964 - INFO - [SYNC] Auto-sync started (interval: 300s)
+2026-02-28 05:36:21,964 - INFO - [SYNC] Auto-sync enabled: every 300s to https://a-r-i-s-e.onrender.com
+2026-02-28 05:36:22,505 - INFO - [SYNC] Starting push to cloud: https://a-r-i-s-e.onrender.com
+2026-02-28 05:36:22,573 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:36:22,741 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:36:22,954 - INFO - [SYNC] Database binary exported: 118784 bytes (116.0 KB)
+2026-02-28 05:36:23,669 - INFO - [SYNC] Push complete - Cloud response: success
+2026-02-28 05:36:23,670 - INFO - [SYNC] Auto-sync result: success
+2026-02-28 05:36:24,045 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:36:24,727 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:36:27,040 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:36:27,040 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:36:28,728 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:36:30,044 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:36:30,728 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:36:33,041 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:36:33,041 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:36:34,727 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:36:36,041 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:36:36,731 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:36:39,035 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:36:39,036 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:36:40,729 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:36:42,040 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:36:42,730 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:36:45,049 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:36:45,050 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:36:46,731 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:36:48,045 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:36:48,684 - INFO - [REQUEST] GET /admin-login - Client: 127.0.0.1
+2026-02-28 05:36:49,064 - INFO - [REQUEST] GET /static/css/base.css - Client: 127.0.0.1
+2026-02-28 05:36:49,066 - INFO - [REQUEST] GET /static/css/modal.css - Client: 127.0.0.1
+2026-02-28 05:36:49,070 - INFO - [RESPONSE] GET /static/css/base.css - Status: 304 - 6ms
+2026-02-28 05:36:49,071 - INFO - [RESPONSE] GET /static/css/modal.css - Status: 304 - 5ms
+2026-02-28 05:36:49,071 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:36:50,733 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:36:51,049 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:36:53,044 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:36:53,736 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:36:55,049 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:36:56,739 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:36:57,041 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:36:59,044 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:36:59,181 - INFO - [REQUEST] POST /api/admin/login - Client: 127.0.0.1
+2026-02-28 05:36:59,184 - INFO - Admin login attempt - Username: admin
+2026-02-28 05:36:59,186 - INFO - Admin login successful - Username: admin, AdminID: 1
+2026-02-28 05:36:59,307 - INFO - [REQUEST] GET /admin - Client: 127.0.0.1
+2026-02-28 05:36:59,535 - INFO - [REQUEST] GET /static/css/base.css - Client: 127.0.0.1
+2026-02-28 05:36:59,536 - INFO - [RESPONSE] GET /static/css/base.css - Status: 304 - 1ms
+2026-02-28 05:36:59,710 - INFO - [REQUEST] GET /static/css/modal.css - Client: 127.0.0.1
+2026-02-28 05:36:59,710 - INFO - [REQUEST] GET /static/js/admin-analytics.js - Client: 127.0.0.1
+2026-02-28 05:36:59,711 - INFO - [REQUEST] GET /static/js/modal.js - Client: 127.0.0.1
+2026-02-28 05:36:59,711 - INFO - [REQUEST] GET /static/js/admin.js - Client: 127.0.0.1
+2026-02-28 05:36:59,711 - INFO - [REQUEST] GET /static/css/admin.css - Client: 127.0.0.1
+2026-02-28 05:36:59,713 - INFO - [RESPONSE] GET /static/css/modal.css - Status: 304 - 4ms
+2026-02-28 05:36:59,714 - INFO - [RESPONSE] GET /static/js/admin.js - Status: 304 - 3ms
+2026-02-28 05:36:59,716 - INFO - [RESPONSE] GET /static/js/modal.js - Status: 304 - 5ms
+2026-02-28 05:37:00,049 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:37:00,202 - INFO - [REQUEST] GET /api/admin/config - Client: 127.0.0.1
+2026-02-28 05:37:00,205 - INFO - [REQUEST] GET /api/admin/semesters - Client: 127.0.0.1
+2026-02-28 05:37:00,730 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:37:03,047 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:37:03,047 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:37:04,741 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:37:06,050 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:37:06,743 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:37:09,040 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:37:09,040 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:37:10,744 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:37:12,039 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:37:12,736 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:37:15,035 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:37:15,037 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:37:16,735 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:37:18,054 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:37:18,742 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:37:21,039 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:37:21,039 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:37:22,736 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:37:24,052 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:37:24,733 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:37:27,041 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:37:27,043 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:37:28,744 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:37:30,044 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:37:30,738 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:37:33,054 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:37:33,055 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:37:34,740 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:37:36,046 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:37:36,729 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:37:39,041 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:37:39,043 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:37:40,741 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:37:42,048 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:37:42,741 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:37:45,048 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:37:45,048 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:37:46,744 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:37:48,049 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:37:48,734 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:37:49,176 - INFO - [REQUEST] GET /admin - Client: 127.0.0.1
+2026-02-28 05:37:49,422 - INFO - [REQUEST] GET /static/css/base.css - Client: 127.0.0.1
+2026-02-28 05:37:49,424 - INFO - [RESPONSE] GET /static/css/base.css - Status: 304 - 3ms
+2026-02-28 05:37:49,546 - INFO - [REQUEST] GET /static/css/modal.css - Client: 127.0.0.1
+2026-02-28 05:37:49,547 - INFO - [RESPONSE] GET /static/css/modal.css - Status: 304 - 1ms
+2026-02-28 05:37:49,554 - INFO - [REQUEST] GET /static/css/admin.css - Client: 127.0.0.1
+2026-02-28 05:37:49,556 - INFO - [REQUEST] GET /static/js/modal.js - Client: 127.0.0.1
+2026-02-28 05:37:49,561 - INFO - [REQUEST] GET /static/js/admin.js - Client: 127.0.0.1
+2026-02-28 05:37:49,561 - INFO - [RESPONSE] GET /static/css/admin.css - Status: 304 - 8ms
+2026-02-28 05:37:49,562 - INFO - [RESPONSE] GET /static/js/modal.js - Status: 304 - 6ms
+2026-02-28 05:37:49,566 - INFO - [RESPONSE] GET /static/js/admin.js - Status: 304 - 5ms
+2026-02-28 05:37:49,568 - INFO - [REQUEST] GET /static/js/admin-analytics.js - Client: 127.0.0.1
+2026-02-28 05:37:49,581 - INFO - [RESPONSE] GET /static/js/admin-analytics.js - Status: 304 - 13ms
+2026-02-28 05:37:49,919 - INFO - [REQUEST] GET /api/admin/semesters - Client: 127.0.0.1
+2026-02-28 05:37:49,919 - INFO - [REQUEST] GET /api/admin/config - Client: 127.0.0.1
+2026-02-28 05:37:50,744 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:37:51,056 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:37:53,039 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:37:53,735 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:37:55,093 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:37:56,733 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:37:57,041 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:37:59,045 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:37:59,743 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:38:01,046 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:38:02,746 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:38:03,062 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:38:05,041 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:38:05,735 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:38:07,046 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:38:08,742 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:38:09,057 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:38:11,057 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:38:11,748 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:38:13,048 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:38:14,734 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:38:15,044 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:38:17,049 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:38:17,746 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:38:19,048 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:38:20,741 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:38:21,046 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:38:23,045 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:38:23,738 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:38:25,047 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:38:26,745 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:38:27,050 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:38:29,042 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:38:29,738 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:38:31,053 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:38:32,741 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:38:33,047 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:38:35,044 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:38:35,732 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:38:37,041 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:38:38,734 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:38:39,041 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:38:41,043 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:38:41,747 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:38:43,040 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:38:44,742 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:38:45,047 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:38:47,037 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:38:47,752 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:38:49,067 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:38:50,735 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:38:51,050 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:38:51,084 - INFO - [REQUEST] POST /api/teacher/session/246/check-expire - Client: 127.0.0.1
+2026-02-28 05:38:51,441 - WARNING - Session force-expired by countdown check - ID: 246, End time was: 2026-02-28 05:38:50, Current time: 2026-02-28 05:38:51
+2026-02-28 05:38:53,067 - INFO - [REQUEST] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Client: 127.0.0.1
+2026-02-28 05:38:53,076 - INFO - [RESPONSE] GET /api/online/session/xpQUT-uNuR2ikSqjvk02eQ/otp - Status: 410 - 8ms
+2026-02-28 05:38:53,742 - INFO - [REQUEST] GET /api/teacher/session/246/online-status - Client: 127.0.0.1
+2026-02-28 05:39:38,492 - INFO - [REQUEST] GET /admin - Client: 127.0.0.1
+2026-02-28 05:39:38,685 - INFO - [REQUEST] GET /static/css/base.css - Client: 127.0.0.1
+2026-02-28 05:39:38,695 - INFO - [RESPONSE] GET /static/css/base.css - Status: 304 - 11ms
+2026-02-28 05:39:39,013 - INFO - [REQUEST] GET /static/css/modal.css - Client: 127.0.0.1
+2026-02-28 05:39:39,014 - INFO - [REQUEST] GET /static/css/admin.css - Client: 127.0.0.1
+2026-02-28 05:39:39,019 - INFO - [REQUEST] GET /static/js/modal.js - Client: 127.0.0.1
+2026-02-28 05:39:39,022 - INFO - [RESPONSE] GET /static/css/modal.css - Status: 304 - 9ms
+2026-02-28 05:39:39,024 - INFO - [RESPONSE] GET /static/css/admin.css - Status: 304 - 9ms
+2026-02-28 05:39:39,024 - INFO - [RESPONSE] GET /static/js/modal.js - Status: 304 - 6ms
+2026-02-28 05:39:39,026 - INFO - [REQUEST] GET /static/js/admin.js - Client: 127.0.0.1
+2026-02-28 05:39:39,030 - INFO - [REQUEST] GET /static/js/admin-analytics.js - Client: 127.0.0.1
+2026-02-28 05:39:39,045 - INFO - [RESPONSE] GET /static/js/admin-analytics.js - Status: 304 - 15ms
+2026-02-28 05:39:39,048 - INFO - [RESPONSE] GET /static/js/admin.js - Status: 304 - 22ms
+2026-02-28 05:39:39,448 - INFO - [REQUEST] GET /api/admin/config - Client: 127.0.0.1
+2026-02-28 05:39:39,469 - INFO - [REQUEST] GET /api/admin/semesters - Client: 127.0.0.1
+2026-02-28 05:40:07,064 - INFO - [REQUEST] GET /admin - Client: 127.0.0.1
+2026-02-28 05:40:07,489 - INFO - [REQUEST] GET /static/css/base.css - Client: 127.0.0.1
+2026-02-28 05:40:07,490 - INFO - [REQUEST] GET /static/css/modal.css - Client: 127.0.0.1
+2026-02-28 05:40:07,491 - INFO - [REQUEST] GET /static/css/admin.css - Client: 127.0.0.1
+2026-02-28 05:40:07,492 - INFO - [REQUEST] GET /static/js/modal.js - Client: 127.0.0.1
+2026-02-28 05:40:07,494 - INFO - [REQUEST] GET /static/js/admin.js - Client: 127.0.0.1
+2026-02-28 05:40:07,498 - INFO - [REQUEST] GET /static/js/admin-analytics.js - Client: 127.0.0.1
+2026-02-28 05:40:07,514 - INFO - [RESPONSE] GET /static/css/modal.css - Status: 304 - 24ms
+2026-02-28 05:40:07,515 - INFO - [RESPONSE] GET /static/css/admin.css - Status: 304 - 24ms
+2026-02-28 05:40:07,518 - INFO - [RESPONSE] GET /static/css/base.css - Status: 304 - 28ms
+2026-02-28 05:40:07,577 - INFO - [RESPONSE] GET /static/js/modal.js - Status: 304 - 85ms
+2026-02-28 05:40:07,579 - INFO - [RESPONSE] GET /static/js/admin.js - Status: 304 - 85ms
+2026-02-28 05:40:07,581 - INFO - [RESPONSE] GET /static/js/admin-analytics.js - Status: 304 - 83ms
+2026-02-28 05:40:07,925 - INFO - [REQUEST] GET /api/admin/config - Client: 127.0.0.1
+2026-02-28 05:40:07,925 - INFO - [REQUEST] GET /api/admin/semesters - Client: 127.0.0.1
+2026-02-28 05:40:11,348 - INFO - [REQUEST] GET /api/admin/analytics/overview - Client: 127.0.0.1
+2026-02-28 05:40:11,651 - INFO - [REQUEST] GET /api/admin/courses-view - Client: 127.0.0.1
+2026-02-28 05:40:11,654 - INFO - [REQUEST] GET /api/admin/students - Client: 127.0.0.1
+2026-02-28 05:41:24,299 - INFO - [SYNC] Starting push to cloud: https://a-r-i-s-e.onrender.com
+2026-02-28 05:41:24,752 - INFO - [SYNC] Database binary exported: 118784 bytes (116.0 KB)
+2026-02-28 05:41:25,449 - INFO - [SYNC] Push complete - Cloud response: success
+2026-02-28 05:41:25,451 - INFO - [SYNC] Auto-sync result: success
+2026-02-28 05:46:26,660 - INFO - [SYNC] Starting push to cloud: https://a-r-i-s-e.onrender.com
+2026-02-28 05:46:27,604 - INFO - [SYNC] Database binary exported: 118784 bytes (116.0 KB)
+2026-02-28 05:46:29,160 - INFO - [SYNC] Push complete - Cloud response: success
+2026-02-28 05:46:29,161 - INFO - [SYNC] Auto-sync result: success
+2026-02-28 05:51:30,284 - INFO - [SYNC] Starting push to cloud: https://a-r-i-s-e.onrender.com
+2026-02-28 05:51:30,705 - INFO - [SYNC] Database binary exported: 118784 bytes (116.0 KB)
+2026-02-28 05:51:31,746 - INFO - [SYNC] Push complete - Cloud response: success
+2026-02-28 05:51:31,746 - INFO - [SYNC] Auto-sync result: success
+2026-02-28 05:56:32,351 - INFO - [SYNC] Starting push to cloud: https://a-r-i-s-e.onrender.com
+2026-02-28 05:56:33,284 - INFO - [SYNC] Database binary exported: 118784 bytes (116.0 KB)
+2026-02-28 05:56:34,315 - INFO - [SYNC] Push complete - Cloud response: success
+2026-02-28 05:56:34,315 - INFO - [SYNC] Auto-sync result: success
+2026-02-28 06:01:34,946 - INFO - [SYNC] Starting push to cloud: https://a-r-i-s-e.onrender.com
+2026-02-28 06:01:35,847 - INFO - [SYNC] Database binary exported: 118784 bytes (116.0 KB)
+2026-02-28 06:01:36,833 - INFO - [SYNC] Push complete - Cloud response: success
+2026-02-28 06:01:36,833 - INFO - [SYNC] Auto-sync result: success
+2026-02-28 06:06:37,954 - INFO - [SYNC] Starting push to cloud: https://a-r-i-s-e.onrender.com
+2026-02-28 06:06:38,394 - INFO - [SYNC] Database binary exported: 118784 bytes (116.0 KB)
+2026-02-28 06:06:39,137 - INFO - [SYNC] Push complete - Cloud response: success
+2026-02-28 06:06:39,137 - INFO - [SYNC] Auto-sync result: success
+2026-02-28 06:11:39,739 - INFO - [SYNC] Starting push to cloud: https://a-r-i-s-e.onrender.com
+2026-02-28 06:11:40,151 - INFO - [SYNC] Database binary exported: 118784 bytes (116.0 KB)
+2026-02-28 06:11:41,168 - INFO - [SYNC] Push complete - Cloud response: success
+2026-02-28 06:11:41,168 - INFO - [SYNC] Auto-sync result: success
+2026-02-28 06:16:41,831 - INFO - [SYNC] Starting push to cloud: https://a-r-i-s-e.onrender.com
+2026-02-28 06:16:42,225 - INFO - [SYNC] Database binary exported: 118784 bytes (116.0 KB)
+2026-02-28 06:16:43,816 - INFO - [SYNC] Push complete - Cloud response: success
+2026-02-28 06:16:43,816 - INFO - [SYNC] Auto-sync result: success
+2026-02-28 06:21:44,913 - INFO - [SYNC] Starting push to cloud: https://a-r-i-s-e.onrender.com
+2026-02-28 06:21:45,832 - INFO - [SYNC] Database binary exported: 118784 bytes (116.0 KB)
+2026-02-28 06:21:46,869 - INFO - [SYNC] Push complete - Cloud response: success
+2026-02-28 06:21:46,869 - INFO - [SYNC] Auto-sync result: success
+2026-02-28 06:26:48,100 - INFO - [SYNC] Starting push to cloud: https://a-r-i-s-e.onrender.com
+2026-02-28 06:26:49,002 - INFO - [SYNC] Database binary exported: 118784 bytes (116.0 KB)
+2026-02-28 06:26:49,746 - INFO - [SYNC] Push complete - Cloud response: success
+2026-02-28 06:26:49,747 - INFO - [SYNC] Auto-sync result: success
+2026-02-28 06:31:50,867 - INFO - [SYNC] Starting push to cloud: https://a-r-i-s-e.onrender.com
+2026-02-28 06:31:51,773 - INFO - [SYNC] Database binary exported: 118784 bytes (116.0 KB)
+2026-02-28 06:31:52,822 - INFO - [SYNC] Push complete - Cloud response: success
+2026-02-28 06:31:52,822 - INFO - [SYNC] Auto-sync result: success
+2026-02-28 06:36:53,870 - INFO - [SYNC] Starting push to cloud: https://a-r-i-s-e.onrender.com
+2026-02-28 06:36:54,313 - INFO - [SYNC] Database binary exported: 118784 bytes (116.0 KB)
+2026-02-28 06:36:55,019 - INFO - [SYNC] Push complete - Cloud response: success
+2026-02-28 06:36:55,019 - INFO - [SYNC] Auto-sync result: success
+2026-02-28 08:10:41,990 - INFO - Server started - Auto-expire scheduler active
+2026-02-28 08:10:41,992 - INFO - [SYNC] Auto-sync started (interval: 300s)
+2026-02-28 08:10:41,992 - INFO - [SYNC] Auto-sync enabled: every 300s to https://a-r-i-s-e.onrender.com
+2026-02-28 08:15:48,669 - INFO - [SYNC] Starting push to cloud: https://a-r-i-s-e.onrender.com
+2026-02-28 08:15:49,892 - INFO - [SYNC] Database binary exported: 118784 bytes (116.0 KB)
+2026-02-28 08:15:51,531 - INFO - [SYNC] Push complete - Cloud response: success
+2026-02-28 08:15:51,531 - INFO - [SYNC] Auto-sync result: success
+2026-02-28 08:20:52,194 - INFO - [SYNC] Starting push to cloud: https://a-r-i-s-e.onrender.com
+2026-02-28 08:20:52,614 - INFO - [SYNC] Database binary exported: 118784 bytes (116.0 KB)
+2026-02-28 08:20:54,146 - INFO - [SYNC] Push complete - Cloud response: success
+2026-02-28 08:20:54,146 - INFO - [SYNC] Auto-sync result: success
+2026-02-28 08:25:54,902 - INFO - [SYNC] Starting push to cloud: https://a-r-i-s-e.onrender.com
+2026-02-28 08:25:55,320 - INFO - [SYNC] Database binary exported: 118784 bytes (116.0 KB)
+2026-02-28 08:25:56,883 - INFO - [SYNC] Push complete - Cloud response: success
+2026-02-28 08:25:56,884 - INFO - [SYNC] Auto-sync result: success
+2026-02-28 08:30:57,860 - INFO - [SYNC] Starting push to cloud: https://a-r-i-s-e.onrender.com
+2026-02-28 08:30:58,952 - INFO - [SYNC] Database binary exported: 118784 bytes (116.0 KB)
+2026-02-28 08:31:01,219 - INFO - [SYNC] Push complete - Cloud response: success
+2026-02-28 08:31:01,219 - INFO - [SYNC] Auto-sync result: success
+2026-02-28 08:36:02,393 - INFO - [SYNC] Starting push to cloud: https://a-r-i-s-e.onrender.com
+2026-02-28 08:36:03,497 - INFO - [SYNC] Database binary exported: 118784 bytes (116.0 KB)
+2026-02-28 08:36:04,641 - INFO - [SYNC] Push complete - Cloud response: success
+2026-02-28 08:36:04,641 - INFO - [SYNC] Auto-sync result: success
+2026-02-28 08:41:05,288 - INFO - [SYNC] Starting push to cloud: https://a-r-i-s-e.onrender.com
+2026-02-28 08:41:05,708 - INFO - [SYNC] Database binary exported: 118784 bytes (116.0 KB)
+2026-02-28 08:41:06,525 - INFO - [SYNC] Push complete - Cloud response: success
+2026-02-28 08:41:06,525 - INFO - [SYNC] Auto-sync result: success
+2026-02-28 08:46:07,724 - INFO - [SYNC] Starting push to cloud: https://a-r-i-s-e.onrender.com
+2026-02-28 08:46:08,145 - INFO - [SYNC] Database binary exported: 118784 bytes (116.0 KB)
+2026-02-28 08:46:09,697 - INFO - [SYNC] Push complete - Cloud response: success
+2026-02-28 08:46:09,697 - INFO - [SYNC] Auto-sync result: success
+2026-02-28 08:51:10,848 - INFO - [SYNC] Starting push to cloud: https://a-r-i-s-e.onrender.com
+2026-02-28 08:51:11,266 - INFO - [SYNC] Database binary exported: 118784 bytes (116.0 KB)
+2026-02-28 08:51:12,895 - INFO - [SYNC] Push complete - Cloud response: success
+2026-02-28 08:51:12,895 - INFO - [SYNC] Auto-sync result: success
+2026-02-28 08:54:11,840 - INFO - [REQUEST] GET /api/admin/analytics/overview - Client: 127.0.0.1
+2026-02-28 08:54:11,841 - INFO - [REQUEST] GET /api/admin/courses-view - Client: 127.0.0.1
+2026-02-28 08:54:11,843 - INFO - [REQUEST] GET /api/admin/students - Client: 127.0.0.1
+2026-02-28 08:54:20,339 - INFO - [REQUEST] GET /api/admin/analytics/trends - Client: 127.0.0.1
+2026-02-28 08:54:23,490 - INFO - [REQUEST] GET /api/admin/semesters - Client: 127.0.0.1
+2026-02-28 08:56:14,278 - INFO - [SYNC] Starting push to cloud: https://a-r-i-s-e.onrender.com
+2026-02-28 08:56:14,716 - INFO - [SYNC] Database binary exported: 118784 bytes (116.0 KB)
+2026-02-28 08:56:16,332 - INFO - [SYNC] Push complete - Cloud response: success
+2026-02-28 08:56:16,332 - INFO - [SYNC] Auto-sync result: success
+2026-02-28 08:57:22,048 - INFO - [REQUEST] GET /admin-login - Client: 127.0.0.1
+2026-02-28 08:57:22,542 - INFO - [REQUEST] GET /static/css/base.css - Client: 127.0.0.1
+2026-02-28 08:57:22,543 - INFO - [REQUEST] GET /static/css/modal.css - Client: 127.0.0.1
+2026-02-28 08:57:23,010 - INFO - [REQUEST] GET /favicon.ico - Client: 127.0.0.1
+2026-02-28 08:57:23,021 - INFO - [RESPONSE] GET /favicon.ico - Status: 404 - 11ms
+2026-02-28 08:57:29,034 - INFO - [REQUEST] POST /api/admin/login - Client: 127.0.0.1
+2026-02-28 08:57:29,042 - INFO - Admin login attempt - Username: admin
+2026-02-28 08:57:29,047 - INFO - Admin login successful - Username: admin, AdminID: 1
+2026-02-28 08:57:29,379 - INFO - [REQUEST] GET /admin - Client: 127.0.0.1
+2026-02-28 08:57:29,479 - INFO - [REQUEST] GET /static/css/admin.css - Client: 127.0.0.1
+2026-02-28 08:57:29,643 - INFO - [REQUEST] GET /static/css/base.css - Client: 127.0.0.1
+2026-02-28 08:57:29,645 - INFO - [RESPONSE] GET /static/css/base.css - Status: 304 - 2ms
+2026-02-28 08:57:29,798 - INFO - [REQUEST] GET /static/css/modal.css - Client: 127.0.0.1
+2026-02-28 08:57:29,837 - INFO - [REQUEST] GET /static/js/modal.js - Client: 127.0.0.1
+2026-02-28 08:57:29,838 - INFO - [REQUEST] GET /static/js/admin.js - Client: 127.0.0.1
+2026-02-28 08:57:29,840 - INFO - [RESPONSE] GET /static/css/modal.css - Status: 304 - 42ms
+2026-02-28 08:57:29,842 - INFO - [REQUEST] GET /static/js/admin-analytics.js - Client: 127.0.0.1
+2026-02-28 08:57:33,151 - INFO - [REQUEST] GET /api/admin/semesters - Client: 127.0.0.1
+2026-02-28 08:57:33,151 - INFO - [REQUEST] GET /api/admin/config - Client: 127.0.0.1
+2026-02-28 08:57:35,984 - INFO - [REQUEST] GET /api/admin/analytics/overview - Client: 127.0.0.1
+2026-02-28 08:57:36,293 - INFO - [REQUEST] GET /api/admin/courses-view - Client: 127.0.0.1
+2026-02-28 08:57:36,294 - INFO - [REQUEST] GET /api/admin/students - Client: 127.0.0.1
+2026-02-28 08:57:44,107 - INFO - [REQUEST] GET /api/admin/analytics/course/1 - Client: 127.0.0.1
+2026-02-28 08:57:55,730 - INFO - [REQUEST] GET /api/admin/analytics/student/1 - Client: 127.0.0.1
+2026-02-28 08:58:04,423 - INFO - [REQUEST] GET /api/admin/analytics/trends - Client: 127.0.0.1
+2026-02-28 09:01:17,077 - INFO - [SYNC] Starting push to cloud: https://a-r-i-s-e.onrender.com
+2026-02-28 09:01:18,107 - INFO - [SYNC] Database binary exported: 118784 bytes (116.0 KB)
+2026-02-28 09:01:19,925 - INFO - [SYNC] Push complete - Cloud response: success
+2026-02-28 09:01:19,926 - INFO - [SYNC] Auto-sync result: success
+2026-02-28 09:06:20,638 - INFO - [SYNC] Starting push to cloud: https://a-r-i-s-e.onrender.com
+2026-02-28 09:06:21,574 - INFO - [SYNC] Database binary exported: 118784 bytes (116.0 KB)
+2026-02-28 09:06:22,802 - INFO - [SYNC] Push complete - Cloud response: success
+2026-02-28 09:06:22,802 - INFO - [SYNC] Auto-sync result: success
+2026-02-28 09:08:02,284 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.27
+2026-02-28 09:08:07,279 - INFO - Device heartbeat - Battery: 100%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-28 09:08:07,587 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.27
+2026-02-28 09:08:12,732 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.27
+2026-02-28 09:09:10,165 - INFO - [REQUEST] POST /api/admin/login - Client: 127.0.0.1
+2026-02-28 09:09:10,168 - WARNING - Admin login failed - Missing username or password
+2026-02-28 09:09:10,169 - INFO - [RESPONSE] POST /api/admin/login - Status: 400 - 3ms
+2026-02-28 09:09:10,568 - INFO - [REQUEST] GET /api/admin/analytics/overview - Client: 127.0.0.1
+2026-02-28 09:09:10,574 - ERROR - Exception on /api/admin/analytics/overview [GET]
+Traceback (most recent call last):
+  File "D:\ARISE SPEED IMROVEMENTS\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\ARISE SPEED IMROVEMENTS\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\ARISE SPEED IMROVEMENTS\A.R.I.S.E\venv\Lib\site-packages\flask_cors\extension.py", line 176, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+                                                ~^^^^^^^^^^^^^^^^^
+  File "D:\ARISE SPEED IMROVEMENTS\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\ARISE SPEED IMROVEMENTS\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "D:\ARISE SPEED IMROVEMENTS\A.R.I.S.E\server.py", line 238, in decorated
+    token = request.headers['Authorization'].split(" ")[1]
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^
+IndexError: list index out of range
+2026-02-28 09:09:10,743 - INFO - [RESPONSE] GET /api/admin/analytics/overview - Status: 500 - 175ms
+2026-02-28 09:09:10,754 - INFO - [REQUEST] GET /api/admin/analytics/course/1 - Client: 127.0.0.1
+2026-02-28 09:09:10,755 - ERROR - Exception on /api/admin/analytics/course/1 [GET]
+Traceback (most recent call last):
+  File "D:\ARISE SPEED IMROVEMENTS\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\ARISE SPEED IMROVEMENTS\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\ARISE SPEED IMROVEMENTS\A.R.I.S.E\venv\Lib\site-packages\flask_cors\extension.py", line 176, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+                                                ~^^^^^^^^^^^^^^^^^
+  File "D:\ARISE SPEED IMROVEMENTS\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\ARISE SPEED IMROVEMENTS\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "D:\ARISE SPEED IMROVEMENTS\A.R.I.S.E\server.py", line 238, in decorated
+    token = request.headers['Authorization'].split(" ")[1]
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^
+IndexError: list index out of range
+2026-02-28 09:09:10,756 - INFO - [RESPONSE] GET /api/admin/analytics/course/1 - Status: 500 - 2ms
+2026-02-28 09:09:10,764 - INFO - [REQUEST] GET /api/admin/analytics/trends - Client: 127.0.0.1
+2026-02-28 09:09:10,764 - ERROR - Exception on /api/admin/analytics/trends [GET]
+Traceback (most recent call last):
+  File "D:\ARISE SPEED IMROVEMENTS\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\ARISE SPEED IMROVEMENTS\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\ARISE SPEED IMROVEMENTS\A.R.I.S.E\venv\Lib\site-packages\flask_cors\extension.py", line 176, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+                                                ~^^^^^^^^^^^^^^^^^
+  File "D:\ARISE SPEED IMROVEMENTS\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\ARISE SPEED IMROVEMENTS\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "D:\ARISE SPEED IMROVEMENTS\A.R.I.S.E\server.py", line 238, in decorated
+    token = request.headers['Authorization'].split(" ")[1]
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^
+IndexError: list index out of range
+2026-02-28 09:09:10,766 - INFO - [RESPONSE] GET /api/admin/analytics/trends - Status: 500 - 2ms
+2026-02-28 09:09:30,833 - INFO - [REQUEST] POST /api/admin/login - Client: 127.0.0.1
+2026-02-28 09:09:30,834 - INFO - Admin login attempt - Username: admin
+2026-02-28 09:09:30,839 - INFO - Admin login successful - Username: admin, AdminID: 1
+2026-02-28 09:09:31,000 - INFO - [REQUEST] GET /api/admin/analytics/overview - Client: 127.0.0.1
+2026-02-28 09:11:23,920 - INFO - [SYNC] Starting push to cloud: https://a-r-i-s-e.onrender.com
+2026-02-28 09:11:24,344 - INFO - [SYNC] Database binary exported: 118784 bytes (116.0 KB)
+2026-02-28 09:11:25,600 - INFO - [SYNC] Push complete - Cloud response: success
+2026-02-28 09:11:25,600 - INFO - [SYNC] Auto-sync result: success
+2026-02-28 09:11:31,197 - INFO - [REQUEST] POST /api/admin/login - Client: 127.0.0.1
+2026-02-28 09:11:31,198 - INFO - Admin login attempt - Username: admin
+2026-02-28 09:11:31,198 - INFO - Admin login successful - Username: admin, AdminID: 1
+2026-02-28 09:11:31,276 - INFO - [REQUEST] GET /api/admin/analytics/course/1 - Client: 127.0.0.1
+2026-02-28 09:11:31,326 - INFO - [REQUEST] GET /api/admin/analytics/student/1 - Client: 127.0.0.1
+2026-02-28 09:11:31,347 - INFO - [REQUEST] GET /api/admin/analytics/trends - Client: 127.0.0.1
+2026-02-28 09:16:26,222 - INFO - [SYNC] Starting push to cloud: https://a-r-i-s-e.onrender.com
+2026-02-28 09:16:26,737 - INFO - [SYNC] Database binary exported: 118784 bytes (116.0 KB)
+2026-02-28 09:16:28,794 - INFO - [SYNC] Push complete - Cloud response: success
+2026-02-28 09:16:28,794 - INFO - [SYNC] Auto-sync result: success
+2026-02-28 09:19:51,535 - INFO - [REQUEST] GET /admin - Client: 127.0.0.1
+2026-02-28 09:19:51,651 - INFO - [REQUEST] GET /static/css/base.css - Client: 127.0.0.1
+2026-02-28 09:19:51,660 - INFO - [REQUEST] GET /static/css/admin.css - Client: 127.0.0.1
+2026-02-28 09:19:51,666 - INFO - [RESPONSE] GET /static/css/base.css - Status: 304 - 14ms
+2026-02-28 09:19:51,669 - INFO - [REQUEST] GET /static/css/modal.css - Client: 127.0.0.1
+2026-02-28 09:19:51,674 - INFO - [REQUEST] GET /static/js/modal.js - Client: 127.0.0.1
+2026-02-28 09:19:51,675 - INFO - [RESPONSE] GET /static/css/modal.css - Status: 304 - 6ms
+2026-02-28 09:19:51,677 - INFO - [REQUEST] GET /static/js/admin.js - Client: 127.0.0.1
+2026-02-28 09:19:51,680 - INFO - [RESPONSE] GET /static/js/modal.js - Status: 304 - 6ms
+2026-02-28 09:19:51,683 - INFO - [REQUEST] GET /static/js/admin-analytics.js - Client: 127.0.0.1
+2026-02-28 09:19:52,120 - INFO - [REQUEST] GET /admin-login - Client: 127.0.0.1
+2026-02-28 09:19:52,152 - INFO - [REQUEST] GET /static/css/base.css - Client: 127.0.0.1
+2026-02-28 09:19:52,153 - INFO - [RESPONSE] GET /static/css/base.css - Status: 304 - 1ms
+2026-02-28 09:19:52,157 - INFO - [REQUEST] GET /static/css/modal.css - Client: 127.0.0.1
+2026-02-28 09:19:52,158 - INFO - [RESPONSE] GET /static/css/modal.css - Status: 304 - 1ms
+2026-02-28 09:19:58,035 - INFO - [REQUEST] POST /api/admin/login - Client: 127.0.0.1
+2026-02-28 09:19:58,045 - INFO - Admin login attempt - Username: admin
+2026-02-28 09:19:58,069 - INFO - Admin login successful - Username: admin, AdminID: 1
+2026-02-28 09:19:58,093 - INFO - [REQUEST] GET /admin - Client: 127.0.0.1
+2026-02-28 09:19:58,139 - INFO - [REQUEST] GET /static/css/base.css - Client: 127.0.0.1
+2026-02-28 09:19:58,144 - INFO - [RESPONSE] GET /static/css/base.css - Status: 304 - 4ms
+2026-02-28 09:19:58,150 - INFO - [REQUEST] GET /static/css/modal.css - Client: 127.0.0.1
+2026-02-28 09:19:58,155 - INFO - [REQUEST] GET /static/css/admin.css - Client: 127.0.0.1
+2026-02-28 09:19:58,157 - INFO - [REQUEST] GET /static/js/modal.js - Client: 127.0.0.1
+2026-02-28 09:19:58,160 - INFO - [REQUEST] GET /static/js/admin.js - Client: 127.0.0.1
+2026-02-28 09:19:58,163 - INFO - [RESPONSE] GET /static/css/modal.css - Status: 304 - 13ms
+2026-02-28 09:19:58,165 - INFO - [REQUEST] GET /static/js/admin-analytics.js - Client: 127.0.0.1
+2026-02-28 09:19:58,169 - INFO - [RESPONSE] GET /static/js/modal.js - Status: 304 - 12ms
+2026-02-28 09:19:58,170 - INFO - [RESPONSE] GET /static/js/admin.js - Status: 304 - 9ms
+2026-02-28 09:19:58,170 - INFO - [RESPONSE] GET /static/css/admin.css - Status: 304 - 15ms
+2026-02-28 09:19:58,178 - INFO - [RESPONSE] GET /static/js/admin-analytics.js - Status: 304 - 13ms
+2026-02-28 09:19:58,202 - INFO - [REQUEST] GET /api/admin/config - Client: 127.0.0.1
+2026-02-28 09:19:58,211 - INFO - [REQUEST] GET /api/admin/semesters - Client: 127.0.0.1
+2026-02-28 09:19:59,467 - INFO - [REQUEST] GET /api/admin/courses - Client: 127.0.0.1
+2026-02-28 09:20:03,382 - INFO - [REQUEST] GET /api/admin/analytics/overview - Client: 127.0.0.1
+2026-02-28 09:20:03,383 - INFO - [REQUEST] GET /api/admin/courses-view - Client: 127.0.0.1
+2026-02-28 09:20:03,384 - INFO - [REQUEST] GET /api/admin/students - Client: 127.0.0.1
+2026-02-28 09:20:08,868 - INFO - [REQUEST] GET /api/admin/analytics/course/1 - Client: 127.0.0.1
+2026-02-28 09:20:17,864 - INFO - [REQUEST] GET /api/admin/analytics/student/1 - Client: 127.0.0.1
+2026-02-28 09:20:19,066 - INFO - [REQUEST] GET /api/admin/analytics/trends - Client: 127.0.0.1
+2026-02-28 09:20:19,284 - INFO - [REQUEST] GET /api/admin/analytics/trends - Client: 127.0.0.1
+2026-02-28 09:21:30,051 - INFO - [SYNC] Starting push to cloud: https://a-r-i-s-e.onrender.com
+2026-02-28 09:21:30,973 - INFO - [SYNC] Database binary exported: 118784 bytes (116.0 KB)
+2026-02-28 09:21:32,007 - INFO - [SYNC] Push complete - Cloud response: success
+2026-02-28 09:21:32,008 - INFO - [SYNC] Auto-sync result: success
+2026-02-28 09:26:33,285 - INFO - [SYNC] Starting push to cloud: https://a-r-i-s-e.onrender.com
+2026-02-28 09:26:34,304 - INFO - [SYNC] Database binary exported: 118784 bytes (116.0 KB)
+2026-02-28 09:26:35,433 - INFO - [SYNC] Push complete - Cloud response: success
+2026-02-28 09:26:35,434 - INFO - [SYNC] Auto-sync result: success
+2026-02-28 09:31:36,089 - INFO - [SYNC] Starting push to cloud: https://a-r-i-s-e.onrender.com
+2026-02-28 09:31:37,100 - INFO - [SYNC] Database binary exported: 118784 bytes (116.0 KB)
+2026-02-28 09:31:38,929 - INFO - [SYNC] Push complete - Cloud response: success
+2026-02-28 09:31:38,929 - INFO - [SYNC] Auto-sync result: success
+2026-02-28 09:36:40,095 - INFO - [SYNC] Starting push to cloud: https://a-r-i-s-e.onrender.com
+2026-02-28 09:36:40,539 - INFO - [SYNC] Database binary exported: 118784 bytes (116.0 KB)
+2026-02-28 09:36:41,650 - INFO - [SYNC] Push complete - Cloud response: success
+2026-02-28 09:36:41,651 - INFO - [SYNC] Auto-sync result: success
+2026-02-28 09:41:43,623 - INFO - [SYNC] Starting push to cloud: https://a-r-i-s-e.onrender.com
+2026-02-28 09:41:44,052 - INFO - [SYNC] Database binary exported: 118784 bytes (116.0 KB)
+2026-02-28 09:41:45,981 - INFO - [SYNC] Push complete - Cloud response: success
+2026-02-28 09:41:45,981 - INFO - [SYNC] Auto-sync result: success
+2026-02-28 09:46:46,733 - INFO - [SYNC] Starting push to cloud: https://a-r-i-s-e.onrender.com
+2026-02-28 09:46:47,664 - INFO - [SYNC] Database binary exported: 118784 bytes (116.0 KB)
+2026-02-28 09:46:48,476 - INFO - [SYNC] Push complete - Cloud response: success
+2026-02-28 09:46:48,476 - INFO - [SYNC] Auto-sync result: success
+2026-02-28 09:51:49,227 - INFO - [SYNC] Starting push to cloud: https://a-r-i-s-e.onrender.com
+2026-02-28 09:51:50,359 - INFO - [SYNC] Database binary exported: 118784 bytes (116.0 KB)
+2026-02-28 09:51:52,193 - INFO - [SYNC] Push complete - Cloud response: success
+2026-02-28 09:51:52,193 - INFO - [SYNC] Auto-sync result: success
+2026-02-28 09:52:03,637 - INFO - Server started - Auto-expire scheduler active
+2026-02-28 09:52:03,638 - INFO - [SYNC] Auto-sync started (interval: 300s)
+2026-02-28 09:52:03,638 - INFO - [SYNC] Auto-sync enabled: every 300s to https://a-r-i-s-e.onrender.com
+2026-02-28 09:52:07,351 - INFO - [SYNC] Starting push to cloud: https://a-r-i-s-e.onrender.com
+2026-02-28 09:52:08,283 - INFO - [SYNC] Database binary exported: 118784 bytes (116.0 KB)
+2026-02-28 09:52:10,420 - INFO - [SYNC] Push complete - Cloud response: success
+2026-02-28 09:52:10,421 - INFO - [SYNC] Auto-sync result: success
+2026-02-28 09:52:27,325 - INFO - [REQUEST] POST /api/admin/login - Client: 127.0.0.1
+2026-02-28 09:52:27,327 - INFO - Admin login attempt - Username: admin
+2026-02-28 09:52:27,328 - INFO - Admin login successful - Username: admin, AdminID: 1
+2026-02-28 09:52:27,502 - INFO - [REQUEST] GET /api/sync/status - Client: 127.0.0.1
+2026-02-28 09:52:27,955 - INFO - [REQUEST] POST /api/sync/push - Client: 127.0.0.1
+2026-02-28 09:52:27,955 - INFO - [SYNC] Manual sync push triggered by admin
+2026-02-28 09:52:27,955 - INFO - [SYNC] Starting push to cloud: https://a-r-i-s-e.onrender.com
+2026-02-28 09:52:28,374 - INFO - [SYNC] Database binary exported: 118784 bytes (116.0 KB)
+2026-02-28 09:52:29,463 - INFO - [SYNC] Push complete - Cloud response: success
+2026-02-28 09:52:29,463 - INFO - [RESPONSE] POST /api/sync/push - Status: 200 - 1509ms
+2026-02-28 09:57:11,351 - INFO - [SYNC] Starting push to cloud: https://a-r-i-s-e.onrender.com
+2026-02-28 09:57:11,819 - INFO - [SYNC] Database binary exported: 118784 bytes (116.0 KB)
+2026-02-28 09:57:14,139 - INFO - [SYNC] Push complete - Cloud response: success
+2026-02-28 09:57:14,139 - INFO - [SYNC] Auto-sync result: success
+2026-02-28 09:59:43,125 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.27
+2026-02-28 09:59:48,008 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.27
+2026-02-28 09:59:48,223 - INFO - Device heartbeat - Battery: 8%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-28 09:59:53,136 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.27
+2026-02-28 09:59:58,155 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.27
+2026-02-28 09:59:58,456 - INFO - Device heartbeat - Battery: 100%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-28 10:00:03,287 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.27
+2026-02-28 10:00:58,164 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.27
+2026-02-28 10:01:03,278 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.27
+2026-02-28 10:01:03,380 - INFO - Device heartbeat - Battery: 25%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-28 10:01:08,515 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.27
+2026-02-28 10:01:13,512 - INFO - Device heartbeat - Battery: 22%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-28 10:01:13,762 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.27
+2026-02-28 10:01:18,768 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.27
+2026-02-28 10:01:23,553 - INFO - Device heartbeat - Battery: 26%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-28 10:01:23,802 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.27
+2026-02-28 10:01:28,903 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.27
+2026-02-28 10:01:33,629 - INFO - Device heartbeat - Battery: 32%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-28 10:01:34,106 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.27
+2026-02-28 10:01:39,213 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.27
+2026-02-28 10:01:43,664 - INFO - Device heartbeat - Battery: 32%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-28 10:01:44,370 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.27
+2026-02-28 10:01:49,477 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.27
+2026-02-28 10:01:53,699 - INFO - Device heartbeat - Battery: 23%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-28 10:01:54,677 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.27
+2026-02-28 10:01:54,982 - INFO - [REQUEST] GET /api/health - Client: 127.0.0.1
+2026-02-28 10:01:56,621 - INFO - [REQUEST] GET /api/sync/status - Client: 127.0.0.1
+2026-02-28 10:01:57,215 - INFO - [RESPONSE] GET /api/sync/status - Status: 200 - 594ms
+2026-02-28 10:02:14,915 - INFO - [SYNC] Starting push to cloud: https://a-r-i-s-e.onrender.com
+2026-02-28 10:02:15,435 - INFO - [SYNC] Database binary exported: 118784 bytes (116.0 KB)
+2026-02-28 10:02:17,481 - INFO - [SYNC] Push complete - Cloud response: success
+2026-02-28 10:02:17,481 - INFO - [SYNC] Auto-sync result: success
+2026-02-28 10:02:28,300 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.27
+2026-02-28 10:02:31,392 - INFO - [REQUEST] POST /api/admin/login - Client: 127.0.0.1
+2026-02-28 10:02:31,396 - INFO - Admin login attempt - Username: admin
+2026-02-28 10:02:31,404 - INFO - Admin login successful - Username: admin, AdminID: 1
+2026-02-28 10:02:31,557 - INFO - [REQUEST] GET /api/admin/analytics/overview - Client: 127.0.0.1
+2026-02-28 10:02:31,606 - INFO - [REQUEST] POST /api/sync/push - Client: 127.0.0.1
+2026-02-28 10:02:31,606 - INFO - [SYNC] Manual sync push triggered by admin
+2026-02-28 10:02:31,606 - INFO - [SYNC] Starting push to cloud: https://a-r-i-s-e.onrender.com
+2026-02-28 10:02:32,143 - INFO - [SYNC] Database binary exported: 118784 bytes (116.0 KB)
+2026-02-28 10:02:33,392 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.27
+2026-02-28 10:02:33,496 - INFO - Device heartbeat - Battery: 100%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-28 10:02:34,277 - INFO - [SYNC] Push complete - Cloud response: success
+2026-02-28 10:02:34,277 - INFO - [RESPONSE] POST /api/sync/push - Status: 200 - 2671ms
+2026-02-28 10:02:38,615 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.27
+2026-02-28 10:02:43,529 - INFO - Device heartbeat - Battery: 100%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-28 10:02:43,841 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.27
+2026-02-28 10:02:48,963 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.27
+2026-02-28 10:02:53,672 - INFO - Device heartbeat - Battery: 100%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-28 10:02:53,980 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.27
+2026-02-28 10:02:59,115 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.27
+2026-02-28 10:03:03,909 - INFO - Device heartbeat - Battery: 100%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-28 10:03:04,219 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.27
+2026-02-28 10:03:09,624 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.27
+2026-02-28 10:03:14,359 - INFO - Device heartbeat - Battery: 100%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-28 10:03:14,662 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.27
+2026-02-28 10:03:19,784 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.27
+2026-02-28 10:03:24,186 - INFO - Device heartbeat - Battery: 100%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-28 10:03:24,901 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.27
+2026-02-28 10:03:29,957 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.27
+2026-02-28 10:03:34,325 - INFO - Device heartbeat - Battery: 100%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-28 10:03:35,039 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.27
+2026-02-28 10:03:40,153 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.27
+2026-02-28 10:03:44,360 - INFO - Device heartbeat - Battery: 100%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-28 10:03:45,303 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.27
+2026-02-28 10:03:50,396 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.27
+2026-02-28 10:03:54,385 - INFO - Device heartbeat - Battery: 100%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-28 10:03:55,550 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.27
+2026-02-28 10:04:00,640 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.27
+2026-02-28 10:04:04,421 - INFO - Device heartbeat - Battery: 100%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-28 10:04:05,856 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.27
+2026-02-28 10:04:10,923 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.27
+2026-02-28 10:04:14,567 - INFO - Device heartbeat - Battery: 100%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-28 10:04:15,996 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.27
+2026-02-28 10:04:21,060 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.27
+2026-02-28 10:04:24,745 - INFO - Device heartbeat - Battery: 100%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-28 10:04:26,177 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.27
+2026-02-28 10:04:31,296 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.27
+2026-02-28 10:04:34,909 - INFO - Device heartbeat - Battery: 100%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-28 10:04:36,314 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.27
+2026-02-28 10:04:41,438 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.27
+2026-02-28 10:04:45,022 - INFO - Device heartbeat - Battery: 100%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-28 10:04:46,453 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.27
+2026-02-28 10:04:51,577 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.27
+2026-02-28 10:04:54,946 - INFO - Device heartbeat - Battery: 100%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-28 10:04:56,593 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.27
+2026-02-28 10:05:01,712 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.27
+2026-02-28 10:05:05,297 - INFO - Device heartbeat - Battery: 100%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-28 10:05:06,738 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.27
+2026-02-28 10:05:11,847 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.27
+2026-02-28 10:05:15,434 - INFO - Device heartbeat - Battery: 100%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-28 10:05:16,869 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.27
+2026-02-28 10:05:21,889 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.27
+2026-02-28 10:05:25,257 - INFO - Device heartbeat - Battery: 100%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-28 10:05:26,900 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.27
+2026-02-28 10:05:32,023 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.27
+2026-02-28 10:05:35,706 - INFO - Device heartbeat - Battery: 100%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-28 10:05:37,141 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.27
+2026-02-28 10:05:42,159 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.27
+2026-02-28 10:05:45,841 - INFO - Device heartbeat - Battery: 100%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-28 10:05:47,285 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.27
+2026-02-28 10:05:52,408 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.27
+2026-02-28 10:05:55,680 - INFO - Device heartbeat - Battery: 100%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-28 10:05:57,538 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.27
+2026-02-28 10:06:02,640 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.27
+2026-02-28 10:06:06,119 - INFO - Device heartbeat - Battery: 100%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-28 10:06:07,775 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.27
+2026-02-28 10:06:12,778 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.27
+2026-02-28 10:06:15,843 - INFO - Device heartbeat - Battery: 100%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-28 10:06:17,927 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.27
+2026-02-28 10:06:23,139 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.27
+2026-02-28 10:06:26,101 - INFO - Device heartbeat - Battery: 100%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-28 10:06:28,224 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.27
+2026-02-28 10:06:33,287 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.27
+2026-02-28 10:06:36,055 - INFO - Device heartbeat - Battery: 100%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-28 10:06:38,372 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.27
+2026-02-28 10:06:43,428 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.27
+2026-02-28 10:06:46,099 - INFO - Device heartbeat - Battery: 100%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-28 10:06:48,630 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.27
+2026-02-28 10:06:53,729 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.27
+2026-02-28 10:06:56,131 - INFO - Device heartbeat - Battery: 100%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-28 10:06:58,900 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.27
+2026-02-28 10:07:04,001 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.27
+2026-02-28 10:07:06,354 - INFO - Device heartbeat - Battery: 100%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-28 10:07:09,128 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.27
+2026-02-28 10:07:14,238 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.27
+2026-02-28 10:07:16,467 - INFO - Device heartbeat - Battery: 100%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-28 10:07:18,773 - INFO - [SYNC] Starting push to cloud: https://a-r-i-s-e.onrender.com
+2026-02-28 10:07:19,289 - INFO - [SYNC] Database binary exported: 118784 bytes (116.0 KB)
+2026-02-28 10:07:19,464 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.27
+2026-02-28 10:07:21,621 - INFO - [SYNC] Push complete - Cloud response: success
+2026-02-28 10:07:21,621 - INFO - [SYNC] Auto-sync result: success
+2026-02-28 10:07:24,656 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.27
+2026-02-28 10:07:26,914 - INFO - Device heartbeat - Battery: 100%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-28 10:07:29,687 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.27
+2026-02-28 10:07:34,906 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.27
+2026-02-28 10:07:36,639 - INFO - Device heartbeat - Battery: 100%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-28 10:07:39,857 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.27
+2026-02-28 10:07:44,951 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.27
+2026-02-28 10:07:46,883 - INFO - Device heartbeat - Battery: 100%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-28 10:07:50,188 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.27
+2026-02-28 10:07:55,189 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.27
+2026-02-28 10:07:57,020 - INFO - Device heartbeat - Battery: 100%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-28 10:08:00,299 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.27
+2026-02-28 10:08:05,429 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.27
+2026-02-28 10:08:07,160 - INFO - Device heartbeat - Battery: 100%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-28 10:08:10,447 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.27
+2026-02-28 10:08:15,560 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.27
+2026-02-28 10:08:17,307 - INFO - Device heartbeat - Battery: 100%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-28 10:08:20,584 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.27
+2026-02-28 10:08:25,698 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.27
+2026-02-28 10:08:27,230 - INFO - Device heartbeat - Battery: 100%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-28 10:08:30,718 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.27
+2026-02-28 10:08:35,835 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.27
+2026-02-28 10:08:37,575 - INFO - Device heartbeat - Battery: 100%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-28 10:08:40,861 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.27
+2026-02-28 10:08:45,975 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.27
+2026-02-28 10:08:47,712 - INFO - Device heartbeat - Battery: 100%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-28 10:08:50,991 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.27
+2026-02-28 10:08:56,117 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.27
+2026-02-28 10:08:57,755 - INFO - Device heartbeat - Battery: 100%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-28 10:09:01,233 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.27
+2026-02-28 10:09:06,482 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.27
+2026-02-28 10:09:07,988 - INFO - Device heartbeat - Battery: 100%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-28 10:09:11,475 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.27
+2026-02-28 10:09:16,595 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.27
+2026-02-28 10:09:18,128 - INFO - Device heartbeat - Battery: 100%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-28 10:09:21,612 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.27
+2026-02-28 10:09:26,727 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.27
+2026-02-28 10:09:28,263 - INFO - Device heartbeat - Battery: 100%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-28 10:09:31,751 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.27
+2026-02-28 10:09:36,807 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.27
+2026-02-28 10:09:38,401 - INFO - Device heartbeat - Battery: 100%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-28 10:09:41,885 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.27
+2026-02-28 10:09:47,007 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.27
+2026-02-28 10:09:48,538 - INFO - Device heartbeat - Battery: 100%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-28 10:09:52,026 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.27
+2026-02-28 10:09:57,147 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.27
+2026-02-28 10:09:58,681 - INFO - Device heartbeat - Battery: 100%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-28 10:10:02,161 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.27
+2026-02-28 10:10:07,222 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.27
+2026-02-28 10:10:08,827 - INFO - Device heartbeat - Battery: 100%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-28 10:10:12,311 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.27
+2026-02-28 10:10:17,444 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.27
+2026-02-28 10:10:18,755 - INFO - Device heartbeat - Battery: 100%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-28 10:10:22,447 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.27
+2026-02-28 10:10:27,559 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.27
+2026-02-28 10:10:29,091 - INFO - Device heartbeat - Battery: 100%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-28 10:10:32,580 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.27
+2026-02-28 10:10:37,685 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.27
+2026-02-28 10:10:39,233 - INFO - Device heartbeat - Battery: 100%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-28 10:10:42,718 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.27
+2026-02-28 10:10:47,830 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.27
+2026-02-28 10:10:49,160 - INFO - Device heartbeat - Battery: 100%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-28 10:10:52,858 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.27
+2026-02-28 10:10:57,968 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.27
+2026-02-28 10:10:59,238 - INFO - Device heartbeat - Battery: 100%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-28 10:11:03,190 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.27
+2026-02-28 10:11:08,326 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.27
+2026-02-28 10:11:09,643 - INFO - Device heartbeat - Battery: 100%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-28 10:11:13,343 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.27
+2026-02-28 10:11:18,453 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.27
+2026-02-28 10:11:19,471 - INFO - Device heartbeat - Battery: 100%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-28 10:11:23,609 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.27
+2026-02-28 10:11:28,710 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.27
+2026-02-28 10:11:29,520 - INFO - Device heartbeat - Battery: 100%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-28 10:11:33,917 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.27
+2026-02-28 10:11:38,977 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.27
+2026-02-28 10:11:39,587 - INFO - Device heartbeat - Battery: 100%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-28 10:11:44,178 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.27
+2026-02-28 10:11:49,275 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.27
+2026-02-28 10:11:50,193 - INFO - Device heartbeat - Battery: 100%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-28 10:11:54,323 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.27
+2026-02-28 10:11:59,535 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.27
+2026-02-28 10:11:59,821 - INFO - Device heartbeat - Battery: 100%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
