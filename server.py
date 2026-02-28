@@ -368,6 +368,7 @@ def require_sync_api_key(f):
 def sync_receive():
     """
     Receive a full database snapshot from the local server.
+    Preserves online session records before replacing the database.
     Protected by API key authentication.
     """
     
@@ -381,13 +382,23 @@ def sync_receive():
         
         logger.info(f"[SYNC] Receiving database snapshot: {len(db_binary)} bytes from {request.remote_addr}")
         
-        success = sync.import_database_binary(db_binary)
+        # Extract online records BEFORE replacing the database
+        online_records = sync.extract_online_records()
+        if online_records['sessions']:
+            logger.info(f"[SYNC] Preserving {len(online_records['sessions'])} online sessions for merge")
+        
+        # Import the local snapshot, then re-insert online records
+        success = sync.import_database_binary(db_binary, online_records=online_records)
         
         if success:
-            logger.info(f"[SYNC] Database snapshot imported successfully")
+            merge_info = ""
+            if online_records['sessions']:
+                merge_info = f", merged {len(online_records['sessions'])} online sessions"
+            logger.info(f"[SYNC] Database snapshot imported successfully{merge_info}")
             return jsonify({
                 "status": "success",
-                "message": f"Database imported ({len(db_binary)} bytes)",
+                "message": f"Database imported ({len(db_binary)} bytes){merge_info}",
+                "online_sessions_preserved": len(online_records['sessions']),
                 "timestamp": datetime.datetime.now(datetime.timezone.utc).isoformat()
             })
         else:

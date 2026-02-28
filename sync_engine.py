@@ -121,10 +121,137 @@ class SyncEngine:
             logger.error(f"[SYNC] Binary export failed: {e}", exc_info=True)
             return None
     
-    def import_database_binary(self, binary_data):
+    def extract_online_records(self):
+        """
+        Extract all online sessions and their attendance records from the
+        current cloud database BEFORE it is replaced by a local snapshot.
+        Returns a dict with 'sessions' and 'attendance' lists.
+        """
+        if not os.path.exists(self.db_path):
+            return {'sessions': [], 'attendance': []}
+        
+        try:
+            conn = sqlite3.connect(self.db_path)
+            conn.row_factory = sqlite3.Row
+            
+            # Get all online sessions
+            sessions = conn.execute(
+                "SELECT * FROM sessions WHERE session_type = 'online'"
+            ).fetchall()
+            sessions_list = [dict(row) for row in sessions]
+            
+            if not sessions_list:
+                conn.close()
+                return {'sessions': [], 'attendance': []}
+            
+            # Get attendance records for online sessions
+            session_ids = [s['id'] for s in sessions_list]
+            placeholders = ','.join('?' * len(session_ids))
+            attendance = conn.execute(
+                f"SELECT * FROM attendance_records WHERE session_id IN ({placeholders})",
+                session_ids
+            ).fetchall()
+            attendance_list = [dict(row) for row in attendance]
+            
+            conn.close()
+            logger.info(
+                f"[SYNC] Extracted {len(sessions_list)} online sessions "
+                f"and {len(attendance_list)} attendance records for merge"
+            )
+            return {'sessions': sessions_list, 'attendance': attendance_list}
+            
+        except Exception as e:
+            logger.error(f"[SYNC] Extract online records failed: {e}", exc_info=True)
+            return {'sessions': [], 'attendance': []}
+    
+    def reinsert_online_records(self, online_data):
+        """
+        Re-insert previously extracted online sessions and attendance
+        records into the database AFTER it has been replaced by a local
+        snapshot. Session IDs are remapped to avoid conflicts.
+        """
+        sessions = online_data.get('sessions', [])
+        attendance = online_data.get('attendance', [])
+        
+        if not sessions:
+            return 0
+        
+        try:
+            conn = sqlite3.connect(self.db_path)
+            conn.execute("PRAGMA foreign_keys = OFF")
+            
+            # Map old session IDs to new ones
+            old_to_new_id = {}
+            inserted_sessions = 0
+            
+            for s in sessions:
+                old_id = s['id']
+                # Check if this exact session already exists (by course_id + start_time + type)
+                existing = conn.execute(
+                    "SELECT id FROM sessions WHERE course_id = ? AND start_time = ? AND session_type = 'online'",
+                    (s['course_id'], s['start_time'])
+                ).fetchone()
+                
+                if existing:
+                    old_to_new_id[old_id] = existing[0]
+                    continue
+                
+                cursor = conn.execute(
+                    """INSERT INTO sessions 
+                       (course_id, start_time, end_time, is_active, session_type, topic, session_token, otp_seed)
+                       VALUES (?, ?, ?, ?, 'online', ?, ?, ?)""",
+                    (s['course_id'], s['start_time'], s.get('end_time'),
+                     s.get('is_active', 0), s.get('topic'),
+                     s.get('session_token'), s.get('otp_seed'))
+                )
+                new_id = cursor.lastrowid
+                old_to_new_id[old_id] = new_id
+                inserted_sessions += 1
+            
+            # Re-insert attendance records with remapped session IDs
+            inserted_attendance = 0
+            for a in attendance:
+                old_session_id = a['session_id']
+                new_session_id = old_to_new_id.get(old_session_id)
+                if not new_session_id:
+                    continue
+                
+                # Check if this exact attendance already exists
+                existing = conn.execute(
+                    "SELECT id FROM attendance_records WHERE session_id = ? AND student_id = ?",
+                    (new_session_id, a['student_id'])
+                ).fetchone()
+                if existing:
+                    continue
+                
+                conn.execute(
+                    """INSERT INTO attendance_records
+                       (session_id, student_id, timestamp, override_method, manual_reason)
+                       VALUES (?, ?, ?, ?, ?)""",
+                    (new_session_id, a['student_id'], a.get('timestamp'),
+                     a.get('override_method'), a.get('manual_reason'))
+                )
+                inserted_attendance += 1
+            
+            conn.execute("PRAGMA foreign_keys = ON")
+            conn.commit()
+            conn.close()
+            
+            logger.info(
+                f"[SYNC] Re-inserted {inserted_sessions} online sessions "
+                f"and {inserted_attendance} attendance records"
+            )
+            return inserted_sessions
+            
+        except Exception as e:
+            logger.error(f"[SYNC] Re-insert online records failed: {e}", exc_info=True)
+            return 0
+    
+    def import_database_binary(self, binary_data, online_records=None):
         """
         Import a full database binary snapshot (used by cloud server).
-        Replaces the current database with the received snapshot.
+        Replaces the current database with the received snapshot,
+        then re-inserts any online records to preserve cloud-only data.
         """
         if not binary_data:
             return False
@@ -145,10 +272,15 @@ class SyncEngine:
                 backup_path = self.db_path + '.pre_sync_backup'
                 shutil.copy2(self.db_path, backup_path)
             
-            # Replace the database
+            # Replace the database with local snapshot
             shutil.move(temp_path, self.db_path)
             
             logger.info(f"[SYNC] Database imported successfully: {len(binary_data)} bytes")
+            
+            # Re-insert online records if provided
+            if online_records and (online_records.get('sessions') or online_records.get('attendance')):
+                self.reinsert_online_records(online_records)
+            
             return True
             
         except Exception as e:
