@@ -1323,8 +1323,7 @@ def get_otp_time_remaining(interval=30):
 def start_online_session():
     """Start an online class session. ONLY available on cloud server (Render)."""
     # Only allow on cloud server
-    is_cloud = os.environ.get('IS_CLOUD_SERVER', 'false').lower() == 'true'
-    if not is_cloud:
+    if not Config.IS_CLOUD_SERVER:
         return jsonify({
             "error": "Online class attendance is only available on the cloud server.",
             "hint": "Please access A.R.I.S.E. via the Render cloud URL to use this feature."
