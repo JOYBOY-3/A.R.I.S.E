@@ -50,11 +50,49 @@
     };
 
     // =========================================================
+    //  SEMESTER FILTER
+    // =========================================================
+    function getSemesterId() {
+        const sel = document.getElementById('analytics-semester-select');
+        return sel ? sel.value : '';
+    }
+
+    async function populateSemesterSelect() {
+        try {
+            const res = await fetch('/api/admin/semesters', { headers: authHeaders() });
+            if (!res.ok) return;
+            const semesters = await res.json();
+            const sel = document.getElementById('analytics-semester-select');
+            const current = sel.value;
+            sel.innerHTML = '<option value="">All Semesters</option>';
+            semesters.forEach(s => {
+                const opt = document.createElement('option');
+                opt.value = s.id;
+                opt.textContent = s.semester_name;
+                sel.appendChild(opt);
+            });
+            sel.value = current || '';
+        } catch (e) {
+            console.error('Semester select error:', e);
+        }
+    }
+
+    // Show/hide semester filter based on active sub-tab
+    function updateSemesterFilterVisibility(subtab) {
+        const filter = document.getElementById('analytics-semester-filter');
+        if (filter) {
+            filter.style.display = (subtab === 'analytics-overview' || subtab === 'analytics-trends') ? '' : 'none';
+        }
+    }
+
+    // =========================================================
     //  OVERVIEW TAB
     // =========================================================
     async function loadOverview() {
         try {
-            const res = await fetch('/api/admin/analytics/overview', { headers: authHeaders() });
+            const semId = getSemesterId();
+            const qs = semId ? `?semester_id=${semId}` : '';
+            const res = await fetch(`/api/admin/analytics/overview${qs}`, { headers: authHeaders() });
             if (!res.ok) return;
             const d = await res.json();
 
@@ -286,7 +324,9 @@
     // =========================================================
     async function loadTrends() {
         try {
-            const res = await fetch('/api/admin/analytics/trends', { headers: authHeaders() });
+            const semId = getSemesterId();
+            const qs = semId ? `?semester_id=${semId}` : '';
+            const res = await fetch(`/api/admin/analytics/trends${qs}`, { headers: authHeaders() });
             if (!res.ok) return;
             const d = await res.json();
 
@@ -433,20 +473,42 @@
     // =========================================================
     //  EVENT LISTENERS
     // =========================================================
+    // Track current active analytics sub-tab
+    let currentAnalyticsSubtab = 'analytics-overview';
+
     document.addEventListener('DOMContentLoaded', () => {
         // Tab change detection — load analytics when analytics tab is clicked
         document.querySelectorAll('.tab-button[data-tab="analytics"]').forEach(btn => {
             btn.addEventListener('click', () => {
+                populateSemesterSelect();
                 loadOverview();
                 populateCourseSelect();
                 populateStudentSelect();
+                updateSemesterFilterVisibility('analytics-overview');
             });
         });
 
-        // Analytics sub-tab: load trends when clicked
-        document.querySelectorAll('.sub-tab-button[data-subtab="analytics-trends"]').forEach(btn => {
-            btn.addEventListener('click', () => loadTrends());
+        // Analytics sub-tab switching — track active tab and show/hide filter
+        document.querySelectorAll('.sub-tab-button[data-subtab]').forEach(btn => {
+            const subtab = btn.getAttribute('data-subtab');
+            if (!subtab || !subtab.startsWith('analytics-')) return;
+
+            btn.addEventListener('click', () => {
+                currentAnalyticsSubtab = subtab;
+                updateSemesterFilterVisibility(subtab);
+                if (subtab === 'analytics-overview') loadOverview();
+                if (subtab === 'analytics-trends') loadTrends();
+            });
         });
+
+        // Semester filter change — reload active tab
+        const semesterSelect = document.getElementById('analytics-semester-select');
+        if (semesterSelect) {
+            semesterSelect.addEventListener('change', () => {
+                if (currentAnalyticsSubtab === 'analytics-overview') loadOverview();
+                if (currentAnalyticsSubtab === 'analytics-trends') loadTrends();
+            });
+        }
 
         // Course analytics course select change
         const courseSelect = document.getElementById('analytics-course-select');

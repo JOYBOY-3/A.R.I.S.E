@@ -827,75 +827,111 @@ def get_enrollment_roster(user_data, semester_id):
 @app.route('/api/admin/analytics/overview', methods=['GET'])
 @token_required
 def admin_analytics_overview(user_data):
-    """Batch-wide analytics overview with KPIs."""
+    """Batch-wide analytics overview with KPIs. Optional ?semester_id= filter."""
     conn = get_db_connection()
+    semester_id = request.args.get('semester_id', type=int)
     
-    total_students = conn.execute("SELECT COUNT(*) as c FROM students").fetchone()['c']
-    total_courses = conn.execute("SELECT COUNT(*) as c FROM courses").fetchone()['c']
-    total_sessions = conn.execute("SELECT COUNT(*) as c FROM sessions").fetchone()['c']
-    total_attendance = conn.execute("SELECT COUNT(*) as c FROM attendance_records").fetchone()['c']
+    # Build conditional filters based on semester
+    sem_course_filter = ""
+    sem_session_filter = ""
+    sem_enroll_filter = ""
+    sem_params = []
+    
+    if semester_id:
+        sem_course_filter = " WHERE c.semester_id = ?"
+        sem_session_filter = " AND s.course_id IN (SELECT id FROM courses WHERE semester_id = ?)"
+        sem_enroll_filter = " AND e.course_id IN (SELECT id FROM courses WHERE semester_id = ?)"
+        sem_params = [semester_id]
+    
+    # Total students: if semester filter, count distinct students enrolled in that semester's courses
+    if semester_id:
+        total_students = conn.execute(
+            "SELECT COUNT(DISTINCT e.student_id) as c FROM enrollments e "
+            "JOIN courses c ON e.course_id = c.id WHERE c.semester_id = ?", [semester_id]
+        ).fetchone()['c']
+    else:
+        total_students = conn.execute("SELECT COUNT(*) as c FROM students").fetchone()['c']
+    
+    total_courses = conn.execute(
+        f"SELECT COUNT(*) as c FROM courses c{sem_course_filter}", sem_params
+    ).fetchone()['c']
+    
+    total_sessions = conn.execute(
+        f"SELECT COUNT(*) as c FROM sessions s WHERE 1=1{sem_session_filter}", sem_params
+    ).fetchone()['c']
+    
+    total_attendance = conn.execute(
+        f"SELECT COUNT(*) as c FROM attendance_records ar "
+        f"JOIN sessions s ON ar.session_id = s.id WHERE 1=1{sem_session_filter}", sem_params
+    ).fetchone()['c']
     
     # Online vs offline sessions
     online_sessions = conn.execute(
-        "SELECT COUNT(*) as c FROM sessions WHERE session_type = 'online'").fetchone()['c']
+        f"SELECT COUNT(*) as c FROM sessions s WHERE session_type = 'online'{sem_session_filter}",
+        sem_params
+    ).fetchone()['c']
     offline_sessions = total_sessions - online_sessions
     
-    # Sessions this week and month
-    sessions_this_week = conn.execute("""
-        SELECT COUNT(*) as c FROM sessions 
-        WHERE start_time >= date('now', '-7 days')
-    """).fetchone()['c']
+    # Sessions this week
+    sessions_this_week = conn.execute(
+        f"SELECT COUNT(*) as c FROM sessions s "
+        f"WHERE start_time >= date('now', '-7 days'){sem_session_filter}", sem_params
+    ).fetchone()['c']
     
-    sessions_this_month = conn.execute("""
-        SELECT COUNT(*) as c FROM sessions 
-        WHERE start_time >= date('now', 'start of month')
-    """).fetchone()['c']
+    # Sessions this month
+    sessions_this_month = conn.execute(
+        f"SELECT COUNT(*) as c FROM sessions s "
+        f"WHERE start_time >= date('now', 'start of month'){sem_session_filter}", sem_params
+    ).fetchone()['c']
     
     # Average attendance per session
-    avg_attendance = conn.execute("""
-        SELECT AVG(cnt) as avg_count FROM (
-            SELECT session_id, COUNT(*) as cnt FROM attendance_records GROUP BY session_id
-        )
-    """).fetchone()['avg_count'] or 0
+    avg_attendance = conn.execute(
+        f"SELECT AVG(cnt) as avg_count FROM ("
+        f"  SELECT ar.session_id, COUNT(*) as cnt FROM attendance_records ar "
+        f"  JOIN sessions s ON ar.session_id = s.id WHERE 1=1{sem_session_filter} "
+        f"  GROUP BY ar.session_id"
+        f")", sem_params
+    ).fetchone()['avg_count'] or 0
     
-    # Overall attendance rate: total_marks / (total_sessions * avg_enrolled_per_course)
-    total_possible = conn.execute("""
-        SELECT SUM(enrolled) as total FROM (
-            SELECT s.id, 
-                   (SELECT COUNT(*) FROM enrollments e WHERE e.course_id = s.course_id) as enrolled
-            FROM sessions s
-        )
-    """).fetchone()['total'] or 1
+    # Overall attendance rate
+    total_possible = conn.execute(
+        f"SELECT SUM(enrolled) as total FROM ("
+        f"  SELECT s.id, "
+        f"    (SELECT COUNT(*) FROM enrollments e WHERE e.course_id = s.course_id) as enrolled "
+        f"  FROM sessions s WHERE 1=1{sem_session_filter}"
+        f")", sem_params
+    ).fetchone()['total'] or 1
     overall_rate = round((total_attendance / total_possible) * 100, 1) if total_possible > 0 else 0
     
     # At-risk student count (below 75% in any course)
-    at_risk_query = conn.execute("""
-        SELECT COUNT(DISTINCT e.student_id) as c
-        FROM enrollments e
-        JOIN courses c ON e.course_id = c.id
-        WHERE (
-            SELECT COUNT(*) FROM attendance_records ar 
-            JOIN sessions s ON ar.session_id = s.id 
-            WHERE ar.student_id = e.student_id AND s.course_id = e.course_id
-        ) < 0.75 * (
-            SELECT COUNT(*) FROM sessions s WHERE s.course_id = e.course_id
-        )
-        AND (SELECT COUNT(*) FROM sessions s WHERE s.course_id = e.course_id) > 0
-    """).fetchone()['c']
+    at_risk_query = conn.execute(
+        f"SELECT COUNT(DISTINCT e.student_id) as c "
+        f"FROM enrollments e "
+        f"JOIN courses c ON e.course_id = c.id "
+        f"WHERE (SELECT COUNT(*) FROM attendance_records ar "
+        f"  JOIN sessions s ON ar.session_id = s.id "
+        f"  WHERE ar.student_id = e.student_id AND s.course_id = e.course_id"
+        f") < 0.75 * ("
+        f"  SELECT COUNT(*) FROM sessions s WHERE s.course_id = e.course_id"
+        f") AND (SELECT COUNT(*) FROM sessions s WHERE s.course_id = e.course_id) > 0"
+        f"{sem_enroll_filter}", sem_params
+    ).fetchone()['c']
     
     # Course-wise summary
-    course_summary = conn.execute("""
-        SELECT c.id, c.course_name, c.course_code,
-               t.teacher_name,
-               (SELECT COUNT(*) FROM enrollments e WHERE e.course_id = c.id) as enrolled_count,
-               (SELECT COUNT(*) FROM sessions s WHERE s.course_id = c.id) as session_count,
-               (SELECT COUNT(*) FROM attendance_records ar 
-                JOIN sessions s ON ar.session_id = s.id 
-                WHERE s.course_id = c.id) as total_marks
-        FROM courses c
-        LEFT JOIN teachers t ON c.teacher_id = t.id
-        ORDER BY c.course_name
-    """).fetchall()
+    course_summary = conn.execute(
+        f"SELECT c.id, c.course_name, c.course_code, "
+        f"  t.teacher_name, "
+        f"  (SELECT COUNT(*) FROM enrollments e WHERE e.course_id = c.id) as enrolled_count, "
+        f"  (SELECT COUNT(*) FROM sessions s WHERE s.course_id = c.id) as session_count, "
+        f"  (SELECT COUNT(*) FROM attendance_records ar "
+        f"    JOIN sessions s ON ar.session_id = s.id "
+        f"    WHERE s.course_id = c.id) as total_marks "
+        f"FROM courses c "
+        f"LEFT JOIN teachers t ON c.teacher_id = t.id "
+        f"{'WHERE c.semester_id = ?' if semester_id else ''} "
+        f"ORDER BY c.course_name",
+        sem_params
+    ).fetchall()
     
     course_data = []
     for row in course_summary:
@@ -918,7 +954,8 @@ def admin_analytics_overview(user_data):
         "avg_attendance_per_session": round(avg_attendance, 1),
         "overall_attendance_rate": overall_rate,
         "at_risk_count": at_risk_query,
-        "course_summary": course_data
+        "course_summary": course_data,
+        "semester_id": semester_id
     })
 
 
@@ -1078,64 +1115,76 @@ def admin_analytics_student(user_data, student_id):
 @app.route('/api/admin/analytics/trends', methods=['GET'])
 @token_required
 def admin_analytics_trends(user_data):
-    """Time-series analytics: daily attendance, day-of-week, online vs offline."""
+    """Time-series analytics: daily attendance, day-of-week, online vs offline. Optional ?semester_id= filter."""
     conn = get_db_connection()
+    semester_id = request.args.get('semester_id', type=int)
+    
+    sem_filter = ""
+    sem_course_filter = ""
+    sem_params = []
+    if semester_id:
+        sem_filter = " AND s.course_id IN (SELECT id FROM courses WHERE semester_id = ?)"
+        sem_course_filter = " WHERE c.semester_id = ?"
+        sem_params = [semester_id]
     
     # Daily attendance counts (last 30 days)
-    daily = conn.execute("""
-        SELECT DATE(s.start_time) as date,
-               COUNT(DISTINCT s.id) as session_count,
-               COUNT(ar.id) as attendance_count,
-               SUM(CASE WHEN s.session_type = 'online' THEN 1 ELSE 0 END) as online_marks,
-               SUM(CASE WHEN s.session_type != 'online' THEN 1 ELSE 0 END) as offline_marks
-        FROM sessions s
-        LEFT JOIN attendance_records ar ON ar.session_id = s.id
-        WHERE s.start_time >= date('now', '-30 days')
-        GROUP BY DATE(s.start_time)
-        ORDER BY date
-    """).fetchall()
+    daily = conn.execute(
+        f"SELECT DATE(s.start_time) as date, "
+        f"  COUNT(DISTINCT s.id) as session_count, "
+        f"  COUNT(ar.id) as attendance_count, "
+        f"  SUM(CASE WHEN s.session_type = 'online' THEN 1 ELSE 0 END) as online_marks, "
+        f"  SUM(CASE WHEN s.session_type != 'online' THEN 1 ELSE 0 END) as offline_marks "
+        f"FROM sessions s "
+        f"LEFT JOIN attendance_records ar ON ar.session_id = s.id "
+        f"WHERE s.start_time >= date('now', '-30 days'){sem_filter} "
+        f"GROUP BY DATE(s.start_time) ORDER BY date",
+        sem_params
+    ).fetchall()
     
     # Day-of-week pattern
-    dow = conn.execute("""
-        SELECT 
-            CASE CAST(strftime('%w', s.start_time) AS INTEGER)
-                WHEN 0 THEN 'Sun' WHEN 1 THEN 'Mon' WHEN 2 THEN 'Tue'
-                WHEN 3 THEN 'Wed' WHEN 4 THEN 'Thu' WHEN 5 THEN 'Fri' WHEN 6 THEN 'Sat'
-            END as day_name,
-            CAST(strftime('%w', s.start_time) AS INTEGER) as day_num,
-            COUNT(DISTINCT s.id) as session_count,
-            AVG(sub.cnt) as avg_attendance
-        FROM sessions s
-        LEFT JOIN (
-            SELECT session_id, COUNT(*) as cnt FROM attendance_records GROUP BY session_id
-        ) sub ON sub.session_id = s.id
-        GROUP BY day_num
-        ORDER BY day_num
-    """).fetchall()
+    dow = conn.execute(
+        f"SELECT "
+        f"  CASE CAST(strftime('%w', s.start_time) AS INTEGER) "
+        f"    WHEN 0 THEN 'Sun' WHEN 1 THEN 'Mon' WHEN 2 THEN 'Tue' "
+        f"    WHEN 3 THEN 'Wed' WHEN 4 THEN 'Thu' WHEN 5 THEN 'Fri' WHEN 6 THEN 'Sat' "
+        f"  END as day_name, "
+        f"  CAST(strftime('%w', s.start_time) AS INTEGER) as day_num, "
+        f"  COUNT(DISTINCT s.id) as session_count, "
+        f"  AVG(sub.cnt) as avg_attendance "
+        f"FROM sessions s "
+        f"LEFT JOIN ("
+        f"  SELECT session_id, COUNT(*) as cnt FROM attendance_records GROUP BY session_id"
+        f") sub ON sub.session_id = s.id "
+        f"WHERE 1=1{sem_filter} "
+        f"GROUP BY day_num ORDER BY day_num",
+        sem_params
+    ).fetchall()
     
     # Online vs Offline totals
-    type_split = conn.execute("""
-        SELECT 
-            s.session_type,
-            COUNT(DISTINCT s.id) as session_count,
-            COUNT(ar.id) as attendance_count
-        FROM sessions s
-        LEFT JOIN attendance_records ar ON ar.session_id = s.id
-        GROUP BY s.session_type
-    """).fetchall()
+    type_split = conn.execute(
+        f"SELECT s.session_type, "
+        f"  COUNT(DISTINCT s.id) as session_count, "
+        f"  COUNT(ar.id) as attendance_count "
+        f"FROM sessions s "
+        f"LEFT JOIN attendance_records ar ON ar.session_id = s.id "
+        f"WHERE 1=1{sem_filter} "
+        f"GROUP BY s.session_type",
+        sem_params
+    ).fetchall()
     
     # Course-wise session count for bar chart
-    course_sessions = conn.execute("""
-        SELECT c.course_code,
-               COUNT(DISTINCT s.id) as session_count,
-               COUNT(ar.id) as total_marks,
-               (SELECT COUNT(*) FROM enrollments e WHERE e.course_id = c.id) as enrolled
-        FROM courses c
-        LEFT JOIN sessions s ON s.course_id = c.id
-        LEFT JOIN attendance_records ar ON ar.session_id = s.id
-        GROUP BY c.id
-        ORDER BY c.course_code
-    """).fetchall()
+    course_sessions = conn.execute(
+        f"SELECT c.course_code, "
+        f"  COUNT(DISTINCT s.id) as session_count, "
+        f"  COUNT(ar.id) as total_marks, "
+        f"  (SELECT COUNT(*) FROM enrollments e WHERE e.course_id = c.id) as enrolled "
+        f"FROM courses c "
+        f"LEFT JOIN sessions s ON s.course_id = c.id "
+        f"LEFT JOIN attendance_records ar ON ar.session_id = s.id "
+        f"{'WHERE c.semester_id = ?' if semester_id else ''} "
+        f"GROUP BY c.id ORDER BY c.course_code",
+        sem_params
+    ).fetchall()
     
     conn.close()
     
@@ -1143,7 +1192,8 @@ def admin_analytics_trends(user_data):
         "daily": [dict(r) for r in daily],
         "day_of_week": [dict(r) for r in dow],
         "session_type_split": [dict(r) for r in type_split],
-        "course_sessions": [dict(r) for r in course_sessions]
+        "course_sessions": [dict(r) for r in course_sessions],
+        "semester_id": semester_id
     })
 
 
