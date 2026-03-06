@@ -16,6 +16,7 @@ from functools import wraps
 from openpyxl import Workbook
 from openpyxl.styles import Font, Alignment
 import io
+import csv
 from flask import send_file
 
 import logging
@@ -545,11 +546,17 @@ def manage_single_semester(user_data, id):
 def _migrate_teachers_table(conn):
     """Add teacher_code column if it doesn't exist (migration for existing DBs)."""
     try:
-        conn.execute("ALTER TABLE teachers ADD COLUMN teacher_code TEXT UNIQUE")
+        conn.execute("ALTER TABLE teachers ADD COLUMN teacher_code TEXT")
         conn.commit()
         logger.info("Migrated teachers table: added teacher_code column")
     except Exception:
         pass  # Column already exists
+    # Create unique index separately (SQLite doesn't support UNIQUE in ALTER TABLE ADD COLUMN)
+    try:
+        conn.execute("CREATE UNIQUE INDEX IF NOT EXISTS idx_teacher_code ON teachers(teacher_code) WHERE teacher_code IS NOT NULL")
+        conn.commit()
+    except Exception:
+        pass  # Index already exists
 
 @app.route('/api/admin/teachers', methods=['GET', 'POST'])
 @token_required
@@ -702,6 +709,91 @@ def manage_single_student(user_data, id):
         logger.info(f"Student deleted - ID: {id}")
     conn.close()
     return jsonify({"message": "Operation successful."})
+
+# --- Student Bulk CSV Import ---
+@app.route('/api/admin/students/bulk-import', methods=['POST'])
+@token_required
+def bulk_import_students(user_data):
+    if 'file' not in request.files:
+        return jsonify({"error": "No file uploaded"}), 400
+    
+    file = request.files['file']
+    if not file.filename or not file.filename.endswith('.csv'):
+        return jsonify({"error": "Please upload a valid CSV file"}), 400
+    
+    default_password = request.form.get('default_password', '').strip()
+    
+    try:
+        stream = io.StringIO(file.stream.read().decode('utf-8-sig'))
+        reader = csv.DictReader(stream)
+        
+        # Normalize header names (strip whitespace, lowercase)
+        if reader.fieldnames:
+            reader.fieldnames = [f.strip().lower().replace(' ', '_') for f in reader.fieldnames]
+        
+        required_columns = ['student_name', 'university_roll_no', 'enrollment_no', 'email1']
+        if reader.fieldnames:
+            missing = [c for c in required_columns if c not in reader.fieldnames]
+            if missing:
+                return jsonify({"error": f"CSV is missing required columns: {', '.join(missing)}. Required: student_name, university_roll_no, enrollment_no, email1"}), 400
+        
+        conn = get_db_connection()
+        added = 0
+        skipped = 0
+        errors = []
+        
+        for row_num, row in enumerate(reader, start=2):  # start=2 because row 1 is header
+            name = sanitize_input(row.get('student_name', '').strip())
+            roll = sanitize_input(row.get('university_roll_no', '').strip())
+            enroll = sanitize_input(row.get('enrollment_no', '').strip())
+            email1 = sanitize_input(row.get('email1', '').strip())
+            email2 = sanitize_input(row.get('email2', '').strip()) if row.get('email2') else ''
+            password = row.get('password', '').strip() if row.get('password') else ''
+            
+            # Use default password if not specified per row
+            if not password:
+                password = default_password
+            
+            # Validate required fields
+            if not name or not roll or not enroll or not email1:
+                errors.append(f"Row {row_num}: Missing required fields (name, roll, enrollment, or email1)")
+                skipped += 1
+                continue
+            
+            if not password:
+                errors.append(f"Row {row_num} ({name}): No password specified and no default password set")
+                skipped += 1
+                continue
+            
+            try:
+                hashed_pw = hash_password(password)
+                conn.execute("""INSERT INTO students 
+                    (student_name, university_roll_no, enrollment_no, email1, email2, password) 
+                    VALUES (?, ?, ?, ?, ?, ?)""",
+                    (name, roll, enroll, email1, email2, hashed_pw))
+                added += 1
+            except sqlite3.IntegrityError:
+                errors.append(f"Row {row_num} ({name}): Duplicate roll/enrollment number — skipped")
+                skipped += 1
+        
+        conn.commit()
+        conn.close()
+        
+        logger.info(f"Bulk student import: {added} added, {skipped} skipped")
+        
+        return jsonify({
+            "status": "success",
+            "added": added,
+            "skipped": skipped,
+            "total": added + skipped,
+            "errors": errors[:20]  # Limit error details to first 20
+        }), 200
+        
+    except UnicodeDecodeError:
+        return jsonify({"error": "Could not read the file. Please ensure it is a valid UTF-8 encoded CSV."}), 400
+    except Exception as e:
+        logger.error(f"Bulk import error: {str(e)}")
+        return jsonify({"error": f"Import failed: {str(e)}"}), 500
 
 # END OF PART 1
 

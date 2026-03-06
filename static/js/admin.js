@@ -356,7 +356,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     if (entity === 'teachers') {
       form.querySelector('#teacher-name').value = cells[2].textContent;
-      form.querySelector('#teacher-code').value = cells[1].textContent;
+      const codeValue = cells[1].textContent.trim();
+      form.querySelector('#teacher-code').value = (codeValue === '-') ? '' : codeValue;
       form.querySelector('#teacher-pin').value = '';
       form.querySelector('#teacher-pin').placeholder =
         'Leave blank to keep unchanged';
@@ -452,13 +453,14 @@ document.addEventListener('DOMContentLoaded', () => {
       teacher_code: document.getElementById('teacher-code').value.trim().toUpperCase(),
       pin: pin,
     };
+    let response;
     if (currentEditId) {
       if (!body.pin) delete body.pin;
       else if (!/^\d{6}$/.test(body.pin)) {
         await Modal.alert('PIN must be exactly 6 digits.', 'Invalid PIN', 'error');
         return;
       }
-      await api.put('teachers', currentEditId, body);
+      response = await api.put('teachers', currentEditId, body);
     } else {
       if (!body.pin || !/^\d{6}$/.test(body.pin)) {
         await Modal.alert('PIN must be exactly 6 digits.', 'Invalid PIN', 'error');
@@ -468,10 +470,16 @@ document.addEventListener('DOMContentLoaded', () => {
         await Modal.alert('Teacher code is required.', 'Missing Field', 'error');
         return;
       }
-      await api.post('teachers', body);
+      response = await api.post('teachers', body);
     }
-    resetForm('teachers');
-    loadTeachers();
+    if (response && response.ok) {
+      await Modal.alert('Teacher saved successfully!', 'Success', 'success');
+      resetForm('teachers');
+      loadTeachers();
+    } else if (response) {
+      const errorData = await response.json();
+      await Modal.alert(errorData.error || 'Failed to save teacher.', 'Error', 'error');
+    }
   });
 
   // --- STUDENT MANAGEMENT ---
@@ -526,6 +534,82 @@ document.addEventListener('DOMContentLoaded', () => {
     resetForm('students');
     loadStudents();
   });
+
+  // --- CSV Bulk Import ---
+  const csvImportBtn = document.getElementById('csv-import-btn');
+  const csvTemplateBtn = document.getElementById('csv-template-btn');
+  const csvFileInput = document.getElementById('csv-file');
+  const csvStatus = document.getElementById('csv-import-status');
+
+  if (csvImportBtn) {
+    csvImportBtn.addEventListener('click', async () => {
+      const file = csvFileInput.files[0];
+      if (!file) {
+        await Modal.alert('Please select a CSV file first.', 'No File Selected', 'error');
+        return;
+      }
+
+      const defaultPassword = document.getElementById('csv-default-password').value.trim();
+
+      const confirmed = await Modal.confirm(
+        `Are you sure you want to import students from "${file.name}"?${defaultPassword ? `\n\nDefault password: ${defaultPassword}` : '\n\n⚠️ No default password set — each row must have a password column.'}`,
+        'Confirm Bulk Import',
+        'warning'
+      );
+
+      if (!confirmed) return;
+
+      csvStatus.textContent = '⏳ Importing...';
+      csvImportBtn.disabled = true;
+
+      const formData = new FormData();
+      formData.append('file', file);
+      if (defaultPassword) {
+        formData.append('default_password', defaultPassword);
+      }
+
+      try {
+        const response = await fetch('/api/admin/students/bulk-import', {
+          method: 'POST',
+          headers: { Authorization: `Bearer ${token}` },
+          body: formData,
+        });
+
+        const result = await response.json();
+
+        if (response.ok) {
+          let message = `✅ ${result.added} student(s) added successfully.\n📊 ${result.skipped} skipped out of ${result.total} total rows.`;
+          if (result.errors && result.errors.length > 0) {
+            message += `\n\n⚠️ Issues:\n${result.errors.join('\n')}`;
+          }
+          await Modal.alert(message, 'Import Complete', 'success');
+          csvFileInput.value = '';
+          document.getElementById('csv-default-password').value = '';
+          loadStudents();
+        } else {
+          await Modal.alert(result.error || 'Import failed.', 'Import Error', 'error');
+        }
+      } catch (err) {
+        await Modal.alert('Network error. Please try again.', 'Error', 'error');
+      }
+
+      csvStatus.textContent = '';
+      csvImportBtn.disabled = false;
+    });
+  }
+
+  if (csvTemplateBtn) {
+    csvTemplateBtn.addEventListener('click', () => {
+      const csvContent = 'student_name,university_roll_no,enrollment_no,email1,email2,password\nJohn Doe,MCAX24R001,SBU2401001,john@example.com,john2@example.com,password123\nJane Smith,MCAX24R002,SBU2401002,jane@example.com,,password123\n';
+      const blob = new Blob([csvContent], { type: 'text/csv' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'student_import_template.csv';
+      a.click();
+      URL.revokeObjectURL(url);
+    });
+  }
 
   // END OF PART 2
 

@@ -173,6 +173,38 @@
             Add Student
           </button>
         </form>
+
+        <!-- CSV Bulk Import Section -->
+        <div class="csv-import-section"
+          style="margin: 24px 0; padding: 20px; border: 1px dashed rgba(255,255,255,0.15); border-radius: 12px; background: rgba(255,255,255,0.03);">
+          <h3 style="margin-top:0; color: var(--color-accent, #3498db);">📁 Bulk Import from CSV</h3>
+          <p style="color: rgba(255,255,255,0.6); font-size: 0.85rem; margin-bottom: 12px;">
+            Upload a CSV file to add multiple students at once.
+            <strong>Required columns:</strong> student_name, university_roll_no, enrollment_no, email1.
+            <strong>Optional:</strong> email2, password.
+          </p>
+          <div class="form-grid" style="margin-bottom: 12px;">
+            <div>
+              <label for="csv-file">Select CSV File</label>
+              <input type="file" id="csv-file" accept=".csv"
+                style="padding: 8px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.15); border-radius: 8px; color: white; width: 100%;" />
+            </div>
+            <div>
+              <label for="csv-default-password">Default Password (if not in CSV)</label>
+              <input type="text" id="csv-default-password" placeholder="e.g. student@123" />
+            </div>
+          </div>
+          <div style="display: flex; gap: 12px; align-items: center; flex-wrap: wrap;">
+            <button type="button" class="button-primary" id="csv-import-btn" style="background: #27ae60;">
+              📤 Import Students
+            </button>
+            <button type="button" class="button-secondary" id="csv-template-btn" style="font-size: 0.85rem;">
+              📥 Download CSV Template
+            </button>
+            <span id="csv-import-status" style="color: rgba(255,255,255,0.6); font-size: 0.85rem;"></span>
+          </div>
+        </div>
+
         <h3>Existing Students</h3>
         <table class="data-table">
           <thead>
