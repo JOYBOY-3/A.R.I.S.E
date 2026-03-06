@@ -271,8 +271,8 @@ document.addEventListener('DOMContentLoaded', () => {
         if (entity === 'teachers') {
           cells = `
           <td data-label="ID">${item.id}</td>
+          <td data-label="Teacher Code">${item.teacher_code || '-'}</td>
           <td data-label="Teacher Name">${item.teacher_name}</td>
-          <td data-label="PIN">${item.pin}</td>
         `;
         }
         if (entity === 'students') {
@@ -318,7 +318,7 @@ document.addEventListener('DOMContentLoaded', () => {
           'Initial/New Password';
       }
       if (entity === 'teachers') {
-        document.getElementById('teacher-pin').placeholder = 'Initial/New PIN';
+        document.getElementById('teacher-pin').placeholder = '6-digit PIN';
       }
       currentEditId = null;
     }
