@@ -1254,7 +1254,7 @@ document.addEventListener('DOMContentLoaded', () => {
   emergencyModeButton.addEventListener('click', async () => {
     const confirmed = await Modal.confirm(
       `<strong>⚠️ Emergency Mode</strong><br><br>
-       This mode is for device failures only. It allows you to manually mark multiple students as Present or Absent.<br><br>
+       This mode is for device failures only. It allows you to manually mark attendance for all remaining students.<br><br>
        <span style="color: var(--warning-color);">Use this only when the Smart Scanner is not working.</span>`,
       'Activate Emergency Mode',
       'warning'
@@ -1266,9 +1266,6 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   function showEmergencyModeModal() {
-    // Get current attendance status
-    const markedStudents = new Set();
-
     // Create modal
     const overlay = document.createElement('div');
     overlay.className = 'emergency-modal-overlay';
@@ -1276,24 +1273,15 @@ document.addEventListener('DOMContentLoaded', () => {
       <div class="emergency-modal">
         <div class="emergency-modal-header">
           <h3>⚠️ Emergency Attendance Mode</h3>
-          <p>Select students and mark them Present or Absent</p>
-        </div>
-        
-        <div class="emergency-mode-toggle">
-          <button class="mode-btn present-mode active" data-mode="present">
-            ✅ Mark Present
-          </button>
-          <button class="mode-btn absent-mode" data-mode="absent">
-            ❌ Mark Absent
-          </button>
+          <p>Check (✅) students who are present, leave unchecked (❌) for absent</p>
         </div>
         
         <div class="emergency-student-list">
           <div class="emergency-select-all">
-            <label>
-              <input type="checkbox" id="select-all-students" />
-              Select All Unmarked
-            </label>
+            <div class="emergency-toggle-buttons">
+              <button class="btn-select-all" title="Select All">✅ Select All</button>
+              <button class="btn-deselect-all" title="Deselect All">❌ Deselect All</button>
+            </div>
             <span class="selection-count">0 selected</span>
           </div>
           <div class="student-grid" id="emergency-student-grid">
@@ -1304,7 +1292,7 @@ document.addEventListener('DOMContentLoaded', () => {
         <div class="emergency-modal-footer">
           <button class="btn-close-emergency">Cancel</button>
           <div class="emergency-actions">
-            <button class="btn-mark-selected" disabled>Apply to Selected (0)</button>
+            <button class="btn-mark-selected" disabled>Apply Attendance (0)</button>
           </div>
         </div>
       </div>
@@ -1312,12 +1300,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.body.appendChild(overlay);
 
-    let currentMode = 'present'; // 'present' or 'absent'
     let selectedStudents = new Set();
+    let totalUnmarked = 0;
 
     const studentGrid = overlay.querySelector('#emergency-student-grid');
-    const modeBtns = overlay.querySelectorAll('.mode-btn');
-    const selectAllCheckbox = overlay.querySelector('#select-all-students');
+    const selectAllBtn = overlay.querySelector('.btn-select-all');
+    const deselectAllBtn = overlay.querySelector('.btn-deselect-all');
     const selectionCount = overlay.querySelector('.selection-count');
     const markSelectedBtn = overlay.querySelector('.btn-mark-selected');
     const closeBtn = overlay.querySelector('.btn-close-emergency');
@@ -1342,6 +1330,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         studentGrid.innerHTML = '';
+        totalUnmarked = 0;
 
         allStudents.forEach(student => {
           const isPresent = markedRollNos.has(student.university_roll_no);
@@ -1357,6 +1346,8 @@ document.addEventListener('DOMContentLoaded', () => {
           let statusIcon = '';
           if (isPresent) statusIcon = '✅';
           else if (isAbsent) statusIcon = '❌';
+
+          if (!isProcessed) totalUnmarked++;
 
           div.innerHTML = `
             <input type="checkbox" ${isProcessed ? 'disabled' : ''} />
@@ -1380,6 +1371,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
           studentGrid.appendChild(div);
         });
+
+        updateSelectionCount();
       } catch (error) {
         console.error('Error fetching students:', error);
         studentGrid.innerHTML = '<p style="text-align:center;color:var(--danger-color)">Failed to load students</p>';
@@ -1400,80 +1393,55 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function updateSelectionCount() {
       const count = selectedStudents.size;
-      selectionCount.textContent = `${count} selected`;
-      markSelectedBtn.textContent = `Apply ${currentMode === 'present' ? '✅ Present' : '❌ Absent'} to Selected (${count})`;
-      markSelectedBtn.disabled = count === 0;
-
-      // Update select all checkbox state
-      const unmarkedItems = studentGrid.querySelectorAll('.student-item:not(.marked-present)');
-      const allChecked = unmarkedItems.length > 0 && selectedStudents.size === unmarkedItems.length;
-      selectAllCheckbox.checked = allChecked;
+      const absentCount = totalUnmarked - count;
+      selectionCount.textContent = `${count} present, ${absentCount} absent`;
+      markSelectedBtn.textContent = `Apply Attendance (${totalUnmarked} students)`;
+      markSelectedBtn.disabled = totalUnmarked === 0;
     }
 
-    // Mode toggle
-    modeBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        modeBtns.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        currentMode = btn.dataset.mode;
-        updateSelectionCount();
-      });
-    });
-
-    // Select all
-    selectAllCheckbox.addEventListener('change', () => {
-      const unmarkedItems = studentGrid.querySelectorAll('.student-item:not(.marked-present)');
+    // Select All — check all unmarked students
+    selectAllBtn.addEventListener('click', () => {
+      const unmarkedItems = studentGrid.querySelectorAll('.student-item:not(.marked-present):not(.marked-absent)');
       unmarkedItems.forEach(item => {
         const checkbox = item.querySelector('input[type="checkbox"]');
-        checkbox.checked = selectAllCheckbox.checked;
+        checkbox.checked = true;
         const univRollNo = item.dataset.univRoll;
-        if (selectAllCheckbox.checked) {
-          selectedStudents.add(univRollNo);
-          item.classList.add('selected');
-        } else {
-          selectedStudents.delete(univRollNo);
-          item.classList.remove('selected');
-        }
+        selectedStudents.add(univRollNo);
+        item.classList.add('selected');
       });
       updateSelectionCount();
     });
 
-    // Apply marking
+    // Deselect All — uncheck all unmarked students
+    deselectAllBtn.addEventListener('click', () => {
+      const unmarkedItems = studentGrid.querySelectorAll('.student-item:not(.marked-present):not(.marked-absent)');
+      unmarkedItems.forEach(item => {
+        const checkbox = item.querySelector('input[type="checkbox"]');
+        checkbox.checked = false;
+        const univRollNo = item.dataset.univRoll;
+        selectedStudents.delete(univRollNo);
+        item.classList.remove('selected');
+      });
+      updateSelectionCount();
+    });
+
+    // Apply marking — checked = present, unchecked = absent
     markSelectedBtn.addEventListener('click', async () => {
-      if (selectedStudents.size === 0) return;
+      if (totalUnmarked === 0) return;
 
-      let confirmMessage = '';
-      let studentsToMark = [];
-
-      if (currentMode === 'present') {
-        // Present mode: only mark selected students as present
-        confirmMessage = `Mark <strong>${selectedStudents.size} selected students</strong> as <strong>PRESENT</strong>?`;
-        studentsToMark = Array.from(selectedStudents).map(roll => ({ roll, status: 'present' }));
-      } else {
-        // Absent mode: mark selected as absent, ALL unselected as present
-        const unmarkedItems = studentGrid.querySelectorAll('.student-item:not(.marked-present):not(.marked-absent)');
-        const allUnmarkedRolls = Array.from(unmarkedItems).map(item => item.dataset.univRoll);
-        const unselectedCount = allUnmarkedRolls.length - selectedStudents.size;
-
-        confirmMessage = `
-          <strong>Absent Mode Summary:</strong><br><br>
-          ❌ <strong>${selectedStudents.size}</strong> selected students → ABSENT<br>
-          ✅ <strong>${unselectedCount}</strong> unselected students → PRESENT<br><br>
-          <span style="font-size: 0.9em; color: var(--text-secondary);">
-          This will mark ALL remaining students.
-          </span>`;
-
-        // Build list: selected = absent, unselected = present
-        studentsToMark = allUnmarkedRolls.map(roll => ({
-          roll,
-          status: selectedStudents.has(roll) ? 'absent' : 'present'
-        }));
-      }
+      const absentCount = totalUnmarked - selectedStudents.size;
+      const confirmMessage = `
+        <strong>Attendance Summary:</strong><br><br>
+        ✅ <strong>${selectedStudents.size}</strong> student(s) → PRESENT<br>
+        ❌ <strong>${absentCount}</strong> student(s) → ABSENT<br><br>
+        <span style="font-size: 0.9em; color: var(--text-secondary);">
+        This will mark all ${totalUnmarked} remaining students.
+        </span>`;
 
       const confirmed = await Modal.confirm(
         confirmMessage,
-        'Confirm Bulk Marking',
-        currentMode === 'present' ? 'success' : 'warning'
+        'Confirm Attendance Marking',
+        'warning'
       );
 
       if (!confirmed) return;
@@ -1482,6 +1450,13 @@ document.addEventListener('DOMContentLoaded', () => {
       markSelectedBtn.textContent = 'Applying...';
 
       try {
+        // Build list: all unmarked students — checked = present, unchecked = absent
+        const unmarkedItems = studentGrid.querySelectorAll('.student-item:not(.marked-present):not(.marked-absent)');
+        const studentsToMark = Array.from(unmarkedItems).map(item => ({
+          roll: item.dataset.univRoll,
+          status: selectedStudents.has(item.dataset.univRoll) ? 'present' : 'absent'
+        }));
+
         const response = await fetch('/api/teacher/emergency-bulk-mark', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -1494,14 +1469,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (response.ok) {
           const data = await response.json();
-          const totalMarked = (data.present_count || 0) + (data.absent_count || 0);
-          let successMessage = '';
-
-          if (currentMode === 'present') {
-            successMessage = `Successfully marked ${data.present_count || totalMarked} students as PRESENT!`;
-          } else {
-            successMessage = `✅ ${data.present_count || 0} marked PRESENT<br>❌ ${data.absent_count || 0} marked ABSENT`;
-          }
+          const successMessage = `✅ ${data.present_count || 0} marked PRESENT<br>❌ ${data.absent_count || 0} marked ABSENT`;
 
           await Modal.alert(successMessage, 'Success', 'success');
 
@@ -1864,6 +1832,9 @@ document.addEventListener('DOMContentLoaded', () => {
               <div class="student-roll">Roll: ${student.class_roll_id} | Univ: ${student.university_roll_no}</div>
               ${student.method ? `<div class="attendance-method">via ${student.method}</div>` : ''}
             </div>
+            <button class="mark-absent-btn" data-student-id="${student.student_id}" data-student-name="${student.student_name}">
+              Mark Absent
+            </button>
           `;
           modalPresentList.appendChild(item);
         });
@@ -1922,7 +1893,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // Retroactive attendance marking
+  // Retroactive attendance marking - Mark Present (from absent list)
   modalAbsentList.addEventListener('click', async (event) => {
     if (event.target.classList.contains('mark-present-btn')) {
       const studentId = event.target.dataset.studentId;
@@ -1955,6 +1926,49 @@ document.addEventListener('DOMContentLoaded', () => {
             // Refresh the modal
             showSessionDetailModal(currentModalSessionId);
             // Also refresh history tab in background
+            loadHistoryTab();
+          } else {
+            await Modal.alert(data.error || 'Failed to update attendance.', 'Error', 'error');
+          }
+        } catch (error) {
+          console.error('Update attendance error:', error);
+          await Modal.alert('Network error while updating attendance.', 'Network Error', 'error');
+        }
+      }
+    }
+  });
+
+  // Retroactive attendance marking - Mark Absent (from present list)
+  modalPresentList.addEventListener('click', async (event) => {
+    if (event.target.classList.contains('mark-absent-btn')) {
+      const studentId = event.target.dataset.studentId;
+      const studentName = event.target.dataset.studentName;
+
+      const reason = await Modal.prompt(
+        `Mark <strong>${studentName}</strong> as absent retroactively.<br><br>Please provide a reason (required for audit):`,
+        'Retroactive Attendance',
+        '',
+        'warning'
+      );
+
+      if (reason && reason.trim() !== '') {
+        try {
+          const response = await fetch('/api/teacher/update-attendance', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              session_id: currentModalSessionId,
+              student_id: parseInt(studentId),
+              action: 'mark_absent',
+              manual_reason: reason.trim(),
+            }),
+          });
+
+          const data = await response.json();
+
+          if (response.ok) {
+            await Modal.alert('Student marked as absent.', 'Success', 'success');
+            showSessionDetailModal(currentModalSessionId);
             loadHistoryTab();
           } else {
             await Modal.alert(data.error || 'Failed to update attendance.', 'Error', 'error');

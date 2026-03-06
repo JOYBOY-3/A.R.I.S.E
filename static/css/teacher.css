@@ -1254,6 +1254,23 @@ Teacher Dashboard - FINAL FIXED VERSION
   transform: scale(1.05);
 }
 
+.mark-absent-btn {
+  padding: 6px 12px;
+  background-color: var(--danger-color);
+  color: white;
+  border: none;
+  border-radius: var(--border-radius-sm);
+  cursor: pointer;
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  transition: all var(--transition-fast);
+}
+
+.mark-absent-btn:hover {
+  background-color: #c82333;
+  transform: scale(1.05);
+}
+
 /* ==========================================================
    RESPONSIVE STYLES FOR NEW COMPONENTS
    ========================================================== */
@@ -1745,35 +1762,34 @@ Teacher Dashboard - FINAL FIXED VERSION
   border-bottom: 1px solid var(--border-color);
 }
 
-.mode-btn {
-  padding: var(--spacing-sm) var(--spacing-lg);
-  border: 2px solid var(--border-color);
+.emergency-toggle-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.btn-select-all,
+.btn-deselect-all {
+  padding: 6px 14px;
+  border: 1px solid var(--border-color);
   border-radius: var(--border-radius-sm);
   background-color: transparent;
   color: var(--text-secondary);
   font-weight: 600;
+  font-size: 0.85em;
   cursor: pointer;
   transition: all var(--transition-fast);
-  display: flex;
-  align-items: center;
-  gap: 6px;
 }
 
-.mode-btn:hover {
-  border-color: var(--text-primary);
-  color: var(--text-primary);
-}
-
-.mode-btn.active.present-mode {
-  background-color: var(--success-color);
+.btn-select-all:hover {
+  background-color: rgba(40, 167, 69, 0.15);
   border-color: var(--success-color);
-  color: white;
+  color: var(--success-color);
 }
 
-.mode-btn.active.absent-mode {
-  background-color: var(--danger-color);
+.btn-deselect-all:hover {
+  background-color: rgba(220, 53, 69, 0.15);
   border-color: var(--danger-color);
-  color: white;
+  color: var(--danger-color);
 }
 
 /* Student Selection Grid */
@@ -1792,14 +1808,6 @@ Teacher Dashboard - FINAL FIXED VERSION
   padding: var(--spacing-sm);
   background-color: var(--bg-primary);
   border-radius: var(--border-radius-sm);
-}
-
-.emergency-select-all label {
-  display: flex;
-  align-items: center;
-  gap: var(--spacing-sm);
-  cursor: pointer;
-  font-weight: 500;
 }
 
 .selection-count {
