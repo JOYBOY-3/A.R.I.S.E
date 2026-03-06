@@ -994,6 +994,9 @@ Teacher Dashboard - FINAL FIXED VERSION
 
 .session-card-stats {
   text-align: right;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .session-card-stats .attendance-badge {
@@ -1002,6 +1005,24 @@ Teacher Dashboard - FINAL FIXED VERSION
   border-radius: var(--border-radius-sm);
   font-weight: 600;
   font-size: var(--font-size-base);
+}
+
+.delete-session-btn {
+  background: transparent;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  border-radius: var(--border-radius-sm);
+  padding: 6px 10px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: all 0.2s ease;
+  opacity: 0.6;
+}
+
+.delete-session-btn:hover {
+  background: rgba(239, 68, 68, 0.15);
+  border-color: rgba(239, 68, 68, 0.6);
+  opacity: 1;
+  transform: scale(1.1);
 }
 
 .attendance-badge.good {

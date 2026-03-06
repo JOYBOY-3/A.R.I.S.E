@@ -2475,6 +2475,82 @@ def get_teacher_history(course_id):
         return jsonify({"error": "Failed to load history"}), 500
 
 
+@app.route('/api/teacher/session/<int:session_id>/delete', methods=['DELETE'])
+def delete_session(session_id):
+    """
+    Delete a session and its attendance records.
+    Requires a 'reason' field explaining why the session is being deleted.
+    The deletion is logged with full details for audit purposes.
+    """
+    data = request.get_json()
+    reason = (data.get('reason', '') if data else '').strip()
+    
+    if not reason:
+        return jsonify({"error": "A reason is required to delete a session."}), 400
+    
+    if len(reason) < 5:
+        return jsonify({"error": "Please provide a more detailed reason (at least 5 characters)."}), 400
+    
+    try:
+        conn = get_db_connection()
+        
+        # Fetch session details before deletion for logging
+        session = conn.execute("""
+            SELECT s.id, s.course_id, s.start_time, s.end_time, s.session_type, 
+                   s.topic, s.is_active,
+                   c.course_name, c.course_code
+            FROM sessions s
+            LEFT JOIN courses c ON s.course_id = c.id
+            WHERE s.id = ?
+        """, (session_id,)).fetchone()
+        
+        if not session:
+            conn.close()
+            return jsonify({"error": "Session not found."}), 404
+        
+        if session['is_active']:
+            conn.close()
+            return jsonify({"error": "Cannot delete an active session. End it first."}), 400
+        
+        # Count attendance records that will be deleted
+        attendance_count = conn.execute(
+            "SELECT COUNT(*) as c FROM attendance_records WHERE session_id = ?",
+            (session_id,)
+        ).fetchone()['c']
+        
+        # Log the deletion with full audit details before deleting
+        logger.warning(
+            f"[SESSION DELETE] Session ID: {session_id} | "
+            f"Course: {session['course_code']} - {session['course_name']} | "
+            f"Date: {session['start_time']} | "
+            f"Type: {session['session_type']} | "
+            f"Topic: {session['topic'] or 'No topic'} | "
+            f"Attendance records deleted: {attendance_count} | "
+            f"Reason: {reason}"
+        )
+        
+        # Delete attendance records first (foreign key dependency)
+        conn.execute("DELETE FROM attendance_records WHERE session_id = ?", (session_id,))
+        
+        # Delete the session
+        conn.execute("DELETE FROM sessions WHERE id = ?", (session_id,))
+        
+        conn.commit()
+        conn.close()
+        
+        return jsonify({
+            "status": "success",
+            "message": f"Session deleted successfully. {attendance_count} attendance record(s) removed.",
+            "session_id": session_id,
+            "attendance_records_deleted": attendance_count,
+            "reason": reason
+        })
+        
+    except Exception as e:
+        logger.error(f"Error deleting session {session_id}: {e}", exc_info=True)
+        return jsonify({"error": "Failed to delete session."}), 500
+
+
 @app.route('/api/teacher/session-detail/<int:session_id>', methods=['GET'])
 def get_session_detail(session_id):
     """

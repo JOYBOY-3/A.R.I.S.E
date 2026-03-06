@@ -1736,9 +1736,14 @@ document.addEventListener('DOMContentLoaded', () => {
               </div>
               <div class="session-card-stats">
                 <span class="attendance-badge ${badgeClass}">${session.present_count}/${session.total_students} (${session.attendance_percent}%)</span>
+                ${!session.is_active ? `<button class="delete-session-btn" data-session-id="${session.id}" data-session-date="${session.date}" data-session-time="${session.time}" data-session-type="${session.session_type}" data-session-present="${session.present_count}" title="Delete this session">🗑️</button>` : ''}
               </div>
             `;
-            card.addEventListener('click', () => showSessionDetailModal(session.id));
+            card.addEventListener('click', (e) => {
+              // Don't open detail if delete button was clicked
+              if (e.target.closest('.delete-session-btn')) return;
+              showSessionDetailModal(session.id);
+            });
             historyList.appendChild(card);
           });
         } else {
@@ -1756,6 +1761,76 @@ document.addEventListener('DOMContentLoaded', () => {
       historyLoading.innerHTML = '<p>Error loading history.</p>';
     }
   }
+
+  // Delete session handler — triggered from history card delete button
+  document.addEventListener('click', async (e) => {
+    const deleteBtn = e.target.closest('.delete-session-btn');
+    if (!deleteBtn) return;
+
+    e.stopPropagation();
+
+    const sessionId = deleteBtn.dataset.sessionId;
+    const sessionDate = deleteBtn.dataset.sessionDate;
+    const sessionTime = deleteBtn.dataset.sessionTime;
+    const sessionType = deleteBtn.dataset.sessionType === 'online' ? '🌐 Online' : '📍 Offline';
+    const presentCount = deleteBtn.dataset.sessionPresent;
+
+    // Step 1: Ask for reason via prompt
+    const reason = await Modal.prompt(
+      `<p>You are about to delete the session from <b>${sessionDate}</b> at <b>${sessionTime}</b>.</p>
+       <p>Please provide the reason for deleting this session:</p>`,
+      '🗑️ Delete Session — Reason Required',
+      '',
+      'warning'
+    );
+
+    if (reason === null) return; // Cancelled
+    if (!reason || reason.trim().length < 5) {
+      await Modal.alert('Please provide a more detailed reason (at least 5 characters).', 'Invalid Reason', 'error');
+      return;
+    }
+
+    // Step 2: Final confirmation with session details
+    const confirmed = await Modal.confirm(
+      `<p><b>Are you sure you want to permanently delete this session?</b></p>
+       <table style="width:100%;margin:12px 0;text-align:left;">
+         <tr><td style="padding:4px 8px;opacity:0.7;">Date:</td><td style="padding:4px 8px;"><b>${sessionDate} at ${sessionTime}</b></td></tr>
+         <tr><td style="padding:4px 8px;opacity:0.7;">Type:</td><td style="padding:4px 8px;">${sessionType}</td></tr>
+         <tr><td style="padding:4px 8px;opacity:0.7;">Attendance:</td><td style="padding:4px 8px;">${presentCount} student(s) present</td></tr>
+         <tr><td style="padding:4px 8px;opacity:0.7;">Reason:</td><td style="padding:4px 8px;"><i>${reason.trim()}</i></td></tr>
+       </table>
+       <p style="color:#ef4444;font-weight:600;">⚠️ This action cannot be undone. All attendance records for this session will be permanently deleted.</p>`,
+      '⚠️ Confirm Permanent Deletion',
+      'error'
+    );
+
+    if (!confirmed) return;
+
+    // Step 3: Make the API call
+    try {
+      const res = await fetch(`/api/teacher/session/${sessionId}/delete`, {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ reason: reason.trim() })
+      });
+      const result = await res.json();
+
+      if (res.ok && result.status === 'success') {
+        await Modal.alert(
+          `<p>Session deleted successfully.</p><p>${result.attendance_records_deleted} attendance record(s) removed.</p>`,
+          '✅ Session Deleted',
+          'success'
+        );
+        // Refresh the history tab
+        loadHistoryTab();
+      } else {
+        await Modal.alert(result.error || 'Failed to delete session.', 'Error', 'error');
+      }
+    } catch (err) {
+      console.error('Delete session error:', err);
+      await Modal.alert('Network error while deleting session.', 'Error', 'error');
+    }
+  });
 
   // =============================================================
   // 14. SESSION DETAIL MODAL (For History Tab)
