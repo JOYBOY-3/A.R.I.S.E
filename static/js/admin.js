@@ -355,7 +355,8 @@ document.addEventListener('DOMContentLoaded', () => {
       form.querySelector('#semester-name').value = cells[1].textContent;
     }
     if (entity === 'teachers') {
-      form.querySelector('#teacher-name').value = cells[1].textContent;
+      form.querySelector('#teacher-name').value = cells[2].textContent;
+      form.querySelector('#teacher-code').value = cells[1].textContent;
       form.querySelector('#teacher-pin').value = '';
       form.querySelector('#teacher-pin').placeholder =
         'Leave blank to keep unchanged';
@@ -433,6 +434,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const row = document.createElement('tr');
       row.innerHTML = `
       <td data-label="ID">${item.id}</td>
+      <td data-label="Teacher Code">${item.teacher_code || '-'}</td>
       <td data-label="Teacher Name">${item.teacher_name}</td>
       <td data-label="Actions" class="actions-cell">
         <button class="button-secondary edit-btn" data-id="${item.id}">Edit</button>
@@ -444,16 +446,26 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   teacherForm.addEventListener('submit', async (e) => {
     e.preventDefault();
+    const pin = document.getElementById('teacher-pin').value;
     const body = {
       teacher_name: document.getElementById('teacher-name').value,
-      pin: document.getElementById('teacher-pin').value,
+      teacher_code: document.getElementById('teacher-code').value.trim().toUpperCase(),
+      pin: pin,
     };
     if (currentEditId) {
       if (!body.pin) delete body.pin;
+      else if (!/^\d{6}$/.test(body.pin)) {
+        await Modal.alert('PIN must be exactly 6 digits.', 'Invalid PIN', 'error');
+        return;
+      }
       await api.put('teachers', currentEditId, body);
     } else {
-      if (!body.pin) {
-        alert('PIN is required for new teachers.');
+      if (!body.pin || !/^\d{6}$/.test(body.pin)) {
+        await Modal.alert('PIN must be exactly 6 digits.', 'Invalid PIN', 'error');
+        return;
+      }
+      if (!body.teacher_code) {
+        await Modal.alert('Teacher code is required.', 'Missing Field', 'error');
         return;
       }
       await api.post('teachers', body);
@@ -570,7 +582,7 @@ document.addEventListener('DOMContentLoaded', () => {
     );
     teachers.forEach(
       (t) =>
-        (teacherSelect.innerHTML += `<option value="${t.id}">${t.teacher_name}</option>`),
+        (teacherSelect.innerHTML += `<option value="${t.id}">${t.teacher_code ? t.teacher_code + ' - ' : ''}${t.teacher_name}</option>`),
     );
   }
 

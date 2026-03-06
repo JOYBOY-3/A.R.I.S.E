@@ -542,10 +542,21 @@ def manage_single_semester(user_data, id):
     return jsonify({"message": "Operation successful."})
 
 # --- Teacher Management API (Full CRUD) ---
+def _migrate_teachers_table(conn):
+    """Add teacher_code column if it doesn't exist (migration for existing DBs)."""
+    try:
+        conn.execute("ALTER TABLE teachers ADD COLUMN teacher_code TEXT UNIQUE")
+        conn.commit()
+        logger.info("Migrated teachers table: added teacher_code column")
+    except Exception:
+        pass  # Column already exists
+
 @app.route('/api/admin/teachers', methods=['GET', 'POST'])
 @token_required
 def manage_teachers(user_data):
     conn = get_db_connection()
+    _migrate_teachers_table(conn)
+    
     if request.method == 'GET':
         teachers_cursor = conn.execute("SELECT * FROM teachers ORDER BY id DESC").fetchall()
         teachers = [dict(row) for row in teachers_cursor]
@@ -556,30 +567,65 @@ def manage_teachers(user_data):
         data = request.get_json()
         
         # Validate input
-        valid, error = validate_required_fields(data, ['teacher_name', 'pin'])
+        valid, error = validate_required_fields(data, ['teacher_name', 'teacher_code', 'pin'])
         if not valid:
             logger.warning(f"Teacher creation failed - {error}")
             return jsonify({"error": error}), 400
         
-        conn.execute("INSERT INTO teachers (teacher_name, pin) VALUES (?, ?)",
-                     (sanitize_input(data['teacher_name']), hash_password(data['pin'])))
+        # Validate PIN is exactly 6 digits
+        pin = data['pin'].strip()
+        if not pin.isdigit() or len(pin) != 6:
+            return jsonify({"error": "PIN must be exactly 6 digits."}), 400
+        
+        teacher_code = sanitize_input(data['teacher_code']).strip().upper()
+        if not teacher_code:
+            return jsonify({"error": "Teacher code is required."}), 400
+        
+        # Check uniqueness of teacher_code
+        existing = conn.execute("SELECT id FROM teachers WHERE teacher_code = ?", (teacher_code,)).fetchone()
+        if existing:
+            conn.close()
+            return jsonify({"error": f"Teacher code '{teacher_code}' already exists."}), 400
+        
+        conn.execute("INSERT INTO teachers (teacher_name, teacher_code, pin) VALUES (?, ?, ?)",
+                     (sanitize_input(data['teacher_name']), teacher_code, hash_password(pin)))
         conn.commit()
         conn.close()
-        logger.info(f"Teacher created - Name: {data['teacher_name']}")
+        logger.info(f"Teacher created - Name: {data['teacher_name']}, Code: {teacher_code}")
         return jsonify({"status": "success", "message": "Teacher added."}), 201
 
 @app.route('/api/admin/teachers/<int:id>', methods=['PUT', 'DELETE'])
 @token_required
 def manage_single_teacher(user_data, id):
     conn = get_db_connection()
+    _migrate_teachers_table(conn)
+    
     if request.method == 'PUT':
         data = request.get_json()
-        if 'pin' in data and data['pin']: # Only update PIN if provided
-             conn.execute("UPDATE teachers SET teacher_name = ?, pin = ? WHERE id = ?", (sanitize_input(data['teacher_name']), hash_password(data['pin']), id))
+        
+        teacher_code = sanitize_input(data.get('teacher_code', '')).strip().upper()
+        if not teacher_code:
+            conn.close()
+            return jsonify({"error": "Teacher code is required."}), 400
+        
+        # Check uniqueness of teacher_code (excluding current teacher)
+        existing = conn.execute("SELECT id FROM teachers WHERE teacher_code = ? AND id != ?", (teacher_code, id)).fetchone()
+        if existing:
+            conn.close()
+            return jsonify({"error": f"Teacher code '{teacher_code}' already exists."}), 400
+        
+        if 'pin' in data and data['pin']:
+            pin = data['pin'].strip()
+            if not pin.isdigit() or len(pin) != 6:
+                conn.close()
+                return jsonify({"error": "PIN must be exactly 6 digits."}), 400
+            conn.execute("UPDATE teachers SET teacher_name = ?, teacher_code = ?, pin = ? WHERE id = ?",
+                         (sanitize_input(data['teacher_name']), teacher_code, hash_password(pin), id))
         else:
-             conn.execute("UPDATE teachers SET teacher_name = ? WHERE id = ?", (sanitize_input(data['teacher_name']), id))
+            conn.execute("UPDATE teachers SET teacher_name = ?, teacher_code = ? WHERE id = ?",
+                         (sanitize_input(data['teacher_name']), teacher_code, id))
         conn.commit()
-        logger.info(f"Teacher updated - ID: {id}, Name: {data['teacher_name']}")
+        logger.info(f"Teacher updated - ID: {id}, Name: {data['teacher_name']}, Code: {teacher_code}")
     elif request.method == 'DELETE':
         conn.execute("DELETE FROM teachers WHERE id = ?", (id,))
         conn.commit()

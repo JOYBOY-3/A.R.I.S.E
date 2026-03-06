@@ -112,8 +112,12 @@
               <input type="text" id="teacher-name" required />
             </div>
             <div>
-              <label for="teacher-pin">Teacher PIN</label>
-              <input type="password" id="teacher-pin" />
+              <label for="teacher-code">Teacher Code (Unique ID)</label>
+              <input type="text" id="teacher-code" required placeholder="e.g. TCH001" />
+            </div>
+            <div>
+              <label for="teacher-pin">Teacher PIN (6 digits)</label>
+              <input type="password" id="teacher-pin" placeholder="6-digit PIN" maxlength="6" pattern="\d{6}" />
             </div>
           </div>
           <button type="submit" class="button-primary" id="teacher-submit-button">
@@ -125,6 +129,7 @@
           <thead>
             <tr>
               <th data-field="id">ID</th>
+              <th data-field="teacher_code">Teacher Code</th>
               <th data-field="teacher_name">Teacher Name</th>
               <th>Actions</th>
             </tr>
