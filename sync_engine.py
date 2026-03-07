@@ -123,9 +123,12 @@ class SyncEngine:
     
     def extract_online_records(self):
         """
-        Extract all online sessions and their attendance records from the
+        Extract all CLOUD-CREATED sessions and their attendance records from the
         current cloud database BEFORE it is replaced by a local snapshot.
         Returns a dict with 'sessions' and 'attendance' lists.
+        
+        Strategy: Uses 'created_on' column if available (new DBs), falls back
+        to 'session_type = online' for backward compatibility (old DBs).
         """
         if not os.path.exists(self.db_path):
             return {'sessions': [], 'attendance': []}
@@ -134,17 +137,28 @@ class SyncEngine:
             conn = sqlite3.connect(self.db_path)
             conn.row_factory = sqlite3.Row
             
-            # Get all online sessions
-            sessions = conn.execute(
-                "SELECT * FROM sessions WHERE session_type = 'online'"
-            ).fetchall()
+            # Check if created_on column exists
+            columns = [col[1] for col in conn.execute("PRAGMA table_info(sessions)").fetchall()]
+            has_created_on = 'created_on' in columns
+            
+            if has_created_on:
+                # New strategy: preserve ALL cloud-created sessions (offline + online)
+                sessions = conn.execute(
+                    "SELECT * FROM sessions WHERE created_on = 'cloud'"
+                ).fetchall()
+            else:
+                # Backward compat: only preserve online sessions (old behavior)
+                sessions = conn.execute(
+                    "SELECT * FROM sessions WHERE session_type = 'online'"
+                ).fetchall()
+            
             sessions_list = [dict(row) for row in sessions]
             
             if not sessions_list:
                 conn.close()
                 return {'sessions': [], 'attendance': []}
             
-            # Get attendance records for online sessions
+            # Get attendance records for cloud-created sessions
             session_ids = [s['id'] for s in sessions_list]
             placeholders = ','.join('?' * len(session_ids))
             attendance = conn.execute(
@@ -155,18 +169,18 @@ class SyncEngine:
             
             conn.close()
             logger.info(
-                f"[SYNC] Extracted {len(sessions_list)} online sessions "
+                f"[SYNC] Extracted {len(sessions_list)} cloud-created sessions "
                 f"and {len(attendance_list)} attendance records for merge"
             )
             return {'sessions': sessions_list, 'attendance': attendance_list}
             
         except Exception as e:
-            logger.error(f"[SYNC] Extract online records failed: {e}", exc_info=True)
+            logger.error(f"[SYNC] Extract cloud records failed: {e}", exc_info=True)
             return {'sessions': [], 'attendance': []}
     
     def reinsert_online_records(self, online_data):
         """
-        Re-insert previously extracted online sessions and attendance
+        Re-insert previously extracted cloud-created sessions and attendance
         records into the database AFTER it has been replaced by a local
         snapshot. Session IDs are remapped to avoid conflicts.
         """
@@ -180,16 +194,25 @@ class SyncEngine:
             conn = sqlite3.connect(self.db_path)
             conn.execute("PRAGMA foreign_keys = OFF")
             
+            # Ensure created_on column exists in the new database
+            try:
+                conn.execute("ALTER TABLE sessions ADD COLUMN created_on TEXT DEFAULT 'local'")
+                conn.commit()
+            except Exception:
+                pass  # Column already exists
+            
             # Map old session IDs to new ones
             old_to_new_id = {}
             inserted_sessions = 0
             
             for s in sessions:
                 old_id = s['id']
+                session_type = s.get('session_type', 'offline')
+                
                 # Check if this exact session already exists (by course_id + start_time + type)
                 existing = conn.execute(
-                    "SELECT id FROM sessions WHERE course_id = ? AND start_time = ? AND session_type = 'online'",
-                    (s['course_id'], s['start_time'])
+                    "SELECT id FROM sessions WHERE course_id = ? AND start_time = ? AND session_type = ?",
+                    (s['course_id'], s['start_time'], session_type)
                 ).fetchone()
                 
                 if existing:
@@ -198,10 +221,10 @@ class SyncEngine:
                 
                 cursor = conn.execute(
                     """INSERT INTO sessions 
-                       (course_id, start_time, end_time, is_active, session_type, topic, session_token, otp_seed)
-                       VALUES (?, ?, ?, ?, 'online', ?, ?, ?)""",
+                       (course_id, start_time, end_time, is_active, session_type, topic, session_token, otp_seed, created_on)
+                       VALUES (?, ?, ?, ?, ?, ?, ?, ?, 'cloud')""",
                     (s['course_id'], s['start_time'], s.get('end_time'),
-                     s.get('is_active', 0), s.get('topic'),
+                     s.get('is_active', 0), session_type, s.get('topic'),
                      s.get('session_token'), s.get('otp_seed'))
                 )
                 new_id = cursor.lastrowid
@@ -238,13 +261,13 @@ class SyncEngine:
             conn.close()
             
             logger.info(
-                f"[SYNC] Re-inserted {inserted_sessions} online sessions "
+                f"[SYNC] Re-inserted {inserted_sessions} cloud-created sessions "
                 f"and {inserted_attendance} attendance records"
             )
             return inserted_sessions
             
         except Exception as e:
-            logger.error(f"[SYNC] Re-insert online records failed: {e}", exc_info=True)
+            logger.error(f"[SYNC] Re-insert cloud records failed: {e}", exc_info=True)
             return 0
     
     def import_database_binary(self, binary_data, online_records=None):

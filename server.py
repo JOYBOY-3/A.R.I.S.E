@@ -558,6 +558,17 @@ def _migrate_teachers_table(conn):
     except Exception:
         pass  # Index already exists
 
+def _migrate_sessions_table(conn):
+    """Add created_on column to sessions table (migration for existing DBs).
+    Tracks whether a session was created on 'local' or 'cloud' server.
+    Used by sync engine to preserve ALL cloud-created sessions during sync."""
+    try:
+        conn.execute("ALTER TABLE sessions ADD COLUMN created_on TEXT DEFAULT 'local'")
+        conn.commit()
+        logger.info("Migrated sessions table: added created_on column")
+    except Exception:
+        pass  # Column already exists
+
 @app.route('/api/admin/teachers', methods=['GET', 'POST'])
 @token_required
 def manage_teachers(user_data):
@@ -1438,15 +1449,18 @@ def teacher_start_session():
     
     # Create new session
     cursor = conn.cursor()
+    _migrate_sessions_table(conn)  # Ensure created_on column exists
+    created_on = 'cloud' if Config.IS_CLOUD_SERVER else 'local'
     cursor.execute(
         """INSERT INTO sessions 
-           (course_id, start_time, end_time, is_active, session_type, topic) 
-           VALUES (?, ?, ?, 1, ?, ?)""",
+           (course_id, start_time, end_time, is_active, session_type, topic, created_on) 
+           VALUES (?, ?, ?, 1, ?, ?, ?)""",
         (data['course_id'], 
          start_time.strftime('%Y-%m-%d %H:%M:%S'),
          end_time.strftime('%Y-%m-%d %H:%M:%S'),
          data['session_type'],
-         topic)
+         topic,
+         created_on)
     )
     session_id = cursor.lastrowid
     conn.commit()
@@ -1534,7 +1548,7 @@ def start_online_session():
     conn = get_db_connection()
     cursor = conn.cursor()
     
-    # Migrate: add session_token and otp_seed columns if they don't exist
+    # Migrate: add session_token, otp_seed, and created_on columns if they don't exist
     try:
         cursor.execute("ALTER TABLE sessions ADD COLUMN session_token TEXT")
     except Exception:
@@ -1543,6 +1557,7 @@ def start_online_session():
         cursor.execute("ALTER TABLE sessions ADD COLUMN otp_seed TEXT")
     except Exception:
         pass
+    _migrate_sessions_table(conn)  # Ensure created_on column exists
     
     # Deactivate any other active sessions
     conn.execute("UPDATE sessions SET is_active = 0, end_time = ? WHERE is_active = 1",
@@ -1550,8 +1565,8 @@ def start_online_session():
     
     cursor.execute(
         """INSERT INTO sessions 
-           (course_id, start_time, end_time, is_active, session_type, topic, session_token, otp_seed) 
-           VALUES (?, ?, ?, 1, 'online', ?, ?, ?)""",
+           (course_id, start_time, end_time, is_active, session_type, topic, session_token, otp_seed, created_on) 
+           VALUES (?, ?, ?, 1, 'online', ?, ?, ?, 'cloud')""",
         (data['course_id'], 
          start_time.strftime('%Y-%m-%d %H:%M:%S'),
          end_time.strftime('%Y-%m-%d %H:%M:%S'),
