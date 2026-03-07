@@ -1480,13 +1480,17 @@ def teacher_start_session():
     students = [dict(row) for row in students_cursor]
     conn.close()
     
+    # Calculate seconds remaining (timezone-safe: uses relative duration, not absolute timestamps)
+    seconds_remaining = max(0, int((end_time - datetime.datetime.now()).total_seconds()))
+    
     return jsonify({
         "status": "success",
         "message": "Session Started",
         "students": students,
         "session_id": session_id,
         "end_time": end_time.strftime('%Y-%m-%d %H:%M:%S'),  # Send as string
-        "duration_minutes": duration_minutes
+        "duration_minutes": duration_minutes,
+        "seconds_remaining": seconds_remaining  # Timezone-safe countdown
     })
 
 
@@ -1594,6 +1598,9 @@ def start_online_session():
     logger.info(f"[ONLINE] Session started - ID: {session_id}, Token: {session_token}, "
                 f"Course: {course['course_name']}, Duration: {duration_minutes}min")
     
+    # Calculate seconds remaining (timezone-safe)
+    seconds_remaining = max(0, int((end_time - datetime.datetime.now()).total_seconds()))
+    
     return jsonify({
         "status": "success",
         "session_id": session_id,
@@ -1603,6 +1610,7 @@ def start_online_session():
         "otp_time_remaining": get_otp_time_remaining(),
         "end_time": end_time.strftime('%Y-%m-%d %H:%M:%S'),
         "duration_minutes": duration_minutes,
+        "seconds_remaining": seconds_remaining,  # Timezone-safe countdown
         "course_name": course['course_name'] if course else '',
         "course_code": course['course_code'] if course else '',
         "total_students": student_count
@@ -2164,9 +2172,13 @@ def extend_session(session_id):
     
     conn.close()
     
+    # Calculate seconds remaining from new end time (timezone-safe)
+    seconds_remaining = max(0, int((new_end_time - datetime.datetime.now()).total_seconds()))
+    
     return jsonify({
         "status": "success",
         "new_end_time": new_end_time_str,
+        "seconds_remaining": seconds_remaining,  # Timezone-safe countdown
         "message": f"Session extended by {extension_minutes} minutes"
     })
 
@@ -2942,12 +2954,24 @@ def validate_teacher_session(course_id):
         }
         
         if active_session:
+            # Calculate seconds remaining (timezone-safe)
+            try:
+                end_time_str = active_session['end_time']
+                if '.' in end_time_str:
+                    end_time_dt = datetime.datetime.strptime(end_time_str, '%Y-%m-%d %H:%M:%S.%f')
+                else:
+                    end_time_dt = datetime.datetime.strptime(end_time_str, '%Y-%m-%d %H:%M:%S')
+                secs_remaining = max(0, int((end_time_dt - datetime.datetime.now()).total_seconds()))
+            except Exception:
+                secs_remaining = 0
+            
             result["active_session"] = {
                 "id": active_session['id'],
                 "start_time": active_session['start_time'],
                 "end_time": active_session['end_time'],
                 "topic": active_session['topic'],
-                "session_type": active_session['session_type']
+                "session_type": active_session['session_type'],
+                "seconds_remaining": secs_remaining  # Timezone-safe countdown
             }
             
             # Also fetch enrolled students for session restore

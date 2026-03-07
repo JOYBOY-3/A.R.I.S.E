@@ -395,7 +395,12 @@ document.addEventListener('DOMContentLoaded', () => {
           // Check for active session
           if (data.has_active_session) {
             sessionState.sessionId = data.active_session.id;
-            sessionState.endTime = new Date(data.active_session.end_time.replace(' ', 'T'));
+            // Use seconds_remaining for timezone-safe countdown (works on both cloud UTC and local IST)
+            if (data.active_session.seconds_remaining !== undefined) {
+              sessionState.endTime = new Date(Date.now() + data.active_session.seconds_remaining * 1000);
+            } else {
+              sessionState.endTime = new Date(data.active_session.end_time.replace(' ', 'T'));
+            }
             sessionState.currentHomeScreen = 'live';
 
             // Use the students returned from validate-session
@@ -613,7 +618,12 @@ document.addEventListener('DOMContentLoaded', () => {
       // Store session state
       sessionState.sessionId = result.session_id;
       sessionState.sessionToken = result.session_token;
-      sessionState.endTime = new Date(result.end_time.replace(' ', 'T'));
+      // Use seconds_remaining for timezone-safe countdown
+      if (result.seconds_remaining !== undefined) {
+        sessionState.endTime = new Date(Date.now() + result.seconds_remaining * 1000);
+      } else {
+        sessionState.endTime = new Date(result.end_time.replace(' ', 'T'));
+      }
       sessionState.currentHomeScreen = 'online-live';
 
       // Populate the online dashboard
@@ -813,7 +823,12 @@ document.addEventListener('DOMContentLoaded', () => {
         const res = await fetch(`/api/teacher/session/${sessionState.sessionId}/extend`, { method: 'POST' });
         if (res.ok) {
           const data = await res.json();
-          sessionState.endTime = new Date(data.new_end_time.replace(' ', 'T'));
+          // Use seconds_remaining for timezone-safe countdown
+          if (data.seconds_remaining !== undefined) {
+            sessionState.endTime = new Date(Date.now() + data.seconds_remaining * 1000);
+          } else {
+            sessionState.endTime = new Date(data.new_end_time.replace(' ', 'T'));
+          }
           await Modal.alert('Session extended by 10 minutes!', 'Extended', 'success');
         }
       } catch (e) {
@@ -848,8 +863,13 @@ document.addEventListener('DOMContentLoaded', () => {
       if (response.ok) {
         sessionState.sessionId = data.session_id;
         sessionState.allStudents = data.students;
-        const endTimeStr = data.end_time;
-        sessionState.endTime = new Date(endTimeStr.replace(' ', 'T'));
+        // Use seconds_remaining for timezone-safe countdown
+        if (data.seconds_remaining !== undefined) {
+          sessionState.endTime = new Date(Date.now() + data.seconds_remaining * 1000);
+        } else {
+          const endTimeStr = data.end_time;
+          sessionState.endTime = new Date(endTimeStr.replace(' ', 'T'));
+        }
         sessionState.currentHomeScreen = 'live';
 
         totalStudentsSpan.textContent = sessionState.allStudents.length;
