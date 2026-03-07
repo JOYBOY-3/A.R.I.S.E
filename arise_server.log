@@ -11372,3 +11372,95 @@ IndexError: list index out of range
 2026-03-07 15:27:52,755 - INFO - [SYNC] Database binary exported: 131072 bytes (128.0 KB)
 2026-03-07 15:27:54,356 - INFO - [SYNC] Push complete - Cloud response: success
 2026-03-07 15:27:54,356 - INFO - [SYNC] Auto-sync result: success
+2026-03-07 15:32:54,980 - INFO - [SYNC] Starting push to cloud: https://a-r-i-s-e.onrender.com
+2026-03-07 15:32:55,553 - INFO - [SYNC] Database binary exported: 131072 bytes (128.0 KB)
+2026-03-07 15:32:58,485 - INFO - [SYNC] Push complete - Cloud response: success
+2026-03-07 15:32:58,485 - INFO - [SYNC] Auto-sync result: success
+2026-03-07 15:35:10,162 - INFO - Server started - Auto-expire scheduler active
+2026-03-07 15:35:10,163 - INFO - [SYNC] Auto-sync started (interval: 300s)
+2026-03-07 15:35:10,164 - INFO - [SYNC] Auto-sync enabled: every 300s to https://a-r-i-s-e.onrender.com
+2026-03-07 15:35:11,314 - INFO - [SYNC] Starting push to cloud: https://a-r-i-s-e.onrender.com
+2026-03-07 15:35:11,777 - INFO - [SYNC] Database binary exported: 131072 bytes (128.0 KB)
+2026-03-07 15:35:14,355 - INFO - [SYNC] Push complete - Cloud response: success
+2026-03-07 15:35:14,355 - INFO - [SYNC] Auto-sync result: success
+2026-03-07 15:35:20,554 - INFO - [REQUEST] GET /api/teacher/history/1 - Client: 127.0.0.1
+2026-03-07 15:35:20,555 - INFO - Loading teacher history - CourseID: 1
+2026-03-07 15:35:34,539 - INFO - [REQUEST] POST /api/teacher/start-session - Client: 127.0.0.1
+2026-03-07 15:35:34,541 - INFO - Creating session - Duration: 30min, Grace: 5min, Start: 2026-03-07 15:35:34, Scheduled end: 2026-03-07 16:10:34, Topic: Through Local
+2026-03-07 15:35:34,545 - INFO - Session started - ID: 262, Course: 1, Duration: 30min (+5min grace)
+2026-03-07 15:35:34,552 - INFO - [REQUEST] GET /api/teacher/session/262/status - Client: 127.0.0.1
+2026-03-07 15:35:38,832 - INFO - [REQUEST] GET /api/teacher/session/262/status - Client: 127.0.0.1
+2026-03-07 15:35:39,553 - INFO - [REQUEST] GET /api/teacher/session/262/status - Client: 127.0.0.1
+2026-03-07 15:35:42,708 - INFO - [REQUEST] POST /api/teacher/emergency-bulk-mark - Client: 127.0.0.1
+2026-03-07 15:35:42,708 - INFO - Emergency bulk mark - Session: 262, Students: 8
+2026-03-07 15:35:42,713 - INFO - Emergency bulk mark SUCCESS - Present: 8, Absent: 0, Skipped: 0
+2026-03-07 15:35:44,202 - INFO - [REQUEST] GET /api/teacher/session/262/status - Client: 127.0.0.1
+2026-03-07 15:35:44,211 - INFO - [REQUEST] GET /api/teacher/session/262/status - Client: 127.0.0.1
+2026-03-07 15:35:44,555 - INFO - [REQUEST] GET /api/teacher/session/262/status - Client: 127.0.0.1
+2026-03-07 15:35:48,079 - INFO - [REQUEST] POST /api/teacher/session/262/end - Client: 127.0.0.1
+2026-03-07 15:35:48,080 - INFO - End session 262: Found 8 enrolled students
+2026-03-07 15:35:48,080 - INFO - End session 262: 8 students marked present
+2026-03-07 15:35:48,085 - INFO - Session ended - ID: 262, Absent count: 0
+2026-03-07 15:35:48,090 - INFO - [REQUEST] GET /api/teacher/report/262 - Client: 127.0.0.1
+2026-03-07 15:35:48,091 - INFO - Generating attendance report - SessionID: 262, CourseID: 1
+2026-03-07 15:35:48,095 - INFO - Report generated - SessionID: 262, Students: 8, Sessions: 236, Present records: 421, Absent records: 52
+2026-03-07 15:35:53,076 - INFO - [REQUEST] GET /api/teacher/history/1 - Client: 127.0.0.1
+2026-03-07 15:35:53,076 - INFO - Loading teacher history - CourseID: 1
+2026-03-07 15:36:05,562 - INFO - Server started - Auto-expire scheduler active
+2026-03-07 15:36:05,564 - INFO - [SYNC] Auto-sync started (interval: 300s)
+2026-03-07 15:36:05,564 - INFO - [SYNC] Auto-sync enabled: every 300s to https://a-r-i-s-e.onrender.com
+2026-03-07 15:36:06,080 - INFO - [SYNC] Starting push to cloud: https://a-r-i-s-e.onrender.com
+2026-03-07 15:36:06,489 - INFO - [SYNC] Database binary exported: 131072 bytes (128.0 KB)
+2026-03-07 15:36:07,473 - INFO - [SYNC] Push complete - Cloud response: success
+2026-03-07 15:36:07,474 - INFO - [SYNC] Auto-sync result: success
+2026-03-07 15:37:22,350 - INFO - [REQUEST] POST /api/teacher/login - Client: 127.0.0.1
+2026-03-07 15:37:22,352 - INFO - Teacher login attempt - CourseCode: MCA101
+2026-03-07 15:37:22,572 - INFO - Teacher login successful - Course: Introduction To Programming
+2026-03-07 15:37:24,207 - INFO - [REQUEST] GET /api/teacher/history/1 - Client: 127.0.0.1
+2026-03-07 15:37:24,207 - INFO - Loading teacher history - CourseID: 1
+2026-03-07 15:37:35,246 - INFO - [REQUEST] POST /api/teacher/start-session - Client: 127.0.0.1
+2026-03-07 15:37:35,247 - INFO - Creating session - Duration: 30min, Grace: 5min, Start: 2026-03-07 15:37:35, Scheduled end: 2026-03-07 16:12:35, Topic: Through Local 2
+2026-03-07 15:37:35,251 - INFO - Session started - ID: 263, Course: 1, Duration: 30min (+5min grace)
+2026-03-07 15:37:35,259 - INFO - [REQUEST] GET /api/teacher/session/263/status - Client: 127.0.0.1
+2026-03-07 15:37:39,255 - INFO - [REQUEST] GET /api/teacher/session/263/status - Client: 127.0.0.1
+2026-03-07 15:37:40,264 - INFO - [REQUEST] GET /api/teacher/session/263/status - Client: 127.0.0.1
+2026-03-07 15:37:43,458 - INFO - [REQUEST] POST /api/teacher/emergency-bulk-mark - Client: 127.0.0.1
+2026-03-07 15:37:43,459 - INFO - Emergency bulk mark - Session: 263, Students: 8
+2026-03-07 15:37:43,465 - INFO - Emergency bulk mark SUCCESS - Present: 8, Absent: 0, Skipped: 0
+2026-03-07 15:37:44,916 - INFO - [REQUEST] GET /api/teacher/session/263/status - Client: 127.0.0.1
+2026-03-07 15:37:44,924 - INFO - [REQUEST] GET /api/teacher/session/263/status - Client: 127.0.0.1
+2026-03-07 15:37:45,265 - INFO - [REQUEST] GET /api/teacher/session/263/status - Client: 127.0.0.1
+2026-03-07 15:37:48,118 - INFO - [REQUEST] POST /api/teacher/session/263/end - Client: 127.0.0.1
+2026-03-07 15:37:48,118 - INFO - End session 263: Found 8 enrolled students
+2026-03-07 15:37:48,119 - INFO - End session 263: 8 students marked present
+2026-03-07 15:37:48,123 - INFO - Session ended - ID: 263, Absent count: 0
+2026-03-07 15:37:48,127 - INFO - [REQUEST] GET /api/teacher/report/263 - Client: 127.0.0.1
+2026-03-07 15:37:48,129 - INFO - Generating attendance report - SessionID: 263, CourseID: 1
+2026-03-07 15:37:48,130 - INFO - Report generated - SessionID: 263, Students: 8, Sessions: 237, Present records: 429, Absent records: 52
+2026-03-07 15:37:58,955 - INFO - [SYNC] Starting push to cloud: https://a-r-i-s-e.onrender.com
+2026-03-07 15:37:59,350 - INFO - [SYNC] Database binary exported: 131072 bytes (128.0 KB)
+2026-03-07 15:38:00,389 - INFO - [SYNC] Push complete - Cloud response: success
+2026-03-07 15:38:00,389 - INFO - [SYNC] Auto-sync result: success
+2026-03-07 15:38:02,282 - INFO - Server started - Auto-expire scheduler active
+2026-03-07 15:38:02,283 - INFO - [SYNC] Auto-sync started (interval: 300s)
+2026-03-07 15:38:02,284 - INFO - [SYNC] Auto-sync enabled: every 300s to https://a-r-i-s-e.onrender.com
+2026-03-07 15:38:02,961 - INFO - [SYNC] Starting push to cloud: https://a-r-i-s-e.onrender.com
+2026-03-07 15:38:04,139 - INFO - [SYNC] Database binary exported: 131072 bytes (128.0 KB)
+2026-03-07 15:38:05,186 - INFO - [SYNC] Push complete - Cloud response: success
+2026-03-07 15:38:05,187 - INFO - [SYNC] Auto-sync result: success
+2026-03-07 15:43:01,508 - INFO - [SYNC] Starting push to cloud: https://a-r-i-s-e.onrender.com
+2026-03-07 15:43:01,943 - INFO - [SYNC] Database binary exported: 131072 bytes (128.0 KB)
+2026-03-07 15:43:03,655 - INFO - [SYNC] Push complete - Cloud response: success
+2026-03-07 15:43:03,655 - INFO - [SYNC] Auto-sync result: success
+2026-03-07 15:44:58,362 - INFO - Server started - Auto-expire scheduler active
+2026-03-07 15:48:04,124 - INFO - [SYNC] Starting push to cloud: https://a-r-i-s-e.onrender.com
+2026-03-07 15:48:04,531 - INFO - [SYNC] Database binary exported: 131072 bytes (128.0 KB)
+2026-03-07 15:48:06,150 - INFO - [SYNC] Push complete - Cloud response: success
+2026-03-07 15:48:06,150 - INFO - [SYNC] Auto-sync result: success
+2026-03-07 15:48:53,789 - INFO - Server started - Auto-expire scheduler active
+2026-03-07 15:48:53,790 - INFO - [SYNC] Auto-sync started (interval: 300s)
+2026-03-07 15:48:53,791 - INFO - [SYNC] Auto-sync enabled: every 300s to https://a-r-i-s-e.onrender.com
+2026-03-07 15:48:54,921 - INFO - [SYNC] Starting push to cloud: https://a-r-i-s-e.onrender.com
+2026-03-07 15:48:55,932 - INFO - [SYNC] Database binary exported: 131072 bytes (128.0 KB)
+2026-03-07 15:48:57,106 - INFO - [SYNC] Push complete - Cloud response: success
+2026-03-07 15:48:57,107 - INFO - [SYNC] Auto-sync result: success
