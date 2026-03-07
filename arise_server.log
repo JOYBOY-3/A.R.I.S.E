@@ -8906,3 +8906,2105 @@ IndexError: list index out of range
 2026-02-28 11:56:12,860 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.20
 2026-02-28 11:56:13,329 - INFO - Device heartbeat - Battery: 100%, Queue: 0, Sync: 1, MAC: F4:65:0B:48:DF:4C
 2026-02-28 11:56:17,936 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.20
+2026-02-28 12:00:10,314 - INFO - [SYNC] Starting push to cloud: https://a-r-i-s-e.onrender.com
+2026-02-28 12:00:10,844 - INFO - [SYNC] Database binary exported: 122880 bytes (120.0 KB)
+2026-02-28 12:00:12,471 - INFO - [SYNC] Push complete - Cloud response: success
+2026-02-28 12:00:12,471 - INFO - [SYNC] Auto-sync result: success
+2026-02-28 14:02:09,537 - INFO - Server started - Auto-expire scheduler active
+2026-02-28 14:02:09,543 - INFO - [SYNC] Auto-sync started (interval: 300s)
+2026-02-28 14:02:09,543 - INFO - [SYNC] Auto-sync enabled: every 300s to https://a-r-i-s-e.onrender.com
+2026-02-28 14:02:10,804 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.78
+2026-02-28 14:02:11,516 - INFO - Device heartbeat - Battery: 100%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-28 14:02:11,825 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.78
+2026-02-28 14:02:12,438 - INFO - Device heartbeat - Battery: 100%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-28 14:02:16,928 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.78
+2026-02-28 14:02:21,947 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.78
+2026-02-28 14:02:22,815 - INFO - [REQUEST] GET / - Client: 127.0.0.1
+2026-02-28 14:02:22,888 - INFO - Device heartbeat - Battery: 100%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-28 14:02:23,279 - INFO - [REQUEST] GET /static/css/base.css - Client: 127.0.0.1
+2026-02-28 14:02:23,287 - INFO - [REQUEST] GET /static/css/modal.css - Client: 127.0.0.1
+2026-02-28 14:02:23,302 - INFO - [REQUEST] GET /static/css/teacher.css - Client: 127.0.0.1
+2026-02-28 14:02:23,321 - INFO - [RESPONSE] GET /static/css/base.css - Status: 304 - 42ms
+2026-02-28 14:02:23,326 - INFO - [REQUEST] GET /static/js/modal.js - Client: 127.0.0.1
+2026-02-28 14:02:23,322 - INFO - [RESPONSE] GET /static/css/modal.css - Status: 304 - 35ms
+2026-02-28 14:02:23,376 - INFO - [RESPONSE] GET /static/css/teacher.css - Status: 304 - 73ms
+2026-02-28 14:02:23,378 - INFO - [REQUEST] GET /static/js/teacher.js - Client: 127.0.0.1
+2026-02-28 14:02:23,568 - INFO - [RESPONSE] GET /static/js/modal.js - Status: 304 - 242ms
+2026-02-28 14:02:23,570 - INFO - [RESPONSE] GET /static/js/teacher.js - Status: 304 - 192ms
+2026-02-28 14:02:23,600 - INFO - [REQUEST] GET /api/teacher/course-codes - Client: 127.0.0.1
+2026-02-28 14:02:23,632 - INFO - [REQUEST] GET /favicon.ico - Client: 127.0.0.1
+2026-02-28 14:02:23,654 - INFO - [RESPONSE] GET /favicon.ico - Status: 404 - 21ms
+2026-02-28 14:02:23,657 - INFO - [REQUEST] GET /api/teacher/validate-session/1 - Client: 127.0.0.1
+2026-02-28 14:02:27,086 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.78
+2026-02-28 14:02:32,205 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.78
+2026-02-28 14:02:33,024 - INFO - Device heartbeat - Battery: 100%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-28 14:02:37,213 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.78
+2026-02-28 14:02:37,559 - INFO - [REQUEST] POST /api/teacher/login - Client: 127.0.0.1
+2026-02-28 14:02:37,569 - INFO - Teacher login attempt - CourseCode: MCA101
+2026-02-28 14:02:37,837 - INFO - Teacher login successful - Course: Introduction To Programming
+2026-02-28 14:02:42,280 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.78
+2026-02-28 14:02:43,157 - INFO - Device heartbeat - Battery: 100%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-28 14:02:47,294 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.78
+2026-02-28 14:02:52,509 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.78
+2026-02-28 14:02:53,297 - INFO - Device heartbeat - Battery: 100%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-28 14:02:57,705 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.78
+2026-02-28 14:03:02,764 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.78
+2026-02-28 14:03:03,432 - INFO - Device heartbeat - Battery: 100%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-28 14:03:07,843 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.78
+2026-02-28 14:03:12,954 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.78
+2026-02-28 14:03:13,304 - INFO - Device heartbeat - Battery: 100%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-28 14:03:18,170 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.78
+2026-02-28 14:03:23,298 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.78
+2026-02-28 14:03:23,709 - INFO - Device heartbeat - Battery: 100%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-28 14:03:28,322 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.78
+2026-02-28 14:03:33,441 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.78
+2026-02-28 14:03:33,847 - INFO - Device heartbeat - Battery: 100%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-28 14:03:38,457 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.78
+2026-02-28 14:03:43,587 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.78
+2026-02-28 14:03:44,085 - INFO - Device heartbeat - Battery: 100%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-28 14:03:48,700 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.78
+2026-02-28 14:03:53,814 - INFO - Device heartbeat - Battery: 100%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-28 14:03:54,116 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.78
+2026-02-28 14:03:59,182 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.78
+2026-02-28 14:04:03,645 - INFO - Device heartbeat - Battery: 100%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-28 14:04:04,361 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.78
+2026-02-28 14:04:09,483 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.78
+2026-02-28 14:04:13,784 - INFO - Device heartbeat - Battery: 26%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-28 14:04:14,500 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.78
+2026-02-28 14:04:19,621 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.78
+2026-02-28 14:04:23,859 - INFO - Device heartbeat - Battery: 33%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-28 14:04:24,841 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.78
+2026-02-28 14:04:29,893 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.78
+2026-02-28 14:04:34,058 - INFO - Device heartbeat - Battery: 100%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-28 14:04:35,003 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.78
+2026-02-28 14:04:40,057 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.78
+2026-02-28 14:04:44,239 - INFO - Device heartbeat - Battery: 100%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-28 14:04:45,181 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.78
+2026-02-28 14:04:50,278 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.78
+2026-02-28 14:04:54,265 - INFO - Device heartbeat - Battery: 100%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-28 14:04:55,438 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.78
+2026-02-28 14:05:00,645 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.78
+2026-02-28 14:05:04,514 - INFO - Device heartbeat - Battery: 100%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-28 14:05:05,746 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.78
+2026-02-28 14:05:10,869 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.78
+2026-02-28 14:05:14,651 - INFO - Device heartbeat - Battery: 100%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-28 14:05:16,093 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.78
+2026-02-28 14:05:21,412 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.78
+2026-02-28 14:05:27,863 - INFO - Device heartbeat - Battery: 100%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-28 14:05:28,167 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.78
+2026-02-28 14:05:33,225 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.78
+2026-02-28 14:05:34,628 - INFO - Device heartbeat - Battery: 100%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-28 14:05:38,314 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.78
+2026-02-28 14:05:46,604 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.78
+2026-02-28 14:05:47,215 - INFO - Device heartbeat - Battery: 100%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-28 14:05:51,826 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.78
+2026-02-28 14:05:53,691 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.78
+2026-02-28 14:05:57,355 - INFO - Device heartbeat - Battery: 100%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-28 14:05:58,789 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.78
+2026-02-28 14:06:07,187 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.78
+2026-02-28 14:06:07,799 - INFO - Device heartbeat - Battery: 100%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-28 14:06:08,941 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.78
+2026-02-28 14:06:14,159 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.78
+2026-02-28 14:06:21,012 - INFO - Device heartbeat - Battery: 100%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-28 14:06:21,322 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.78
+2026-02-28 14:06:26,451 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.78
+2026-02-28 14:06:28,074 - INFO - Device heartbeat - Battery: 100%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-28 14:06:31,561 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.78
+2026-02-28 14:06:36,676 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.78
+2026-02-28 14:06:38,212 - INFO - Device heartbeat - Battery: 100%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-28 14:06:41,695 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.78
+2026-02-28 14:06:49,891 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.78
+2026-02-28 14:06:50,234 - INFO - Device heartbeat - Battery: 100%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-28 14:06:51,929 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.78
+2026-02-28 14:06:57,023 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.78
+2026-02-28 14:07:00,331 - INFO - Device heartbeat - Battery: 100%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-28 14:07:02,194 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.78
+2026-02-28 14:07:07,299 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.78
+2026-02-28 14:07:13,545 - INFO - Device heartbeat - Battery: 100%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-28 14:07:13,845 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.78
+2026-02-28 14:07:16,264 - INFO - [SYNC] Starting push to cloud: https://a-r-i-s-e.onrender.com
+2026-02-28 14:07:16,927 - INFO - [SYNC] Database binary exported: 122880 bytes (120.0 KB)
+2026-02-28 14:07:19,217 - INFO - [SYNC] Push complete - Cloud response: success
+2026-02-28 14:07:19,218 - INFO - [SYNC] Auto-sync result: success
+2026-02-28 14:07:21,940 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.78
+2026-02-28 14:07:22,451 - INFO - Device heartbeat - Battery: 100%, Queue: 0, Sync: 0, MAC: F4:65:0B:48:DF:4C
+2026-02-28 14:07:23,910 - INFO - [REQUEST] GET /api/session-status - Client: 192.168.137.78
+2026-03-03 08:19:42,797 - INFO - Server started - Auto-expire scheduler active
+2026-03-03 08:19:42,801 - INFO - [SYNC] Auto-sync started (interval: 300s)
+2026-03-03 08:19:42,802 - INFO - [SYNC] Auto-sync enabled: every 300s to https://a-r-i-s-e.onrender.com
+2026-03-03 08:19:52,719 - INFO - [REQUEST] GET /admin - Client: 127.0.0.1
+2026-03-03 08:19:53,016 - INFO - [REQUEST] GET /static/css/base.css - Client: 127.0.0.1
+2026-03-03 08:19:53,023 - INFO - [RESPONSE] GET /static/css/base.css - Status: 304 - 7ms
+2026-03-03 08:19:53,026 - INFO - [REQUEST] GET /static/css/modal.css - Client: 127.0.0.1
+2026-03-03 08:19:53,030 - INFO - [REQUEST] GET /static/css/admin.css - Client: 127.0.0.1
+2026-03-03 08:19:53,033 - INFO - [RESPONSE] GET /static/css/modal.css - Status: 304 - 7ms
+2026-03-03 08:19:53,040 - INFO - [REQUEST] GET /static/js/modal.js - Client: 127.0.0.1
+2026-03-03 08:19:53,045 - INFO - [RESPONSE] GET /static/css/admin.css - Status: 304 - 15ms
+2026-03-03 08:19:53,050 - INFO - [REQUEST] GET /static/js/admin.js - Client: 127.0.0.1
+2026-03-03 08:19:53,057 - INFO - [REQUEST] GET /static/js/admin-analytics.js - Client: 127.0.0.1
+2026-03-03 08:19:53,059 - INFO - [RESPONSE] GET /static/js/modal.js - Status: 304 - 18ms
+2026-03-03 08:19:53,171 - INFO - [RESPONSE] GET /static/js/admin-analytics.js - Status: 304 - 114ms
+2026-03-03 08:19:53,188 - INFO - [RESPONSE] GET /static/js/admin.js - Status: 304 - 137ms
+2026-03-03 08:19:53,268 - INFO - [REQUEST] GET /admin-login - Client: 127.0.0.1
+2026-03-03 08:19:53,389 - INFO - [REQUEST] GET /static/css/base.css - Client: 127.0.0.1
+2026-03-03 08:19:53,391 - INFO - [RESPONSE] GET /static/css/base.css - Status: 304 - 2ms
+2026-03-03 08:19:53,393 - INFO - [REQUEST] GET /static/css/modal.css - Client: 127.0.0.1
+2026-03-03 08:19:53,395 - INFO - [RESPONSE] GET /static/css/modal.css - Status: 304 - 2ms
+2026-03-03 08:19:53,422 - INFO - [REQUEST] GET /favicon.ico - Client: 127.0.0.1
+2026-03-03 08:19:53,425 - INFO - [RESPONSE] GET /favicon.ico - Status: 404 - 3ms
+2026-03-03 08:20:01,686 - INFO - [REQUEST] POST /api/admin/login - Client: 127.0.0.1
+2026-03-03 08:20:01,697 - INFO - Admin login attempt - Username: admin
+2026-03-03 08:20:01,749 - INFO - Admin login successful - Username: admin, AdminID: 1
+2026-03-03 08:20:01,807 - INFO - [REQUEST] GET /admin - Client: 127.0.0.1
+2026-03-03 08:20:01,845 - INFO - [REQUEST] GET /static/css/base.css - Client: 127.0.0.1
+2026-03-03 08:20:01,849 - INFO - [REQUEST] GET /static/css/modal.css - Client: 127.0.0.1
+2026-03-03 08:20:01,852 - INFO - [REQUEST] GET /static/css/admin.css - Client: 127.0.0.1
+2026-03-03 08:20:01,855 - INFO - [REQUEST] GET /static/js/modal.js - Client: 127.0.0.1
+2026-03-03 08:20:01,857 - INFO - [RESPONSE] GET /static/css/modal.css - Status: 304 - 8ms
+2026-03-03 08:20:01,859 - INFO - [REQUEST] GET /static/js/admin.js - Client: 127.0.0.1
+2026-03-03 08:20:01,861 - INFO - [RESPONSE] GET /static/js/modal.js - Status: 304 - 6ms
+2026-03-03 08:20:01,867 - INFO - [REQUEST] GET /static/js/admin-analytics.js - Client: 127.0.0.1
+2026-03-03 08:20:01,884 - INFO - [RESPONSE] GET /static/css/base.css - Status: 304 - 39ms
+2026-03-03 08:20:01,893 - INFO - [RESPONSE] GET /static/css/admin.css - Status: 304 - 41ms
+2026-03-03 08:20:01,929 - INFO - [RESPONSE] GET /static/js/admin.js - Status: 304 - 71ms
+2026-03-03 08:20:01,940 - INFO - [RESPONSE] GET /static/js/admin-analytics.js - Status: 304 - 73ms
+2026-03-03 08:20:01,967 - INFO - [REQUEST] GET /api/admin/config - Client: 127.0.0.1
+2026-03-03 08:20:01,978 - INFO - [REQUEST] GET /api/admin/semesters - Client: 127.0.0.1
+2026-03-03 08:20:06,912 - INFO - [REQUEST] GET /api/admin/courses - Client: 127.0.0.1
+2026-03-03 08:20:08,522 - INFO - [REQUEST] GET /api/admin/analytics/overview - Client: 127.0.0.1
+2026-03-03 08:20:08,523 - INFO - [REQUEST] GET /api/admin/courses-view - Client: 127.0.0.1
+2026-03-03 08:20:08,525 - INFO - [REQUEST] GET /api/admin/students - Client: 127.0.0.1
+2026-03-03 08:20:24,429 - INFO - [REQUEST] GET /api/admin/analytics/course/1 - Client: 127.0.0.1
+2026-03-03 08:20:33,548 - INFO - [REQUEST] GET /api/admin/analytics/course/2 - Client: 127.0.0.1
+2026-03-03 08:20:47,269 - INFO - [REQUEST] GET /api/admin/analytics/student/1 - Client: 127.0.0.1
+2026-03-03 08:20:56,283 - INFO - [REQUEST] GET /api/admin/analytics/trends - Client: 127.0.0.1
+2026-03-03 08:24:01,319 - INFO - [REQUEST] GET /api/admin/analytics/trends - Client: 127.0.0.1
+2026-03-03 08:24:06,023 - INFO - [REQUEST] GET /.well-known/appspecific/com.chrome.devtools.json - Client: 127.0.0.1
+2026-03-03 08:24:06,041 - INFO - [RESPONSE] GET /.well-known/appspecific/com.chrome.devtools.json - Status: 404 - 18ms
+2026-03-03 08:24:06,048 - INFO - [REQUEST] GET /static/css/base.css - Client: 127.0.0.1
+2026-03-03 08:24:06,066 - INFO - [REQUEST] GET /static/css/modal.css - Client: 127.0.0.1
+2026-03-03 08:24:06,093 - INFO - [REQUEST] GET /static/css/admin.css - Client: 127.0.0.1
+2026-03-03 08:24:06,112 - INFO - [RESPONSE] GET /static/css/base.css - Status: 304 - 64ms
+2026-03-03 08:24:06,119 - INFO - [RESPONSE] GET /static/css/admin.css - Status: 304 - 26ms
+2026-03-03 08:24:06,114 - INFO - [RESPONSE] GET /static/css/modal.css - Status: 304 - 48ms
+2026-03-03 08:24:33,752 - INFO - [REQUEST] GET /api/admin/semesters - Client: 127.0.0.1
+2026-03-03 08:24:35,058 - INFO - [REQUEST] GET /api/admin/students - Client: 127.0.0.1
+2026-03-03 08:24:38,727 - INFO - [REQUEST] GET /api/admin/courses-view - Client: 127.0.0.1
+2026-03-03 08:24:38,728 - INFO - [REQUEST] GET /api/admin/students - Client: 127.0.0.1
+2026-03-03 08:24:38,732 - INFO - [REQUEST] GET /api/admin/analytics/overview - Client: 127.0.0.1
+2026-03-03 08:24:48,888 - INFO - [SYNC] Starting push to cloud: https://a-r-i-s-e.onrender.com
+2026-03-03 08:24:49,322 - INFO - [SYNC] Database binary exported: 122880 bytes (120.0 KB)
+2026-03-03 08:24:49,586 - INFO - [REQUEST] GET /api/admin/analytics/trends - Client: 127.0.0.1
+2026-03-03 08:24:50,072 - INFO - [SYNC] Push complete - Cloud response: success
+2026-03-03 08:24:50,073 - INFO - [SYNC] Auto-sync result: success
+2026-03-03 08:25:08,754 - INFO - [REQUEST] GET /api/admin/analytics/overview - Client: 127.0.0.1
+2026-03-03 08:25:08,754 - INFO - [REQUEST] GET /api/admin/courses-view - Client: 127.0.0.1
+2026-03-03 08:25:08,756 - INFO - [REQUEST] GET /api/admin/students - Client: 127.0.0.1
+2026-03-03 08:25:11,520 - INFO - [REQUEST] GET /api/admin/analytics/trends - Client: 127.0.0.1
+2026-03-03 08:28:49,465 - INFO - [REQUEST] GET /api/admin/analytics/course/4 - Client: 127.0.0.1
+2026-03-03 08:29:50,597 - INFO - [SYNC] Starting push to cloud: https://a-r-i-s-e.onrender.com
+2026-03-03 08:29:51,026 - INFO - [SYNC] Database binary exported: 122880 bytes (120.0 KB)
+2026-03-03 08:29:51,743 - INFO - [SYNC] Push complete - Cloud response: success
+2026-03-03 08:29:51,743 - INFO - [SYNC] Auto-sync result: success
+2026-03-03 08:31:11,717 - INFO - [REQUEST] GET /api/admin/analytics/course/5 - Client: 127.0.0.1
+2026-03-03 08:31:18,326 - INFO - [REQUEST] GET /api/admin/analytics/course/2 - Client: 127.0.0.1
+2026-03-03 08:31:29,362 - INFO - [REQUEST] GET /api/admin/analytics/course/1 - Client: 127.0.0.1
+2026-03-03 08:32:02,845 - INFO - [REQUEST] GET /.well-known/appspecific/com.chrome.devtools.json - Client: 127.0.0.1
+2026-03-03 08:32:02,863 - INFO - [RESPONSE] GET /.well-known/appspecific/com.chrome.devtools.json - Status: 404 - 17ms
+2026-03-03 08:34:52,355 - INFO - [SYNC] Starting push to cloud: https://a-r-i-s-e.onrender.com
+2026-03-03 08:34:52,826 - INFO - [SYNC] Database binary exported: 122880 bytes (120.0 KB)
+2026-03-03 08:34:53,535 - INFO - [SYNC] Push complete - Cloud response: success
+2026-03-03 08:34:53,537 - INFO - [SYNC] Auto-sync result: success
+2026-03-03 08:39:54,885 - INFO - [SYNC] Starting push to cloud: https://a-r-i-s-e.onrender.com
+2026-03-03 08:39:55,416 - INFO - [SYNC] Database binary exported: 122880 bytes (120.0 KB)
+2026-03-03 08:39:57,136 - INFO - [SYNC] Push complete - Cloud response: success
+2026-03-03 08:39:57,139 - INFO - [SYNC] Auto-sync result: success
+2026-03-03 08:44:58,343 - INFO - [SYNC] Starting push to cloud: https://a-r-i-s-e.onrender.com
+2026-03-03 08:44:58,798 - INFO - [SYNC] Database binary exported: 122880 bytes (120.0 KB)
+2026-03-03 08:44:59,883 - INFO - [SYNC] Push complete - Cloud response: success
+2026-03-03 08:44:59,885 - INFO - [SYNC] Auto-sync result: success
+2026-03-03 08:50:00,997 - INFO - [SYNC] Starting push to cloud: https://a-r-i-s-e.onrender.com
+2026-03-03 08:50:01,999 - INFO - [SYNC] Database binary exported: 122880 bytes (120.0 KB)
+2026-03-03 08:50:03,898 - INFO - [SYNC] Push complete - Cloud response: success
+2026-03-03 08:50:03,899 - INFO - [SYNC] Auto-sync result: success
+2026-03-03 08:55:04,451 - INFO - [SYNC] Starting push to cloud: https://a-r-i-s-e.onrender.com
+2026-03-03 08:55:05,423 - INFO - [SYNC] Database binary exported: 122880 bytes (120.0 KB)
+2026-03-03 08:55:06,167 - INFO - [SYNC] Push complete - Cloud response: success
+2026-03-03 08:55:06,168 - INFO - [SYNC] Auto-sync result: success
+2026-03-03 09:00:12,254 - INFO - [SYNC] Starting push to cloud: https://a-r-i-s-e.onrender.com
+2026-03-03 09:00:12,700 - INFO - [SYNC] Database binary exported: 122880 bytes (120.0 KB)
+2026-03-03 09:09:55,488 - INFO - [SYNC] Push complete - Cloud response: success
+2026-03-03 09:09:55,754 - INFO - [SYNC] Auto-sync result: success
+2026-03-03 14:58:38,088 - INFO - [REQUEST] GET /api/admin/analytics/trends - Client: 127.0.0.1
+2026-03-03 14:58:39,944 - INFO - [REQUEST] GET /api/admin/analytics/trends - Client: 127.0.0.1
+2026-03-03 14:58:46,340 - INFO - [REQUEST] GET /api/admin/analytics/trends - Client: 127.0.0.1
+2026-03-03 15:09:03,614 - INFO - Server started - Auto-expire scheduler active
+2026-03-03 15:09:03,616 - INFO - [SYNC] Auto-sync started (interval: 300s)
+2026-03-03 15:09:03,616 - INFO - [SYNC] Auto-sync enabled: every 300s to https://a-r-i-s-e.onrender.com
+2026-03-03 15:09:03,975 - INFO - [REQUEST] GET /api/health - Client: 127.0.0.1
+2026-03-03 15:09:22,568 - INFO - [REQUEST] POST /api/admin/login - Client: 127.0.0.1
+2026-03-03 15:09:22,569 - INFO - Admin login attempt - Username: admin
+2026-03-03 15:09:22,572 - INFO - Admin login successful - Username: admin, AdminID: 1
+2026-03-03 15:09:22,704 - INFO - [REQUEST] GET /api/admin/analytics/overview - Client: 127.0.0.1
+2026-03-03 15:09:22,740 - INFO - [REQUEST] GET /api/admin/analytics/overview - Client: 127.0.0.1
+2026-03-03 15:09:22,763 - INFO - [REQUEST] GET /api/admin/analytics/trends - Client: 127.0.0.1
+2026-03-03 15:10:13,410 - INFO - [REQUEST] GET /admin-login - Client: 127.0.0.1
+2026-03-03 15:10:13,671 - INFO - [REQUEST] GET /static/css/base.css - Client: 127.0.0.1
+2026-03-03 15:10:13,683 - INFO - [RESPONSE] GET /static/css/base.css - Status: 304 - 12ms
+2026-03-03 15:10:13,811 - INFO - [REQUEST] GET /static/css/modal.css - Client: 127.0.0.1
+2026-03-03 15:10:13,821 - INFO - [RESPONSE] GET /static/css/modal.css - Status: 304 - 11ms
+2026-03-03 15:10:13,842 - INFO - [REQUEST] GET /favicon.ico - Client: 127.0.0.1
+2026-03-03 15:10:13,842 - INFO - [RESPONSE] GET /favicon.ico - Status: 404 - 1ms
+2026-03-03 15:10:33,700 - INFO - [REQUEST] POST /api/admin/login - Client: 127.0.0.1
+2026-03-03 15:10:33,703 - INFO - Admin login attempt - Username: admin
+2026-03-03 15:10:33,707 - INFO - Admin login successful - Username: admin, AdminID: 1
+2026-03-03 15:10:33,949 - INFO - [REQUEST] GET /admin - Client: 127.0.0.1
+2026-03-03 15:10:34,039 - INFO - [REQUEST] GET /static/css/base.css - Client: 127.0.0.1
+2026-03-03 15:10:34,040 - INFO - [RESPONSE] GET /static/css/base.css - Status: 304 - 1ms
+2026-03-03 15:10:34,305 - INFO - [REQUEST] GET /static/css/admin.css - Client: 127.0.0.1
+2026-03-03 15:10:34,306 - INFO - [REQUEST] GET /static/js/modal.js - Client: 127.0.0.1
+2026-03-03 15:10:34,307 - INFO - [REQUEST] GET /static/css/modal.css - Client: 127.0.0.1
+2026-03-03 15:10:34,308 - INFO - [REQUEST] GET /static/js/admin.js - Client: 127.0.0.1
+2026-03-03 15:10:34,309 - INFO - [RESPONSE] GET /static/css/admin.css - Status: 304 - 4ms
+2026-03-03 15:10:34,310 - INFO - [REQUEST] GET /static/js/admin-analytics.js - Client: 127.0.0.1
+2026-03-03 15:10:34,313 - INFO - [RESPONSE] GET /static/css/modal.css - Status: 304 - 5ms
+2026-03-03 15:10:34,340 - INFO - [RESPONSE] GET /static/js/modal.js - Status: 304 - 34ms
+2026-03-03 15:10:34,695 - INFO - [REQUEST] GET /api/admin/semesters - Client: 127.0.0.1
+2026-03-03 15:10:34,696 - INFO - [REQUEST] GET /api/admin/config - Client: 127.0.0.1
+2026-03-03 15:10:48,178 - INFO - [REQUEST] GET /api/admin/analytics/overview - Client: 127.0.0.1
+2026-03-03 15:10:48,498 - INFO - [REQUEST] GET /api/admin/courses-view - Client: 127.0.0.1
+2026-03-03 15:10:48,499 - INFO - [REQUEST] GET /api/admin/semesters - Client: 127.0.0.1
+2026-03-03 15:10:48,505 - INFO - [REQUEST] GET /api/admin/students - Client: 127.0.0.1
+2026-03-03 15:10:48,508 - INFO - [REQUEST] GET /api/admin/analytics/overview - Client: 127.0.0.1
+2026-03-03 15:11:16,489 - INFO - [REQUEST] GET /api/admin/analytics/overview - Client: 127.0.0.1
+2026-03-03 15:14:05,378 - INFO - Server started - Auto-expire scheduler active
+2026-03-03 15:14:05,380 - INFO - [SYNC] Auto-sync started (interval: 300s)
+2026-03-03 15:14:05,380 - INFO - [SYNC] Auto-sync enabled: every 300s to https://a-r-i-s-e.onrender.com
+2026-03-03 15:14:06,004 - INFO - [SYNC] Starting push to cloud: https://a-r-i-s-e.onrender.com
+2026-03-03 15:14:06,981 - INFO - [SYNC] Database binary exported: 122880 bytes (120.0 KB)
+2026-03-03 15:14:08,025 - INFO - [SYNC] Push complete - Cloud response: success
+2026-03-03 15:14:08,025 - INFO - [SYNC] Auto-sync result: success
+2026-03-03 15:14:09,449 - INFO - [SYNC] Starting push to cloud: https://a-r-i-s-e.onrender.com
+2026-03-03 15:14:09,877 - INFO - [SYNC] Database binary exported: 122880 bytes (120.0 KB)
+2026-03-03 15:14:10,492 - INFO - [SYNC] Push complete - Cloud response: success
+2026-03-03 15:14:10,493 - INFO - [SYNC] Auto-sync result: success
+2026-03-03 15:14:39,021 - INFO - Server started - Auto-expire scheduler active
+2026-03-03 15:14:39,022 - INFO - [SYNC] Auto-sync started (interval: 300s)
+2026-03-03 15:14:39,022 - INFO - [SYNC] Auto-sync enabled: every 300s to https://a-r-i-s-e.onrender.com
+2026-03-03 15:15:06,208 - INFO - [REQUEST] GET /admin - Client: 127.0.0.1
+2026-03-03 15:15:06,259 - INFO - [REQUEST] GET /static/css/base.css - Client: 127.0.0.1
+2026-03-03 15:15:06,271 - INFO - [RESPONSE] GET /static/css/base.css - Status: 304 - 11ms
+2026-03-03 15:15:06,273 - INFO - [REQUEST] GET /static/css/modal.css - Client: 127.0.0.1
+2026-03-03 15:15:06,277 - INFO - [RESPONSE] GET /static/css/modal.css - Status: 304 - 4ms
+2026-03-03 15:15:06,281 - INFO - [REQUEST] GET /static/css/admin.css - Client: 127.0.0.1
+2026-03-03 15:15:06,285 - INFO - [REQUEST] GET /static/js/modal.js - Client: 127.0.0.1
+2026-03-03 15:15:06,289 - INFO - [RESPONSE] GET /static/css/admin.css - Status: 304 - 8ms
+2026-03-03 15:15:06,291 - INFO - [RESPONSE] GET /static/js/modal.js - Status: 304 - 6ms
+2026-03-03 15:15:06,290 - INFO - [REQUEST] GET /static/js/admin.js - Client: 127.0.0.1
+2026-03-03 15:15:06,295 - INFO - [REQUEST] GET /static/js/admin-analytics.js - Client: 127.0.0.1
+2026-03-03 15:15:06,300 - INFO - [RESPONSE] GET /static/js/admin.js - Status: 304 - 10ms
+2026-03-03 15:15:06,408 - INFO - [REQUEST] GET /api/admin/semesters - Client: 127.0.0.1
+2026-03-03 15:15:06,408 - INFO - [REQUEST] GET /api/admin/config - Client: 127.0.0.1
+2026-03-03 15:15:06,431 - INFO - [REQUEST] GET /favicon.ico - Client: 127.0.0.1
+2026-03-03 15:15:06,433 - INFO - [RESPONSE] GET /favicon.ico - Status: 404 - 2ms
+2026-03-03 15:15:10,125 - INFO - [REQUEST] GET /api/admin/semesters - Client: 127.0.0.1
+2026-03-03 15:15:10,126 - INFO - [REQUEST] GET /api/admin/courses-view - Client: 127.0.0.1
+2026-03-03 15:15:10,128 - INFO - [REQUEST] GET /api/admin/analytics/overview - Client: 127.0.0.1
+2026-03-03 15:15:10,130 - INFO - [REQUEST] GET /api/admin/students - Client: 127.0.0.1
+2026-03-03 15:15:10,149 - INFO - [REQUEST] GET /api/admin/analytics/overview - Client: 127.0.0.1
+2026-03-03 15:15:13,473 - INFO - [REQUEST] GET /api/admin/analytics/overview - Client: 127.0.0.1
+2026-03-03 15:15:16,550 - INFO - [REQUEST] GET /api/admin/analytics/overview - Client: 127.0.0.1
+2026-03-03 15:15:20,697 - INFO - [REQUEST] GET /api/admin/analytics/trends - Client: 127.0.0.1
+2026-03-03 15:15:24,053 - INFO - [REQUEST] GET /api/admin/analytics/trends - Client: 127.0.0.1
+2026-03-03 15:15:26,524 - INFO - [REQUEST] GET /api/admin/analytics/trends - Client: 127.0.0.1
+2026-03-03 15:15:28,648 - INFO - [REQUEST] GET /api/admin/analytics/trends - Client: 127.0.0.1
+2026-03-03 15:15:44,104 - INFO - [REQUEST] GET / - Client: 127.0.0.1
+2026-03-03 15:15:44,240 - INFO - [REQUEST] GET /static/css/base.css - Client: 127.0.0.1
+2026-03-03 15:15:44,241 - INFO - [RESPONSE] GET /static/css/base.css - Status: 304 - 2ms
+2026-03-03 15:15:44,243 - INFO - [REQUEST] GET /static/css/modal.css - Client: 127.0.0.1
+2026-03-03 15:15:44,244 - INFO - [REQUEST] GET /static/css/teacher.css - Client: 127.0.0.1
+2026-03-03 15:15:44,246 - INFO - [RESPONSE] GET /static/css/modal.css - Status: 304 - 2ms
+2026-03-03 15:15:44,247 - INFO - [RESPONSE] GET /static/css/teacher.css - Status: 304 - 3ms
+2026-03-03 15:15:44,248 - INFO - [REQUEST] GET /static/js/modal.js - Client: 127.0.0.1
+2026-03-03 15:15:44,250 - INFO - [REQUEST] GET /static/js/teacher.js - Client: 127.0.0.1
+2026-03-03 15:15:44,252 - INFO - [RESPONSE] GET /static/js/modal.js - Status: 304 - 5ms
+2026-03-03 15:15:44,323 - INFO - [RESPONSE] GET /static/js/teacher.js - Status: 304 - 73ms
+2026-03-03 15:15:44,334 - INFO - [REQUEST] GET /api/teacher/course-codes - Client: 127.0.0.1
+2026-03-03 15:15:52,506 - INFO - [REQUEST] POST /api/teacher/login - Client: 127.0.0.1
+2026-03-03 15:15:52,508 - INFO - Teacher login attempt - CourseCode: MCA101
+2026-03-03 15:15:52,738 - INFO - Teacher login successful - Course: Introduction To Programming
+2026-03-03 15:15:56,599 - INFO - [REQUEST] POST /api/teacher/start-online-session - Client: 127.0.0.1
+2026-03-03 15:15:56,600 - INFO - [RESPONSE] POST /api/teacher/start-online-session - Status: 403 - 1ms
+2026-03-03 15:16:02,312 - INFO - [REQUEST] POST /api/teacher/start-online-session - Client: 127.0.0.1
+2026-03-03 15:16:02,312 - INFO - [RESPONSE] POST /api/teacher/start-online-session - Status: 403 - 0ms
+2026-03-03 15:16:06,782 - INFO - [REQUEST] POST /api/teacher/start-session - Client: 127.0.0.1
+2026-03-03 15:16:06,787 - INFO - Creating session - Duration: 30min, Grace: 5min, Start: 2026-03-03 15:16:06, Scheduled end: 2026-03-03 15:51:06, Topic: 
+2026-03-03 15:16:06,831 - INFO - Session started - ID: 251, Course: 1, Duration: 30min (+5min grace)
+2026-03-03 15:16:06,846 - INFO - [REQUEST] GET /api/teacher/session/251/status - Client: 127.0.0.1
+2026-03-03 15:16:11,853 - INFO - [REQUEST] GET /api/teacher/session/251/status - Client: 127.0.0.1
+2026-03-03 15:16:15,294 - INFO - [REQUEST] POST /api/teacher/manual-override - Client: 127.0.0.1
+2026-03-03 15:16:15,295 - INFO - Manual override attempt - Session: 251, Student: MCAX24R065, Reason: 'Device Malfunction - Scanner not working properly'
+2026-03-03 15:16:15,300 - INFO - Manual override SUCCESS - Student: Sourabh Kumar Gupta (MCAX24R065), Session: 251, Course: 1, Reason: 'Device Malfunction - Scanner not working properly'
+2026-03-03 15:16:16,510 - INFO - [REQUEST] GET /api/teacher/session/251/status - Client: 127.0.0.1
+2026-03-03 15:16:16,851 - INFO - [REQUEST] GET /api/teacher/session/251/status - Client: 127.0.0.1
+2026-03-03 15:16:20,674 - INFO - [REQUEST] POST /api/teacher/session/251/end - Client: 127.0.0.1
+2026-03-03 15:16:20,676 - INFO - End session 251: Found 8 enrolled students
+2026-03-03 15:16:20,677 - INFO - End session 251: 1 students marked present
+2026-03-03 15:16:20,677 - INFO -   Absent: Vishal Kumar
+2026-03-03 15:16:20,677 - INFO -   Absent: Rahul Kumar
+2026-03-03 15:16:20,677 - INFO -   Absent: Harsh Vashisth
+2026-03-03 15:16:20,677 - INFO -   Absent: Param Rathor
+2026-03-03 15:16:20,678 - INFO -   Absent: Aditya
+2026-03-03 15:16:20,678 - INFO -   Absent: Ziaul Mustafa
+2026-03-03 15:16:20,678 - INFO -   Absent: Ashish Shukla
+2026-03-03 15:16:20,681 - INFO - Session ended - ID: 251, Absent count: 7
+2026-03-03 15:16:20,687 - INFO - [REQUEST] GET /api/teacher/report/251 - Client: 127.0.0.1
+2026-03-03 15:16:20,689 - INFO - Generating attendance report - SessionID: 251, CourseID: 1
+2026-03-03 15:16:20,692 - INFO - Report generated - SessionID: 251, Students: 8, Sessions: 228, Present records: 381, Absent records: 52
+2026-03-03 15:16:26,637 - INFO - [REQUEST] POST /api/teacher/start-session - Client: 127.0.0.1
+2026-03-03 15:16:26,638 - INFO - Creating session - Duration: 30min, Grace: 5min, Start: 2026-03-03 15:16:26, Scheduled end: 2026-03-03 15:51:26, Topic: 
+2026-03-03 15:16:26,642 - INFO - Session started - ID: 252, Course: 1, Duration: 30min (+5min grace)
+2026-03-03 15:16:26,646 - INFO - [REQUEST] GET /api/teacher/session/252/status - Client: 127.0.0.1
+2026-03-03 15:16:31,656 - INFO - [REQUEST] GET /api/teacher/session/252/status - Client: 127.0.0.1
+2026-03-03 15:16:32,077 - INFO - [REQUEST] POST /api/teacher/manual-override - Client: 127.0.0.1
+2026-03-03 15:16:32,078 - INFO - Manual override attempt - Session: 252, Student: MCAX24R065, Reason: 'Device Malfunction - Scanner not working properly'
+2026-03-03 15:16:32,082 - INFO - Manual override SUCCESS - Student: Sourabh Kumar Gupta (MCAX24R065), Session: 252, Course: 1, Reason: 'Device Malfunction - Scanner not working properly'
+2026-03-03 15:16:33,400 - INFO - [REQUEST] GET /api/teacher/session/252/status - Client: 127.0.0.1
+2026-03-03 15:16:36,662 - INFO - [REQUEST] GET /api/teacher/session/252/status - Client: 127.0.0.1
+2026-03-03 15:16:37,475 - INFO - [REQUEST] POST /api/teacher/session/252/end - Client: 127.0.0.1
+2026-03-03 15:16:37,476 - INFO - End session 252: Found 8 enrolled students
+2026-03-03 15:16:37,477 - INFO - End session 252: 1 students marked present
+2026-03-03 15:16:37,477 - INFO -   Absent: Vishal Kumar
+2026-03-03 15:16:37,477 - INFO -   Absent: Rahul Kumar
+2026-03-03 15:16:37,477 - INFO -   Absent: Harsh Vashisth
+2026-03-03 15:16:37,477 - INFO -   Absent: Param Rathor
+2026-03-03 15:16:37,477 - INFO -   Absent: Aditya
+2026-03-03 15:16:37,477 - INFO -   Absent: Ziaul Mustafa
+2026-03-03 15:16:37,477 - INFO -   Absent: Ashish Shukla
+2026-03-03 15:16:37,481 - INFO - Session ended - ID: 252, Absent count: 7
+2026-03-03 15:16:37,485 - INFO - [REQUEST] GET /api/teacher/report/252 - Client: 127.0.0.1
+2026-03-03 15:16:37,487 - INFO - Generating attendance report - SessionID: 252, CourseID: 1
+2026-03-03 15:16:37,489 - INFO - Report generated - SessionID: 252, Students: 8, Sessions: 229, Present records: 382, Absent records: 52
+2026-03-03 15:16:44,421 - INFO - [REQUEST] POST /api/teacher/start-session - Client: 127.0.0.1
+2026-03-03 15:16:44,424 - INFO - Creating session - Duration: 30min, Grace: 5min, Start: 2026-03-03 15:16:44, Scheduled end: 2026-03-03 15:51:44, Topic: 
+2026-03-03 15:16:44,427 - INFO - Session started - ID: 253, Course: 1, Duration: 30min (+5min grace)
+2026-03-03 15:16:44,433 - INFO - [REQUEST] GET /api/teacher/session/253/status - Client: 127.0.0.1
+2026-03-03 15:16:48,473 - INFO - [REQUEST] POST /api/teacher/manual-override - Client: 127.0.0.1
+2026-03-03 15:16:48,474 - INFO - Manual override attempt - Session: 253, Student: MCAX24R065, Reason: 'Device Malfunction - Scanner not working properly'
+2026-03-03 15:16:48,478 - INFO - Manual override SUCCESS - Student: Sourabh Kumar Gupta (MCAX24R065), Session: 253, Course: 1, Reason: 'Device Malfunction - Scanner not working properly'
+2026-03-03 15:16:49,438 - INFO - [REQUEST] GET /api/teacher/session/253/status - Client: 127.0.0.1
+2026-03-03 15:16:49,664 - INFO - [REQUEST] GET /api/teacher/session/253/status - Client: 127.0.0.1
+2026-03-03 15:16:53,167 - INFO - [REQUEST] POST /api/teacher/session/253/end - Client: 127.0.0.1
+2026-03-03 15:16:53,168 - INFO - End session 253: Found 8 enrolled students
+2026-03-03 15:16:53,169 - INFO - End session 253: 1 students marked present
+2026-03-03 15:16:53,169 - INFO -   Absent: Vishal Kumar
+2026-03-03 15:16:53,169 - INFO -   Absent: Rahul Kumar
+2026-03-03 15:16:53,169 - INFO -   Absent: Harsh Vashisth
+2026-03-03 15:16:53,169 - INFO -   Absent: Param Rathor
+2026-03-03 15:16:53,169 - INFO -   Absent: Aditya
+2026-03-03 15:16:53,169 - INFO -   Absent: Ziaul Mustafa
+2026-03-03 15:16:53,170 - INFO -   Absent: Ashish Shukla
+2026-03-03 15:16:53,173 - INFO - Session ended - ID: 253, Absent count: 7
+2026-03-03 15:16:53,178 - INFO - [REQUEST] GET /api/teacher/report/253 - Client: 127.0.0.1
+2026-03-03 15:16:53,180 - INFO - Generating attendance report - SessionID: 253, CourseID: 1
+2026-03-03 15:16:53,183 - INFO - Report generated - SessionID: 253, Students: 8, Sessions: 230, Present records: 383, Absent records: 52
+2026-03-03 15:16:59,180 - INFO - [REQUEST] POST /api/teacher/start-session - Client: 127.0.0.1
+2026-03-03 15:16:59,182 - INFO - Creating session - Duration: 30min, Grace: 5min, Start: 2026-03-03 15:16:59, Scheduled end: 2026-03-03 15:51:59, Topic: 
+2026-03-03 15:16:59,186 - INFO - Session started - ID: 254, Course: 1, Duration: 30min (+5min grace)
+2026-03-03 15:16:59,194 - INFO - [REQUEST] GET /api/teacher/session/254/status - Client: 127.0.0.1
+2026-03-03 15:17:03,620 - INFO - [REQUEST] POST /api/teacher/manual-override - Client: 127.0.0.1
+2026-03-03 15:17:03,620 - INFO - Manual override attempt - Session: 254, Student: MCAX24R065, Reason: 'Device Malfunction - Scanner not working properly'
+2026-03-03 15:17:03,624 - INFO - Manual override SUCCESS - Student: Sourabh Kumar Gupta (MCAX24R065), Session: 254, Course: 1, Reason: 'Device Malfunction - Scanner not working properly'
+2026-03-03 15:17:04,196 - INFO - [REQUEST] GET /api/teacher/session/254/status - Client: 127.0.0.1
+2026-03-03 15:17:04,800 - INFO - [REQUEST] GET /api/teacher/session/254/status - Client: 127.0.0.1
+2026-03-03 15:17:07,820 - INFO - [REQUEST] POST /api/teacher/session/254/end - Client: 127.0.0.1
+2026-03-03 15:17:07,822 - INFO - End session 254: Found 8 enrolled students
+2026-03-03 15:17:07,822 - INFO - End session 254: 1 students marked present
+2026-03-03 15:17:07,822 - INFO -   Absent: Vishal Kumar
+2026-03-03 15:17:07,822 - INFO -   Absent: Rahul Kumar
+2026-03-03 15:17:07,822 - INFO -   Absent: Harsh Vashisth
+2026-03-03 15:17:07,822 - INFO -   Absent: Param Rathor
+2026-03-03 15:17:07,822 - INFO -   Absent: Aditya
+2026-03-03 15:17:07,822 - INFO -   Absent: Ziaul Mustafa
+2026-03-03 15:17:07,822 - INFO -   Absent: Ashish Shukla
+2026-03-03 15:17:07,826 - INFO - Session ended - ID: 254, Absent count: 7
+2026-03-03 15:17:07,831 - INFO - [REQUEST] GET /api/teacher/report/254 - Client: 127.0.0.1
+2026-03-03 15:17:07,834 - INFO - Generating attendance report - SessionID: 254, CourseID: 1
+2026-03-03 15:17:07,836 - INFO - Report generated - SessionID: 254, Students: 8, Sessions: 231, Present records: 384, Absent records: 52
+2026-03-03 15:17:13,391 - INFO - [REQUEST] POST /api/teacher/start-session - Client: 127.0.0.1
+2026-03-03 15:17:13,393 - INFO - Creating session - Duration: 30min, Grace: 5min, Start: 2026-03-03 15:17:13, Scheduled end: 2026-03-03 15:52:13, Topic: 
+2026-03-03 15:17:13,397 - INFO - Session started - ID: 255, Course: 1, Duration: 30min (+5min grace)
+2026-03-03 15:17:13,409 - INFO - [REQUEST] GET /api/teacher/session/255/status - Client: 127.0.0.1
+2026-03-03 15:17:18,411 - INFO - [REQUEST] GET /api/teacher/session/255/status - Client: 127.0.0.1
+2026-03-03 15:17:18,535 - INFO - [REQUEST] POST /api/teacher/manual-override - Client: 127.0.0.1
+2026-03-03 15:17:18,535 - INFO - Manual override attempt - Session: 255, Student: MCAX24R065, Reason: 'Device Malfunction - Scanner not working properly'
+2026-03-03 15:17:18,539 - INFO - Manual override SUCCESS - Student: Sourabh Kumar Gupta (MCAX24R065), Session: 255, Course: 1, Reason: 'Device Malfunction - Scanner not working properly'
+2026-03-03 15:17:19,767 - INFO - [REQUEST] GET /api/teacher/session/255/status - Client: 127.0.0.1
+2026-03-03 15:17:22,683 - INFO - [REQUEST] POST /api/teacher/session/255/end - Client: 127.0.0.1
+2026-03-03 15:17:22,684 - INFO - End session 255: Found 8 enrolled students
+2026-03-03 15:17:22,684 - INFO - End session 255: 1 students marked present
+2026-03-03 15:17:22,685 - INFO -   Absent: Vishal Kumar
+2026-03-03 15:17:22,685 - INFO -   Absent: Rahul Kumar
+2026-03-03 15:17:22,685 - INFO -   Absent: Harsh Vashisth
+2026-03-03 15:17:22,685 - INFO -   Absent: Param Rathor
+2026-03-03 15:17:22,685 - INFO -   Absent: Aditya
+2026-03-03 15:17:22,685 - INFO -   Absent: Ziaul Mustafa
+2026-03-03 15:17:22,685 - INFO -   Absent: Ashish Shukla
+2026-03-03 15:17:22,688 - INFO - Session ended - ID: 255, Absent count: 7
+2026-03-03 15:17:22,692 - INFO - [REQUEST] GET /api/teacher/report/255 - Client: 127.0.0.1
+2026-03-03 15:17:22,695 - INFO - Generating attendance report - SessionID: 255, CourseID: 1
+2026-03-03 15:17:22,697 - INFO - Report generated - SessionID: 255, Students: 8, Sessions: 232, Present records: 385, Absent records: 52
+2026-03-03 15:17:28,403 - INFO - [REQUEST] POST /api/teacher/start-session - Client: 127.0.0.1
+2026-03-03 15:17:28,404 - INFO - Creating session - Duration: 30min, Grace: 5min, Start: 2026-03-03 15:17:28, Scheduled end: 2026-03-03 15:52:28, Topic: 
+2026-03-03 15:17:28,407 - INFO - Session started - ID: 256, Course: 1, Duration: 30min (+5min grace)
+2026-03-03 15:17:28,415 - INFO - [REQUEST] GET /api/teacher/session/256/status - Client: 127.0.0.1
+2026-03-03 15:17:33,019 - INFO - [REQUEST] POST /api/teacher/manual-override - Client: 127.0.0.1
+2026-03-03 15:17:33,020 - INFO - Manual override attempt - Session: 256, Student: MCAX24R065, Reason: 'Device Malfunction - Scanner not working properly'
+2026-03-03 15:17:33,024 - INFO - Manual override SUCCESS - Student: Sourabh Kumar Gupta (MCAX24R065), Session: 256, Course: 1, Reason: 'Device Malfunction - Scanner not working properly'
+2026-03-03 15:17:33,421 - INFO - [REQUEST] GET /api/teacher/session/256/status - Client: 127.0.0.1
+2026-03-03 15:17:34,369 - INFO - [REQUEST] GET /api/teacher/session/256/status - Client: 127.0.0.1
+2026-03-03 15:17:37,709 - INFO - [REQUEST] POST /api/teacher/session/256/end - Client: 127.0.0.1
+2026-03-03 15:17:37,710 - INFO - End session 256: Found 8 enrolled students
+2026-03-03 15:17:37,710 - INFO - End session 256: 1 students marked present
+2026-03-03 15:17:37,711 - INFO -   Absent: Vishal Kumar
+2026-03-03 15:17:37,711 - INFO -   Absent: Rahul Kumar
+2026-03-03 15:17:37,711 - INFO -   Absent: Harsh Vashisth
+2026-03-03 15:17:37,711 - INFO -   Absent: Param Rathor
+2026-03-03 15:17:37,711 - INFO -   Absent: Aditya
+2026-03-03 15:17:37,711 - INFO -   Absent: Ziaul Mustafa
+2026-03-03 15:17:37,711 - INFO -   Absent: Ashish Shukla
+2026-03-03 15:17:37,714 - INFO - Session ended - ID: 256, Absent count: 7
+2026-03-03 15:17:37,720 - INFO - [REQUEST] GET /api/teacher/report/256 - Client: 127.0.0.1
+2026-03-03 15:17:37,722 - INFO - Generating attendance report - SessionID: 256, CourseID: 1
+2026-03-03 15:17:37,725 - INFO - Report generated - SessionID: 256, Students: 8, Sessions: 233, Present records: 386, Absent records: 52
+2026-03-03 15:17:41,693 - INFO - [REQUEST] GET /api/teacher/history/1 - Client: 127.0.0.1
+2026-03-03 15:17:41,695 - INFO - Loading teacher history - CourseID: 1
+2026-03-03 15:17:41,847 - INFO - [REQUEST] GET /api/teacher/report/256 - Client: 127.0.0.1
+2026-03-03 15:17:41,848 - INFO - Generating attendance report - SessionID: 256, CourseID: 1
+2026-03-03 15:17:41,851 - INFO - Report generated - SessionID: 256, Students: 8, Sessions: 233, Present records: 386, Absent records: 52
+2026-03-03 15:17:44,031 - INFO - [REQUEST] GET /api/teacher/history/1 - Client: 127.0.0.1
+2026-03-03 15:17:44,032 - INFO - Loading teacher history - CourseID: 1
+2026-03-03 15:17:46,535 - INFO - [REQUEST] GET /api/teacher/history/1 - Client: 127.0.0.1
+2026-03-03 15:17:46,535 - INFO - Loading teacher history - CourseID: 1
+2026-03-03 15:17:46,563 - INFO - [REQUEST] GET /api/teacher/report/256 - Client: 127.0.0.1
+2026-03-03 15:17:46,564 - INFO - Generating attendance report - SessionID: 256, CourseID: 1
+2026-03-03 15:17:46,566 - INFO - Report generated - SessionID: 256, Students: 8, Sessions: 233, Present records: 386, Absent records: 52
+2026-03-03 15:17:54,687 - INFO - [REQUEST] GET /student - Client: 127.0.0.1
+2026-03-03 15:17:54,778 - INFO - [REQUEST] GET /static/css/base.css - Client: 127.0.0.1
+2026-03-03 15:17:54,781 - INFO - [REQUEST] GET /static/css/modal.css - Client: 127.0.0.1
+2026-03-03 15:17:54,782 - INFO - [RESPONSE] GET /static/css/base.css - Status: 304 - 4ms
+2026-03-03 15:17:54,784 - INFO - [REQUEST] GET /static/css/student.css - Client: 127.0.0.1
+2026-03-03 15:17:54,786 - INFO - [RESPONSE] GET /static/css/modal.css - Status: 304 - 5ms
+2026-03-03 15:17:54,789 - INFO - [REQUEST] GET /static/js/student.js - Client: 127.0.0.1
+2026-03-03 15:17:54,792 - INFO - [REQUEST] GET /static/manifest.json - Client: 127.0.0.1
+2026-03-03 15:18:03,842 - INFO - [REQUEST] POST /api/student/login - Client: 127.0.0.1
+2026-03-03 15:18:03,844 - INFO - Student login attempt - Roll: MCAX24R065
+2026-03-03 15:18:03,847 - INFO - Student login successful - Roll: MCAX24R065, Name: Sourabh Kumar Gupta
+2026-03-03 15:18:03,851 - INFO - [REQUEST] GET /api/student/semesters - Client: 127.0.0.1
+2026-03-03 15:18:03,853 - INFO - [REQUEST] GET /api/student/critical-alerts - Client: 127.0.0.1
+2026-03-03 15:18:03,860 - INFO - [REQUEST] GET /api/student/dashboard - Client: 127.0.0.1
+2026-03-03 15:18:05,391 - INFO - [REQUEST] GET /api/student/dashboard - Client: 127.0.0.1
+2026-03-03 15:18:05,392 - INFO - [REQUEST] GET /api/student/semesters - Client: 127.0.0.1
+2026-03-03 15:18:05,445 - INFO - [REQUEST] GET /api/student/leaderboard - Client: 127.0.0.1
+2026-03-03 15:18:05,446 - INFO - Leaderboard request - StudentID: 1, CourseID: None, SemesterID: None
+2026-03-03 15:18:24,445 - INFO - [REQUEST] GET /api/student/dashboard - Client: 127.0.0.1
+2026-03-03 15:18:24,446 - INFO - [REQUEST] GET /api/student/leaderboard - Client: 127.0.0.1
+2026-03-03 15:18:24,447 - INFO - Leaderboard request - StudentID: 1, CourseID: None, SemesterID: None
+2026-03-03 15:18:46,975 - INFO - [REQUEST] GET / - Client: 127.0.0.1
+2026-03-03 15:18:47,040 - INFO - [REQUEST] GET /static/css/base.css - Client: 127.0.0.1
+2026-03-03 15:18:47,041 - INFO - [RESPONSE] GET /static/css/base.css - Status: 304 - 1ms
+2026-03-03 15:18:47,048 - INFO - [REQUEST] GET /static/css/modal.css - Client: 127.0.0.1
+2026-03-03 15:18:47,050 - INFO - [REQUEST] GET /static/js/teacher.js - Client: 127.0.0.1
+2026-03-03 15:18:47,049 - INFO - [REQUEST] GET /static/css/teacher.css - Client: 127.0.0.1
+2026-03-03 15:18:47,052 - INFO - [REQUEST] GET /static/js/modal.js - Client: 127.0.0.1
+2026-03-03 15:18:47,053 - INFO - [RESPONSE] GET /static/css/modal.css - Status: 304 - 5ms
+2026-03-03 15:18:47,052 - INFO - [RESPONSE] GET /static/js/teacher.js - Status: 304 - 2ms
+2026-03-03 15:18:47,055 - INFO - [RESPONSE] GET /static/css/teacher.css - Status: 304 - 6ms
+2026-03-03 15:18:47,056 - INFO - [RESPONSE] GET /static/js/modal.js - Status: 304 - 4ms
+2026-03-03 15:18:47,123 - INFO - [REQUEST] GET /api/teacher/course-codes - Client: 127.0.0.1
+2026-03-03 15:18:47,138 - INFO - [REQUEST] GET /api/teacher/validate-session/1 - Client: 127.0.0.1
+2026-03-03 15:18:47,148 - INFO - [REQUEST] GET /api/teacher/history/1 - Client: 127.0.0.1
+2026-03-03 15:18:47,149 - INFO - Loading teacher history - CourseID: 1
+2026-03-03 15:18:47,187 - INFO - [REQUEST] GET /api/teacher/report/256 - Client: 127.0.0.1
+2026-03-03 15:18:47,189 - INFO - Generating attendance report - SessionID: 256, CourseID: 1
+2026-03-03 15:18:47,192 - INFO - Report generated - SessionID: 256, Students: 8, Sessions: 233, Present records: 386, Absent records: 52
+2026-03-03 15:18:50,320 - INFO - [REQUEST] GET /api/teacher/history/1 - Client: 127.0.0.1
+2026-03-03 15:18:50,321 - INFO - Loading teacher history - CourseID: 1
+2026-03-03 15:18:59,554 - INFO - [REQUEST] GET /api/teacher/session-detail/250 - Client: 127.0.0.1
+2026-03-03 15:18:59,554 - INFO - Loading session detail - SessionID: 250
+2026-03-03 15:19:12,732 - INFO - [REQUEST] GET /api/teacher/session-detail/250 - Client: 127.0.0.1
+2026-03-03 15:19:12,733 - INFO - Loading session detail - SessionID: 250
+2026-03-03 15:19:18,376 - INFO - [REQUEST] GET /api/teacher/session-detail/248 - Client: 127.0.0.1
+2026-03-03 15:19:18,376 - INFO - Loading session detail - SessionID: 248
+2026-03-03 15:19:25,457 - INFO - [REQUEST] GET /api/teacher/session-detail/247 - Client: 127.0.0.1
+2026-03-03 15:19:25,458 - INFO - Loading session detail - SessionID: 247
+2026-03-03 15:19:30,352 - INFO - [REQUEST] GET /api/teacher/session-detail/246 - Client: 127.0.0.1
+2026-03-03 15:19:30,352 - INFO - Loading session detail - SessionID: 246
+2026-03-03 15:19:36,121 - INFO - [REQUEST] GET /api/teacher/session-detail/246 - Client: 127.0.0.1
+2026-03-03 15:19:36,121 - INFO - Loading session detail - SessionID: 246
+2026-03-03 15:19:48,735 - INFO - [REQUEST] GET /api/teacher/session-detail/246 - Client: 127.0.0.1
+2026-03-03 15:19:48,735 - INFO - Loading session detail - SessionID: 246
+2026-03-03 15:19:52,770 - INFO - [REQUEST] GET /api/teacher/session-detail/246 - Client: 127.0.0.1
+2026-03-03 15:19:52,771 - INFO - Loading session detail - SessionID: 246
+2026-03-03 15:20:06,312 - INFO - [REQUEST] POST /api/teacher/update-attendance - Client: 127.0.0.1
+2026-03-03 15:20:06,318 - INFO - Retroactive attendance - MARKED PRESENT - Session: 246, Student: 1, Reason: 'bjkb'
+2026-03-03 15:20:07,808 - INFO - [REQUEST] GET /api/teacher/session-detail/246 - Client: 127.0.0.1
+2026-03-03 15:20:07,809 - INFO - [REQUEST] GET /api/teacher/history/1 - Client: 127.0.0.1
+2026-03-03 15:20:07,810 - INFO - Loading session detail - SessionID: 246
+2026-03-03 15:20:07,811 - INFO - Loading teacher history - CourseID: 1
+2026-03-03 15:20:16,705 - INFO - [REQUEST] GET /api/teacher/session-detail/246 - Client: 127.0.0.1
+2026-03-03 15:20:16,705 - INFO - Loading session detail - SessionID: 246
+2026-03-03 15:20:21,796 - INFO - [REQUEST] GET /api/teacher/session-detail/245 - Client: 127.0.0.1
+2026-03-03 15:20:21,796 - INFO - Loading session detail - SessionID: 245
+2026-03-03 15:20:29,674 - INFO - [REQUEST] POST /api/teacher/update-attendance - Client: 127.0.0.1
+2026-03-03 15:20:29,680 - INFO - Retroactive attendance - MARKED PRESENT - Session: 245, Student: 1, Reason: 'nhk'
+2026-03-03 15:20:31,138 - INFO - [REQUEST] GET /api/teacher/session-detail/245 - Client: 127.0.0.1
+2026-03-03 15:20:31,139 - INFO - [REQUEST] GET /api/teacher/history/1 - Client: 127.0.0.1
+2026-03-03 15:20:31,141 - INFO - Loading session detail - SessionID: 245
+2026-03-03 15:20:31,141 - INFO - Loading teacher history - CourseID: 1
+2026-03-03 15:20:39,439 - INFO - [REQUEST] GET /api/teacher/session-detail/244 - Client: 127.0.0.1
+2026-03-03 15:20:39,439 - INFO - Loading session detail - SessionID: 244
+2026-03-03 15:20:56,838 - INFO - [REQUEST] POST /api/teacher/update-attendance - Client: 127.0.0.1
+2026-03-03 15:20:56,844 - INFO - Retroactive attendance - MARKED PRESENT - Session: 244, Student: 1, Reason: 'vmnm'
+2026-03-03 15:20:58,250 - INFO - [REQUEST] GET /api/teacher/session-detail/244 - Client: 127.0.0.1
+2026-03-03 15:20:58,252 - INFO - [REQUEST] GET /api/teacher/history/1 - Client: 127.0.0.1
+2026-03-03 15:20:58,254 - INFO - Loading teacher history - CourseID: 1
+2026-03-03 15:20:58,254 - INFO - Loading session detail - SessionID: 244
+2026-03-03 15:21:11,492 - INFO - [REQUEST] GET /api/teacher/session-detail/243 - Client: 127.0.0.1
+2026-03-03 15:21:11,492 - INFO - Loading session detail - SessionID: 243
+2026-03-03 15:21:17,188 - INFO - [REQUEST] GET /api/teacher/session-detail/246 - Client: 127.0.0.1
+2026-03-03 15:21:17,188 - INFO - Loading session detail - SessionID: 246
+2026-03-03 15:21:21,241 - INFO - [REQUEST] GET /api/teacher/session-detail/240 - Client: 127.0.0.1
+2026-03-03 15:21:21,241 - INFO - Loading session detail - SessionID: 240
+2026-03-03 15:21:28,226 - INFO - [REQUEST] POST /api/teacher/update-attendance - Client: 127.0.0.1
+2026-03-03 15:21:28,234 - INFO - Retroactive attendance - MARKED PRESENT - Session: 240, Student: 1, Reason: 'jljl'
+2026-03-03 15:21:29,735 - INFO - [REQUEST] GET /api/teacher/session-detail/240 - Client: 127.0.0.1
+2026-03-03 15:21:29,736 - INFO - [REQUEST] GET /api/teacher/history/1 - Client: 127.0.0.1
+2026-03-03 15:21:29,739 - INFO - Loading teacher history - CourseID: 1
+2026-03-03 15:21:29,739 - INFO - Loading session detail - SessionID: 240
+2026-03-03 15:21:43,984 - INFO - [REQUEST] GET /api/teacher/session-detail/242 - Client: 127.0.0.1
+2026-03-03 15:21:43,985 - INFO - Loading session detail - SessionID: 242
+2026-03-03 15:21:51,666 - INFO - [REQUEST] POST /api/teacher/update-attendance - Client: 127.0.0.1
+2026-03-03 15:21:51,673 - INFO - Retroactive attendance - MARKED PRESENT - Session: 242, Student: 1, Reason: 'fdduo'
+2026-03-03 15:21:53,034 - INFO - [REQUEST] GET /api/teacher/session-detail/242 - Client: 127.0.0.1
+2026-03-03 15:21:53,035 - INFO - [REQUEST] GET /api/teacher/history/1 - Client: 127.0.0.1
+2026-03-03 15:21:53,037 - INFO - Loading teacher history - CourseID: 1
+2026-03-03 15:21:53,037 - INFO - Loading session detail - SessionID: 242
+2026-03-03 15:22:09,157 - INFO - [REQUEST] GET /student - Client: 127.0.0.1
+2026-03-03 15:22:09,195 - INFO - [REQUEST] GET /static/css/base.css - Client: 127.0.0.1
+2026-03-03 15:22:09,197 - INFO - [RESPONSE] GET /static/css/base.css - Status: 304 - 1ms
+2026-03-03 15:22:09,199 - INFO - [REQUEST] GET /static/css/modal.css - Client: 127.0.0.1
+2026-03-03 15:22:09,202 - INFO - [REQUEST] GET /static/css/student.css - Client: 127.0.0.1
+2026-03-03 15:22:09,205 - INFO - [RESPONSE] GET /static/css/modal.css - Status: 304 - 6ms
+2026-03-03 15:22:09,207 - INFO - [RESPONSE] GET /static/css/student.css - Status: 304 - 5ms
+2026-03-03 15:22:09,207 - INFO - [REQUEST] GET /static/js/student.js - Client: 127.0.0.1
+2026-03-03 15:22:09,214 - INFO - [REQUEST] GET /static/manifest.json - Client: 127.0.0.1
+2026-03-03 15:22:09,215 - INFO - [RESPONSE] GET /static/js/student.js - Status: 304 - 7ms
+2026-03-03 15:22:09,217 - INFO - [RESPONSE] GET /static/manifest.json - Status: 304 - 2ms
+2026-03-03 15:22:09,231 - INFO - [REQUEST] GET /api/student/semesters - Client: 127.0.0.1
+2026-03-03 15:22:09,244 - INFO - [REQUEST] GET /api/student/dashboard - Client: 127.0.0.1
+2026-03-03 15:22:11,335 - INFO - [REQUEST] GET /api/student/dashboard - Client: 127.0.0.1
+2026-03-03 15:22:11,335 - INFO - [REQUEST] GET /api/student/semesters - Client: 127.0.0.1
+2026-03-03 15:22:11,345 - INFO - [REQUEST] GET /api/student/leaderboard - Client: 127.0.0.1
+2026-03-03 15:22:11,346 - INFO - Leaderboard request - StudentID: 1, CourseID: None, SemesterID: None
+2026-03-03 15:22:33,729 - INFO - [REQUEST] POST /api/student/login - Client: 127.0.0.1
+2026-03-03 15:22:33,729 - INFO - Student login attempt - Roll: MCAX24R065
+2026-03-03 15:22:33,730 - INFO - Student login successful - Roll: MCAX24R065, Name: Sourabh Kumar Gupta
+2026-03-03 15:22:33,739 - INFO - [REQUEST] GET /api/student/semesters - Client: 127.0.0.1
+2026-03-03 15:22:33,740 - INFO - [REQUEST] GET /api/student/critical-alerts - Client: 127.0.0.1
+2026-03-03 15:22:33,747 - INFO - [REQUEST] GET /api/student/dashboard - Client: 127.0.0.1
+2026-03-03 15:22:35,205 - INFO - [REQUEST] GET /api/student/dashboard - Client: 127.0.0.1
+2026-03-03 15:22:35,206 - INFO - [REQUEST] GET /api/student/leaderboard - Client: 127.0.0.1
+2026-03-03 15:22:35,206 - INFO - Leaderboard request - StudentID: 1, CourseID: None, SemesterID: None
+2026-03-03 15:23:02,912 - INFO - [REQUEST] GET /api/teacher/session-detail/237 - Client: 127.0.0.1
+2026-03-03 15:23:02,913 - INFO - Loading session detail - SessionID: 237
+2026-03-03 15:23:06,275 - INFO - [REQUEST] GET /api/teacher/session-detail/238 - Client: 127.0.0.1
+2026-03-03 15:23:06,275 - INFO - Loading session detail - SessionID: 238
+2026-03-03 15:23:11,205 - INFO - [REQUEST] GET /api/teacher/session-detail/240 - Client: 127.0.0.1
+2026-03-03 15:23:11,206 - INFO - Loading session detail - SessionID: 240
+2026-03-03 15:23:15,216 - INFO - [REQUEST] GET /api/teacher/session-detail/242 - Client: 127.0.0.1
+2026-03-03 15:23:15,217 - INFO - Loading session detail - SessionID: 242
+2026-03-03 15:23:19,710 - INFO - [REQUEST] GET /api/teacher/session-detail/236 - Client: 127.0.0.1
+2026-03-03 15:23:19,710 - INFO - Loading session detail - SessionID: 236
+2026-03-03 15:23:23,131 - INFO - [REQUEST] GET /api/teacher/session-detail/237 - Client: 127.0.0.1
+2026-03-03 15:23:23,132 - INFO - Loading session detail - SessionID: 237
+2026-03-03 15:24:11,428 - INFO - Server started - Auto-expire scheduler active
+2026-03-03 15:24:11,429 - INFO - [SYNC] Auto-sync started (interval: 300s)
+2026-03-03 15:24:11,429 - INFO - [SYNC] Auto-sync enabled: every 300s to https://a-r-i-s-e.onrender.com
+2026-03-03 15:24:11,504 - INFO - [SYNC] Starting push to cloud: https://a-r-i-s-e.onrender.com
+2026-03-03 15:24:12,420 - INFO - [SYNC] Database binary exported: 122880 bytes (120.0 KB)
+2026-03-03 15:24:12,471 - INFO - [SYNC] Starting push to cloud: https://a-r-i-s-e.onrender.com
+2026-03-03 15:24:12,905 - INFO - [SYNC] Database binary exported: 122880 bytes (120.0 KB)
+2026-03-03 15:24:13,677 - INFO - [SYNC] Push complete - Cloud response: success
+2026-03-03 15:24:13,677 - INFO - [SYNC] Auto-sync result: success
+2026-03-03 15:24:14,088 - INFO - [SYNC] Push complete - Cloud response: success
+2026-03-03 15:24:14,089 - INFO - [SYNC] Auto-sync result: success
+2026-03-03 15:29:14,585 - INFO - [SYNC] Starting push to cloud: https://a-r-i-s-e.onrender.com
+2026-03-03 15:29:15,552 - INFO - [SYNC] Database binary exported: 122880 bytes (120.0 KB)
+2026-03-03 15:29:17,181 - INFO - [SYNC] Push complete - Cloud response: success
+2026-03-03 15:29:17,181 - INFO - [SYNC] Auto-sync result: success
+2026-03-03 15:31:27,783 - INFO - Server started - Auto-expire scheduler active
+2026-03-03 15:31:27,784 - INFO - [SYNC] Auto-sync started (interval: 300s)
+2026-03-03 15:31:27,784 - INFO - [SYNC] Auto-sync enabled: every 300s to https://a-r-i-s-e.onrender.com
+2026-03-03 15:31:28,935 - INFO - [SYNC] Starting push to cloud: https://a-r-i-s-e.onrender.com
+2026-03-03 15:31:29,345 - INFO - [SYNC] Database binary exported: 122880 bytes (120.0 KB)
+2026-03-03 15:31:30,906 - INFO - [SYNC] Push complete - Cloud response: success
+2026-03-03 15:31:30,907 - INFO - [SYNC] Auto-sync result: success
+2026-03-03 15:31:31,843 - INFO - [REQUEST] GET / - Client: 127.0.0.1
+2026-03-03 15:31:31,875 - INFO - [REQUEST] GET /static/css/base.css - Client: 127.0.0.1
+2026-03-03 15:31:31,879 - INFO - [RESPONSE] GET /static/css/base.css - Status: 304 - 4ms
+2026-03-03 15:31:31,882 - INFO - [REQUEST] GET /static/css/modal.css - Client: 127.0.0.1
+2026-03-03 15:31:31,885 - INFO - [REQUEST] GET /static/css/teacher.css - Client: 127.0.0.1
+2026-03-03 15:31:31,887 - INFO - [REQUEST] GET /static/js/teacher.js - Client: 127.0.0.1
+2026-03-03 15:31:31,887 - INFO - [RESPONSE] GET /static/css/modal.css - Status: 304 - 5ms
+2026-03-03 15:31:31,888 - INFO - [RESPONSE] GET /static/css/teacher.css - Status: 304 - 2ms
+2026-03-03 15:31:31,893 - INFO - [REQUEST] GET /static/js/modal.js - Client: 127.0.0.1
+2026-03-03 15:31:31,896 - INFO - [RESPONSE] GET /static/js/modal.js - Status: 304 - 3ms
+2026-03-03 15:31:31,914 - INFO - [REQUEST] GET /api/teacher/course-codes - Client: 127.0.0.1
+2026-03-03 15:31:31,932 - INFO - [REQUEST] GET /api/teacher/validate-session/1 - Client: 127.0.0.1
+2026-03-03 15:31:31,944 - INFO - [REQUEST] GET /api/teacher/history/1 - Client: 127.0.0.1
+2026-03-03 15:31:31,946 - INFO - Loading teacher history - CourseID: 1
+2026-03-03 15:31:50,653 - INFO - [REQUEST] GET / - Client: 127.0.0.1
+2026-03-03 15:31:50,675 - INFO - [REQUEST] GET /static/css/base.css - Client: 127.0.0.1
+2026-03-03 15:31:50,676 - INFO - [RESPONSE] GET /static/css/base.css - Status: 304 - 1ms
+2026-03-03 15:31:50,681 - INFO - [REQUEST] GET /static/css/modal.css - Client: 127.0.0.1
+2026-03-03 15:31:50,684 - INFO - [REQUEST] GET /static/css/teacher.css - Client: 127.0.0.1
+2026-03-03 15:31:50,685 - INFO - [RESPONSE] GET /static/css/modal.css - Status: 304 - 4ms
+2026-03-03 15:31:50,686 - INFO - [RESPONSE] GET /static/css/teacher.css - Status: 304 - 2ms
+2026-03-03 15:31:50,686 - INFO - [REQUEST] GET /static/js/modal.js - Client: 127.0.0.1
+2026-03-03 15:31:50,688 - INFO - [REQUEST] GET /static/js/teacher.js - Client: 127.0.0.1
+2026-03-03 15:31:50,690 - INFO - [RESPONSE] GET /static/js/modal.js - Status: 304 - 4ms
+2026-03-03 15:31:50,692 - INFO - [RESPONSE] GET /static/js/teacher.js - Status: 304 - 4ms
+2026-03-03 15:31:50,707 - INFO - [REQUEST] GET /api/teacher/course-codes - Client: 127.0.0.1
+2026-03-03 15:31:50,876 - INFO - [REQUEST] GET / - Client: 127.0.0.1
+2026-03-03 15:31:50,901 - INFO - [REQUEST] GET /static/css/base.css - Client: 127.0.0.1
+2026-03-03 15:31:50,902 - INFO - [RESPONSE] GET /static/css/base.css - Status: 304 - 1ms
+2026-03-03 15:31:50,907 - INFO - [REQUEST] GET /static/css/modal.css - Client: 127.0.0.1
+2026-03-03 15:31:50,910 - INFO - [REQUEST] GET /static/js/teacher.js - Client: 127.0.0.1
+2026-03-03 15:31:50,909 - INFO - [REQUEST] GET /static/css/teacher.css - Client: 127.0.0.1
+2026-03-03 15:31:50,908 - INFO - [REQUEST] GET /static/js/modal.js - Client: 127.0.0.1
+2026-03-03 15:31:50,913 - INFO - [RESPONSE] GET /static/css/modal.css - Status: 304 - 6ms
+2026-03-03 15:31:50,914 - INFO - [RESPONSE] GET /static/js/teacher.js - Status: 304 - 4ms
+2026-03-03 15:31:50,917 - INFO - [RESPONSE] GET /static/js/modal.js - Status: 304 - 8ms
+2026-03-03 15:31:50,917 - INFO - [RESPONSE] GET /static/css/teacher.css - Status: 304 - 8ms
+2026-03-03 15:31:50,938 - INFO - [REQUEST] GET /api/teacher/course-codes - Client: 127.0.0.1
+2026-03-03 15:31:58,844 - INFO - [REQUEST] POST /api/teacher/login - Client: 127.0.0.1
+2026-03-03 15:31:58,846 - INFO - Teacher login attempt - CourseCode: MCA-401
+2026-03-03 15:31:59,090 - WARNING - Login failed - Invalid PIN for course_code: MCA-401
+2026-03-03 15:31:59,091 - INFO - [RESPONSE] POST /api/teacher/login - Status: 401 - 247ms
+2026-03-03 15:32:09,958 - INFO - [REQUEST] GET /admin - Client: 127.0.0.1
+2026-03-03 15:32:10,028 - INFO - [REQUEST] GET /static/css/base.css - Client: 127.0.0.1
+2026-03-03 15:32:10,030 - INFO - [RESPONSE] GET /static/css/base.css - Status: 304 - 3ms
+2026-03-03 15:32:10,033 - INFO - [REQUEST] GET /static/css/modal.css - Client: 127.0.0.1
+2026-03-03 15:32:10,035 - INFO - [REQUEST] GET /static/css/admin.css - Client: 127.0.0.1
+2026-03-03 15:32:10,036 - INFO - [RESPONSE] GET /static/css/modal.css - Status: 304 - 4ms
+2026-03-03 15:32:10,040 - INFO - [REQUEST] GET /static/js/modal.js - Client: 127.0.0.1
+2026-03-03 15:32:10,042 - INFO - [REQUEST] GET /static/js/admin.js - Client: 127.0.0.1
+2026-03-03 15:32:10,043 - INFO - [RESPONSE] GET /static/css/admin.css - Status: 304 - 8ms
+2026-03-03 15:32:10,046 - INFO - [REQUEST] GET /static/js/admin-analytics.js - Client: 127.0.0.1
+2026-03-03 15:32:10,049 - INFO - [RESPONSE] GET /static/js/admin.js - Status: 304 - 7ms
+2026-03-03 15:32:10,047 - INFO - [RESPONSE] GET /static/js/modal.js - Status: 304 - 7ms
+2026-03-03 15:32:10,051 - INFO - [RESPONSE] GET /static/js/admin-analytics.js - Status: 304 - 5ms
+2026-03-03 15:32:10,150 - INFO - [REQUEST] GET /api/admin/config - Client: 127.0.0.1
+2026-03-03 15:32:10,159 - INFO - [REQUEST] GET /api/admin/semesters - Client: 127.0.0.1
+2026-03-03 15:32:12,391 - INFO - [REQUEST] GET /api/admin/students - Client: 127.0.0.1
+2026-03-03 15:32:14,853 - INFO - [REQUEST] GET /api/admin/analytics/overview - Client: 127.0.0.1
+2026-03-03 15:32:14,854 - INFO - [REQUEST] GET /api/admin/courses-view - Client: 127.0.0.1
+2026-03-03 15:32:14,854 - INFO - [REQUEST] GET /api/admin/semesters - Client: 127.0.0.1
+2026-03-03 15:32:14,857 - INFO - [REQUEST] GET /api/admin/students - Client: 127.0.0.1
+2026-03-03 15:32:14,876 - INFO - [REQUEST] GET /api/admin/analytics/overview - Client: 127.0.0.1
+2026-03-03 15:32:17,164 - INFO - [REQUEST] GET /api/admin/semesters - Client: 127.0.0.1
+2026-03-03 15:32:18,830 - INFO - [REQUEST] GET /api/admin/students - Client: 127.0.0.1
+2026-03-03 15:32:21,202 - INFO - [REQUEST] GET /api/admin/teachers - Client: 127.0.0.1
+2026-03-03 15:32:30,034 - INFO - [REQUEST] GET /api/admin/semesters - Client: 127.0.0.1
+2026-03-03 15:32:32,551 - INFO - [REQUEST] GET /api/admin/semesters - Client: 127.0.0.1
+2026-03-03 15:32:32,553 - INFO - [REQUEST] GET /api/admin/teachers - Client: 127.0.0.1
+2026-03-03 15:32:32,552 - INFO - [REQUEST] GET /api/admin/courses-view - Client: 127.0.0.1
+2026-03-03 15:32:38,367 - INFO - [REQUEST] GET /api/admin/courses/5 - Client: 127.0.0.1
+2026-03-03 15:32:45,325 - INFO - [REQUEST] GET /api/admin/teachers - Client: 127.0.0.1
+2026-03-03 15:32:54,629 - INFO - [REQUEST] PUT /api/admin/teachers/1 - Client: 127.0.0.1
+2026-03-03 15:32:54,864 - INFO - Teacher updated - ID: 1, Name: Professor Rao
+2026-03-03 15:32:54,870 - INFO - [REQUEST] GET /api/admin/teachers - Client: 127.0.0.1
+2026-03-03 15:33:00,805 - INFO - [REQUEST] POST /api/teacher/login - Client: 127.0.0.1
+2026-03-03 15:33:00,805 - INFO - Teacher login attempt - CourseCode: MCA-401
+2026-03-03 15:33:01,037 - INFO - Teacher login successful - Course: Advanced AI
+2026-03-03 15:33:02,883 - INFO - [REQUEST] GET /api/teacher/history/5 - Client: 127.0.0.1
+2026-03-03 15:33:02,883 - INFO - Loading teacher history - CourseID: 5
+2026-03-03 15:33:12,676 - INFO - [REQUEST] DELETE /api/teacher/session/241/delete - Client: 127.0.0.1
+2026-03-03 15:33:12,679 - INFO - [RESPONSE] DELETE /api/teacher/session/241/delete - Status: 404 - 2ms
+2026-03-03 15:34:17,674 - INFO - [SYNC] Starting push to cloud: https://a-r-i-s-e.onrender.com
+2026-03-03 15:34:18,071 - INFO - [SYNC] Database binary exported: 122880 bytes (120.0 KB)
+2026-03-03 15:34:19,632 - INFO - [SYNC] Push complete - Cloud response: success
+2026-03-03 15:34:19,632 - INFO - [SYNC] Auto-sync result: success
+2026-03-03 15:39:20,641 - INFO - [SYNC] Starting push to cloud: https://a-r-i-s-e.onrender.com
+2026-03-03 15:39:21,067 - INFO - [SYNC] Database binary exported: 122880 bytes (120.0 KB)
+2026-03-03 15:39:22,687 - INFO - [SYNC] Push complete - Cloud response: success
+2026-03-03 15:39:22,687 - INFO - [SYNC] Auto-sync result: success
+2026-03-03 15:44:23,408 - INFO - [SYNC] Starting push to cloud: https://a-r-i-s-e.onrender.com
+2026-03-03 15:44:24,031 - INFO - [SYNC] Database binary exported: 122880 bytes (120.0 KB)
+2026-03-03 15:44:26,030 - INFO - [SYNC] Push complete - Cloud response: success
+2026-03-03 15:44:26,030 - INFO - [SYNC] Auto-sync result: success
+2026-03-03 15:49:26,650 - INFO - [SYNC] Starting push to cloud: https://a-r-i-s-e.onrender.com
+2026-03-03 15:49:27,580 - INFO - [SYNC] Database binary exported: 122880 bytes (120.0 KB)
+2026-03-03 15:49:29,191 - INFO - [SYNC] Push complete - Cloud response: success
+2026-03-03 15:49:29,191 - INFO - [SYNC] Auto-sync result: success
+2026-03-03 15:54:29,672 - INFO - [SYNC] Starting push to cloud: https://a-r-i-s-e.onrender.com
+2026-03-03 15:54:30,079 - INFO - [SYNC] Database binary exported: 122880 bytes (120.0 KB)
+2026-03-03 15:54:31,651 - INFO - [SYNC] Push complete - Cloud response: success
+2026-03-03 15:54:31,652 - INFO - [SYNC] Auto-sync result: success
+2026-03-03 15:59:32,081 - INFO - [SYNC] Starting push to cloud: https://a-r-i-s-e.onrender.com
+2026-03-03 15:59:32,466 - INFO - [SYNC] Database binary exported: 122880 bytes (120.0 KB)
+2026-03-03 15:59:33,189 - INFO - [SYNC] Push complete - Cloud response: success
+2026-03-03 15:59:33,189 - INFO - [SYNC] Auto-sync result: success
+2026-03-03 16:04:33,668 - INFO - [SYNC] Starting push to cloud: https://a-r-i-s-e.onrender.com
+2026-03-03 16:04:34,644 - INFO - [SYNC] Database binary exported: 122880 bytes (120.0 KB)
+2026-03-03 16:04:36,656 - INFO - [SYNC] Push complete - Cloud response: success
+2026-03-03 16:04:36,656 - INFO - [SYNC] Auto-sync result: success
+2026-03-03 16:06:41,250 - INFO - Server started - Auto-expire scheduler active
+2026-03-03 16:06:41,252 - INFO - [SYNC] Auto-sync started (interval: 300s)
+2026-03-03 16:06:41,253 - INFO - [SYNC] Auto-sync enabled: every 300s to https://a-r-i-s-e.onrender.com
+2026-03-03 16:27:43,078 - INFO - [SYNC] Starting push to cloud: https://a-r-i-s-e.onrender.com
+2026-03-03 16:27:45,379 - INFO - [SYNC] Database binary exported: 122880 bytes (120.0 KB)
+2026-03-03 16:27:47,790 - INFO - [SYNC] Push complete - Cloud response: success
+2026-03-03 16:27:47,791 - INFO - [SYNC] Auto-sync result: success
+2026-03-03 16:32:48,349 - INFO - [SYNC] Starting push to cloud: https://a-r-i-s-e.onrender.com
+2026-03-03 16:32:48,807 - INFO - [SYNC] Database binary exported: 122880 bytes (120.0 KB)
+2026-03-03 16:32:50,346 - INFO - [SYNC] Push complete - Cloud response: success
+2026-03-03 16:32:50,346 - INFO - [SYNC] Auto-sync result: success
+2026-03-03 16:37:51,386 - INFO - [SYNC] Starting push to cloud: https://a-r-i-s-e.onrender.com
+2026-03-03 16:37:51,777 - INFO - [SYNC] Database binary exported: 122880 bytes (120.0 KB)
+2026-03-03 16:37:53,368 - INFO - [SYNC] Push complete - Cloud response: success
+2026-03-03 16:37:53,368 - INFO - [SYNC] Auto-sync result: success
+2026-03-03 16:42:54,446 - INFO - [SYNC] Starting push to cloud: https://a-r-i-s-e.onrender.com
+2026-03-03 16:42:54,900 - INFO - [SYNC] Database binary exported: 122880 bytes (120.0 KB)
+2026-03-03 16:42:56,502 - INFO - [SYNC] Push complete - Cloud response: success
+2026-03-03 16:42:56,502 - INFO - [SYNC] Auto-sync result: success
+2026-03-03 16:47:57,443 - INFO - [SYNC] Starting push to cloud: https://a-r-i-s-e.onrender.com
+2026-03-03 16:47:57,875 - INFO - [SYNC] Database binary exported: 122880 bytes (120.0 KB)
+2026-03-03 16:47:58,566 - INFO - [SYNC] Push complete - Cloud response: success
+2026-03-03 16:47:58,566 - INFO - [SYNC] Auto-sync result: success
+2026-03-06 14:32:10,902 - INFO - Server started - Auto-expire scheduler active
+2026-03-06 14:32:10,903 - INFO - [SYNC] Auto-sync started (interval: 300s)
+2026-03-06 14:32:10,903 - INFO - [SYNC] Auto-sync enabled: every 300s to https://a-r-i-s-e.onrender.com
+2026-03-06 14:32:12,306 - INFO - [REQUEST] GET /api/health - Client: 127.0.0.1
+2026-03-06 14:32:46,136 - INFO - [REQUEST] GET / - Client: 127.0.0.1
+2026-03-06 14:32:46,391 - INFO - [REQUEST] GET /static/css/base.css - Client: 127.0.0.1
+2026-03-06 14:32:46,410 - INFO - [RESPONSE] GET /static/css/base.css - Status: 304 - 19ms
+2026-03-06 14:32:46,483 - INFO - [REQUEST] GET /static/css/modal.css - Client: 127.0.0.1
+2026-03-06 14:32:46,484 - INFO - [REQUEST] GET /static/css/teacher.css - Client: 127.0.0.1
+2026-03-06 14:32:46,485 - INFO - [REQUEST] GET /static/js/modal.js - Client: 127.0.0.1
+2026-03-06 14:32:46,486 - INFO - [REQUEST] GET /static/js/teacher.js - Client: 127.0.0.1
+2026-03-06 14:32:46,489 - INFO - [RESPONSE] GET /static/js/modal.js - Status: 304 - 4ms
+2026-03-06 14:32:46,490 - INFO - [RESPONSE] GET /static/css/modal.css - Status: 304 - 7ms
+2026-03-06 14:32:46,578 - INFO - [REQUEST] GET /api/teacher/course-codes - Client: 127.0.0.1
+2026-03-06 14:32:46,938 - INFO - [REQUEST] GET /favicon.ico - Client: 127.0.0.1
+2026-03-06 14:32:46,939 - INFO - [RESPONSE] GET /favicon.ico - Status: 404 - 1ms
+2026-03-06 14:32:46,942 - INFO - [REQUEST] GET /api/teacher/validate-session/1 - Client: 127.0.0.1
+2026-03-06 14:32:59,219 - INFO - [REQUEST] GET /api/teacher/history/1 - Client: 127.0.0.1
+2026-03-06 14:32:59,219 - INFO - Loading teacher history - CourseID: 1
+2026-03-06 14:33:52,574 - INFO - [REQUEST] DELETE /api/teacher/session/256/delete - Client: 127.0.0.1
+2026-03-06 14:33:52,578 - WARNING - [SESSION DELETE] Session ID: 256 | Course: MCA101 - Introduction To Programming | Date: 2026-03-03 15:17:28 | Type: offline | Topic: No topic | Attendance records deleted: 1 | Reason: Test deletion for verification
+2026-03-06 14:34:11,842 - INFO - [REQUEST] GET /api/teacher/history/1 - Client: 127.0.0.1
+2026-03-06 14:34:11,844 - INFO - Loading teacher history - CourseID: 1
+2026-03-06 14:37:17,167 - INFO - [SYNC] Starting push to cloud: https://a-r-i-s-e.onrender.com
+2026-03-06 14:37:17,605 - INFO - [SYNC] Database binary exported: 122880 bytes (120.0 KB)
+2026-03-06 14:37:19,133 - INFO - [SYNC] Push complete - Cloud response: success
+2026-03-06 14:37:19,134 - INFO - [SYNC] Auto-sync result: success
+2026-03-06 14:37:46,651 - INFO - [REQUEST] GET /api/teacher/history/1 - Client: 127.0.0.1
+2026-03-06 14:37:46,652 - INFO - Loading teacher history - CourseID: 1
+2026-03-06 14:37:46,917 - INFO - [REQUEST] GET /api/teacher/report/255 - Client: 127.0.0.1
+2026-03-06 14:37:46,918 - INFO - Generating attendance report - SessionID: 255, CourseID: 1
+2026-03-06 14:37:46,920 - INFO - Report generated - SessionID: 255, Students: 8, Sessions: 232, Present records: 390, Absent records: 52
+2026-03-06 14:37:51,332 - INFO - [REQUEST] GET /api/teacher/analytics/1 - Client: 127.0.0.1
+2026-03-06 14:37:51,332 - INFO - Loading teacher analytics - CourseID: 1
+2026-03-06 14:38:14,403 - INFO - [REQUEST] POST /api/teacher/start-session - Client: 127.0.0.1
+2026-03-06 14:38:14,406 - INFO - Creating session - Duration: 30min, Grace: 5min, Start: 2026-03-06 14:38:14, Scheduled end: 2026-03-06 15:13:14, Topic: 
+2026-03-06 14:38:14,410 - INFO - Session started - ID: 257, Course: 1, Duration: 30min (+5min grace)
+2026-03-06 14:38:14,667 - INFO - [REQUEST] GET /api/teacher/session/257/status - Client: 127.0.0.1
+2026-03-06 14:38:19,434 - INFO - [REQUEST] GET /api/teacher/session/257/status - Client: 127.0.0.1
+2026-03-06 14:38:20,009 - INFO - [REQUEST] GET /api/teacher/session/257/status - Client: 127.0.0.1
+2026-03-06 14:38:24,422 - INFO - [REQUEST] GET /api/teacher/session/257/status - Client: 127.0.0.1
+2026-03-06 14:38:29,432 - INFO - [REQUEST] GET /api/teacher/session/257/status - Client: 127.0.0.1
+2026-03-06 14:38:34,425 - INFO - [REQUEST] GET /api/teacher/session/257/status - Client: 127.0.0.1
+2026-03-06 14:38:39,418 - INFO - [REQUEST] GET /api/teacher/session/257/status - Client: 127.0.0.1
+2026-03-06 14:38:42,602 - INFO - [REQUEST] GET /api/teacher/session/257/status - Client: 127.0.0.1
+2026-03-06 14:38:44,732 - INFO - [REQUEST] GET /api/teacher/session/257/status - Client: 127.0.0.1
+2026-03-06 14:38:47,486 - INFO - [REQUEST] POST /api/teacher/emergency-bulk-mark - Client: 127.0.0.1
+2026-03-06 14:38:47,486 - INFO - Emergency bulk mark - Session: 257, Students: 8
+2026-03-06 14:38:47,491 - INFO - Emergency bulk mark SUCCESS - Present: 8, Absent: 0, Skipped: 0
+2026-03-06 14:38:49,008 - INFO - [REQUEST] GET /api/teacher/session/257/status - Client: 127.0.0.1
+2026-03-06 14:38:49,275 - INFO - [REQUEST] GET /api/teacher/session/257/status - Client: 127.0.0.1
+2026-03-06 14:38:49,583 - INFO - [REQUEST] GET /api/teacher/session/257/status - Client: 127.0.0.1
+2026-03-06 14:38:54,190 - INFO - [REQUEST] POST /api/teacher/session/257/end - Client: 127.0.0.1
+2026-03-06 14:38:54,190 - INFO - End session 257: Found 8 enrolled students
+2026-03-06 14:38:54,191 - INFO - End session 257: 8 students marked present
+2026-03-06 14:38:54,194 - INFO - Session ended - ID: 257, Absent count: 0
+2026-03-06 14:38:54,515 - INFO - [REQUEST] GET /api/teacher/report/257 - Client: 127.0.0.1
+2026-03-06 14:38:54,516 - INFO - Generating attendance report - SessionID: 257, CourseID: 1
+2026-03-06 14:38:54,518 - INFO - Report generated - SessionID: 257, Students: 8, Sessions: 233, Present records: 398, Absent records: 52
+2026-03-06 14:42:20,116 - INFO - [SYNC] Starting push to cloud: https://a-r-i-s-e.onrender.com
+2026-03-06 14:42:20,506 - INFO - [SYNC] Database binary exported: 122880 bytes (120.0 KB)
+2026-03-06 14:42:21,271 - INFO - [SYNC] Push complete - Cloud response: success
+2026-03-06 14:42:21,271 - INFO - [SYNC] Auto-sync result: success
+2026-03-06 14:44:31,267 - INFO - Server started - Auto-expire scheduler active
+2026-03-06 14:44:31,269 - INFO - [SYNC] Auto-sync started (interval: 300s)
+2026-03-06 14:44:31,269 - INFO - [SYNC] Auto-sync enabled: every 300s to https://a-r-i-s-e.onrender.com
+2026-03-06 14:44:32,360 - INFO - [SYNC] Starting push to cloud: https://a-r-i-s-e.onrender.com
+2026-03-06 14:44:32,777 - INFO - [SYNC] Database binary exported: 122880 bytes (120.0 KB)
+2026-03-06 14:44:33,451 - INFO - [SYNC] Push complete - Cloud response: success
+2026-03-06 14:44:33,451 - INFO - [SYNC] Auto-sync result: success
+2026-03-06 14:44:35,512 - INFO - [REQUEST] GET /api/health - Client: 127.0.0.1
+2026-03-06 14:45:11,019 - INFO - [REQUEST] GET / - Client: 127.0.0.1
+2026-03-06 14:45:11,284 - INFO - [REQUEST] GET /static/css/base.css - Client: 127.0.0.1
+2026-03-06 14:45:11,285 - INFO - [RESPONSE] GET /static/css/base.css - Status: 304 - 1ms
+2026-03-06 14:45:11,361 - INFO - [REQUEST] GET /static/css/modal.css - Client: 127.0.0.1
+2026-03-06 14:45:11,361 - INFO - [REQUEST] GET /static/css/teacher.css - Client: 127.0.0.1
+2026-03-06 14:45:11,361 - INFO - [REQUEST] GET /static/js/modal.js - Client: 127.0.0.1
+2026-03-06 14:45:11,363 - INFO - [REQUEST] GET /static/js/teacher.js - Client: 127.0.0.1
+2026-03-06 14:45:11,363 - INFO - [RESPONSE] GET /static/css/modal.css - Status: 304 - 3ms
+2026-03-06 14:45:11,366 - INFO - [RESPONSE] GET /static/js/modal.js - Status: 304 - 4ms
+2026-03-06 14:45:11,453 - INFO - [REQUEST] GET /api/teacher/course-codes - Client: 127.0.0.1
+2026-03-06 14:45:58,632 - INFO - [REQUEST] POST /api/teacher/login - Client: 127.0.0.1
+2026-03-06 14:45:58,632 - INFO - Teacher login attempt - CourseCode: MCA101
+2026-03-06 14:45:58,870 - WARNING - Login failed - Invalid PIN for course_code: MCA101
+2026-03-06 14:45:58,870 - INFO - [RESPONSE] POST /api/teacher/login - Status: 401 - 239ms
+2026-03-06 14:46:08,839 - INFO - [REQUEST] POST /api/teacher/login - Client: 127.0.0.1
+2026-03-06 14:46:08,840 - INFO - Teacher login attempt - CourseCode: MCA101
+2026-03-06 14:46:09,115 - WARNING - Login failed - Invalid PIN for course_code: MCA101
+2026-03-06 14:46:09,116 - INFO - [RESPONSE] POST /api/teacher/login - Status: 401 - 277ms
+2026-03-06 14:46:27,284 - INFO - [REQUEST] POST /api/teacher/login - Client: 127.0.0.1
+2026-03-06 14:46:27,285 - INFO - Teacher login attempt - CourseCode: MCA101
+2026-03-06 14:46:27,570 - WARNING - Login failed - Invalid PIN for course_code: MCA101
+2026-03-06 14:46:27,571 - INFO - [RESPONSE] POST /api/teacher/login - Status: 401 - 287ms
+2026-03-06 14:46:48,342 - INFO - [REQUEST] POST /api/teacher/login - Client: 127.0.0.1
+2026-03-06 14:46:48,343 - INFO - Teacher login attempt - CourseCode: MCA101
+2026-03-06 14:46:48,590 - WARNING - Login failed - Invalid PIN for course_code: MCA101
+2026-03-06 14:46:48,591 - INFO - [RESPONSE] POST /api/teacher/login - Status: 401 - 249ms
+2026-03-06 14:47:16,148 - INFO - [REQUEST] POST /api/teacher/login - Client: 127.0.0.1
+2026-03-06 14:47:16,149 - INFO - Teacher login attempt - CourseCode: MCA101
+2026-03-06 14:47:16,411 - WARNING - Login failed - Invalid PIN for course_code: MCA101
+2026-03-06 14:47:16,412 - INFO - [RESPONSE] POST /api/teacher/login - Status: 401 - 264ms
+2026-03-06 14:47:28,906 - INFO - [REQUEST] GET /admin - Client: 127.0.0.1
+2026-03-06 14:47:29,269 - INFO - [REQUEST] GET /static/css/base.css - Client: 127.0.0.1
+2026-03-06 14:47:29,270 - INFO - [RESPONSE] GET /static/css/base.css - Status: 304 - 1ms
+2026-03-06 14:47:29,274 - INFO - [REQUEST] GET /static/css/modal.css - Client: 127.0.0.1
+2026-03-06 14:47:29,276 - INFO - [REQUEST] GET /static/js/modal.js - Client: 127.0.0.1
+2026-03-06 14:47:29,275 - INFO - [REQUEST] GET /static/css/admin.css - Client: 127.0.0.1
+2026-03-06 14:47:29,278 - INFO - [REQUEST] GET /static/js/admin.js - Client: 127.0.0.1
+2026-03-06 14:47:29,279 - INFO - [RESPONSE] GET /static/css/modal.css - Status: 304 - 4ms
+2026-03-06 14:47:29,279 - INFO - [RESPONSE] GET /static/css/admin.css - Status: 304 - 4ms
+2026-03-06 14:47:29,280 - INFO - [REQUEST] GET /static/js/admin-analytics.js - Client: 127.0.0.1
+2026-03-06 14:47:29,281 - INFO - [RESPONSE] GET /static/js/modal.js - Status: 304 - 4ms
+2026-03-06 14:47:29,282 - INFO - [RESPONSE] GET /static/js/admin.js - Status: 304 - 4ms
+2026-03-06 14:47:29,287 - INFO - [RESPONSE] GET /static/js/admin-analytics.js - Status: 304 - 7ms
+2026-03-06 14:47:29,649 - INFO - [REQUEST] GET /api/admin/config - Client: 127.0.0.1
+2026-03-06 14:47:29,651 - INFO - [REQUEST] GET /api/admin/semesters - Client: 127.0.0.1
+2026-03-06 14:47:29,654 - INFO - [RESPONSE] GET /api/admin/config - Status: 401 - 5ms
+2026-03-06 14:47:29,655 - INFO - [RESPONSE] GET /api/admin/semesters - Status: 401 - 3ms
+2026-03-06 14:47:29,906 - INFO - [REQUEST] GET /admin-login - Client: 127.0.0.1
+2026-03-06 14:47:30,333 - INFO - [REQUEST] GET /static/css/base.css - Client: 127.0.0.1
+2026-03-06 14:47:30,334 - INFO - [REQUEST] GET /static/css/modal.css - Client: 127.0.0.1
+2026-03-06 14:47:30,334 - INFO - [RESPONSE] GET /static/css/modal.css - Status: 304 - 1ms
+2026-03-06 14:47:30,335 - INFO - [RESPONSE] GET /static/css/base.css - Status: 304 - 2ms
+2026-03-06 14:47:48,305 - INFO - [REQUEST] POST /api/admin/login - Client: 127.0.0.1
+2026-03-06 14:47:48,315 - INFO - Admin login attempt - Username: admin
+2026-03-06 14:47:48,323 - INFO - Admin login successful - Username: admin, AdminID: 1
+2026-03-06 14:47:48,555 - INFO - [REQUEST] GET /admin - Client: 127.0.0.1
+2026-03-06 14:47:48,660 - INFO - [REQUEST] GET /static/css/base.css - Client: 127.0.0.1
+2026-03-06 14:47:48,661 - INFO - [RESPONSE] GET /static/css/base.css - Status: 304 - 1ms
+2026-03-06 14:47:48,893 - INFO - [REQUEST] GET /static/css/modal.css - Client: 127.0.0.1
+2026-03-06 14:47:48,894 - INFO - [REQUEST] GET /static/css/admin.css - Client: 127.0.0.1
+2026-03-06 14:47:48,896 - INFO - [REQUEST] GET /static/js/modal.js - Client: 127.0.0.1
+2026-03-06 14:47:48,897 - INFO - [RESPONSE] GET /static/css/modal.css - Status: 304 - 3ms
+2026-03-06 14:47:48,899 - INFO - [REQUEST] GET /static/js/admin.js - Client: 127.0.0.1
+2026-03-06 14:47:48,900 - INFO - [RESPONSE] GET /static/css/admin.css - Status: 304 - 6ms
+2026-03-06 14:47:48,900 - INFO - [REQUEST] GET /static/js/admin-analytics.js - Client: 127.0.0.1
+2026-03-06 14:47:48,901 - INFO - [RESPONSE] GET /static/js/modal.js - Status: 304 - 5ms
+2026-03-06 14:47:48,904 - INFO - [RESPONSE] GET /static/js/admin.js - Status: 304 - 5ms
+2026-03-06 14:47:48,907 - INFO - [RESPONSE] GET /static/js/admin-analytics.js - Status: 304 - 7ms
+2026-03-06 14:47:49,236 - INFO - [REQUEST] GET /api/admin/semesters - Client: 127.0.0.1
+2026-03-06 14:47:49,237 - INFO - [REQUEST] GET /api/admin/config - Client: 127.0.0.1
+2026-03-06 14:48:26,352 - INFO - [REQUEST] GET /admin - Client: 127.0.0.1
+2026-03-06 14:48:26,709 - INFO - [REQUEST] GET /static/css/base.css - Client: 127.0.0.1
+2026-03-06 14:48:26,710 - INFO - [REQUEST] GET /static/css/admin.css - Client: 127.0.0.1
+2026-03-06 14:48:26,709 - INFO - [REQUEST] GET /static/css/modal.css - Client: 127.0.0.1
+2026-03-06 14:48:26,712 - INFO - [REQUEST] GET /static/js/modal.js - Client: 127.0.0.1
+2026-03-06 14:48:26,713 - INFO - [RESPONSE] GET /static/css/base.css - Status: 304 - 5ms
+2026-03-06 14:48:26,714 - INFO - [RESPONSE] GET /static/css/admin.css - Status: 304 - 3ms
+2026-03-06 14:48:26,715 - INFO - [RESPONSE] GET /static/css/modal.css - Status: 304 - 5ms
+2026-03-06 14:48:26,717 - INFO - [REQUEST] GET /static/js/admin.js - Client: 127.0.0.1
+2026-03-06 14:48:26,718 - INFO - [RESPONSE] GET /static/js/modal.js - Status: 304 - 6ms
+2026-03-06 14:48:26,723 - INFO - [REQUEST] GET /static/js/admin-analytics.js - Client: 127.0.0.1
+2026-03-06 14:48:26,726 - INFO - [RESPONSE] GET /static/js/admin.js - Status: 304 - 9ms
+2026-03-06 14:48:26,731 - INFO - [RESPONSE] GET /static/js/admin-analytics.js - Status: 304 - 8ms
+2026-03-06 14:48:27,054 - INFO - [REQUEST] GET /api/admin/config - Client: 127.0.0.1
+2026-03-06 14:48:27,055 - INFO - [REQUEST] GET /api/admin/semesters - Client: 127.0.0.1
+2026-03-06 14:48:33,892 - INFO - [REQUEST] GET /api/admin/teachers - Client: 127.0.0.1
+2026-03-06 14:48:34,210 - INFO - [REQUEST] GET /api/admin/courses-view - Client: 127.0.0.1
+2026-03-06 14:48:34,210 - INFO - [REQUEST] GET /api/admin/semesters - Client: 127.0.0.1
+2026-03-06 14:49:08,992 - INFO - [REQUEST] GET /api/admin/students - Client: 127.0.0.1
+2026-03-06 14:49:17,657 - INFO - [REQUEST] GET /api/admin/teachers - Client: 127.0.0.1
+2026-03-06 14:49:34,469 - INFO - [SYNC] Starting push to cloud: https://a-r-i-s-e.onrender.com
+2026-03-06 14:49:34,879 - INFO - [SYNC] Database binary exported: 122880 bytes (120.0 KB)
+2026-03-06 14:49:36,573 - INFO - [SYNC] Push complete - Cloud response: success
+2026-03-06 14:49:36,574 - INFO - [SYNC] Auto-sync result: success
+2026-03-06 14:49:40,258 - INFO - [REQUEST] PUT /api/admin/teachers/1 - Client: 127.0.0.1
+2026-03-06 14:49:40,516 - INFO - Teacher updated - ID: 1, Name: Professor Rao
+2026-03-06 14:49:40,529 - INFO - [REQUEST] GET /api/admin/teachers - Client: 127.0.0.1
+2026-03-06 14:49:45,823 - INFO - [REQUEST] GET / - Client: 127.0.0.1
+2026-03-06 14:49:46,085 - INFO - [REQUEST] GET /static/css/base.css - Client: 127.0.0.1
+2026-03-06 14:49:46,086 - INFO - [RESPONSE] GET /static/css/base.css - Status: 304 - 1ms
+2026-03-06 14:49:46,164 - INFO - [REQUEST] GET /static/css/modal.css - Client: 127.0.0.1
+2026-03-06 14:49:46,164 - INFO - [REQUEST] GET /static/css/teacher.css - Client: 127.0.0.1
+2026-03-06 14:49:46,166 - INFO - [REQUEST] GET /static/js/modal.js - Client: 127.0.0.1
+2026-03-06 14:49:46,167 - INFO - [RESPONSE] GET /static/css/modal.css - Status: 304 - 3ms
+2026-03-06 14:49:46,167 - INFO - [RESPONSE] GET /static/css/teacher.css - Status: 304 - 2ms
+2026-03-06 14:49:46,168 - INFO - [REQUEST] GET /static/js/teacher.js - Client: 127.0.0.1
+2026-03-06 14:49:46,171 - INFO - [RESPONSE] GET /static/js/modal.js - Status: 304 - 5ms
+2026-03-06 14:49:46,175 - INFO - [RESPONSE] GET /static/js/teacher.js - Status: 304 - 7ms
+2026-03-06 14:49:46,192 - INFO - [REQUEST] GET /api/teacher/course-codes - Client: 127.0.0.1
+2026-03-06 14:50:18,346 - INFO - [REQUEST] POST /api/teacher/login - Client: 127.0.0.1
+2026-03-06 14:50:18,347 - INFO - Teacher login attempt - CourseCode: MCA101
+2026-03-06 14:50:18,597 - WARNING - Login failed - Invalid PIN for course_code: MCA101
+2026-03-06 14:50:18,598 - INFO - [RESPONSE] POST /api/teacher/login - Status: 401 - 252ms
+2026-03-06 14:51:07,873 - INFO - [REQUEST] POST /api/teacher/login - Client: 127.0.0.1
+2026-03-06 14:51:07,873 - INFO - Teacher login attempt - CourseCode: MCA101
+2026-03-06 14:51:08,141 - INFO - Teacher login successful - Course: Introduction To Programming
+2026-03-06 14:51:24,740 - INFO - [REQUEST] POST /api/teacher/login - Client: 127.0.0.1
+2026-03-06 14:51:24,741 - INFO - Teacher login attempt - CourseCode: MCA101
+2026-03-06 14:51:24,981 - INFO - Teacher login successful - Course: Introduction To Programming
+2026-03-06 14:51:37,088 - INFO - [REQUEST] POST /api/teacher/start-session - Client: 127.0.0.1
+2026-03-06 14:51:37,089 - INFO - Creating session - Duration: 30min, Grace: 5min, Start: 2026-03-06 14:51:37, Scheduled end: 2026-03-06 15:26:37, Topic: sbsnbxabx
+2026-03-06 14:51:37,096 - INFO - Session started - ID: 258, Course: 1, Duration: 30min (+5min grace)
+2026-03-06 14:51:37,422 - INFO - [REQUEST] GET /api/teacher/session/258/status - Client: 127.0.0.1
+2026-03-06 14:51:41,465 - INFO - [REQUEST] GET /api/teacher/session/258/status - Client: 127.0.0.1
+2026-03-06 14:51:42,423 - INFO - [REQUEST] GET /api/teacher/session/258/status - Client: 127.0.0.1
+2026-03-06 14:51:47,121 - INFO - [REQUEST] GET /api/teacher/session/258/status - Client: 127.0.0.1
+2026-03-06 14:51:52,115 - INFO - [REQUEST] GET /api/teacher/session/258/status - Client: 127.0.0.1
+2026-03-06 14:51:57,113 - INFO - [REQUEST] GET /api/teacher/session/258/status - Client: 127.0.0.1
+2026-03-06 14:51:59,211 - INFO - [REQUEST] POST /api/teacher/emergency-bulk-mark - Client: 127.0.0.1
+2026-03-06 14:51:59,212 - INFO - Emergency bulk mark - Session: 258, Students: 8
+2026-03-06 14:51:59,218 - INFO - Emergency bulk mark SUCCESS - Present: 5, Absent: 3, Skipped: 0
+2026-03-06 14:52:01,236 - INFO - [REQUEST] GET /api/teacher/session/258/status - Client: 127.0.0.1
+2026-03-06 14:52:01,501 - INFO - [REQUEST] GET /api/teacher/session/258/status - Client: 127.0.0.1
+2026-03-06 14:52:02,115 - INFO - [REQUEST] GET /api/teacher/session/258/status - Client: 127.0.0.1
+2026-03-06 14:52:07,112 - INFO - [REQUEST] GET /api/teacher/session/258/status - Client: 127.0.0.1
+2026-03-06 14:52:08,526 - INFO - [REQUEST] GET /api/teacher/session/258/status - Client: 127.0.0.1
+2026-03-06 14:52:12,419 - INFO - [REQUEST] GET /api/teacher/session/258/status - Client: 127.0.0.1
+2026-03-06 14:52:17,118 - INFO - [REQUEST] GET /api/teacher/session/258/status - Client: 127.0.0.1
+2026-03-06 14:52:22,113 - INFO - [REQUEST] GET /api/teacher/session/258/status - Client: 127.0.0.1
+2026-03-06 14:52:23,842 - INFO - [REQUEST] POST /api/teacher/session/258/end - Client: 127.0.0.1
+2026-03-06 14:52:23,843 - INFO - End session 258: Found 8 enrolled students
+2026-03-06 14:52:23,843 - INFO - End session 258: 8 students marked present
+2026-03-06 14:52:23,848 - INFO - Session ended - ID: 258, Absent count: 0
+2026-03-06 14:52:24,171 - INFO - [REQUEST] GET /api/teacher/report/258 - Client: 127.0.0.1
+2026-03-06 14:52:24,173 - INFO - Generating attendance report - SessionID: 258, CourseID: 1
+2026-03-06 14:52:24,177 - INFO - Report generated - SessionID: 258, Students: 8, Sessions: 234, Present records: 403, Absent records: 55
+2026-03-06 14:52:43,042 - INFO - [REQUEST] POST /api/teacher/start-session - Client: 127.0.0.1
+2026-03-06 14:52:43,043 - INFO - Creating session - Duration: 30min, Grace: 5min, Start: 2026-03-06 14:52:43, Scheduled end: 2026-03-06 15:27:43, Topic: ovodjo
+2026-03-06 14:52:43,047 - INFO - Session started - ID: 259, Course: 1, Duration: 30min (+5min grace)
+2026-03-06 14:52:43,367 - INFO - [REQUEST] GET /api/teacher/session/259/status - Client: 127.0.0.1
+2026-03-06 14:52:47,357 - INFO - [REQUEST] GET /api/teacher/session/259/status - Client: 127.0.0.1
+2026-03-06 14:52:48,362 - INFO - [REQUEST] GET /api/teacher/session/259/status - Client: 127.0.0.1
+2026-03-06 14:52:53,064 - INFO - [REQUEST] GET /api/teacher/session/259/status - Client: 127.0.0.1
+2026-03-06 14:52:58,062 - INFO - [REQUEST] GET /api/teacher/session/259/status - Client: 127.0.0.1
+2026-03-06 14:53:02,468 - INFO - [REQUEST] GET /api/teacher/session/259/status - Client: 127.0.0.1
+2026-03-06 14:53:03,376 - INFO - [REQUEST] GET /api/teacher/session/259/status - Client: 127.0.0.1
+2026-03-06 14:53:06,134 - INFO - [REQUEST] POST /api/teacher/emergency-bulk-mark - Client: 127.0.0.1
+2026-03-06 14:53:06,135 - INFO - Emergency bulk mark - Session: 259, Students: 8
+2026-03-06 14:53:06,141 - INFO - Emergency bulk mark SUCCESS - Present: 8, Absent: 0, Skipped: 0
+2026-03-06 14:53:07,944 - INFO - [REQUEST] GET /api/teacher/session/259/status - Client: 127.0.0.1
+2026-03-06 14:53:08,209 - INFO - [REQUEST] GET /api/teacher/session/259/status - Client: 127.0.0.1
+2026-03-06 14:53:08,254 - INFO - [REQUEST] GET /api/teacher/session/259/status - Client: 127.0.0.1
+2026-03-06 14:53:13,364 - INFO - [REQUEST] GET /api/teacher/session/259/status - Client: 127.0.0.1
+2026-03-06 14:53:17,860 - INFO - [REQUEST] POST /api/teacher/session/259/end - Client: 127.0.0.1
+2026-03-06 14:53:17,861 - INFO - End session 259: Found 8 enrolled students
+2026-03-06 14:53:17,862 - INFO - End session 259: 8 students marked present
+2026-03-06 14:53:17,865 - INFO - Session ended - ID: 259, Absent count: 0
+2026-03-06 14:53:18,185 - INFO - [REQUEST] GET /api/teacher/report/259 - Client: 127.0.0.1
+2026-03-06 14:53:18,187 - INFO - Generating attendance report - SessionID: 259, CourseID: 1
+2026-03-06 14:53:18,189 - INFO - Report generated - SessionID: 259, Students: 8, Sessions: 235, Present records: 411, Absent records: 55
+2026-03-06 14:53:22,504 - INFO - [REQUEST] GET /api/teacher/history/1 - Client: 127.0.0.1
+2026-03-06 14:53:22,504 - INFO - Loading teacher history - CourseID: 1
+2026-03-06 14:53:22,889 - INFO - [REQUEST] GET /api/teacher/report/259 - Client: 127.0.0.1
+2026-03-06 14:53:22,890 - INFO - Generating attendance report - SessionID: 259, CourseID: 1
+2026-03-06 14:53:22,892 - INFO - Report generated - SessionID: 259, Students: 8, Sessions: 235, Present records: 411, Absent records: 55
+2026-03-06 14:53:25,679 - INFO - [REQUEST] GET /api/teacher/history/1 - Client: 127.0.0.1
+2026-03-06 14:53:25,679 - INFO - Loading teacher history - CourseID: 1
+2026-03-06 14:53:40,033 - INFO - [REQUEST] DELETE /api/teacher/session/258/delete - Client: 127.0.0.1
+2026-03-06 14:53:40,034 - WARNING - [SESSION DELETE] Session ID: 258 | Course: MCA101 - Introduction To Programming | Date: 2026-03-06 14:51:37 | Type: offline | Topic: sbsnbxabx | Attendance records deleted: 8 | Reason: Mistake
+2026-03-06 14:53:41,247 - INFO - [REQUEST] GET /api/teacher/history/1 - Client: 127.0.0.1
+2026-03-06 14:53:41,249 - INFO - Loading teacher history - CourseID: 1
+2026-03-06 14:53:45,099 - INFO - [REQUEST] GET /api/teacher/session-detail/259 - Client: 127.0.0.1
+2026-03-06 14:53:45,100 - INFO - Loading session detail - SessionID: 259
+2026-03-06 14:54:36,978 - INFO - [SYNC] Starting push to cloud: https://a-r-i-s-e.onrender.com
+2026-03-06 14:54:37,409 - INFO - [SYNC] Database binary exported: 126976 bytes (124.0 KB)
+2026-03-06 14:54:39,018 - INFO - [SYNC] Push complete - Cloud response: success
+2026-03-06 14:54:39,018 - INFO - [SYNC] Auto-sync result: success
+2026-03-06 14:55:38,250 - INFO - [REQUEST] GET /api/teacher/session-detail/255 - Client: 127.0.0.1
+2026-03-06 14:55:38,251 - INFO - Loading session detail - SessionID: 255
+2026-03-06 14:55:44,624 - INFO - [REQUEST] GET /api/teacher/session-detail/259 - Client: 127.0.0.1
+2026-03-06 14:55:44,624 - INFO - Loading session detail - SessionID: 259
+2026-03-06 15:01:35,913 - INFO - Server started - Auto-expire scheduler active
+2026-03-06 15:01:35,914 - INFO - [SYNC] Auto-sync started (interval: 300s)
+2026-03-06 15:01:35,914 - INFO - [SYNC] Auto-sync enabled: every 300s to https://a-r-i-s-e.onrender.com
+2026-03-06 15:01:37,262 - INFO - [SYNC] Starting push to cloud: https://a-r-i-s-e.onrender.com
+2026-03-06 15:01:37,781 - INFO - [SYNC] Database binary exported: 126976 bytes (124.0 KB)
+2026-03-06 15:01:38,471 - INFO - [SYNC] Push complete - Cloud response: success
+2026-03-06 15:01:38,472 - INFO - [SYNC] Auto-sync result: success
+2026-03-06 15:01:40,904 - INFO - [REQUEST] GET / - Client: 127.0.0.1
+2026-03-06 15:01:41,166 - INFO - [REQUEST] GET /static/css/base.css - Client: 127.0.0.1
+2026-03-06 15:01:41,169 - INFO - [RESPONSE] GET /static/css/base.css - Status: 304 - 3ms
+2026-03-06 15:01:41,295 - INFO - [REQUEST] GET /static/css/modal.css - Client: 127.0.0.1
+2026-03-06 15:01:41,296 - INFO - [REQUEST] GET /static/css/teacher.css - Client: 127.0.0.1
+2026-03-06 15:01:41,300 - INFO - [RESPONSE] GET /static/css/modal.css - Status: 304 - 5ms
+2026-03-06 15:01:41,303 - INFO - [REQUEST] GET /static/js/modal.js - Client: 127.0.0.1
+2026-03-06 15:01:41,309 - INFO - [REQUEST] GET /static/js/teacher.js - Client: 127.0.0.1
+2026-03-06 15:01:41,315 - INFO - [RESPONSE] GET /static/js/modal.js - Status: 304 - 12ms
+2026-03-06 15:01:41,463 - INFO - [REQUEST] GET /api/teacher/course-codes - Client: 127.0.0.1
+2026-03-06 15:01:47,471 - INFO - [REQUEST] POST /api/teacher/login - Client: 127.0.0.1
+2026-03-06 15:01:47,472 - INFO - Teacher login attempt - CourseCode: MCA101
+2026-03-06 15:01:47,730 - INFO - Teacher login successful - Course: Introduction To Programming
+2026-03-06 15:01:49,663 - INFO - [REQUEST] GET /api/teacher/history/1 - Client: 127.0.0.1
+2026-03-06 15:01:49,664 - INFO - Loading teacher history - CourseID: 1
+2026-03-06 15:01:51,509 - INFO - [REQUEST] GET /api/teacher/session-detail/259 - Client: 127.0.0.1
+2026-03-06 15:01:51,510 - INFO - Loading session detail - SessionID: 259
+2026-03-06 15:02:08,349 - INFO - [REQUEST] POST /api/teacher/update-attendance - Client: 127.0.0.1
+2026-03-06 15:02:08,356 - INFO - Retroactive attendance - MARKED ABSENT - Session: 259, Student: 7, Reason: 'not present in the class'
+2026-03-06 15:02:10,218 - INFO - [REQUEST] GET /api/teacher/session-detail/259 - Client: 127.0.0.1
+2026-03-06 15:02:10,219 - INFO - [REQUEST] GET /api/teacher/history/1 - Client: 127.0.0.1
+2026-03-06 15:02:10,221 - INFO - Loading session detail - SessionID: 259
+2026-03-06 15:02:10,221 - INFO - Loading teacher history - CourseID: 1
+2026-03-06 15:03:36,409 - INFO - Server started - Auto-expire scheduler active
+2026-03-06 15:03:36,411 - INFO - [SYNC] Auto-sync started (interval: 300s)
+2026-03-06 15:03:36,411 - INFO - [SYNC] Auto-sync enabled: every 300s to https://a-r-i-s-e.onrender.com
+2026-03-06 15:03:36,906 - INFO - [SYNC] Starting push to cloud: https://a-r-i-s-e.onrender.com
+2026-03-06 15:03:37,820 - INFO - [SYNC] Database binary exported: 126976 bytes (124.0 KB)
+2026-03-06 15:03:38,428 - INFO - [REQUEST] GET / - Client: 127.0.0.1
+2026-03-06 15:03:38,692 - INFO - [REQUEST] GET /static/css/base.css - Client: 127.0.0.1
+2026-03-06 15:03:38,693 - INFO - [RESPONSE] GET /static/css/base.css - Status: 304 - 1ms
+2026-03-06 15:03:38,746 - INFO - [SYNC] Push complete - Cloud response: success
+2026-03-06 15:03:38,746 - INFO - [SYNC] Auto-sync result: success
+2026-03-06 15:03:38,787 - INFO - [REQUEST] GET /static/css/teacher.css - Client: 127.0.0.1
+2026-03-06 15:03:38,788 - INFO - [REQUEST] GET /static/js/modal.js - Client: 127.0.0.1
+2026-03-06 15:03:38,789 - INFO - [REQUEST] GET /static/css/modal.css - Client: 127.0.0.1
+2026-03-06 15:03:38,789 - INFO - [REQUEST] GET /static/js/teacher.js - Client: 127.0.0.1
+2026-03-06 15:03:38,791 - INFO - [RESPONSE] GET /static/css/teacher.css - Status: 304 - 4ms
+2026-03-06 15:03:38,791 - INFO - [RESPONSE] GET /static/css/modal.css - Status: 304 - 3ms
+2026-03-06 15:03:38,792 - INFO - [RESPONSE] GET /static/js/modal.js - Status: 304 - 4ms
+2026-03-06 15:03:38,793 - INFO - [RESPONSE] GET /static/js/teacher.js - Status: 304 - 4ms
+2026-03-06 15:03:38,813 - INFO - [REQUEST] GET /api/teacher/course-codes - Client: 127.0.0.1
+2026-03-06 15:03:39,141 - INFO - [REQUEST] GET /api/teacher/validate-session/1 - Client: 127.0.0.1
+2026-03-06 15:03:39,407 - INFO - [REQUEST] GET /api/teacher/history/1 - Client: 127.0.0.1
+2026-03-06 15:03:39,408 - INFO - Loading teacher history - CourseID: 1
+2026-03-06 15:03:39,456 - INFO - [REQUEST] GET /api/teacher/report/259 - Client: 127.0.0.1
+2026-03-06 15:03:39,457 - INFO - Generating attendance report - SessionID: 259, CourseID: 1
+2026-03-06 15:03:39,461 - INFO - Report generated - SessionID: 259, Students: 8, Sessions: 234, Present records: 405, Absent records: 52
+2026-03-06 15:03:41,071 - INFO - [REQUEST] GET /api/teacher/history/1 - Client: 127.0.0.1
+2026-03-06 15:03:41,072 - INFO - Loading teacher history - CourseID: 1
+2026-03-06 15:03:42,536 - INFO - [REQUEST] GET /api/teacher/analytics/1 - Client: 127.0.0.1
+2026-03-06 15:03:42,537 - INFO - Loading teacher analytics - CourseID: 1
+2026-03-06 15:03:58,397 - INFO - [REQUEST] GET /api/teacher/history/1 - Client: 127.0.0.1
+2026-03-06 15:03:58,398 - INFO - Loading teacher history - CourseID: 1
+2026-03-06 15:04:00,220 - INFO - [REQUEST] GET /api/teacher/history/1 - Client: 127.0.0.1
+2026-03-06 15:04:00,221 - INFO - Loading teacher history - CourseID: 1
+2026-03-06 15:04:00,561 - INFO - [REQUEST] GET /api/teacher/report/259 - Client: 127.0.0.1
+2026-03-06 15:04:00,562 - INFO - Generating attendance report - SessionID: 259, CourseID: 1
+2026-03-06 15:04:00,563 - INFO - Report generated - SessionID: 259, Students: 8, Sessions: 234, Present records: 405, Absent records: 52
+2026-03-06 15:04:02,060 - INFO - [REQUEST] GET /api/teacher/history/1 - Client: 127.0.0.1
+2026-03-06 15:04:02,061 - INFO - Loading teacher history - CourseID: 1
+2026-03-06 15:04:03,274 - INFO - [REQUEST] GET /api/teacher/analytics/1 - Client: 127.0.0.1
+2026-03-06 15:04:03,275 - INFO - Loading teacher analytics - CourseID: 1
+2026-03-06 15:04:15,527 - INFO - [REQUEST] GET /api/teacher/analytics/1 - Client: 127.0.0.1
+2026-03-06 15:04:15,527 - INFO - Loading teacher analytics - CourseID: 1
+2026-03-06 15:04:16,887 - INFO - [REQUEST] GET /api/teacher/history/1 - Client: 127.0.0.1
+2026-03-06 15:04:16,888 - INFO - Loading teacher history - CourseID: 1
+2026-03-06 15:04:17,774 - INFO - [REQUEST] GET /api/teacher/history/1 - Client: 127.0.0.1
+2026-03-06 15:04:17,776 - INFO - Loading teacher history - CourseID: 1
+2026-03-06 15:04:18,117 - INFO - [REQUEST] GET /api/teacher/report/259 - Client: 127.0.0.1
+2026-03-06 15:04:18,118 - INFO - Generating attendance report - SessionID: 259, CourseID: 1
+2026-03-06 15:04:18,120 - INFO - Report generated - SessionID: 259, Students: 8, Sessions: 234, Present records: 405, Absent records: 52
+2026-03-06 15:04:18,971 - INFO - [REQUEST] GET /api/teacher/history/1 - Client: 127.0.0.1
+2026-03-06 15:04:18,972 - INFO - Loading teacher history - CourseID: 1
+2026-03-06 15:04:20,118 - INFO - [REQUEST] GET /api/teacher/analytics/1 - Client: 127.0.0.1
+2026-03-06 15:04:20,119 - INFO - Loading teacher analytics - CourseID: 1
+2026-03-06 15:04:22,410 - INFO - [REQUEST] GET /api/teacher/analytics/1 - Client: 127.0.0.1
+2026-03-06 15:04:22,411 - INFO - Loading teacher analytics - CourseID: 1
+2026-03-06 15:04:23,885 - INFO - [REQUEST] GET /api/teacher/history/1 - Client: 127.0.0.1
+2026-03-06 15:04:23,887 - INFO - Loading teacher history - CourseID: 1
+2026-03-06 15:04:35,483 - INFO - [REQUEST] GET /api/teacher/history/1 - Client: 127.0.0.1
+2026-03-06 15:04:35,484 - INFO - Loading teacher history - CourseID: 1
+2026-03-06 15:04:35,822 - INFO - [REQUEST] GET /api/teacher/report/259 - Client: 127.0.0.1
+2026-03-06 15:04:35,823 - INFO - Generating attendance report - SessionID: 259, CourseID: 1
+2026-03-06 15:04:35,825 - INFO - Report generated - SessionID: 259, Students: 8, Sessions: 234, Present records: 405, Absent records: 52
+2026-03-06 15:04:37,016 - INFO - [REQUEST] GET /api/teacher/analytics/1 - Client: 127.0.0.1
+2026-03-06 15:04:37,017 - INFO - Loading teacher analytics - CourseID: 1
+2026-03-06 15:04:38,353 - INFO - [REQUEST] GET /api/teacher/history/1 - Client: 127.0.0.1
+2026-03-06 15:04:38,353 - INFO - Loading teacher history - CourseID: 1
+2026-03-06 15:04:38,617 - INFO - [REQUEST] GET /api/teacher/report/259 - Client: 127.0.0.1
+2026-03-06 15:04:38,617 - INFO - Generating attendance report - SessionID: 259, CourseID: 1
+2026-03-06 15:04:38,619 - INFO - Report generated - SessionID: 259, Students: 8, Sessions: 234, Present records: 405, Absent records: 52
+2026-03-06 15:04:42,487 - INFO - [REQUEST] GET /static/css/base.css - Client: 127.0.0.1
+2026-03-06 15:04:42,488 - INFO - [RESPONSE] GET /static/css/base.css - Status: 304 - 1ms
+2026-03-06 15:04:42,800 - INFO - [REQUEST] GET /static/css/modal.css - Client: 127.0.0.1
+2026-03-06 15:04:42,801 - INFO - [REQUEST] GET /static/css/teacher.css - Client: 127.0.0.1
+2026-03-06 15:04:42,802 - INFO - [REQUEST] GET /.well-known/appspecific/com.chrome.devtools.json - Client: 127.0.0.1
+2026-03-06 15:04:42,803 - INFO - [RESPONSE] GET /static/css/modal.css - Status: 304 - 2ms
+2026-03-06 15:04:42,804 - INFO - [RESPONSE] GET /static/css/teacher.css - Status: 304 - 3ms
+2026-03-06 15:04:42,803 - INFO - [RESPONSE] GET /.well-known/appspecific/com.chrome.devtools.json - Status: 404 - 1ms
+2026-03-06 15:04:50,263 - INFO - [REQUEST] GET /api/teacher/history/1 - Client: 127.0.0.1
+2026-03-06 15:04:50,264 - INFO - Loading teacher history - CourseID: 1
+2026-03-06 15:05:04,910 - INFO - [REQUEST] GET /api/teacher/analytics/1 - Client: 127.0.0.1
+2026-03-06 15:05:04,911 - INFO - Loading teacher analytics - CourseID: 1
+2026-03-06 15:05:09,720 - INFO - [REQUEST] GET /api/teacher/history/1 - Client: 127.0.0.1
+2026-03-06 15:05:09,721 - INFO - Loading teacher history - CourseID: 1
+2026-03-06 15:05:25,742 - INFO - [REQUEST] GET /api/teacher/history/1 - Client: 127.0.0.1
+2026-03-06 15:05:25,743 - INFO - Loading teacher history - CourseID: 1
+2026-03-06 15:05:26,081 - INFO - [REQUEST] GET /api/teacher/report/259 - Client: 127.0.0.1
+2026-03-06 15:05:26,082 - INFO - Generating attendance report - SessionID: 259, CourseID: 1
+2026-03-06 15:05:26,084 - INFO - Report generated - SessionID: 259, Students: 8, Sessions: 234, Present records: 405, Absent records: 52
+2026-03-06 15:06:14,886 - INFO - [REQUEST] GET /api/teacher/history/1 - Client: 127.0.0.1
+2026-03-06 15:06:14,887 - INFO - Loading teacher history - CourseID: 1
+2026-03-06 15:06:16,809 - INFO - [REQUEST] GET /api/teacher/analytics/1 - Client: 127.0.0.1
+2026-03-06 15:06:16,811 - INFO - Loading teacher analytics - CourseID: 1
+2026-03-06 15:06:22,123 - INFO - [REQUEST] GET /api/teacher/analytics/1 - Client: 127.0.0.1
+2026-03-06 15:06:22,124 - INFO - Loading teacher analytics - CourseID: 1
+2026-03-06 15:06:23,377 - INFO - [REQUEST] GET /api/teacher/history/1 - Client: 127.0.0.1
+2026-03-06 15:06:23,378 - INFO - Loading teacher history - CourseID: 1
+2026-03-06 15:06:23,841 - INFO - [REQUEST] GET /api/teacher/history/1 - Client: 127.0.0.1
+2026-03-06 15:06:23,842 - INFO - Loading teacher history - CourseID: 1
+2026-03-06 15:06:24,180 - INFO - [REQUEST] GET /api/teacher/report/259 - Client: 127.0.0.1
+2026-03-06 15:06:24,181 - INFO - Generating attendance report - SessionID: 259, CourseID: 1
+2026-03-06 15:06:24,182 - INFO - Report generated - SessionID: 259, Students: 8, Sessions: 234, Present records: 405, Absent records: 52
+2026-03-06 15:06:29,923 - INFO - [REQUEST] GET /admin - Client: 127.0.0.1
+2026-03-06 15:06:30,272 - INFO - [REQUEST] GET /static/css/base.css - Client: 127.0.0.1
+2026-03-06 15:06:30,273 - INFO - [REQUEST] GET /static/css/modal.css - Client: 127.0.0.1
+2026-03-06 15:06:30,274 - INFO - [REQUEST] GET /static/css/admin.css - Client: 127.0.0.1
+2026-03-06 15:06:30,275 - INFO - [REQUEST] GET /static/js/modal.js - Client: 127.0.0.1
+2026-03-06 15:06:30,276 - INFO - [RESPONSE] GET /static/css/base.css - Status: 304 - 4ms
+2026-03-06 15:06:30,276 - INFO - [RESPONSE] GET /static/css/admin.css - Status: 304 - 3ms
+2026-03-06 15:06:30,278 - INFO - [REQUEST] GET /static/js/admin.js - Client: 127.0.0.1
+2026-03-06 15:06:30,278 - INFO - [RESPONSE] GET /static/js/modal.js - Status: 304 - 3ms
+2026-03-06 15:06:30,280 - INFO - [RESPONSE] GET /static/css/modal.css - Status: 304 - 7ms
+2026-03-06 15:06:30,281 - INFO - [REQUEST] GET /static/js/admin-analytics.js - Client: 127.0.0.1
+2026-03-06 15:06:30,285 - INFO - [RESPONSE] GET /static/js/admin.js - Status: 304 - 7ms
+2026-03-06 15:06:30,291 - INFO - [RESPONSE] GET /static/js/admin-analytics.js - Status: 304 - 10ms
+2026-03-06 15:06:30,627 - INFO - [REQUEST] GET /api/admin/config - Client: 127.0.0.1
+2026-03-06 15:06:30,628 - INFO - [REQUEST] GET /api/admin/semesters - Client: 127.0.0.1
+2026-03-06 15:06:33,184 - INFO - [REQUEST] GET /api/admin/teachers - Client: 127.0.0.1
+2026-03-06 15:08:39,212 - INFO - [SYNC] Starting push to cloud: https://a-r-i-s-e.onrender.com
+2026-03-06 15:08:39,590 - INFO - [SYNC] Database binary exported: 126976 bytes (124.0 KB)
+2026-03-06 15:08:41,227 - INFO - [SYNC] Push complete - Cloud response: success
+2026-03-06 15:08:41,227 - INFO - [SYNC] Auto-sync result: success
+2026-03-06 15:13:34,606 - INFO - Server started - Auto-expire scheduler active
+2026-03-06 15:13:34,608 - INFO - [SYNC] Auto-sync started (interval: 300s)
+2026-03-06 15:13:34,608 - INFO - [SYNC] Auto-sync enabled: every 300s to https://a-r-i-s-e.onrender.com
+2026-03-06 15:13:35,202 - INFO - [SYNC] Starting push to cloud: https://a-r-i-s-e.onrender.com
+2026-03-06 15:13:36,125 - INFO - [SYNC] Database binary exported: 126976 bytes (124.0 KB)
+2026-03-06 15:13:37,029 - INFO - [REQUEST] GET /admin - Client: 127.0.0.1
+2026-03-06 15:13:37,291 - INFO - [REQUEST] GET /static/css/base.css - Client: 127.0.0.1
+2026-03-06 15:13:37,292 - INFO - [RESPONSE] GET /static/css/base.css - Status: 304 - 1ms
+2026-03-06 15:13:37,382 - INFO - [REQUEST] GET /static/css/modal.css - Client: 127.0.0.1
+2026-03-06 15:13:37,385 - INFO - [REQUEST] GET /static/js/modal.js - Client: 127.0.0.1
+2026-03-06 15:13:37,383 - INFO - [REQUEST] GET /static/css/admin.css - Client: 127.0.0.1
+2026-03-06 15:13:37,387 - INFO - [REQUEST] GET /static/js/admin.js - Client: 127.0.0.1
+2026-03-06 15:13:37,388 - INFO - [RESPONSE] GET /static/css/modal.css - Status: 304 - 5ms
+2026-03-06 15:13:37,389 - INFO - [REQUEST] GET /static/js/admin-analytics.js - Client: 127.0.0.1
+2026-03-06 15:13:37,391 - INFO - [RESPONSE] GET /static/js/modal.js - Status: 304 - 6ms
+2026-03-06 15:13:37,393 - INFO - [RESPONSE] GET /static/css/admin.css - Status: 304 - 10ms
+2026-03-06 15:13:37,403 - INFO - [RESPONSE] GET /static/js/admin-analytics.js - Status: 304 - 13ms
+2026-03-06 15:13:37,735 - INFO - [SYNC] Push complete - Cloud response: success
+2026-03-06 15:13:37,736 - INFO - [SYNC] Auto-sync result: success
+2026-03-06 15:13:37,756 - INFO - [REQUEST] GET /api/admin/config - Client: 127.0.0.1
+2026-03-06 15:13:37,756 - INFO - [REQUEST] GET /api/admin/semesters - Client: 127.0.0.1
+2026-03-06 15:13:40,439 - INFO - [REQUEST] GET /admin-login - Client: 127.0.0.1
+2026-03-06 15:13:40,796 - INFO - [REQUEST] GET /static/css/base.css - Client: 127.0.0.1
+2026-03-06 15:13:40,797 - INFO - [REQUEST] GET /static/css/modal.css - Client: 127.0.0.1
+2026-03-06 15:13:40,798 - INFO - [RESPONSE] GET /static/css/base.css - Status: 304 - 2ms
+2026-03-06 15:13:40,798 - INFO - [RESPONSE] GET /static/css/modal.css - Status: 304 - 1ms
+2026-03-06 15:13:46,520 - INFO - [REQUEST] POST /api/admin/login - Client: 127.0.0.1
+2026-03-06 15:13:46,522 - INFO - Admin login attempt - Username: admin
+2026-03-06 15:13:46,524 - INFO - Admin login successful - Username: admin, AdminID: 1
+2026-03-06 15:13:46,855 - INFO - [REQUEST] GET /admin - Client: 127.0.0.1
+2026-03-06 15:13:47,120 - INFO - [REQUEST] GET /static/css/base.css - Client: 127.0.0.1
+2026-03-06 15:13:47,120 - INFO - [RESPONSE] GET /static/css/base.css - Status: 304 - 1ms
+2026-03-06 15:13:47,184 - INFO - [REQUEST] GET /static/css/modal.css - Client: 127.0.0.1
+2026-03-06 15:13:47,185 - INFO - [REQUEST] GET /static/css/admin.css - Client: 127.0.0.1
+2026-03-06 15:13:47,186 - INFO - [REQUEST] GET /static/js/modal.js - Client: 127.0.0.1
+2026-03-06 15:13:47,188 - INFO - [REQUEST] GET /static/js/admin.js - Client: 127.0.0.1
+2026-03-06 15:13:47,189 - INFO - [RESPONSE] GET /static/css/modal.css - Status: 304 - 4ms
+2026-03-06 15:13:47,190 - INFO - [RESPONSE] GET /static/css/admin.css - Status: 304 - 5ms
+2026-03-06 15:13:47,192 - INFO - [RESPONSE] GET /static/js/modal.js - Status: 304 - 5ms
+2026-03-06 15:13:47,193 - INFO - [RESPONSE] GET /static/js/admin.js - Status: 304 - 5ms
+2026-03-06 15:13:47,191 - INFO - [REQUEST] GET /static/js/admin-analytics.js - Client: 127.0.0.1
+2026-03-06 15:13:47,203 - INFO - [RESPONSE] GET /static/js/admin-analytics.js - Status: 304 - 12ms
+2026-03-06 15:13:47,523 - INFO - [REQUEST] GET /api/admin/config - Client: 127.0.0.1
+2026-03-06 15:13:47,524 - INFO - [REQUEST] GET /api/admin/semesters - Client: 127.0.0.1
+2026-03-06 15:13:58,265 - INFO - [REQUEST] GET /api/admin/teachers - Client: 127.0.0.1
+2026-03-06 15:14:39,493 - INFO - [REQUEST] PUT /api/admin/teachers/5 - Client: 127.0.0.1
+2026-03-06 15:14:39,494 - ERROR - Exception on /api/admin/teachers/5 [PUT]
+Traceback (most recent call last):
+  File "D:\ARISE SPEED IMROVEMENTS\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\ARISE SPEED IMROVEMENTS\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\ARISE SPEED IMROVEMENTS\A.R.I.S.E\venv\Lib\site-packages\flask_cors\extension.py", line 176, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+                                                ~^^^^^^^^^^^^^^^^^
+  File "D:\ARISE SPEED IMROVEMENTS\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\ARISE SPEED IMROVEMENTS\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "D:\ARISE SPEED IMROVEMENTS\A.R.I.S.E\server.py", line 252, in decorated
+    return f(data, *args, **kwargs)
+  File "D:\ARISE SPEED IMROVEMENTS\A.R.I.S.E\server.py", line 612, in manage_single_teacher
+    existing = conn.execute("SELECT id FROM teachers WHERE teacher_code = ? AND id != ?", (teacher_code, id)).fetchone()
+               ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+sqlite3.OperationalError: no such column: teacher_code
+2026-03-06 15:14:39,536 - INFO - [RESPONSE] PUT /api/admin/teachers/5 - Status: 500 - 43ms
+2026-03-06 15:14:39,758 - INFO - [REQUEST] GET /api/admin/teachers - Client: 127.0.0.1
+2026-03-06 15:14:57,938 - INFO - [REQUEST] PUT /api/admin/teachers/5 - Client: 127.0.0.1
+2026-03-06 15:14:57,940 - ERROR - Exception on /api/admin/teachers/5 [PUT]
+Traceback (most recent call last):
+  File "D:\ARISE SPEED IMROVEMENTS\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\ARISE SPEED IMROVEMENTS\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\ARISE SPEED IMROVEMENTS\A.R.I.S.E\venv\Lib\site-packages\flask_cors\extension.py", line 176, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+                                                ~^^^^^^^^^^^^^^^^^
+  File "D:\ARISE SPEED IMROVEMENTS\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\ARISE SPEED IMROVEMENTS\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "D:\ARISE SPEED IMROVEMENTS\A.R.I.S.E\server.py", line 252, in decorated
+    return f(data, *args, **kwargs)
+  File "D:\ARISE SPEED IMROVEMENTS\A.R.I.S.E\server.py", line 612, in manage_single_teacher
+    existing = conn.execute("SELECT id FROM teachers WHERE teacher_code = ? AND id != ?", (teacher_code, id)).fetchone()
+               ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+sqlite3.OperationalError: no such column: teacher_code
+2026-03-06 15:14:57,941 - INFO - [RESPONSE] PUT /api/admin/teachers/5 - Status: 500 - 3ms
+2026-03-06 15:14:58,260 - INFO - [REQUEST] GET /api/admin/teachers - Client: 127.0.0.1
+2026-03-06 15:15:01,269 - INFO - [REQUEST] GET /admin - Client: 127.0.0.1
+2026-03-06 15:15:01,599 - INFO - [REQUEST] GET /static/css/base.css - Client: 127.0.0.1
+2026-03-06 15:15:01,600 - INFO - [RESPONSE] GET /static/css/base.css - Status: 304 - 1ms
+2026-03-06 15:15:01,605 - INFO - [REQUEST] GET /static/css/modal.css - Client: 127.0.0.1
+2026-03-06 15:15:01,606 - INFO - [REQUEST] GET /static/css/admin.css - Client: 127.0.0.1
+2026-03-06 15:15:01,607 - INFO - [REQUEST] GET /static/js/modal.js - Client: 127.0.0.1
+2026-03-06 15:15:01,609 - INFO - [REQUEST] GET /static/js/admin.js - Client: 127.0.0.1
+2026-03-06 15:15:01,610 - INFO - [RESPONSE] GET /static/css/modal.css - Status: 304 - 5ms
+2026-03-06 15:15:01,611 - INFO - [REQUEST] GET /static/js/admin-analytics.js - Client: 127.0.0.1
+2026-03-06 15:15:01,613 - INFO - [RESPONSE] GET /static/css/admin.css - Status: 304 - 7ms
+2026-03-06 15:15:01,613 - INFO - [RESPONSE] GET /static/js/modal.js - Status: 304 - 6ms
+2026-03-06 15:15:01,615 - INFO - [RESPONSE] GET /static/js/admin.js - Status: 304 - 6ms
+2026-03-06 15:15:01,617 - INFO - [RESPONSE] GET /static/js/admin-analytics.js - Status: 304 - 6ms
+2026-03-06 15:15:01,942 - INFO - [REQUEST] GET /api/admin/config - Client: 127.0.0.1
+2026-03-06 15:15:01,943 - INFO - [REQUEST] GET /api/admin/semesters - Client: 127.0.0.1
+2026-03-06 15:15:03,361 - INFO - [REQUEST] GET /api/admin/teachers - Client: 127.0.0.1
+2026-03-06 15:15:08,390 - INFO - [REQUEST] GET /api/admin/students - Client: 127.0.0.1
+2026-03-06 15:15:09,970 - INFO - [REQUEST] GET /api/admin/teachers - Client: 127.0.0.1
+2026-03-06 15:15:16,100 - INFO - [REQUEST] GET /api/admin/semesters - Client: 127.0.0.1
+2026-03-06 15:15:16,813 - INFO - [REQUEST] GET /api/admin/teachers - Client: 127.0.0.1
+2026-03-06 15:15:33,030 - INFO - [REQUEST] PUT /api/admin/teachers/1 - Client: 127.0.0.1
+2026-03-06 15:15:33,031 - ERROR - Exception on /api/admin/teachers/1 [PUT]
+Traceback (most recent call last):
+  File "D:\ARISE SPEED IMROVEMENTS\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\ARISE SPEED IMROVEMENTS\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\ARISE SPEED IMROVEMENTS\A.R.I.S.E\venv\Lib\site-packages\flask_cors\extension.py", line 176, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+                                                ~^^^^^^^^^^^^^^^^^
+  File "D:\ARISE SPEED IMROVEMENTS\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\ARISE SPEED IMROVEMENTS\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "D:\ARISE SPEED IMROVEMENTS\A.R.I.S.E\server.py", line 252, in decorated
+    return f(data, *args, **kwargs)
+  File "D:\ARISE SPEED IMROVEMENTS\A.R.I.S.E\server.py", line 612, in manage_single_teacher
+    existing = conn.execute("SELECT id FROM teachers WHERE teacher_code = ? AND id != ?", (teacher_code, id)).fetchone()
+               ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+sqlite3.OperationalError: no such column: teacher_code
+2026-03-06 15:15:33,033 - INFO - [RESPONSE] PUT /api/admin/teachers/1 - Status: 500 - 3ms
+2026-03-06 15:15:33,293 - INFO - [REQUEST] GET /api/admin/teachers - Client: 127.0.0.1
+2026-03-06 15:15:50,082 - INFO - [REQUEST] PUT /api/admin/teachers/3 - Client: 127.0.0.1
+2026-03-06 15:15:50,083 - ERROR - Exception on /api/admin/teachers/3 [PUT]
+Traceback (most recent call last):
+  File "D:\ARISE SPEED IMROVEMENTS\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\ARISE SPEED IMROVEMENTS\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\ARISE SPEED IMROVEMENTS\A.R.I.S.E\venv\Lib\site-packages\flask_cors\extension.py", line 176, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+                                                ~^^^^^^^^^^^^^^^^^
+  File "D:\ARISE SPEED IMROVEMENTS\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\ARISE SPEED IMROVEMENTS\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "D:\ARISE SPEED IMROVEMENTS\A.R.I.S.E\server.py", line 252, in decorated
+    return f(data, *args, **kwargs)
+  File "D:\ARISE SPEED IMROVEMENTS\A.R.I.S.E\server.py", line 612, in manage_single_teacher
+    existing = conn.execute("SELECT id FROM teachers WHERE teacher_code = ? AND id != ?", (teacher_code, id)).fetchone()
+               ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+sqlite3.OperationalError: no such column: teacher_code
+2026-03-06 15:15:50,085 - INFO - [RESPONSE] PUT /api/admin/teachers/3 - Status: 500 - 3ms
+2026-03-06 15:15:50,404 - INFO - [REQUEST] GET /api/admin/teachers - Client: 127.0.0.1
+2026-03-06 15:19:59,921 - INFO - Server started - Auto-expire scheduler active
+2026-03-06 15:19:59,925 - INFO - [SYNC] Auto-sync started (interval: 300s)
+2026-03-06 15:19:59,925 - INFO - [SYNC] Auto-sync enabled: every 300s to https://a-r-i-s-e.onrender.com
+2026-03-06 15:20:00,594 - INFO - [SYNC] Starting push to cloud: https://a-r-i-s-e.onrender.com
+2026-03-06 15:20:00,998 - INFO - [SYNC] Database binary exported: 126976 bytes (124.0 KB)
+2026-03-06 15:20:02,547 - INFO - [SYNC] Push complete - Cloud response: success
+2026-03-06 15:20:02,548 - INFO - [SYNC] Auto-sync result: success
+2026-03-06 15:20:03,745 - INFO - [REQUEST] GET /admin-login - Client: 127.0.0.1
+2026-03-06 15:20:04,005 - INFO - [REQUEST] GET /static/css/base.css - Client: 127.0.0.1
+2026-03-06 15:20:04,007 - INFO - [RESPONSE] GET /static/css/base.css - Status: 304 - 2ms
+2026-03-06 15:20:04,098 - INFO - [REQUEST] GET /static/css/modal.css - Client: 127.0.0.1
+2026-03-06 15:20:04,100 - INFO - [RESPONSE] GET /static/css/modal.css - Status: 304 - 1ms
+2026-03-06 15:20:10,161 - INFO - [REQUEST] POST /api/admin/login - Client: 127.0.0.1
+2026-03-06 15:20:10,163 - INFO - Admin login attempt - Username: admin
+2026-03-06 15:20:10,174 - INFO - Admin login successful - Username: admin, AdminID: 1
+2026-03-06 15:20:10,513 - INFO - [REQUEST] GET /admin - Client: 127.0.0.1
+2026-03-06 15:20:10,761 - INFO - [REQUEST] GET /static/css/base.css - Client: 127.0.0.1
+2026-03-06 15:20:10,762 - INFO - [RESPONSE] GET /static/css/base.css - Status: 304 - 1ms
+2026-03-06 15:20:10,856 - INFO - [REQUEST] GET /static/css/modal.css - Client: 127.0.0.1
+2026-03-06 15:20:10,857 - INFO - [REQUEST] GET /static/js/modal.js - Client: 127.0.0.1
+2026-03-06 15:20:10,858 - INFO - [REQUEST] GET /static/css/admin.css - Client: 127.0.0.1
+2026-03-06 15:20:10,861 - INFO - [REQUEST] GET /static/js/admin-analytics.js - Client: 127.0.0.1
+2026-03-06 15:20:10,859 - INFO - [REQUEST] GET /static/js/admin.js - Client: 127.0.0.1
+2026-03-06 15:20:10,862 - INFO - [RESPONSE] GET /static/css/modal.css - Status: 304 - 6ms
+2026-03-06 15:20:10,862 - INFO - [RESPONSE] GET /static/css/admin.css - Status: 304 - 4ms
+2026-03-06 15:20:10,862 - INFO - [RESPONSE] GET /static/js/modal.js - Status: 304 - 5ms
+2026-03-06 15:20:10,863 - INFO - [RESPONSE] GET /static/js/admin-analytics.js - Status: 304 - 2ms
+2026-03-06 15:20:11,195 - INFO - [REQUEST] GET /api/admin/config - Client: 127.0.0.1
+2026-03-06 15:20:11,197 - INFO - [REQUEST] GET /api/admin/semesters - Client: 127.0.0.1
+2026-03-06 15:20:16,554 - INFO - [REQUEST] GET /api/admin/students - Client: 127.0.0.1
+2026-03-06 15:20:18,226 - INFO - [REQUEST] GET /api/admin/teachers - Client: 127.0.0.1
+2026-03-06 15:20:20,750 - INFO - [REQUEST] GET /admin - Client: 127.0.0.1
+2026-03-06 15:20:21,086 - INFO - [REQUEST] GET /static/css/base.css - Client: 127.0.0.1
+2026-03-06 15:20:21,089 - INFO - [REQUEST] GET /static/js/modal.js - Client: 127.0.0.1
+2026-03-06 15:20:21,088 - INFO - [REQUEST] GET /static/css/admin.css - Client: 127.0.0.1
+2026-03-06 15:20:21,087 - INFO - [REQUEST] GET /static/css/modal.css - Client: 127.0.0.1
+2026-03-06 15:20:21,090 - INFO - [REQUEST] GET /static/js/admin.js - Client: 127.0.0.1
+2026-03-06 15:20:21,092 - INFO - [REQUEST] GET /static/js/admin-analytics.js - Client: 127.0.0.1
+2026-03-06 15:20:21,092 - INFO - [RESPONSE] GET /static/css/base.css - Status: 304 - 6ms
+2026-03-06 15:20:21,093 - INFO - [RESPONSE] GET /static/js/modal.js - Status: 304 - 4ms
+2026-03-06 15:20:21,093 - INFO - [RESPONSE] GET /static/css/admin.css - Status: 304 - 5ms
+2026-03-06 15:20:21,095 - INFO - [RESPONSE] GET /static/css/modal.css - Status: 304 - 8ms
+2026-03-06 15:20:21,096 - INFO - [RESPONSE] GET /static/js/admin.js - Status: 304 - 5ms
+2026-03-06 15:20:21,103 - INFO - [RESPONSE] GET /static/js/admin-analytics.js - Status: 304 - 10ms
+2026-03-06 15:20:21,432 - INFO - [REQUEST] GET /admin - Client: 127.0.0.1
+2026-03-06 15:20:21,432 - INFO - [REQUEST] GET /api/admin/config - Client: 127.0.0.1
+2026-03-06 15:20:21,535 - INFO - [REQUEST] GET /static/css/base.css - Client: 127.0.0.1
+2026-03-06 15:20:21,536 - INFO - [RESPONSE] GET /static/css/base.css - Status: 304 - 1ms
+2026-03-06 15:20:21,690 - INFO - [REQUEST] GET /static/css/modal.css - Client: 127.0.0.1
+2026-03-06 15:20:21,691 - INFO - [RESPONSE] GET /static/css/modal.css - Status: 304 - 1ms
+2026-03-06 15:20:21,783 - INFO - [REQUEST] GET /static/css/admin.css - Client: 127.0.0.1
+2026-03-06 15:20:21,784 - INFO - [REQUEST] GET /static/js/modal.js - Client: 127.0.0.1
+2026-03-06 15:20:21,786 - INFO - [REQUEST] GET /static/js/admin.js - Client: 127.0.0.1
+2026-03-06 15:20:21,788 - INFO - [REQUEST] GET /static/js/admin-analytics.js - Client: 127.0.0.1
+2026-03-06 15:20:21,789 - INFO - [RESPONSE] GET /static/css/admin.css - Status: 304 - 5ms
+2026-03-06 15:20:21,789 - INFO - [RESPONSE] GET /static/js/modal.js - Status: 304 - 5ms
+2026-03-06 15:20:21,790 - INFO - [RESPONSE] GET /static/js/admin.js - Status: 304 - 4ms
+2026-03-06 15:20:21,792 - INFO - [RESPONSE] GET /static/js/admin-analytics.js - Status: 304 - 4ms
+2026-03-06 15:20:22,123 - INFO - [REQUEST] GET /api/admin/config - Client: 127.0.0.1
+2026-03-06 15:20:22,124 - INFO - [REQUEST] GET /api/admin/semesters - Client: 127.0.0.1
+2026-03-06 15:20:26,818 - INFO - [REQUEST] GET /admin-login - Client: 127.0.0.1
+2026-03-06 15:20:27,150 - INFO - [REQUEST] GET /static/css/base.css - Client: 127.0.0.1
+2026-03-06 15:20:27,151 - INFO - [REQUEST] GET /static/css/modal.css - Client: 127.0.0.1
+2026-03-06 15:20:27,152 - INFO - [RESPONSE] GET /static/css/base.css - Status: 304 - 2ms
+2026-03-06 15:20:27,153 - INFO - [RESPONSE] GET /static/css/modal.css - Status: 304 - 2ms
+2026-03-06 15:20:56,708 - INFO - Server started - Auto-expire scheduler active
+2026-03-06 15:20:56,710 - INFO - [SYNC] Auto-sync started (interval: 300s)
+2026-03-06 15:20:56,710 - INFO - [SYNC] Auto-sync enabled: every 300s to https://a-r-i-s-e.onrender.com
+2026-03-06 15:20:57,835 - INFO - [SYNC] Starting push to cloud: https://a-r-i-s-e.onrender.com
+2026-03-06 15:20:58,218 - INFO - [SYNC] Database binary exported: 126976 bytes (124.0 KB)
+2026-03-06 15:20:59,351 - INFO - [SYNC] Push complete - Cloud response: success
+2026-03-06 15:20:59,351 - INFO - [SYNC] Auto-sync result: success
+2026-03-06 15:21:00,014 - INFO - [REQUEST] GET /admin-login - Client: 127.0.0.1
+2026-03-06 15:21:00,276 - INFO - [REQUEST] GET /static/css/base.css - Client: 127.0.0.1
+2026-03-06 15:21:00,277 - INFO - [RESPONSE] GET /static/css/base.css - Status: 304 - 1ms
+2026-03-06 15:21:00,354 - INFO - [REQUEST] GET /static/css/modal.css - Client: 127.0.0.1
+2026-03-06 15:21:00,356 - INFO - [RESPONSE] GET /static/css/modal.css - Status: 304 - 2ms
+2026-03-06 15:21:08,371 - INFO - [REQUEST] POST /api/admin/login - Client: 127.0.0.1
+2026-03-06 15:21:08,372 - INFO - Admin login attempt - Username: admin
+2026-03-06 15:21:08,374 - INFO - Admin login successful - Username: admin, AdminID: 1
+2026-03-06 15:21:08,698 - INFO - [REQUEST] GET /admin - Client: 127.0.0.1
+2026-03-06 15:21:08,959 - INFO - [REQUEST] GET /static/css/base.css - Client: 127.0.0.1
+2026-03-06 15:21:08,960 - INFO - [RESPONSE] GET /static/css/base.css - Status: 304 - 1ms
+2026-03-06 15:21:09,040 - INFO - [REQUEST] GET /static/css/admin.css - Client: 127.0.0.1
+2026-03-06 15:21:09,042 - INFO - [REQUEST] GET /static/js/admin.js - Client: 127.0.0.1
+2026-03-06 15:21:09,041 - INFO - [REQUEST] GET /static/css/modal.css - Client: 127.0.0.1
+2026-03-06 15:21:09,041 - INFO - [REQUEST] GET /static/js/modal.js - Client: 127.0.0.1
+2026-03-06 15:21:09,044 - INFO - [RESPONSE] GET /static/css/admin.css - Status: 304 - 4ms
+2026-03-06 15:21:09,044 - INFO - [REQUEST] GET /static/js/admin-analytics.js - Client: 127.0.0.1
+2026-03-06 15:21:09,045 - INFO - [RESPONSE] GET /static/js/admin.js - Status: 304 - 3ms
+2026-03-06 15:21:09,046 - INFO - [RESPONSE] GET /static/css/modal.css - Status: 304 - 5ms
+2026-03-06 15:21:09,048 - INFO - [RESPONSE] GET /static/js/modal.js - Status: 304 - 7ms
+2026-03-06 15:21:09,051 - INFO - [RESPONSE] GET /static/js/admin-analytics.js - Status: 304 - 7ms
+2026-03-06 15:21:09,374 - INFO - [REQUEST] GET /api/admin/config - Client: 127.0.0.1
+2026-03-06 15:21:09,375 - INFO - [REQUEST] GET /api/admin/semesters - Client: 127.0.0.1
+2026-03-06 15:21:12,392 - INFO - [REQUEST] GET /api/admin/teachers - Client: 127.0.0.1
+2026-03-06 15:21:42,099 - INFO - [REQUEST] PUT /api/admin/teachers/1 - Client: 127.0.0.1
+2026-03-06 15:21:42,100 - ERROR - Exception on /api/admin/teachers/1 [PUT]
+Traceback (most recent call last):
+  File "D:\ARISE SPEED IMROVEMENTS\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\ARISE SPEED IMROVEMENTS\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\ARISE SPEED IMROVEMENTS\A.R.I.S.E\venv\Lib\site-packages\flask_cors\extension.py", line 176, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+                                                ~^^^^^^^^^^^^^^^^^
+  File "D:\ARISE SPEED IMROVEMENTS\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\ARISE SPEED IMROVEMENTS\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "D:\ARISE SPEED IMROVEMENTS\A.R.I.S.E\server.py", line 252, in decorated
+    return f(data, *args, **kwargs)
+  File "D:\ARISE SPEED IMROVEMENTS\A.R.I.S.E\server.py", line 612, in manage_single_teacher
+    existing = conn.execute("SELECT id FROM teachers WHERE teacher_code = ? AND id != ?", (teacher_code, id)).fetchone()
+               ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+sqlite3.OperationalError: no such column: teacher_code
+2026-03-06 15:21:42,104 - INFO - [RESPONSE] PUT /api/admin/teachers/1 - Status: 500 - 5ms
+2026-03-06 15:21:42,363 - INFO - [REQUEST] GET /api/admin/teachers - Client: 127.0.0.1
+2026-03-06 15:21:46,951 - INFO - [REQUEST] GET /api/admin/students - Client: 127.0.0.1
+2026-03-06 15:21:51,850 - INFO - [REQUEST] GET /api/admin/teachers - Client: 127.0.0.1
+2026-03-06 15:22:02,101 - INFO - [REQUEST] GET /admin-login - Client: 127.0.0.1
+2026-03-06 15:22:02,463 - INFO - [REQUEST] GET /static/css/base.css - Client: 127.0.0.1
+2026-03-06 15:22:02,464 - INFO - [REQUEST] GET /static/css/modal.css - Client: 127.0.0.1
+2026-03-06 15:22:02,466 - INFO - [RESPONSE] GET /static/css/base.css - Status: 304 - 2ms
+2026-03-06 15:22:02,466 - INFO - [RESPONSE] GET /static/css/modal.css - Status: 304 - 2ms
+2026-03-06 15:22:08,012 - INFO - [REQUEST] POST /api/admin/login - Client: 127.0.0.1
+2026-03-06 15:22:08,014 - INFO - Admin login attempt - Username: admin
+2026-03-06 15:22:08,016 - INFO - Admin login successful - Username: admin, AdminID: 1
+2026-03-06 15:22:08,356 - INFO - [REQUEST] GET /admin - Client: 127.0.0.1
+2026-03-06 15:22:08,604 - INFO - [REQUEST] GET /static/css/base.css - Client: 127.0.0.1
+2026-03-06 15:22:08,605 - INFO - [RESPONSE] GET /static/css/base.css - Status: 304 - 1ms
+2026-03-06 15:22:08,698 - INFO - [REQUEST] GET /static/css/modal.css - Client: 127.0.0.1
+2026-03-06 15:22:08,699 - INFO - [REQUEST] GET /static/js/modal.js - Client: 127.0.0.1
+2026-03-06 15:22:08,699 - INFO - [REQUEST] GET /static/css/admin.css - Client: 127.0.0.1
+2026-03-06 15:22:08,701 - INFO - [RESPONSE] GET /static/css/modal.css - Status: 304 - 3ms
+2026-03-06 15:22:08,702 - INFO - [REQUEST] GET /static/js/admin.js - Client: 127.0.0.1
+2026-03-06 15:22:08,704 - INFO - [RESPONSE] GET /static/js/modal.js - Status: 304 - 4ms
+2026-03-06 15:22:08,705 - INFO - [REQUEST] GET /static/js/admin-analytics.js - Client: 127.0.0.1
+2026-03-06 15:22:08,707 - INFO - [RESPONSE] GET /static/css/admin.css - Status: 304 - 9ms
+2026-03-06 15:22:08,708 - INFO - [RESPONSE] GET /static/js/admin.js - Status: 304 - 6ms
+2026-03-06 15:22:08,721 - INFO - [RESPONSE] GET /static/js/admin-analytics.js - Status: 304 - 16ms
+2026-03-06 15:22:09,056 - INFO - [REQUEST] GET /api/admin/config - Client: 127.0.0.1
+2026-03-06 15:22:09,058 - INFO - [REQUEST] GET /api/admin/semesters - Client: 127.0.0.1
+2026-03-06 15:22:12,151 - INFO - [REQUEST] GET /api/admin/teachers - Client: 127.0.0.1
+2026-03-06 15:22:15,294 - INFO - [REQUEST] GET /api/admin/students - Client: 127.0.0.1
+2026-03-06 15:22:16,117 - INFO - [REQUEST] GET /api/admin/teachers - Client: 127.0.0.1
+2026-03-06 15:22:20,278 - INFO - [REQUEST] GET /api/admin/semesters - Client: 127.0.0.1
+2026-03-06 15:22:21,672 - INFO - [REQUEST] GET /api/admin/courses-view - Client: 127.0.0.1
+2026-03-06 15:22:26,451 - INFO - [REQUEST] GET /api/admin/semesters - Client: 127.0.0.1
+2026-03-06 15:22:31,405 - INFO - [REQUEST] GET /api/admin/enrollment-roster/1 - Client: 127.0.0.1
+2026-03-06 15:22:37,820 - INFO - [REQUEST] GET /api/admin/enrollment-roster/5 - Client: 127.0.0.1
+2026-03-06 15:22:42,339 - INFO - [REQUEST] GET /api/admin/courses-view - Client: 127.0.0.1
+2026-03-06 15:22:45,214 - INFO - [REQUEST] GET /api/admin/semesters - Client: 127.0.0.1
+2026-03-06 15:22:46,179 - INFO - [REQUEST] GET /api/admin/courses - Client: 127.0.0.1
+2026-03-06 15:22:49,339 - INFO - [REQUEST] GET /api/admin/enrollments/1 - Client: 127.0.0.1
+2026-03-06 15:23:00,174 - INFO - [REQUEST] GET /api/admin/teachers - Client: 127.0.0.1
+2026-03-06 15:23:25,213 - INFO - [REQUEST] PUT /api/admin/teachers/3 - Client: 127.0.0.1
+2026-03-06 15:23:25,214 - ERROR - Exception on /api/admin/teachers/3 [PUT]
+Traceback (most recent call last):
+  File "D:\ARISE SPEED IMROVEMENTS\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\ARISE SPEED IMROVEMENTS\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\ARISE SPEED IMROVEMENTS\A.R.I.S.E\venv\Lib\site-packages\flask_cors\extension.py", line 176, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+                                                ~^^^^^^^^^^^^^^^^^
+  File "D:\ARISE SPEED IMROVEMENTS\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\ARISE SPEED IMROVEMENTS\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "D:\ARISE SPEED IMROVEMENTS\A.R.I.S.E\server.py", line 252, in decorated
+    return f(data, *args, **kwargs)
+  File "D:\ARISE SPEED IMROVEMENTS\A.R.I.S.E\server.py", line 612, in manage_single_teacher
+    existing = conn.execute("SELECT id FROM teachers WHERE teacher_code = ? AND id != ?", (teacher_code, id)).fetchone()
+               ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+sqlite3.OperationalError: no such column: teacher_code
+2026-03-06 15:23:25,216 - INFO - [RESPONSE] PUT /api/admin/teachers/3 - Status: 500 - 3ms
+2026-03-06 15:23:25,473 - INFO - [REQUEST] GET /api/admin/teachers - Client: 127.0.0.1
+2026-03-06 15:23:44,235 - INFO - [REQUEST] PUT /api/admin/teachers/3 - Client: 127.0.0.1
+2026-03-06 15:23:44,237 - ERROR - Exception on /api/admin/teachers/3 [PUT]
+Traceback (most recent call last):
+  File "D:\ARISE SPEED IMROVEMENTS\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\ARISE SPEED IMROVEMENTS\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\ARISE SPEED IMROVEMENTS\A.R.I.S.E\venv\Lib\site-packages\flask_cors\extension.py", line 176, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+                                                ~^^^^^^^^^^^^^^^^^
+  File "D:\ARISE SPEED IMROVEMENTS\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\ARISE SPEED IMROVEMENTS\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "D:\ARISE SPEED IMROVEMENTS\A.R.I.S.E\server.py", line 252, in decorated
+    return f(data, *args, **kwargs)
+  File "D:\ARISE SPEED IMROVEMENTS\A.R.I.S.E\server.py", line 612, in manage_single_teacher
+    existing = conn.execute("SELECT id FROM teachers WHERE teacher_code = ? AND id != ?", (teacher_code, id)).fetchone()
+               ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+sqlite3.OperationalError: no such column: teacher_code
+2026-03-06 15:23:44,240 - INFO - [RESPONSE] PUT /api/admin/teachers/3 - Status: 500 - 4ms
+2026-03-06 15:23:44,560 - INFO - [REQUEST] GET /api/admin/teachers - Client: 127.0.0.1
+2026-03-06 15:24:35,088 - INFO - Server started - Auto-expire scheduler active
+2026-03-06 15:24:35,089 - INFO - [SYNC] Auto-sync started (interval: 300s)
+2026-03-06 15:24:35,090 - INFO - [SYNC] Auto-sync enabled: every 300s to https://a-r-i-s-e.onrender.com
+2026-03-06 15:24:36,222 - INFO - [SYNC] Starting push to cloud: https://a-r-i-s-e.onrender.com
+2026-03-06 15:24:37,152 - INFO - [SYNC] Database binary exported: 126976 bytes (124.0 KB)
+2026-03-06 15:24:38,838 - INFO - [SYNC] Push complete - Cloud response: success
+2026-03-06 15:24:38,838 - INFO - [SYNC] Auto-sync result: success
+2026-03-06 15:24:39,527 - INFO - [REQUEST] GET /api/health - Client: 127.0.0.1
+2026-03-06 15:25:16,826 - INFO - [REQUEST] GET /admin - Client: 127.0.0.1
+2026-03-06 15:25:17,088 - INFO - [REQUEST] GET /static/css/base.css - Client: 127.0.0.1
+2026-03-06 15:25:17,089 - INFO - [RESPONSE] GET /static/css/base.css - Status: 304 - 1ms
+2026-03-06 15:25:17,169 - INFO - [REQUEST] GET /static/css/modal.css - Client: 127.0.0.1
+2026-03-06 15:25:17,170 - INFO - [REQUEST] GET /static/css/admin.css - Client: 127.0.0.1
+2026-03-06 15:25:17,170 - INFO - [REQUEST] GET /static/js/modal.js - Client: 127.0.0.1
+2026-03-06 15:25:17,171 - INFO - [REQUEST] GET /static/js/admin.js - Client: 127.0.0.1
+2026-03-06 15:25:17,173 - INFO - [REQUEST] GET /static/js/admin-analytics.js - Client: 127.0.0.1
+2026-03-06 15:25:17,175 - INFO - [RESPONSE] GET /static/css/modal.css - Status: 304 - 6ms
+2026-03-06 15:25:17,175 - INFO - [RESPONSE] GET /static/css/admin.css - Status: 304 - 6ms
+2026-03-06 15:25:17,176 - INFO - [RESPONSE] GET /static/js/modal.js - Status: 304 - 6ms
+2026-03-06 15:25:17,178 - INFO - [RESPONSE] GET /static/js/admin.js - Status: 304 - 7ms
+2026-03-06 15:25:17,179 - INFO - [RESPONSE] GET /static/js/admin-analytics.js - Status: 304 - 6ms
+2026-03-06 15:25:17,589 - INFO - [REQUEST] GET /api/admin/config - Client: 127.0.0.1
+2026-03-06 15:25:17,589 - INFO - [REQUEST] GET /api/admin/semesters - Client: 127.0.0.1
+2026-03-06 15:25:31,873 - INFO - [REQUEST] GET /api/admin/teachers - Client: 127.0.0.1
+2026-03-06 15:26:18,925 - INFO - [REQUEST] PUT /api/admin/teachers/1 - Client: 127.0.0.1
+2026-03-06 15:26:18,928 - ERROR - Exception on /api/admin/teachers/1 [PUT]
+Traceback (most recent call last):
+  File "D:\ARISE SPEED IMROVEMENTS\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\ARISE SPEED IMROVEMENTS\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\ARISE SPEED IMROVEMENTS\A.R.I.S.E\venv\Lib\site-packages\flask_cors\extension.py", line 176, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+                                                ~^^^^^^^^^^^^^^^^^
+  File "D:\ARISE SPEED IMROVEMENTS\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\ARISE SPEED IMROVEMENTS\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "D:\ARISE SPEED IMROVEMENTS\A.R.I.S.E\server.py", line 252, in decorated
+    return f(data, *args, **kwargs)
+  File "D:\ARISE SPEED IMROVEMENTS\A.R.I.S.E\server.py", line 612, in manage_single_teacher
+    existing = conn.execute("SELECT id FROM teachers WHERE teacher_code = ? AND id != ?", (teacher_code, id)).fetchone()
+               ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+sqlite3.OperationalError: no such column: teacher_code
+2026-03-06 15:26:18,934 - INFO - [RESPONSE] PUT /api/admin/teachers/1 - Status: 500 - 9ms
+2026-03-06 15:26:19,187 - INFO - [REQUEST] GET /api/admin/teachers - Client: 127.0.0.1
+2026-03-06 15:27:13,650 - INFO - [REQUEST] PUT /api/admin/teachers/1 - Client: 127.0.0.1
+2026-03-06 15:27:13,652 - ERROR - Exception on /api/admin/teachers/1 [PUT]
+Traceback (most recent call last):
+  File "D:\ARISE SPEED IMROVEMENTS\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\ARISE SPEED IMROVEMENTS\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\ARISE SPEED IMROVEMENTS\A.R.I.S.E\venv\Lib\site-packages\flask_cors\extension.py", line 176, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+                                                ~^^^^^^^^^^^^^^^^^
+  File "D:\ARISE SPEED IMROVEMENTS\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\ARISE SPEED IMROVEMENTS\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "D:\ARISE SPEED IMROVEMENTS\A.R.I.S.E\server.py", line 252, in decorated
+    return f(data, *args, **kwargs)
+  File "D:\ARISE SPEED IMROVEMENTS\A.R.I.S.E\server.py", line 612, in manage_single_teacher
+    existing = conn.execute("SELECT id FROM teachers WHERE teacher_code = ? AND id != ?", (teacher_code, id)).fetchone()
+               ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+sqlite3.OperationalError: no such column: teacher_code
+2026-03-06 15:27:13,656 - INFO - [RESPONSE] PUT /api/admin/teachers/1 - Status: 500 - 6ms
+2026-03-06 15:27:13,997 - INFO - [REQUEST] GET /api/admin/teachers - Client: 127.0.0.1
+2026-03-06 15:29:39,318 - INFO - [SYNC] Starting push to cloud: https://a-r-i-s-e.onrender.com
+2026-03-06 15:29:40,267 - INFO - [SYNC] Database binary exported: 126976 bytes (124.0 KB)
+2026-03-06 15:29:41,515 - INFO - [SYNC] Push complete - Cloud response: success
+2026-03-06 15:29:41,515 - INFO - [SYNC] Auto-sync result: success
+2026-03-06 15:30:08,088 - INFO - Server started - Auto-expire scheduler active
+2026-03-06 15:30:08,089 - INFO - [SYNC] Auto-sync started (interval: 300s)
+2026-03-06 15:30:08,090 - INFO - [SYNC] Auto-sync enabled: every 300s to https://a-r-i-s-e.onrender.com
+2026-03-06 15:30:08,593 - INFO - [SYNC] Starting push to cloud: https://a-r-i-s-e.onrender.com
+2026-03-06 15:30:09,528 - INFO - [SYNC] Database binary exported: 126976 bytes (124.0 KB)
+2026-03-06 15:30:10,621 - INFO - [SYNC] Push complete - Cloud response: success
+2026-03-06 15:30:10,621 - INFO - [SYNC] Auto-sync result: success
+2026-03-06 15:30:11,638 - INFO - [REQUEST] GET /api/health - Client: 127.0.0.1
+2026-03-06 15:32:33,617 - INFO - [REQUEST] PUT /api/admin/teachers/5 - Client: 127.0.0.1
+2026-03-06 15:32:33,619 - ERROR - Exception on /api/admin/teachers/5 [PUT]
+Traceback (most recent call last):
+  File "D:\ARISE SPEED IMROVEMENTS\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\ARISE SPEED IMROVEMENTS\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\ARISE SPEED IMROVEMENTS\A.R.I.S.E\venv\Lib\site-packages\flask_cors\extension.py", line 176, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+                                                ~^^^^^^^^^^^^^^^^^
+  File "D:\ARISE SPEED IMROVEMENTS\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\ARISE SPEED IMROVEMENTS\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "D:\ARISE SPEED IMROVEMENTS\A.R.I.S.E\server.py", line 252, in decorated
+    return f(data, *args, **kwargs)
+  File "D:\ARISE SPEED IMROVEMENTS\A.R.I.S.E\server.py", line 612, in manage_single_teacher
+    existing = conn.execute("SELECT id FROM teachers WHERE teacher_code = ? AND id != ?", (teacher_code, id)).fetchone()
+               ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+sqlite3.OperationalError: no such column: teacher_code
+2026-03-06 15:32:33,624 - INFO - [RESPONSE] PUT /api/admin/teachers/5 - Status: 500 - 7ms
+2026-03-06 15:32:33,867 - INFO - [REQUEST] GET /api/admin/teachers - Client: 127.0.0.1
+2026-03-06 15:33:49,463 - INFO - [REQUEST] GET /api/admin/students - Client: 127.0.0.1
+2026-03-06 15:33:54,393 - INFO - [REQUEST] GET /api/admin/teachers - Client: 127.0.0.1
+2026-03-06 15:34:09,743 - INFO - [REQUEST] GET /api/admin/semesters - Client: 127.0.0.1
+2026-03-06 15:34:14,898 - INFO - [REQUEST] GET /api/admin/teachers - Client: 127.0.0.1
+2026-03-06 15:35:11,060 - INFO - [SYNC] Starting push to cloud: https://a-r-i-s-e.onrender.com
+2026-03-06 15:35:11,549 - INFO - [SYNC] Database binary exported: 126976 bytes (124.0 KB)
+2026-03-06 15:35:12,243 - INFO - [SYNC] Push complete - Cloud response: success
+2026-03-06 15:35:12,243 - INFO - [SYNC] Auto-sync result: success
+2026-03-06 15:35:13,316 - INFO - [REQUEST] POST /api/admin/teachers - Client: 127.0.0.1
+2026-03-06 15:35:13,322 - ERROR - Exception on /api/admin/teachers [POST]
+Traceback (most recent call last):
+  File "D:\ARISE SPEED IMROVEMENTS\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\ARISE SPEED IMROVEMENTS\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\ARISE SPEED IMROVEMENTS\A.R.I.S.E\venv\Lib\site-packages\flask_cors\extension.py", line 176, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+                                                ~^^^^^^^^^^^^^^^^^
+  File "D:\ARISE SPEED IMROVEMENTS\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\ARISE SPEED IMROVEMENTS\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "D:\ARISE SPEED IMROVEMENTS\A.R.I.S.E\server.py", line 252, in decorated
+    return f(data, *args, **kwargs)
+  File "D:\ARISE SPEED IMROVEMENTS\A.R.I.S.E\server.py", line 585, in manage_teachers
+    existing = conn.execute("SELECT id FROM teachers WHERE teacher_code = ?", (teacher_code,)).fetchone()
+               ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+sqlite3.OperationalError: no such column: teacher_code
+2026-03-06 15:35:13,325 - INFO - [RESPONSE] POST /api/admin/teachers - Status: 500 - 10ms
+2026-03-06 15:35:13,549 - INFO - [REQUEST] GET /api/admin/teachers - Client: 127.0.0.1
+2026-03-06 15:37:11,917 - INFO - Server started - Auto-expire scheduler active
+2026-03-06 15:37:11,918 - INFO - [SYNC] Auto-sync started (interval: 300s)
+2026-03-06 15:37:11,918 - INFO - [SYNC] Auto-sync enabled: every 300s to https://a-r-i-s-e.onrender.com
+2026-03-06 15:37:12,957 - INFO - [SYNC] Starting push to cloud: https://a-r-i-s-e.onrender.com
+2026-03-06 15:37:13,367 - INFO - [SYNC] Database binary exported: 126976 bytes (124.0 KB)
+2026-03-06 15:37:14,401 - INFO - [SYNC] Push complete - Cloud response: success
+2026-03-06 15:37:14,401 - INFO - [SYNC] Auto-sync result: success
+2026-03-06 15:37:16,341 - INFO - [REQUEST] GET /api/health - Client: 127.0.0.1
+2026-03-06 15:37:49,203 - INFO - [REQUEST] GET /admin - Client: 127.0.0.1
+2026-03-06 15:37:49,449 - INFO - [REQUEST] GET /static/css/base.css - Client: 127.0.0.1
+2026-03-06 15:37:49,451 - INFO - [RESPONSE] GET /static/css/base.css - Status: 304 - 2ms
+2026-03-06 15:37:49,557 - INFO - [REQUEST] GET /static/css/modal.css - Client: 127.0.0.1
+2026-03-06 15:37:49,558 - INFO - [REQUEST] GET /static/css/admin.css - Client: 127.0.0.1
+2026-03-06 15:37:49,558 - INFO - [REQUEST] GET /static/js/modal.js - Client: 127.0.0.1
+2026-03-06 15:37:49,560 - INFO - [REQUEST] GET /static/js/admin.js - Client: 127.0.0.1
+2026-03-06 15:37:49,561 - INFO - [RESPONSE] GET /static/css/modal.css - Status: 304 - 3ms
+2026-03-06 15:37:49,561 - INFO - [RESPONSE] GET /static/css/admin.css - Status: 304 - 3ms
+2026-03-06 15:37:49,564 - INFO - [RESPONSE] GET /static/js/modal.js - Status: 304 - 5ms
+2026-03-06 15:37:49,562 - INFO - [REQUEST] GET /static/js/admin-analytics.js - Client: 127.0.0.1
+2026-03-06 15:37:49,567 - INFO - [RESPONSE] GET /static/js/admin-analytics.js - Status: 304 - 5ms
+2026-03-06 15:37:49,957 - INFO - [REQUEST] GET /api/admin/config - Client: 127.0.0.1
+2026-03-06 15:37:49,959 - INFO - [REQUEST] GET /api/admin/semesters - Client: 127.0.0.1
+2026-03-06 15:37:55,814 - INFO - [REQUEST] GET /api/admin/teachers - Client: 127.0.0.1
+2026-03-06 15:37:55,821 - INFO - Migrated teachers table: added teacher_code column
+2026-03-06 15:38:23,630 - INFO - [REQUEST] PUT /api/admin/teachers/5 - Client: 127.0.0.1
+2026-03-06 15:38:23,639 - INFO - Teacher updated - ID: 5, Name: MR. Bikram Pratap Singh, Code: -BPS001
+2026-03-06 15:38:29,367 - INFO - [REQUEST] GET /api/admin/teachers - Client: 127.0.0.1
+2026-03-06 15:38:52,954 - INFO - [REQUEST] POST /api/admin/teachers - Client: 127.0.0.1
+2026-03-06 15:38:53,197 - INFO - Teacher created - Name: Test Teacher, Code: TEST001
+2026-03-06 15:38:53,197 - INFO - [RESPONSE] POST /api/admin/teachers - Status: 201 - 243ms
+2026-03-06 15:39:00,828 - INFO - [REQUEST] GET /api/admin/teachers - Client: 127.0.0.1
+2026-03-06 15:39:15,225 - INFO - [REQUEST] GET /api/admin/students - Client: 127.0.0.1
+2026-03-06 15:42:15,419 - INFO - [SYNC] Starting push to cloud: https://a-r-i-s-e.onrender.com
+2026-03-06 15:42:15,807 - INFO - [SYNC] Database binary exported: 131072 bytes (128.0 KB)
+2026-03-06 15:42:17,421 - INFO - [SYNC] Push complete - Cloud response: success
+2026-03-06 15:42:17,421 - INFO - [SYNC] Auto-sync result: success
+2026-03-06 15:45:20,695 - INFO - Server started - Auto-expire scheduler active
+2026-03-06 15:45:20,696 - INFO - [SYNC] Auto-sync started (interval: 300s)
+2026-03-06 15:45:20,696 - INFO - [SYNC] Auto-sync enabled: every 300s to https://a-r-i-s-e.onrender.com
+2026-03-06 15:45:21,326 - INFO - [SYNC] Starting push to cloud: https://a-r-i-s-e.onrender.com
+2026-03-06 15:45:22,235 - INFO - [SYNC] Database binary exported: 131072 bytes (128.0 KB)
+2026-03-06 15:45:23,035 - INFO - [SYNC] Push complete - Cloud response: success
+2026-03-06 15:45:23,035 - INFO - [SYNC] Auto-sync result: success
+2026-03-06 15:45:32,216 - INFO - [REQUEST] GET /api/admin/teachers - Client: 127.0.0.1
+2026-03-06 15:45:35,378 - INFO - [REQUEST] GET /admin-login - Client: 127.0.0.1
+2026-03-06 15:45:35,755 - INFO - [REQUEST] GET /static/css/base.css - Client: 127.0.0.1
+2026-03-06 15:45:35,760 - INFO - [REQUEST] GET /static/css/modal.css - Client: 127.0.0.1
+2026-03-06 15:45:35,761 - INFO - [RESPONSE] GET /static/css/base.css - Status: 304 - 6ms
+2026-03-06 15:45:35,762 - INFO - [RESPONSE] GET /static/css/modal.css - Status: 304 - 2ms
+2026-03-06 15:45:45,291 - INFO - [REQUEST] POST /api/admin/login - Client: 127.0.0.1
+2026-03-06 15:45:45,295 - INFO - Admin login attempt - Username: admin
+2026-03-06 15:45:45,299 - INFO - Admin login successful - Username: admin, AdminID: 1
+2026-03-06 15:45:45,629 - INFO - [REQUEST] GET /admin - Client: 127.0.0.1
+2026-03-06 15:45:45,892 - INFO - [REQUEST] GET /static/css/base.css - Client: 127.0.0.1
+2026-03-06 15:45:45,892 - INFO - [RESPONSE] GET /static/css/base.css - Status: 304 - 1ms
+2026-03-06 15:45:45,967 - INFO - [REQUEST] GET /static/css/modal.css - Client: 127.0.0.1
+2026-03-06 15:45:45,970 - INFO - [REQUEST] GET /static/js/modal.js - Client: 127.0.0.1
+2026-03-06 15:45:45,968 - INFO - [REQUEST] GET /static/css/admin.css - Client: 127.0.0.1
+2026-03-06 15:45:45,972 - INFO - [REQUEST] GET /static/js/admin.js - Client: 127.0.0.1
+2026-03-06 15:45:45,974 - INFO - [RESPONSE] GET /static/css/admin.css - Status: 304 - 6ms
+2026-03-06 15:45:45,973 - INFO - [RESPONSE] GET /static/js/modal.js - Status: 304 - 3ms
+2026-03-06 15:45:45,975 - INFO - [REQUEST] GET /static/js/admin-analytics.js - Client: 127.0.0.1
+2026-03-06 15:45:45,972 - INFO - [RESPONSE] GET /static/css/modal.css - Status: 304 - 5ms
+2026-03-06 15:45:45,978 - INFO - [RESPONSE] GET /static/js/admin.js - Status: 304 - 7ms
+2026-03-06 15:45:45,983 - INFO - [RESPONSE] GET /static/js/admin-analytics.js - Status: 304 - 8ms
+2026-03-06 15:45:46,321 - INFO - [REQUEST] GET /api/admin/config - Client: 127.0.0.1
+2026-03-06 15:45:46,322 - INFO - [REQUEST] GET /api/admin/semesters - Client: 127.0.0.1
+2026-03-06 15:45:49,290 - INFO - [REQUEST] GET /api/admin/teachers - Client: 127.0.0.1
+2026-03-06 15:46:08,492 - INFO - [REQUEST] PUT /api/admin/teachers/5 - Client: 127.0.0.1
+2026-03-06 15:46:08,732 - INFO - Teacher updated - ID: 5, Name: MR. Bikram Pratap Singh, Code: BPS001
+2026-03-06 15:46:10,767 - INFO - [REQUEST] GET /api/admin/teachers - Client: 127.0.0.1
+2026-03-06 15:46:16,658 - INFO - [REQUEST] DELETE /api/admin/teachers/16 - Client: 127.0.0.1
+2026-03-06 15:46:16,663 - INFO - Teacher deleted - ID: 16
+2026-03-06 15:46:18,107 - INFO - [REQUEST] GET /api/admin/teachers - Client: 127.0.0.1
+2026-03-06 15:46:29,931 - INFO - [REQUEST] PUT /api/admin/teachers/1 - Client: 127.0.0.1
+2026-03-06 15:46:30,173 - INFO - Teacher updated - ID: 1, Name: Professor Rao, Code: 0001
+2026-03-06 15:46:31,610 - INFO - [REQUEST] GET /api/admin/teachers - Client: 127.0.0.1
+2026-03-06 15:46:51,846 - INFO - [REQUEST] PUT /api/admin/teachers/3 - Client: 127.0.0.1
+2026-03-06 15:46:52,084 - INFO - Teacher updated - ID: 3, Name: Professor Iyer, Code: 0003
+2026-03-06 15:46:53,651 - INFO - [REQUEST] GET /api/admin/teachers - Client: 127.0.0.1
+2026-03-06 15:46:57,085 - INFO - [REQUEST] GET /api/admin/students - Client: 127.0.0.1
+2026-03-06 15:46:59,171 - INFO - [REQUEST] GET /api/admin/teachers - Client: 127.0.0.1
+2026-03-06 15:47:06,880 - INFO - [REQUEST] GET / - Client: 127.0.0.1
+2026-03-06 15:47:07,144 - INFO - [REQUEST] GET /static/css/base.css - Client: 127.0.0.1
+2026-03-06 15:47:07,145 - INFO - [RESPONSE] GET /static/css/base.css - Status: 304 - 2ms
+2026-03-06 15:47:07,221 - INFO - [REQUEST] GET /static/css/modal.css - Client: 127.0.0.1
+2026-03-06 15:47:07,224 - INFO - [RESPONSE] GET /static/css/modal.css - Status: 304 - 3ms
+2026-03-06 15:47:07,230 - INFO - [REQUEST] GET /static/css/teacher.css - Client: 127.0.0.1
+2026-03-06 15:47:07,231 - INFO - [REQUEST] GET /static/js/modal.js - Client: 127.0.0.1
+2026-03-06 15:47:07,232 - INFO - [REQUEST] GET /static/js/teacher.js - Client: 127.0.0.1
+2026-03-06 15:47:07,235 - INFO - [RESPONSE] GET /static/css/teacher.css - Status: 304 - 5ms
+2026-03-06 15:47:07,236 - INFO - [RESPONSE] GET /static/js/modal.js - Status: 304 - 5ms
+2026-03-06 15:47:07,238 - INFO - [RESPONSE] GET /static/js/teacher.js - Status: 304 - 6ms
+2026-03-06 15:47:07,270 - INFO - [REQUEST] GET /api/teacher/course-codes - Client: 127.0.0.1
+2026-03-06 15:47:07,592 - INFO - [REQUEST] GET /api/teacher/validate-session/1 - Client: 127.0.0.1
+2026-03-06 15:47:07,858 - INFO - [REQUEST] GET /api/teacher/history/1 - Client: 127.0.0.1
+2026-03-06 15:47:07,859 - INFO - Loading teacher history - CourseID: 1
+2026-03-06 15:47:08,015 - INFO - [REQUEST] GET /api/teacher/report/259 - Client: 127.0.0.1
+2026-03-06 15:47:08,016 - INFO - Generating attendance report - SessionID: 259, CourseID: 1
+2026-03-06 15:47:08,022 - INFO - Report generated - SessionID: 259, Students: 8, Sessions: 234, Present records: 405, Absent records: 52
+2026-03-06 15:47:17,844 - INFO - [SYNC] Starting push to cloud: https://a-r-i-s-e.onrender.com
+2026-03-06 15:47:18,233 - INFO - [SYNC] Database binary exported: 131072 bytes (128.0 KB)
+2026-03-06 15:47:18,449 - INFO - [REQUEST] POST /api/teacher/login - Client: 127.0.0.1
+2026-03-06 15:47:18,450 - INFO - Teacher login attempt - CourseCode: MCA101
+2026-03-06 15:47:18,678 - INFO - Teacher login successful - Course: Introduction To Programming
+2026-03-06 15:47:18,951 - INFO - [SYNC] Push complete - Cloud response: success
+2026-03-06 15:47:18,951 - INFO - [SYNC] Auto-sync result: success
+2026-03-06 15:47:20,212 - INFO - [REQUEST] GET /api/teacher/analytics/1 - Client: 127.0.0.1
+2026-03-06 15:47:20,213 - INFO - Loading teacher analytics - CourseID: 1
+2026-03-06 15:47:21,567 - INFO - [REQUEST] GET /api/teacher/history/1 - Client: 127.0.0.1
+2026-03-06 15:47:21,568 - INFO - Loading teacher history - CourseID: 1
+2026-03-06 15:47:22,299 - INFO - [REQUEST] GET /api/teacher/history/1 - Client: 127.0.0.1
+2026-03-06 15:47:22,300 - INFO - Loading teacher history - CourseID: 1
+2026-03-06 15:47:22,635 - INFO - [REQUEST] GET /api/teacher/report/259 - Client: 127.0.0.1
+2026-03-06 15:47:22,636 - INFO - Generating attendance report - SessionID: 259, CourseID: 1
+2026-03-06 15:47:22,640 - INFO - Report generated - SessionID: 259, Students: 8, Sessions: 234, Present records: 405, Absent records: 52
+2026-03-06 15:47:37,602 - INFO - [REQUEST] GET /api/admin/semesters - Client: 127.0.0.1
+2026-03-06 15:47:39,472 - INFO - [REQUEST] GET /api/admin/students - Client: 127.0.0.1
+2026-03-06 15:48:30,844 - INFO - [REQUEST] GET / - Client: 127.0.0.1
+2026-03-06 15:48:31,180 - INFO - [REQUEST] GET /static/css/base.css - Client: 127.0.0.1
+2026-03-06 15:48:31,182 - INFO - [REQUEST] GET /static/css/modal.css - Client: 127.0.0.1
+2026-03-06 15:48:31,183 - INFO - [RESPONSE] GET /static/css/base.css - Status: 304 - 2ms
+2026-03-06 15:48:31,184 - INFO - [REQUEST] GET /static/css/teacher.css - Client: 127.0.0.1
+2026-03-06 15:48:31,184 - INFO - [RESPONSE] GET /static/css/modal.css - Status: 304 - 3ms
+2026-03-06 15:48:31,186 - INFO - [REQUEST] GET /static/js/modal.js - Client: 127.0.0.1
+2026-03-06 15:48:31,191 - INFO - [REQUEST] GET /static/js/teacher.js - Client: 127.0.0.1
+2026-03-06 15:48:31,191 - INFO - [RESPONSE] GET /static/css/teacher.css - Status: 304 - 7ms
+2026-03-06 15:48:31,192 - INFO - [RESPONSE] GET /static/js/modal.js - Status: 304 - 7ms
+2026-03-06 15:48:31,194 - INFO - [RESPONSE] GET /static/js/teacher.js - Status: 304 - 3ms
+2026-03-06 15:48:31,445 - INFO - [REQUEST] GET /api/teacher/course-codes - Client: 127.0.0.1
+2026-03-06 15:48:31,523 - INFO - [REQUEST] GET /api/teacher/validate-session/1 - Client: 127.0.0.1
+2026-03-06 15:48:31,758 - INFO - [REQUEST] GET /api/teacher/history/1 - Client: 127.0.0.1
+2026-03-06 15:48:31,758 - INFO - Loading teacher history - CourseID: 1
+2026-03-06 15:48:31,837 - INFO - [REQUEST] GET /api/teacher/report/259 - Client: 127.0.0.1
+2026-03-06 15:48:31,838 - INFO - Generating attendance report - SessionID: 259, CourseID: 1
+2026-03-06 15:48:31,840 - INFO - Report generated - SessionID: 259, Students: 8, Sessions: 234, Present records: 405, Absent records: 52
+2026-03-06 15:48:43,809 - INFO - [REQUEST] POST /api/teacher/login - Client: 127.0.0.1
+2026-03-06 15:48:43,810 - INFO - Teacher login attempt - CourseCode: MCA101
+2026-03-06 15:48:44,048 - INFO - Teacher login successful - Course: Introduction To Programming
+2026-03-06 15:48:45,530 - INFO - [REQUEST] GET /api/teacher/analytics/1 - Client: 127.0.0.1
+2026-03-06 15:48:45,531 - INFO - Loading teacher analytics - CourseID: 1
+2026-03-06 15:48:51,023 - INFO - [REQUEST] POST /api/teacher/start-online-session - Client: 127.0.0.1
+2026-03-06 15:48:51,024 - INFO - [RESPONSE] POST /api/teacher/start-online-session - Status: 403 - 0ms
+2026-03-06 15:50:23,509 - INFO - [SYNC] Starting push to cloud: https://a-r-i-s-e.onrender.com
+2026-03-06 15:50:23,954 - INFO - [SYNC] Database binary exported: 131072 bytes (128.0 KB)
+2026-03-06 15:50:25,549 - INFO - [SYNC] Push complete - Cloud response: success
+2026-03-06 15:50:25,549 - INFO - [SYNC] Auto-sync result: success
+2026-03-06 15:52:19,345 - INFO - [SYNC] Starting push to cloud: https://a-r-i-s-e.onrender.com
+2026-03-06 15:52:20,257 - INFO - [SYNC] Database binary exported: 131072 bytes (128.0 KB)
+2026-03-06 15:52:21,848 - INFO - [SYNC] Push complete - Cloud response: success
+2026-03-06 15:52:21,849 - INFO - [SYNC] Auto-sync result: success
+2026-03-06 15:54:54,190 - INFO - [REQUEST] GET /api/admin/analytics/overview - Client: 127.0.0.1
+2026-03-06 15:54:54,223 - INFO - [REQUEST] GET /api/admin/semesters - Client: 127.0.0.1
+2026-03-06 15:54:54,224 - INFO - [REQUEST] GET /api/admin/students - Client: 127.0.0.1
+2026-03-06 15:54:54,223 - INFO - [REQUEST] GET /api/admin/courses-view - Client: 127.0.0.1
+2026-03-06 15:54:54,454 - INFO - [REQUEST] GET /api/admin/analytics/overview - Client: 127.0.0.1
+2026-03-06 15:54:58,971 - INFO - [REQUEST] GET /api/admin/analytics/overview - Client: 127.0.0.1
+2026-03-06 15:55:08,707 - INFO - [REQUEST] GET /api/admin/analytics/course/1 - Client: 127.0.0.1
+2026-03-06 15:55:18,263 - INFO - [REQUEST] GET /api/admin/analytics/student/1 - Client: 127.0.0.1
+2026-03-06 15:55:25,683 - INFO - [REQUEST] GET /api/admin/analytics/trends - Client: 127.0.0.1
+2026-03-06 15:55:26,140 - INFO - [SYNC] Starting push to cloud: https://a-r-i-s-e.onrender.com
+2026-03-06 15:55:27,023 - INFO - [SYNC] Database binary exported: 131072 bytes (128.0 KB)
+2026-03-06 15:55:27,864 - INFO - [SYNC] Push complete - Cloud response: success
+2026-03-06 15:55:27,864 - INFO - [SYNC] Auto-sync result: success
+2026-03-06 15:55:32,157 - INFO - [REQUEST] GET /api/admin/analytics/trends - Client: 127.0.0.1
+2026-03-06 15:55:34,794 - INFO - [REQUEST] GET /api/admin/analytics/trends - Client: 127.0.0.1
+2026-03-06 15:56:19,287 - INFO - [REQUEST] GET /api/admin/analytics/overview - Client: 127.0.0.1
+2026-03-06 15:56:39,924 - INFO - [REQUEST] GET /api/admin/semesters - Client: 127.0.0.1
+2026-03-06 15:57:22,246 - INFO - [SYNC] Starting push to cloud: https://a-r-i-s-e.onrender.com
+2026-03-06 15:57:23,164 - INFO - [SYNC] Database binary exported: 131072 bytes (128.0 KB)
+2026-03-06 15:57:24,293 - INFO - [SYNC] Push complete - Cloud response: success
+2026-03-06 15:57:24,293 - INFO - [SYNC] Auto-sync result: success
+2026-03-06 16:02:25,323 - INFO - [SYNC] Starting push to cloud: https://a-r-i-s-e.onrender.com
+2026-03-06 16:02:26,246 - INFO - [SYNC] Database binary exported: 131072 bytes (128.0 KB)
+2026-03-06 16:02:27,880 - INFO - [SYNC] Push complete - Cloud response: success
+2026-03-06 16:02:27,880 - INFO - [SYNC] Auto-sync result: success
+2026-03-06 16:07:28,861 - INFO - [SYNC] Starting push to cloud: https://a-r-i-s-e.onrender.com
+2026-03-06 16:07:29,785 - INFO - [SYNC] Database binary exported: 131072 bytes (128.0 KB)
+2026-03-06 16:07:30,552 - INFO - [SYNC] Push complete - Cloud response: success
+2026-03-06 16:07:30,552 - INFO - [SYNC] Auto-sync result: success
+2026-03-06 16:12:31,577 - INFO - [SYNC] Starting push to cloud: https://a-r-i-s-e.onrender.com
+2026-03-06 16:12:32,520 - INFO - [SYNC] Database binary exported: 131072 bytes (128.0 KB)
+2026-03-06 16:12:33,289 - INFO - [SYNC] Push complete - Cloud response: success
+2026-03-06 16:12:33,290 - INFO - [SYNC] Auto-sync result: success
+2026-03-06 16:17:34,277 - INFO - [SYNC] Starting push to cloud: https://a-r-i-s-e.onrender.com
+2026-03-06 16:17:35,198 - INFO - [SYNC] Database binary exported: 131072 bytes (128.0 KB)
+2026-03-06 16:17:36,909 - INFO - [SYNC] Push complete - Cloud response: success
+2026-03-06 16:17:36,909 - INFO - [SYNC] Auto-sync result: success
+2026-03-06 23:47:58,196 - INFO - Server started - Auto-expire scheduler active
+2026-03-06 23:47:58,199 - INFO - [SYNC] Auto-sync started (interval: 300s)
+2026-03-06 23:47:58,199 - INFO - [SYNC] Auto-sync enabled: every 300s to https://a-r-i-s-e.onrender.com
+2026-03-06 23:49:17,960 - INFO - [REQUEST] GET /api/health - Client: 127.0.0.1
+2026-03-06 23:50:10,857 - INFO - [REQUEST] GET /admin - Client: 127.0.0.1
+2026-03-06 23:50:11,116 - INFO - [REQUEST] GET /static/css/base.css - Client: 127.0.0.1
+2026-03-06 23:50:11,277 - INFO - [REQUEST] GET /static/css/modal.css - Client: 127.0.0.1
+2026-03-06 23:50:11,281 - INFO - [REQUEST] GET /static/js/modal.js - Client: 127.0.0.1
+2026-03-06 23:50:11,279 - INFO - [REQUEST] GET /static/css/admin.css - Client: 127.0.0.1
+2026-03-06 23:50:11,311 - INFO - [REQUEST] GET /static/js/admin.js - Client: 127.0.0.1
+2026-03-06 23:50:11,339 - INFO - [REQUEST] GET /static/js/admin-analytics.js - Client: 127.0.0.1
+2026-03-06 23:50:11,894 - INFO - [REQUEST] GET /api/admin/config - Client: 127.0.0.1
+2026-03-06 23:50:11,897 - INFO - [RESPONSE] GET /api/admin/config - Status: 401 - 3ms
+2026-03-06 23:50:11,897 - INFO - [REQUEST] GET /api/admin/semesters - Client: 127.0.0.1
+2026-03-06 23:50:11,900 - INFO - [RESPONSE] GET /api/admin/semesters - Status: 401 - 3ms
+2026-03-06 23:50:11,925 - INFO - [REQUEST] GET /favicon.ico - Client: 127.0.0.1
+2026-03-06 23:50:11,926 - INFO - [RESPONSE] GET /favicon.ico - Status: 404 - 1ms
+2026-03-06 23:50:12,144 - INFO - [REQUEST] GET /admin-login - Client: 127.0.0.1
+2026-03-06 23:50:12,292 - INFO - [REQUEST] GET /static/css/base.css - Client: 127.0.0.1
+2026-03-06 23:50:12,296 - INFO - [REQUEST] GET /static/css/modal.css - Client: 127.0.0.1
+2026-03-06 23:50:12,299 - INFO - [RESPONSE] GET /static/css/base.css - Status: 304 - 6ms
+2026-03-06 23:50:12,300 - INFO - [RESPONSE] GET /static/css/modal.css - Status: 304 - 4ms
+2026-03-06 23:50:36,028 - INFO - [REQUEST] POST /api/admin/login - Client: 127.0.0.1
+2026-03-06 23:50:36,033 - INFO - Admin login attempt - Username: admin
+2026-03-06 23:50:36,038 - WARNING - Admin login failed - Invalid credentials for username: admin
+2026-03-06 23:50:36,039 - INFO - [RESPONSE] POST /api/admin/login - Status: 401 - 10ms
+2026-03-06 23:50:46,898 - INFO - [REQUEST] POST /api/admin/login - Client: 127.0.0.1
+2026-03-06 23:50:46,901 - INFO - Admin login attempt - Username: admin
+2026-03-06 23:50:46,904 - WARNING - Admin login failed - Invalid credentials for username: admin
+2026-03-06 23:50:46,905 - INFO - [RESPONSE] POST /api/admin/login - Status: 401 - 7ms
+2026-03-06 23:50:55,233 - INFO - [REQUEST] POST /api/admin/login - Client: 127.0.0.1
+2026-03-06 23:50:55,241 - INFO - Admin login attempt - Username: admin
+2026-03-06 23:50:55,244 - INFO - Admin login successful - Username: admin, AdminID: 1
+2026-03-06 23:50:55,480 - INFO - [REQUEST] GET /admin - Client: 127.0.0.1
+2026-03-06 23:50:55,606 - INFO - [REQUEST] GET /static/css/base.css - Client: 127.0.0.1
+2026-03-06 23:50:55,608 - INFO - [RESPONSE] GET /static/css/base.css - Status: 304 - 2ms
+2026-03-06 23:50:55,852 - INFO - [REQUEST] GET /static/css/modal.css - Client: 127.0.0.1
+2026-03-06 23:50:55,854 - INFO - [REQUEST] GET /static/css/admin.css - Client: 127.0.0.1
+2026-03-06 23:50:55,855 - INFO - [REQUEST] GET /static/js/modal.js - Client: 127.0.0.1
+2026-03-06 23:50:55,857 - INFO - [REQUEST] GET /static/js/admin.js - Client: 127.0.0.1
+2026-03-06 23:50:55,862 - INFO - [RESPONSE] GET /static/css/modal.css - Status: 304 - 10ms
+2026-03-06 23:50:55,860 - INFO - [REQUEST] GET /static/js/admin-analytics.js - Client: 127.0.0.1
+2026-03-06 23:50:55,864 - INFO - [RESPONSE] GET /static/css/admin.css - Status: 304 - 10ms
+2026-03-06 23:50:55,866 - INFO - [RESPONSE] GET /static/js/modal.js - Status: 304 - 11ms
+2026-03-06 23:50:55,868 - INFO - [RESPONSE] GET /static/js/admin.js - Status: 304 - 11ms
+2026-03-06 23:50:55,873 - INFO - [RESPONSE] GET /static/js/admin-analytics.js - Status: 304 - 13ms
+2026-03-06 23:50:56,232 - INFO - [REQUEST] GET /api/admin/config - Client: 127.0.0.1
+2026-03-06 23:50:56,235 - INFO - [REQUEST] GET /api/admin/semesters - Client: 127.0.0.1
+2026-03-06 23:51:05,416 - INFO - [REQUEST] GET /api/admin/teachers - Client: 127.0.0.1
+2026-03-06 23:51:33,784 - INFO - [REQUEST] PUT /api/admin/teachers/1 - Client: 127.0.0.1
+2026-03-06 23:51:33,804 - INFO - Teacher updated - ID: 1, Name: Professor Rao, Code: RAO001
+2026-03-06 23:51:43,153 - INFO - [REQUEST] GET /api/admin/teachers - Client: 127.0.0.1
+2026-03-06 23:51:52,327 - INFO - [REQUEST] GET /api/admin/students - Client: 127.0.0.1
+2026-03-06 23:53:04,200 - INFO - [SYNC] Starting push to cloud: https://a-r-i-s-e.onrender.com
+2026-03-06 23:53:04,626 - INFO - [SYNC] Database binary exported: 131072 bytes (128.0 KB)
+2026-03-06 23:53:06,350 - INFO - [SYNC] Push complete - Cloud response: success
+2026-03-06 23:53:06,350 - INFO - [SYNC] Auto-sync result: success
+2026-03-06 23:53:08,906 - INFO - [REQUEST] GET /api/admin/students - Client: 127.0.0.1
+2026-03-06 23:53:17,123 - INFO - [REQUEST] GET /api/admin/teachers - Client: 127.0.0.1
+2026-03-06 23:54:03,749 - INFO - [REQUEST] GET /api/admin/semesters - Client: 127.0.0.1
+2026-03-06 23:54:06,426 - INFO - [REQUEST] GET /api/admin/students - Client: 127.0.0.1
+2026-03-06 23:54:18,692 - INFO - [REQUEST] POST /api/admin/login - Client: 127.0.0.1
+2026-03-06 23:54:18,696 - INFO - Admin login attempt - Username: admin
+2026-03-06 23:54:18,698 - WARNING - Admin login failed - Invalid credentials for username: admin
+2026-03-06 23:54:18,699 - INFO - [RESPONSE] POST /api/admin/login - Status: 401 - 7ms
+2026-03-06 23:54:19,688 - INFO - [REQUEST] POST /api/admin/students/bulk-import - Client: 127.0.0.1
+2026-03-06 23:54:19,690 - ERROR - Exception on /api/admin/students/bulk-import [POST]
+Traceback (most recent call last):
+  File "D:\ARISE SPEED IMROVEMENTS\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\ARISE SPEED IMROVEMENTS\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\ARISE SPEED IMROVEMENTS\A.R.I.S.E\venv\Lib\site-packages\flask_cors\extension.py", line 176, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+                                                ~^^^^^^^^^^^^^^^^^
+  File "D:\ARISE SPEED IMROVEMENTS\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\ARISE SPEED IMROVEMENTS\A.R.I.S.E\venv\Lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "D:\ARISE SPEED IMROVEMENTS\A.R.I.S.E\server.py", line 239, in decorated
+    token = request.headers['Authorization'].split(" ")[1]
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^
+IndexError: list index out of range
+2026-03-06 23:54:19,898 - INFO - [RESPONSE] POST /api/admin/students/bulk-import - Status: 500 - 210ms
+2026-03-06 23:54:42,416 - INFO - [REQUEST] POST /api/admin/login - Client: 127.0.0.1
+2026-03-06 23:54:42,417 - INFO - Admin login attempt - Username: admin
+2026-03-06 23:54:42,421 - WARNING - Admin login failed - Invalid credentials for username: admin
+2026-03-06 23:54:42,421 - INFO - [RESPONSE] POST /api/admin/login - Status: 401 - 6ms
+2026-03-06 23:56:19,452 - INFO - [REQUEST] GET /admin-login - Client: 127.0.0.1
+2026-03-06 23:56:19,713 - INFO - [REQUEST] GET /static/css/base.css - Client: 127.0.0.1
+2026-03-06 23:56:19,747 - INFO - [RESPONSE] GET /static/css/base.css - Status: 304 - 34ms
+2026-03-06 23:56:19,822 - INFO - [REQUEST] GET /static/css/modal.css - Client: 127.0.0.1
+2026-03-06 23:56:19,840 - INFO - [RESPONSE] GET /static/css/modal.css - Status: 304 - 19ms
+2026-03-06 23:57:33,120 - INFO - [REQUEST] POST /api/admin/login - Client: 127.0.0.1
+2026-03-06 23:57:33,123 - INFO - Admin login attempt - Username: admin
+2026-03-06 23:57:33,125 - WARNING - Admin login failed - Invalid credentials for username: admin
+2026-03-06 23:57:33,126 - INFO - [RESPONSE] POST /api/admin/login - Status: 401 - 5ms
+2026-03-06 23:57:47,017 - INFO - [REQUEST] GET /admin-dashboard - Client: 127.0.0.1
+2026-03-06 23:57:47,018 - INFO - [RESPONSE] GET /admin-dashboard - Status: 404 - 1ms
+2026-03-06 23:57:54,042 - INFO - [REQUEST] GET /admin-login - Client: 127.0.0.1
+2026-03-06 23:57:54,303 - INFO - [REQUEST] GET /static/css/base.css - Client: 127.0.0.1
+2026-03-06 23:57:54,305 - INFO - [RESPONSE] GET /static/css/base.css - Status: 304 - 2ms
+2026-03-06 23:57:54,412 - INFO - [REQUEST] GET /static/css/modal.css - Client: 127.0.0.1
+2026-03-06 23:57:54,413 - INFO - [RESPONSE] GET /static/css/modal.css - Status: 304 - 2ms
+2026-03-06 23:58:07,414 - INFO - [SYNC] Starting push to cloud: https://a-r-i-s-e.onrender.com
+2026-03-06 23:58:07,943 - INFO - [SYNC] Database binary exported: 131072 bytes (128.0 KB)
+2026-03-06 23:58:09,582 - INFO - [REQUEST] POST /api/admin/login - Client: 127.0.0.1
+2026-03-06 23:58:09,586 - INFO - Admin login attempt - Username: admin
+2026-03-06 23:58:09,589 - INFO - Admin login successful - Username: admin, AdminID: 1
+2026-03-06 23:58:09,874 - INFO - [SYNC] Push complete - Cloud response: success
+2026-03-06 23:58:09,874 - INFO - [SYNC] Auto-sync result: success
+2026-03-06 23:58:09,938 - INFO - [REQUEST] GET /admin - Client: 127.0.0.1
+2026-03-06 23:58:10,198 - INFO - [REQUEST] GET /static/css/base.css - Client: 127.0.0.1
+2026-03-06 23:58:10,200 - INFO - [RESPONSE] GET /static/css/base.css - Status: 304 - 2ms
+2026-03-06 23:58:10,308 - INFO - [REQUEST] GET /static/css/modal.css - Client: 127.0.0.1
+2026-03-06 23:58:10,309 - INFO - [RESPONSE] GET /static/css/modal.css - Status: 304 - 2ms
+2026-03-06 23:58:10,315 - INFO - [REQUEST] GET /static/css/admin.css - Client: 127.0.0.1
+2026-03-06 23:58:10,318 - INFO - [REQUEST] GET /static/js/modal.js - Client: 127.0.0.1
+2026-03-06 23:58:10,320 - INFO - [REQUEST] GET /static/js/admin.js - Client: 127.0.0.1
+2026-03-06 23:58:10,323 - INFO - [REQUEST] GET /static/js/admin-analytics.js - Client: 127.0.0.1
+2026-03-06 23:58:10,346 - INFO - [RESPONSE] GET /static/css/admin.css - Status: 304 - 31ms
+2026-03-06 23:58:10,420 - INFO - [RESPONSE] GET /static/js/modal.js - Status: 304 - 102ms
+2026-03-06 23:58:10,434 - INFO - [RESPONSE] GET /static/js/admin-analytics.js - Status: 304 - 111ms
+2026-03-06 23:58:10,442 - INFO - [RESPONSE] GET /static/js/admin.js - Status: 304 - 122ms
+2026-03-06 23:58:10,793 - INFO - [REQUEST] GET /api/admin/config - Client: 127.0.0.1
+2026-03-06 23:58:10,794 - INFO - [REQUEST] GET /api/admin/semesters - Client: 127.0.0.1
+2026-03-06 23:59:47,235 - INFO - [REQUEST] GET /api/admin/students - Client: 127.0.0.1
+2026-03-07 00:00:42,179 - INFO - [REQUEST] POST /api/admin/students/bulk-import - Client: 127.0.0.1
+2026-03-07 00:00:44,245 - INFO - Bulk student import: 3 added, 0 skipped
+2026-03-07 00:00:44,247 - INFO - [RESPONSE] POST /api/admin/students/bulk-import - Status: 200 - 2067ms
+2026-03-07 00:00:56,807 - INFO - [REQUEST] GET /api/admin/students - Client: 127.0.0.1
+2026-03-07 00:01:30,444 - INFO - [REQUEST] POST /api/admin/students/bulk-import - Client: 127.0.0.1
+2026-03-07 00:01:31,041 - INFO - Bulk student import: 0 added, 1 skipped
+2026-03-07 00:01:31,042 - INFO - [RESPONSE] POST /api/admin/students/bulk-import - Status: 200 - 598ms
+2026-03-07 00:01:39,215 - INFO - [REQUEST] GET /api/admin/students - Client: 127.0.0.1
+2026-03-07 00:03:10,424 - INFO - [SYNC] Starting push to cloud: https://a-r-i-s-e.onrender.com
+2026-03-07 00:03:11,563 - INFO - [SYNC] Database binary exported: 131072 bytes (128.0 KB)
+2026-03-07 00:03:12,574 - INFO - [SYNC] Push complete - Cloud response: success
+2026-03-07 00:03:12,575 - INFO - [SYNC] Auto-sync result: success
+2026-03-07 00:03:22,947 - INFO - [REQUEST] GET /api/admin/courses-view - Client: 127.0.0.1
+2026-03-07 00:03:22,948 - INFO - [REQUEST] GET /api/admin/semesters - Client: 127.0.0.1
+2026-03-07 00:03:22,948 - INFO - [REQUEST] GET /api/admin/teachers - Client: 127.0.0.1
+2026-03-07 00:03:25,700 - INFO - [REQUEST] GET /api/admin/courses - Client: 127.0.0.1
+2026-03-07 00:03:27,340 - INFO - [REQUEST] GET /api/admin/courses-view - Client: 127.0.0.1
+2026-03-07 00:03:27,340 - INFO - [REQUEST] GET /api/admin/semesters - Client: 127.0.0.1
+2026-03-07 00:03:27,340 - INFO - [REQUEST] GET /api/admin/analytics/overview - Client: 127.0.0.1
+2026-03-07 00:03:27,344 - INFO - [REQUEST] GET /api/admin/students - Client: 127.0.0.1
+2026-03-07 00:03:27,598 - INFO - [REQUEST] GET /api/admin/analytics/overview - Client: 127.0.0.1
+2026-03-07 14:08:56,388 - INFO - [REQUEST] GET /admin - Client: 127.0.0.1
+2026-03-07 14:08:56,647 - INFO - [REQUEST] GET /static/css/base.css - Client: 127.0.0.1
+2026-03-07 14:08:56,651 - INFO - [RESPONSE] GET /static/css/base.css - Status: 304 - 4ms
+2026-03-07 14:08:56,760 - INFO - [REQUEST] GET /static/css/modal.css - Client: 127.0.0.1
+2026-03-07 14:08:56,764 - INFO - [REQUEST] GET /static/js/admin.js - Client: 127.0.0.1
+2026-03-07 14:08:56,762 - INFO - [REQUEST] GET /static/js/modal.js - Client: 127.0.0.1
+2026-03-07 14:08:56,761 - INFO - [REQUEST] GET /static/css/admin.css - Client: 127.0.0.1
+2026-03-07 14:08:56,767 - INFO - [REQUEST] GET /static/js/admin-analytics.js - Client: 127.0.0.1
+2026-03-07 14:08:56,769 - INFO - [RESPONSE] GET /static/js/admin.js - Status: 304 - 6ms
+2026-03-07 14:08:56,770 - INFO - [RESPONSE] GET /static/css/admin.css - Status: 304 - 9ms
+2026-03-07 14:08:56,771 - INFO - [RESPONSE] GET /static/js/admin-analytics.js - Status: 304 - 4ms
+2026-03-07 14:08:56,772 - INFO - [RESPONSE] GET /static/js/modal.js - Status: 304 - 10ms
+2026-03-07 14:08:56,768 - INFO - [RESPONSE] GET /static/css/modal.css - Status: 304 - 8ms
+2026-03-07 14:08:57,122 - INFO - [REQUEST] GET /api/admin/config - Client: 127.0.0.1
+2026-03-07 14:08:57,126 - INFO - [RESPONSE] GET /api/admin/config - Status: 401 - 3ms
+2026-03-07 14:08:57,123 - INFO - [REQUEST] GET /api/admin/semesters - Client: 127.0.0.1
+2026-03-07 14:08:57,127 - INFO - [RESPONSE] GET /api/admin/semesters - Status: 401 - 4ms
+2026-03-07 14:08:57,385 - INFO - [REQUEST] GET /admin-login - Client: 127.0.0.1
+2026-03-07 14:08:57,463 - INFO - [REQUEST] GET /static/css/base.css - Client: 127.0.0.1
+2026-03-07 14:08:57,465 - INFO - [RESPONSE] GET /static/css/base.css - Status: 304 - 2ms
+2026-03-07 14:08:57,470 - INFO - [REQUEST] GET /static/css/modal.css - Client: 127.0.0.1
+2026-03-07 14:08:57,473 - INFO - [RESPONSE] GET /static/css/modal.css - Status: 304 - 3ms
+2026-03-07 14:09:00,246 - INFO - [REQUEST] GET /admin-login - Client: 127.0.0.1
+2026-03-07 14:09:00,277 - INFO - [REQUEST] GET /static/css/base.css - Client: 127.0.0.1
+2026-03-07 14:09:00,278 - INFO - [RESPONSE] GET /static/css/base.css - Status: 304 - 1ms
+2026-03-07 14:09:00,593 - INFO - [REQUEST] GET /static/css/modal.css - Client: 127.0.0.1
+2026-03-07 14:09:00,595 - INFO - [RESPONSE] GET /static/css/modal.css - Status: 304 - 1ms
+2026-03-07 14:09:01,807 - INFO - [REQUEST] GET /admin-login - Client: 127.0.0.1
+2026-03-07 14:09:02,073 - INFO - [REQUEST] GET /static/css/base.css - Client: 127.0.0.1
+2026-03-07 14:09:02,077 - INFO - [RESPONSE] GET /static/css/base.css - Status: 304 - 3ms
+2026-03-07 14:09:02,162 - INFO - [REQUEST] GET /static/css/modal.css - Client: 127.0.0.1
+2026-03-07 14:09:02,167 - INFO - [RESPONSE] GET /static/css/modal.css - Status: 304 - 4ms
+2026-03-07 14:09:07,917 - INFO - [REQUEST] GET /admin-login - Client: 127.0.0.1
+2026-03-07 14:09:08,244 - INFO - [REQUEST] GET /static/css/base.css - Client: 127.0.0.1
+2026-03-07 14:09:08,246 - INFO - [REQUEST] GET /static/css/modal.css - Client: 127.0.0.1
+2026-03-07 14:09:08,246 - INFO - [RESPONSE] GET /static/css/base.css - Status: 304 - 2ms
+2026-03-07 14:09:08,248 - INFO - [RESPONSE] GET /static/css/modal.css - Status: 304 - 2ms
+2026-03-07 14:10:09,067 - INFO - [REQUEST] POST /api/admin/login - Client: 127.0.0.1
+2026-03-07 14:10:09,080 - INFO - Admin login attempt - Username: admin
+2026-03-07 14:10:09,098 - INFO - Admin login successful - Username: admin, AdminID: 1
+2026-03-07 14:10:09,313 - INFO - [REQUEST] GET /admin - Client: 127.0.0.1
+2026-03-07 14:10:09,438 - INFO - [REQUEST] GET /static/css/base.css - Client: 127.0.0.1
+2026-03-07 14:10:09,440 - INFO - [RESPONSE] GET /static/css/base.css - Status: 304 - 2ms
+2026-03-07 14:10:09,648 - INFO - [REQUEST] GET /static/css/modal.css - Client: 127.0.0.1
+2026-03-07 14:10:09,649 - INFO - [REQUEST] GET /static/css/admin.css - Client: 127.0.0.1
+2026-03-07 14:10:09,649 - INFO - [REQUEST] GET /static/js/modal.js - Client: 127.0.0.1
+2026-03-07 14:10:09,652 - INFO - [REQUEST] GET /static/js/admin.js - Client: 127.0.0.1
+2026-03-07 14:10:09,654 - INFO - [RESPONSE] GET /static/css/modal.css - Status: 304 - 6ms
+2026-03-07 14:10:09,655 - INFO - [REQUEST] GET /static/js/admin-analytics.js - Client: 127.0.0.1
+2026-03-07 14:10:09,656 - INFO - [RESPONSE] GET /static/css/admin.css - Status: 304 - 7ms
+2026-03-07 14:10:09,656 - INFO - [RESPONSE] GET /static/js/admin.js - Status: 304 - 5ms
+2026-03-07 14:10:09,661 - INFO - [RESPONSE] GET /static/js/modal.js - Status: 304 - 12ms
+2026-03-07 14:10:09,664 - INFO - [RESPONSE] GET /static/js/admin-analytics.js - Status: 304 - 9ms
+2026-03-07 14:10:09,994 - INFO - [REQUEST] GET /api/admin/config - Client: 127.0.0.1
+2026-03-07 14:10:09,998 - INFO - [REQUEST] GET /api/admin/semesters - Client: 127.0.0.1
+2026-03-07 14:10:13,441 - INFO - [REQUEST] GET /api/admin/teachers - Client: 127.0.0.1
+2026-03-07 14:10:16,415 - INFO - [REQUEST] GET /api/admin/students - Client: 127.0.0.1
+2026-03-07 14:10:17,626 - INFO - [REQUEST] GET /api/admin/teachers - Client: 127.0.0.1
+2026-03-07 14:10:25,104 - INFO - [REQUEST] GET /admin-login - Client: 127.0.0.1
+2026-03-07 14:10:25,366 - INFO - [REQUEST] GET /static/css/base.css - Client: 127.0.0.1
+2026-03-07 14:10:25,367 - INFO - [RESPONSE] GET /static/css/base.css - Status: 304 - 1ms
+2026-03-07 14:10:25,428 - INFO - [REQUEST] GET /static/css/modal.css - Client: 127.0.0.1
+2026-03-07 14:10:25,430 - INFO - [RESPONSE] GET /static/css/modal.css - Status: 304 - 2ms
+2026-03-07 14:17:01,564 - INFO - [SYNC] Starting push to cloud: https://a-r-i-s-e.onrender.com
+2026-03-07 14:17:01,984 - INFO - [SYNC] Database binary exported: 131072 bytes (128.0 KB)
+2026-03-07 14:17:04,730 - INFO - [SYNC] Push complete - Cloud response: success
+2026-03-07 14:17:04,730 - INFO - [SYNC] Auto-sync result: success
+2026-03-07 14:22:05,407 - INFO - [SYNC] Starting push to cloud: https://a-r-i-s-e.onrender.com
+2026-03-07 14:22:06,400 - INFO - [SYNC] Database binary exported: 131072 bytes (128.0 KB)
+2026-03-07 14:22:08,813 - INFO - [SYNC] Push complete - Cloud response: success
+2026-03-07 14:22:08,813 - INFO - [SYNC] Auto-sync result: success
+2026-03-07 14:27:09,573 - INFO - [SYNC] Starting push to cloud: https://a-r-i-s-e.onrender.com
+2026-03-07 14:27:10,509 - INFO - [SYNC] Database binary exported: 131072 bytes (128.0 KB)
+2026-03-07 14:27:13,192 - INFO - [SYNC] Push complete - Cloud response: success
+2026-03-07 14:27:13,192 - INFO - [SYNC] Auto-sync result: success
+2026-03-07 14:32:13,866 - INFO - [SYNC] Starting push to cloud: https://a-r-i-s-e.onrender.com
+2026-03-07 14:32:14,836 - INFO - [SYNC] Database binary exported: 131072 bytes (128.0 KB)
+2026-03-07 14:32:16,852 - INFO - [SYNC] Push complete - Cloud response: success
+2026-03-07 14:32:16,852 - INFO - [SYNC] Auto-sync result: success
