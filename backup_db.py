@@ -32,7 +32,8 @@ def create_backup():
     os.makedirs(BACKUP_DIR, exist_ok=True)
     
     # Generate timestamped filename
-    timestamp = datetime.datetime.now().strftime('%Y%m%d_%H%M%S')
+    IST_TZ = datetime.timezone(datetime.timedelta(hours=5, minutes=30))
+    timestamp = datetime.datetime.now(IST_TZ).strftime('%Y%m%d_%H%M%S')
     db_name = os.path.splitext(os.path.basename(DB_PATH))[0]
     backup_filename = f"{db_name}_backup_{timestamp}.db"
     backup_path = os.path.join(BACKUP_DIR, backup_filename)

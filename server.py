@@ -13,6 +13,17 @@ import bcrypt
 import html as html_module
 from functools import wraps
 
+# --- TIMEZONE CONFIGURATION ---
+# Define IST timezone offset (+5:30)
+IST_TZ = datetime.timezone(datetime.timedelta(hours=5, minutes=30))
+
+def get_ist_now():
+    """Returns the current time in IST (UTC+5:30) as a naive datetime object.
+    This ensures timestamps are always consistent regardless of server location.
+    """
+    return datetime.datetime.now(IST_TZ).replace(tzinfo=None)
+# ------------------------------
+
 from openpyxl import Workbook
 from openpyxl.styles import Font, Alignment
 import io
@@ -1431,10 +1442,10 @@ def teacher_start_session():
     
     # Deactivate any other active sessions for safety
     conn.execute("UPDATE sessions SET is_active = 0, end_time = ? WHERE is_active = 1",
-                 (datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'),))
+                 (get_ist_now().strftime('%Y-%m-%d %H:%M:%S'),))
     
     # CRITICAL FIX: Use current local time, not ISO string from frontend
-    start_time = datetime.datetime.now()  # Use server's current time
+    start_time = get_ist_now()  # Use server's current time
     duration_minutes = int(data['duration_minutes'])
     grace_period_minutes = 5
     
@@ -1481,7 +1492,7 @@ def teacher_start_session():
     conn.close()
     
     # Calculate seconds remaining (timezone-safe: uses relative duration, not absolute timestamps)
-    seconds_remaining = max(0, int((end_time - datetime.datetime.now()).total_seconds()))
+    seconds_remaining = max(0, int((end_time - get_ist_now()).total_seconds()))
     
     return jsonify({
         "status": "success",
@@ -1512,7 +1523,7 @@ def generate_otp(seed, interval=30):
     Generate a time-based OTP that rotates every `interval` seconds.
     Uses HMAC-SHA256 with the seed and current time window.
     """
-    time_window = int(datetime.datetime.now().timestamp()) // interval
+    time_window = int(get_ist_now().timestamp()) // interval
     message = f"{seed}:{time_window}".encode('utf-8')
     digest = hmac.new(seed.encode('utf-8'), message, hashlib.sha256).hexdigest()
     # Take first 6 digits
@@ -1521,7 +1532,7 @@ def generate_otp(seed, interval=30):
 
 def get_otp_time_remaining(interval=30):
     """Get seconds remaining until OTP rotates."""
-    now = int(datetime.datetime.now().timestamp())
+    now = int(get_ist_now().timestamp())
     return interval - (now % interval)
 
 
@@ -1546,7 +1557,7 @@ def start_online_session():
     session_token = secrets.token_urlsafe(16)
     otp_seed = secrets.token_hex(32)
     
-    start_time = datetime.datetime.now()
+    start_time = get_ist_now()
     end_time = start_time + datetime.timedelta(minutes=duration_minutes)
     
     conn = get_db_connection()
@@ -1565,7 +1576,7 @@ def start_online_session():
     
     # Deactivate any other active sessions
     conn.execute("UPDATE sessions SET is_active = 0, end_time = ? WHERE is_active = 1",
-                 (datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'),))
+                 (get_ist_now().strftime('%Y-%m-%d %H:%M:%S'),))
     
     cursor.execute(
         """INSERT INTO sessions 
@@ -1599,7 +1610,7 @@ def start_online_session():
                 f"Course: {course['course_name']}, Duration: {duration_minutes}min")
     
     # Calculate seconds remaining (timezone-safe)
-    seconds_remaining = max(0, int((end_time - datetime.datetime.now()).total_seconds()))
+    seconds_remaining = max(0, int((end_time - get_ist_now()).total_seconds()))
     
     return jsonify({
         "status": "success",
@@ -1657,7 +1668,7 @@ def online_session_info(token):
     
     # Calculate time remaining
     end_time = datetime.datetime.strptime(session['end_time'], '%Y-%m-%d %H:%M:%S')
-    now = datetime.datetime.now()
+    now = get_ist_now()
     remaining_seconds = max(0, int((end_time - now).total_seconds()))
     
     return jsonify({
@@ -1707,14 +1718,14 @@ def online_mark_attendance():
     
     # Check time window
     end_time = datetime.datetime.strptime(session['end_time'], '%Y-%m-%d %H:%M:%S')
-    if datetime.datetime.now() > end_time:
+    if get_ist_now() > end_time:
         conn.close()
         return jsonify({"status": "error", "message": "Session has expired"}), 410
     
     # Validate OTP — check current and previous window (grace period)
     current_otp = generate_otp(session['otp_seed'])
     # Also accept OTP from previous 30-second window (for students typing during transition)
-    time_window_prev = (int(datetime.datetime.now().timestamp()) // 30) - 1
+    time_window_prev = (int(get_ist_now().timestamp()) // 30) - 1
     prev_message = f"{session['otp_seed']}:{time_window_prev}".encode('utf-8')
     prev_digest = hmac.new(session['otp_seed'].encode('utf-8'), prev_message, hashlib.sha256).hexdigest()
     prev_otp = f"{int(prev_digest[:8], 16) % 1000000:06d}"
@@ -2052,7 +2063,7 @@ def end_session(session_id):
     Critical: This must run BEFORE closing the session.
     """
     conn = get_db_connection()
-    now = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+    now = get_ist_now().strftime('%Y-%m-%d %H:%M:%S')
     
     try:
         # STEP 1: Get session details BEFORE closing it
@@ -2173,7 +2184,7 @@ def extend_session(session_id):
     conn.close()
     
     # Calculate seconds remaining from new end time (timezone-safe)
-    seconds_remaining = max(0, int((new_end_time - datetime.datetime.now()).total_seconds()))
+    seconds_remaining = max(0, int((new_end_time - get_ist_now()).total_seconds()))
     
     return jsonify({
         "status": "success",
@@ -2190,7 +2201,7 @@ def check_and_expire_session(session_id):
     Immediately expires the session if time has passed.
     """
     conn = get_db_connection()
-    now = datetime.datetime.now()
+    now = get_ist_now()
     now_str = now.strftime('%Y-%m-%d %H:%M:%S')
     
     session = conn.execute(
@@ -2961,7 +2972,7 @@ def validate_teacher_session(course_id):
                     end_time_dt = datetime.datetime.strptime(end_time_str, '%Y-%m-%d %H:%M:%S.%f')
                 else:
                     end_time_dt = datetime.datetime.strptime(end_time_str, '%Y-%m-%d %H:%M:%S')
-                secs_remaining = max(0, int((end_time_dt - datetime.datetime.now()).total_seconds()))
+                secs_remaining = max(0, int((end_time_dt - get_ist_now()).total_seconds()))
             except Exception:
                 secs_remaining = 0
             
@@ -3455,7 +3466,7 @@ def device_heartbeat():
     data = request.get_json()
     
     # ✅ NEW: Add server timestamp when heartbeat is received
-    data['server_timestamp'] = datetime.datetime.now().isoformat()
+    data['server_timestamp'] = get_ist_now().isoformat()
     
     last_device_heartbeat = data
     
@@ -3489,7 +3500,7 @@ def get_device_status():
     # ✅ NEW: Check if heartbeat is fresh (within last 15 seconds)
     try:
         last_timestamp = datetime.datetime.fromisoformat(last_device_heartbeat['server_timestamp'])
-        current_time = datetime.datetime.now()
+        current_time = get_ist_now()
         time_diff = (current_time - last_timestamp).total_seconds()
         
         # If heartbeat is older than 15 seconds, device is considered offline
@@ -3761,7 +3772,7 @@ def auto_expire_sessions():
     """
     try:
         conn = get_db_connection()
-        now = datetime.datetime.now()
+        now = get_ist_now()
         now_str = now.strftime('%Y-%m-%d %H:%M:%S')
         
         # Find ACTIVE sessions that are past their end_time
