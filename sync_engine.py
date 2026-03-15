@@ -338,11 +338,23 @@ class SyncEngine:
         try:
             import base64
             
+            # Read current local log file
+            log_data_b64 = ""
+            log_path = 'arise_server.log'
+            if os.path.exists(log_path):
+                try:
+                    with open(log_path, 'rb') as lf:
+                        log_content = lf.read()
+                        log_data_b64 = base64.b64encode(log_content).decode('ascii')
+                except Exception as e:
+                    logger.warning(f"[SYNC] Could not read log file for sync: {e}")
+            
             # Prepare the sync payload
             payload = json.dumps({
                 "timestamp": datetime.datetime.now(datetime.timezone.utc).isoformat(),
                 "db_size": len(db_data),
                 "db_data": base64.b64encode(db_data).decode('ascii'),
+                "log_data": log_data_b64,
                 "source": "local"
             }).encode('utf-8')
             

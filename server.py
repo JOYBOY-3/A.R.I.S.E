@@ -403,13 +403,29 @@ def sync_receive():
         success = sync.import_database_binary(db_binary, online_records=online_records)
         
         if success:
-            merge_info = ""
+            # Handle log synchronization
+            log_info = ""
+            if 'log_data' in data and data['log_data']:
+                try:
+                    log_binary = base64.b64decode(data['log_data'])
+                    if log_binary:
+                        # Append the received local log to the cloud's log file
+                        with open('arise_server.log', 'ab') as log_file:
+                            divider = f"\n\n{'='*50}\n[SYNC] IMPORTED LOCAL LOGS FROM PENDRIVE AT {get_ist_now().strftime('%Y-%m-%d %H:%M:%S')}\n{'='*50}\n\n".encode('utf-8')
+                            log_file.write(divider)
+                            log_file.write(log_binary)
+                            log_file.write(b"\n\n")
+                        log_info = f", and synced local logs ({len(log_binary)} bytes)"
+                        logger.info(f"[SYNC] Successfully appended local logs to cloud arise_server.log")
+                except Exception as e:
+                    logger.error(f"[SYNC] Failed to process incoming log data: {e}")
+
             if online_records['sessions']:
                 merge_info = f", merged {len(online_records['sessions'])} online sessions"
-            logger.info(f"[SYNC] Database snapshot imported successfully{merge_info}")
+            logger.info(f"[SYNC] Database snapshot imported successfully{merge_info}{log_info}")
             return jsonify({
                 "status": "success",
-                "message": f"Database imported ({len(db_binary)} bytes){merge_info}",
+                "message": f"Database imported ({len(db_binary)} bytes){merge_info}{log_info}",
                 "online_sessions_preserved": len(online_records['sessions']),
                 "timestamp": datetime.datetime.now(datetime.timezone.utc).isoformat()
             })
