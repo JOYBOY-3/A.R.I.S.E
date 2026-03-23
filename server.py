@@ -420,6 +420,7 @@ def sync_receive():
                 except Exception as e:
                     logger.error(f"[SYNC] Failed to process incoming log data: {e}")
 
+            merge_info = ""
             if online_records['sessions']:
                 merge_info = f", merged {len(online_records['sessions'])} online sessions"
             logger.info(f"[SYNC] Database snapshot imported successfully{merge_info}{log_info}")
