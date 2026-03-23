@@ -16,6 +16,7 @@ backups/
 # --- Logs ---
 arise_server.log
 *.log
+.log_sync_offset
 
 # --- Python ---
 __pycache__/

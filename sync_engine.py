@@ -338,14 +338,34 @@ class SyncEngine:
         try:
             import base64
             
-            # Read current local log file
+            # Read ONLY NEW local log content since last sync (offset-based)
             log_data_b64 = ""
             log_path = 'arise_server.log'
+            offset_file = '.log_sync_offset'
+            last_offset = 0
+            
+            # Read the last synced byte position
+            if os.path.exists(offset_file):
+                try:
+                    with open(offset_file, 'r') as f:
+                        last_offset = int(f.read().strip())
+                except (ValueError, IOError):
+                    last_offset = 0
+            
             if os.path.exists(log_path):
                 try:
-                    with open(log_path, 'rb') as lf:
-                        log_content = lf.read()
-                        log_data_b64 = base64.b64encode(log_content).decode('ascii')
+                    file_size = os.path.getsize(log_path)
+                    
+                    # If file is smaller than offset, it was rotated — send full file
+                    if file_size < last_offset:
+                        last_offset = 0
+                    
+                    if file_size > last_offset:
+                        with open(log_path, 'rb') as lf:
+                            lf.seek(last_offset)
+                            new_content = lf.read()
+                            if new_content:
+                                log_data_b64 = base64.b64encode(new_content).decode('ascii')
                 except Exception as e:
                     logger.warning(f"[SYNC] Could not read log file for sync: {e}")
             
@@ -372,6 +392,16 @@ class SyncEngine:
                 result = json.loads(response.read().decode('utf-8'))
                 
             logger.info(f"[SYNC] Push complete - Cloud response: {result.get('status', 'unknown')}")
+            
+            # Save current log file position after successful sync
+            if os.path.exists(log_path):
+                try:
+                    current_size = os.path.getsize(log_path)
+                    with open(offset_file, 'w') as f:
+                        f.write(str(current_size))
+                except Exception as e:
+                    logger.warning(f"[SYNC] Could not save log sync offset: {e}")
+            
             return {
                 "status": "success",
                 "message": f"Database synced to cloud ({len(db_data)} bytes)",
